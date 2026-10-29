@@ -215,6 +215,7 @@ export function startServer({ port = 3000, host = '0.0.0.0', dbFile = path.join(
     try {
       switch (msg.type) {
         case 'start': R.startGame(room, pid); break;
+        case 'exclude': R.setExcluded(room, pid, str(msg.targetId), !!msg.excluded); break;
         case 'setStory': R.setStory(room, pid, str(msg.storyId, 40)); break;
         case 'ackDeath': R.ackDeath(room, pid, str(msg.eventId, 40)); break;
         case 'addBot': R.addBot(room, pid, str(msg.name, 200)); break;

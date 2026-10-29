@@ -1,0 +1,2982 @@
+{
+  "status": "passed",
+  "scope": "Content structure, deterministic ending reachability, selected transition invariants and local assets. Not browser/network/device validation.",
+  "nodes": 24,
+  "choices": 96,
+  "caseCount": 116,
+  "endingsReachable": 20,
+  "simulatedGames": 276,
+  "assets": [
+    {
+      "key": "JS01",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "audioSeconds": 0.7899773242630386,
+      "imageSha256": "6c293145e05ea2ec1bbd66c62db85aa91235f1e8562e021dfa4508e2bfd61b80"
+    },
+    {
+      "key": "JS02",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "audioSeconds": 0.8,
+      "imageSha256": "0671f1a6d5e060e57c0e42ee26d46259b4c9ecf09412f676a115ea7847907374"
+    },
+    {
+      "key": "JS03",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "audioSeconds": 0.8099773242630386,
+      "imageSha256": "ddaca004e343969f73e4f55c57f28dd7ee8aceff92d239ad23e07559816a8a15"
+    },
+    {
+      "key": "JS04",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "audioSeconds": 0.82,
+      "imageSha256": "aba8ab7615147117609ee1e56050f0a00251df05c8145221990277abc6d4f2e2"
+    },
+    {
+      "key": "JS05",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "audioSeconds": 0.8299773242630385,
+      "imageSha256": "8fed301ee62d3a0cdc18ced35dd3d4b485bb0b6cec2afbf31f51bd1c58b54834"
+    },
+    {
+      "key": "JS06",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "audioSeconds": 0.84,
+      "imageSha256": "2bd7ccde51930ac604b6eaef2d5e443704a3124311e660a9a6145149e75edd71"
+    },
+    {
+      "key": "JS07",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "audioSeconds": 0.8499773242630385,
+      "imageSha256": "2eee05182cd8d8fcfce8d17e884a518b43e0e64c327850654f6e4f1668505cc8"
+    },
+    {
+      "key": "JS08",
+      "dimensions": [
+        1024,
+        1536
+      ],
+      "audioSeconds": 0.86,
+      "imageSha256": "e634a9ac3fd34c348689cc67de8f1de9462624a228d7538d522192ca5d53ba50"
+    }
+  ],
+  "endingWitnesses": {
+    "S3_E01": {
+      "playerCount": 4,
+      "steps": [
+        {
+          "node": "S3_N01",
+          "choice": "A",
+          "actors": [
+            0
+          ]
+        },
+        {
+          "node": "S3_N02",
+          "choice": "C",
+          "actors": [
+            1
+          ]
+        },
+        {
+          "node": "S3_N03",
+          "choice": "A",
+          "actors": [
+            2
+          ]
+        },
+        {
+          "node": "S3_N04",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N05",
+          "choice": "A",
+          "actors": [
+            0
+          ]
+        },
+        {
+          "node": "S3_N06",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N07",
+          "choice": "C",
+          "actors": [
+            0
+          ]
+        },
+        {
+          "node": "S3_N08",
+          "choice": "A",
+          "actors": [
+            1
+          ]
+        },
+        {
+          "node": "S3_N09",
+          "choice": "A",
+          "actors": [
+            2
+          ]
+        },
+        {
+          "node": "S3_N10",
+          "choice": "D",
+          "actors": [
+            3
+          ]
+        },
+        {
+          "node": "S3_N11",
+          "choice": "A",
+          "actors": [
+            0
+          ]
+        },
+        {
+          "node": "S3_N12",
+          "choice": "C",
+          "actors": [
+            1
+          ]
+        },
+        {
+          "node": "S3_N13",
+          "choice": "A",
+          "actors": [
+            2
+          ]
+        },
+        {
+          "node": "S3_N14",
+          "choice": "A",
+          "actors": [
+            3
+          ]
+        },
+        {
+          "node": "S3_N15",
+          "choice": "A",
+          "actors": [
+            0
+          ]
+        },
+        {
+          "node": "S3_N16",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N17",
+          "choice": "A",
+          "actors": [
+            0
+          ]
+        },
+        {
+          "node": "S3_N18",
+          "choice": "C",
+          "actors": []
+        },
+        {
+          "node": "S3_N19",
+          "choice": "A",
+          "actors": [
+            0
+          ]
+        },
+        {
+          "node": "S3_N20",
+          "choice": "A",
+          "actors": [
+            1
+          ]
+        },
+        {
+          "node": "S3_N21",
+          "choice": "A",
+          "actors": [
+            2
+          ]
+        },
+        {
+          "node": "S3_N22",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N23",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N24",
+          "choice": "A",
+          "actors": []
+        }
+      ],
+      "living": 4
+    },
+    "S3_E02": {
+      "playerCount": 10,
+      "steps": [
+        {
+          "node": "S3_N01",
+          "choice": "A",
+          "actors": [
+            2
+          ]
+        },
+        {
+          "node": "S3_N02",
+          "choice": "A",
+          "actors": []
+        },
+        {
+          "node": "S3_N03",
+          "choice": "A",
+          "actors": [
+            1
+          ]
+        },
+        {
+          "node": "S3_N04",
+          "choice": "C",
+          "actors": [
+            0
+          ]
+        },
+        {
+          "node": "S3_N05",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N06",
+          "choice": "A",
+          "actors": [
+            4
+          ]
+        },
+        {
+          "node": "S3_N07",
+          "choice": "C",
+          "actors": [
+            5
+          ]
+        },
+        {
+          "node": "S3_N08",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N09",
+          "choice": "C",
+          "actors": [
+            6
+          ]
+        },
+        {
+          "node": "S3_N10",
+          "choice": "A",
+          "actors": [
+            7
+          ]
+        },
+        {
+          "node": "S3_N11",
+          "choice": "C",
+          "actors": []
+        },
+        {
+          "node": "S3_N12",
+          "choice": "A",
+          "actors": [
+            2
+          ]
+        },
+        {
+          "node": "S3_N13",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N14",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N15",
+          "choice": "B",
+          "actors": [
+            7,
+            4
+          ]
+        },
+        {
+          "node": "S3_N16",
+          "choice": "A",
+          "actors": []
+        },
+        {
+          "node": "S3_N17",
+          "choice": "A",
+          "actors": [
+            2
+          ]
+        },
+        {
+          "node": "S3_N18",
+          "choice": "A",
+          "actors": [
+            0,
+            8
+          ]
+        },
+        {
+          "node": "S3_N19",
+          "choice": "A",
+          "actors": [
+            4
+          ]
+        },
+        {
+          "node": "S3_N20",
+          "choice": "B",
+          "actors": [
+            6
+          ]
+        },
+        {
+          "node": "S3_N21",
+          "choice": "B",
+          "actors": [
+            9,
+            1
+          ]
+        },
+        {
+          "node": "S3_N22",
+          "choice": "A",
+          "actors": [
+            0
+          ]
+        },
+        {
+          "node": "S3_N23",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N24",
+          "choice": "A",
+          "actors": []
+        }
+      ],
+      "living": 9
+    },
+    "S3_E03": {
+      "playerCount": 10,
+      "steps": [
+        {
+          "node": "S3_N01",
+          "choice": "C",
+          "actors": [
+            4,
+            2
+          ]
+        },
+        {
+          "node": "S3_N02",
+          "choice": "A",
+          "actors": []
+        },
+        {
+          "node": "S3_N03",
+          "choice": "D",
+          "actors": [
+            6
+          ]
+        },
+        {
+          "node": "S3_N04",
+          "choice": "C",
+          "actors": [
+            2
+          ]
+        },
+        {
+          "node": "S3_N05",
+          "choice": "A",
+          "actors": [
+            7
+          ]
+        },
+        {
+          "node": "S3_N06",
+          "choice": "C",
+          "actors": [
+            7
+          ]
+        },
+        {
+          "node": "S3_N07",
+          "choice": "C",
+          "actors": [
+            4
+          ]
+        },
+        {
+          "node": "S3_N08",
+          "choice": "B",
+          "actors": [
+            1
+          ]
+        },
+        {
+          "node": "S3_N09",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N10",
+          "choice": "C",
+          "actors": [
+            7,
+            4
+          ]
+        },
+        {
+          "node": "S3_N11",
+          "choice": "C",
+          "actors": []
+        },
+        {
+          "node": "S3_N12",
+          "choice": "C",
+          "actors": [
+            9
+          ]
+        },
+        {
+          "node": "S3_N13",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N14",
+          "choice": "A",
+          "actors": [
+            0
+          ]
+        },
+        {
+          "node": "S3_N15",
+          "choice": "D",
+          "actors": [
+            9
+          ]
+        },
+        {
+          "node": "S3_N16",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N17",
+          "choice": "D",
+          "actors": [
+            0
+          ]
+        },
+        {
+          "node": "S3_N18",
+          "choice": "C",
+          "actors": []
+        },
+        {
+          "node": "S3_N19",
+          "choice": "C",
+          "actors": [
+            9
+          ]
+        },
+        {
+          "node": "S3_N20",
+          "choice": "C",
+          "actors": [
+            9
+          ]
+        },
+        {
+          "node": "S3_N21",
+          "choice": "B",
+          "actors": [
+            0,
+            3
+          ]
+        },
+        {
+          "node": "S3_N22",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N23",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N24",
+          "choice": "A",
+          "actors": []
+        }
+      ],
+      "living": 10
+    },
+    "S3_E04": {
+      "playerCount": 10,
+      "steps": [
+        {
+          "node": "S3_N01",
+          "choice": "B",
+          "actors": [
+            6
+          ]
+        },
+        {
+          "node": "S3_N02",
+          "choice": "B",
+          "actors": [
+            2
+          ]
+        },
+        {
+          "node": "S3_N03",
+          "choice": "A",
+          "actors": [
+            5
+          ]
+        },
+        {
+          "node": "S3_N04",
+          "choice": "A",
+          "actors": [
+            6,
+            7
+          ]
+        },
+        {
+          "node": "S3_N05",
+          "choice": "A",
+          "actors": [
+            6
+          ]
+        },
+        {
+          "node": "S3_N06",
+          "choice": "A",
+          "actors": [
+            1
+          ]
+        },
+        {
+          "node": "S3_N07",
+          "choice": "A",
+          "actors": [
+            3,
+            0
+          ]
+        },
+        {
+          "node": "S3_N08",
+          "choice": "A",
+          "actors": [
+            3
+          ]
+        },
+        {
+          "node": "S3_N09",
+          "choice": "C",
+          "actors": [
+            5
+          ]
+        },
+        {
+          "node": "S3_N10",
+          "choice": "D",
+          "actors": [
+            6
+          ]
+        },
+        {
+          "node": "S3_N11",
+          "choice": "C",
+          "actors": []
+        },
+        {
+          "node": "S3_N12",
+          "choice": "A",
+          "actors": [
+            3
+          ]
+        },
+        {
+          "node": "S3_N13",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N14",
+          "choice": "A",
+          "actors": [
+            5
+          ]
+        },
+        {
+          "node": "S3_N15",
+          "choice": "D",
+          "actors": [
+            8
+          ]
+        },
+        {
+          "node": "S3_N16",
+          "choice": "B",
+          "actors": [
+            1
+          ]
+        },
+        {
+          "node": "S3_N17",
+          "choice": "D",
+          "actors": [
+            7
+          ]
+        },
+        {
+          "node": "S3_N18",
+          "choice": "D",
+          "actors": [
+            4
+          ]
+        },
+        {
+          "node": "S3_N19",
+          "choice": "B",
+          "actors": [
+            1
+          ]
+        },
+        {
+          "node": "S3_N20",
+          "choice": "A",
+          "actors": [
+            6
+          ]
+        },
+        {
+          "node": "S3_N21",
+          "choice": "B",
+          "actors": [
+            7,
+            0
+          ]
+        },
+        {
+          "node": "S3_N22",
+          "choice": "B",
+          "actors": [
+            4
+          ]
+        },
+        {
+          "node": "S3_N23",
+          "choice": "A",
+          "actors": [
+            2
+          ]
+        },
+        {
+          "node": "S3_N24",
+          "choice": "A",
+          "actors": []
+        }
+      ],
+      "living": 9
+    },
+    "S3_E05": {
+      "playerCount": 7,
+      "steps": [
+        {
+          "node": "S3_N01",
+          "choice": "C",
+          "actors": [
+            1,
+            3
+          ]
+        },
+        {
+          "node": "S3_N02",
+          "choice": "B",
+          "actors": [
+            5
+          ]
+        },
+        {
+          "node": "S3_N03",
+          "choice": "D",
+          "actors": [
+            1
+          ]
+        },
+        {
+          "node": "S3_N04",
+          "choice": "C",
+          "actors": [
+            0
+          ]
+        },
+        {
+          "node": "S3_N05",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N06",
+          "choice": "A",
+          "actors": [
+            6
+          ]
+        },
+        {
+          "node": "S3_N07",
+          "choice": "C",
+          "actors": [
+            4
+          ]
+        },
+        {
+          "node": "S3_N08",
+          "choice": "A",
+          "actors": [
+            0
+          ]
+        },
+        {
+          "node": "S3_N09",
+          "choice": "C",
+          "actors": [
+            6
+          ]
+        },
+        {
+          "node": "S3_N10",
+          "choice": "D",
+          "actors": [
+            5
+          ]
+        },
+        {
+          "node": "S3_N11",
+          "choice": "A",
+          "actors": [
+            2
+          ]
+        },
+        {
+          "node": "S3_N12",
+          "choice": "A",
+          "actors": [
+            4
+          ]
+        },
+        {
+          "node": "S3_N13",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N14",
+          "choice": "A",
+          "actors": [
+            0
+          ]
+        },
+        {
+          "node": "S3_N15",
+          "choice": "D",
+          "actors": [
+            4
+          ]
+        },
+        {
+          "node": "S3_N16",
+          "choice": "C",
+          "actors": [
+            3
+          ]
+        },
+        {
+          "node": "S3_N17",
+          "choice": "A",
+          "actors": [
+            3
+          ]
+        },
+        {
+          "node": "S3_N18",
+          "choice": "D",
+          "actors": [
+            0
+          ]
+        },
+        {
+          "node": "S3_N19",
+          "choice": "A",
+          "actors": [
+            0
+          ]
+        },
+        {
+          "node": "S3_N20",
+          "choice": "A",
+          "actors": [
+            5
+          ]
+        },
+        {
+          "node": "S3_N21",
+          "choice": "B",
+          "actors": [
+            6,
+            3
+          ]
+        },
+        {
+          "node": "S3_N22",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N23",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N24",
+          "choice": "B",
+          "actors": []
+        }
+      ],
+      "living": 7
+    },
+    "S3_E06": {
+      "playerCount": 10,
+      "steps": [
+        {
+          "node": "S3_N01",
+          "choice": "A",
+          "actors": [
+            1
+          ]
+        },
+        {
+          "node": "S3_N02",
+          "choice": "A",
+          "actors": []
+        },
+        {
+          "node": "S3_N03",
+          "choice": "A",
+          "actors": [
+            3
+          ]
+        },
+        {
+          "node": "S3_N04",
+          "choice": "C",
+          "actors": [
+            3
+          ]
+        },
+        {
+          "node": "S3_N05",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N06",
+          "choice": "A",
+          "actors": [
+            1
+          ]
+        },
+        {
+          "node": "S3_N07",
+          "choice": "D",
+          "actors": [
+            4
+          ]
+        },
+        {
+          "node": "S3_N08",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N09",
+          "choice": "C",
+          "actors": [
+            6
+          ]
+        },
+        {
+          "node": "S3_N10",
+          "choice": "A",
+          "actors": [
+            1
+          ]
+        },
+        {
+          "node": "S3_N11",
+          "choice": "A",
+          "actors": [
+            7
+          ]
+        },
+        {
+          "node": "S3_N12",
+          "choice": "A",
+          "actors": [
+            1
+          ]
+        },
+        {
+          "node": "S3_N13",
+          "choice": "A",
+          "actors": [
+            1
+          ]
+        },
+        {
+          "node": "S3_N14",
+          "choice": "A",
+          "actors": [
+            0
+          ]
+        },
+        {
+          "node": "S3_N15",
+          "choice": "B",
+          "actors": [
+            8,
+            7
+          ]
+        },
+        {
+          "node": "S3_N16",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N17",
+          "choice": "C",
+          "actors": [
+            4
+          ]
+        },
+        {
+          "node": "S3_N18",
+          "choice": "A",
+          "actors": [
+            9,
+            3
+          ]
+        },
+        {
+          "node": "S3_N19",
+          "choice": "C",
+          "actors": [
+            4
+          ]
+        },
+        {
+          "node": "S3_N20",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N21",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N22",
+          "choice": "C",
+          "actors": [
+            2
+          ]
+        },
+        {
+          "node": "S3_N23",
+          "choice": "C",
+          "actors": [
+            6,
+            7
+          ]
+        },
+        {
+          "node": "S3_N24",
+          "choice": "B",
+          "actors": []
+        }
+      ],
+      "living": 10
+    },
+    "S3_E07": {
+      "playerCount": 7,
+      "steps": [
+        {
+          "node": "S3_N01",
+          "choice": "B",
+          "actors": [
+            4
+          ]
+        },
+        {
+          "node": "S3_N02",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N03",
+          "choice": "C",
+          "actors": [
+            2
+          ]
+        },
+        {
+          "node": "S3_N04",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N05",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N06",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N07",
+          "choice": "A",
+          "actors": [
+            6,
+            5
+          ]
+        },
+        {
+          "node": "S3_N08",
+          "choice": "B",
+          "actors": [
+            0
+          ]
+        },
+        {
+          "node": "S3_N09",
+          "choice": "C",
+          "actors": [
+            3
+          ]
+        },
+        {
+          "node": "S3_N10",
+          "choice": "C",
+          "actors": [
+            3,
+            0
+          ]
+        },
+        {
+          "node": "S3_N11",
+          "choice": "C",
+          "actors": []
+        },
+        {
+          "node": "S3_N12",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N13",
+          "choice": "A",
+          "actors": [
+            6
+          ]
+        },
+        {
+          "node": "S3_N14",
+          "choice": "C",
+          "actors": [
+            0
+          ]
+        },
+        {
+          "node": "S3_N15",
+          "choice": "B",
+          "actors": [
+            5,
+            1
+          ]
+        },
+        {
+          "node": "S3_N16",
+          "choice": "C",
+          "actors": [
+            6
+          ]
+        },
+        {
+          "node": "S3_N17",
+          "choice": "C",
+          "actors": [
+            2
+          ]
+        },
+        {
+          "node": "S3_N18",
+          "choice": "A",
+          "actors": [
+            3,
+            2
+          ]
+        },
+        {
+          "node": "S3_N19",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N20",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N21",
+          "choice": "A",
+          "actors": [
+            5
+          ]
+        },
+        {
+          "node": "S3_N22",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N23",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N24",
+          "choice": "B",
+          "actors": []
+        }
+      ],
+      "living": 7
+    },
+    "S3_E08": {
+      "playerCount": 10,
+      "steps": [
+        {
+          "node": "S3_N01",
+          "choice": "B",
+          "actors": [
+            1
+          ]
+        },
+        {
+          "node": "S3_N02",
+          "choice": "A",
+          "actors": []
+        },
+        {
+          "node": "S3_N03",
+          "choice": "C",
+          "actors": [
+            9
+          ]
+        },
+        {
+          "node": "S3_N04",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N05",
+          "choice": "B",
+          "actors": [
+            6
+          ]
+        },
+        {
+          "node": "S3_N06",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N07",
+          "choice": "D",
+          "actors": [
+            0
+          ]
+        },
+        {
+          "node": "S3_N08",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N09",
+          "choice": "C",
+          "actors": [
+            9
+          ]
+        },
+        {
+          "node": "S3_N10",
+          "choice": "C",
+          "actors": [
+            1,
+            5
+          ]
+        },
+        {
+          "node": "S3_N11",
+          "choice": "A",
+          "actors": [
+            4
+          ]
+        },
+        {
+          "node": "S3_N12",
+          "choice": "C",
+          "actors": [
+            5
+          ]
+        },
+        {
+          "node": "S3_N13",
+          "choice": "C",
+          "actors": [
+            9,
+            3
+          ]
+        },
+        {
+          "node": "S3_N14",
+          "choice": "A",
+          "actors": [
+            9
+          ]
+        },
+        {
+          "node": "S3_N15",
+          "choice": "D",
+          "actors": [
+            0
+          ]
+        },
+        {
+          "node": "S3_N16",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N17",
+          "choice": "C",
+          "actors": [
+            7
+          ]
+        },
+        {
+          "node": "S3_N18",
+          "choice": "A",
+          "actors": [
+            2,
+            0
+          ]
+        },
+        {
+          "node": "S3_N19",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N20",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N21",
+          "choice": "A",
+          "actors": [
+            5
+          ]
+        },
+        {
+          "node": "S3_N22",
+          "choice": "C",
+          "actors": [
+            9
+          ]
+        },
+        {
+          "node": "S3_N23",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N24",
+          "choice": "B",
+          "actors": []
+        }
+      ],
+      "living": 9
+    },
+    "S3_E09": {
+      "playerCount": 10,
+      "steps": [
+        {
+          "node": "S3_N01",
+          "choice": "C",
+          "actors": [
+            6,
+            0
+          ]
+        },
+        {
+          "node": "S3_N02",
+          "choice": "A",
+          "actors": []
+        },
+        {
+          "node": "S3_N03",
+          "choice": "A",
+          "actors": [
+            8
+          ]
+        },
+        {
+          "node": "S3_N04",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N05",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N06",
+          "choice": "C",
+          "actors": [
+            3
+          ]
+        },
+        {
+          "node": "S3_N07",
+          "choice": "C",
+          "actors": [
+            7
+          ]
+        },
+        {
+          "node": "S3_N08",
+          "choice": "C",
+          "actors": [
+            7
+          ]
+        },
+        {
+          "node": "S3_N09",
+          "choice": "C",
+          "actors": [
+            8
+          ]
+        },
+        {
+          "node": "S3_N10",
+          "choice": "A",
+          "actors": [
+            5
+          ]
+        },
+        {
+          "node": "S3_N11",
+          "choice": "C",
+          "actors": []
+        },
+        {
+          "node": "S3_N12",
+          "choice": "C",
+          "actors": [
+            7
+          ]
+        },
+        {
+          "node": "S3_N13",
+          "choice": "C",
+          "actors": [
+            3,
+            9
+          ]
+        },
+        {
+          "node": "S3_N14",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N15",
+          "choice": "B",
+          "actors": [
+            8,
+            0
+          ]
+        },
+        {
+          "node": "S3_N16",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N17",
+          "choice": "D",
+          "actors": [
+            9
+          ]
+        },
+        {
+          "node": "S3_N18",
+          "choice": "A",
+          "actors": [
+            3,
+            0
+          ]
+        },
+        {
+          "node": "S3_N19",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N20",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N21",
+          "choice": "A",
+          "actors": [
+            1
+          ]
+        },
+        {
+          "node": "S3_N22",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N23",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N24",
+          "choice": "C",
+          "actors": []
+        }
+      ],
+      "living": 10
+    },
+    "S3_E10": {
+      "playerCount": 10,
+      "steps": [
+        {
+          "node": "S3_N01",
+          "choice": "C",
+          "actors": [
+            8,
+            3
+          ]
+        },
+        {
+          "node": "S3_N02",
+          "choice": "C",
+          "actors": [
+            2
+          ]
+        },
+        {
+          "node": "S3_N03",
+          "choice": "C",
+          "actors": [
+            1
+          ]
+        },
+        {
+          "node": "S3_N04",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N05",
+          "choice": "A",
+          "actors": [
+            2
+          ]
+        },
+        {
+          "node": "S3_N06",
+          "choice": "A",
+          "actors": [
+            6
+          ]
+        },
+        {
+          "node": "S3_N07",
+          "choice": "C",
+          "actors": [
+            4
+          ]
+        },
+        {
+          "node": "S3_N08",
+          "choice": "A",
+          "actors": [
+            1
+          ]
+        },
+        {
+          "node": "S3_N09",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N10",
+          "choice": "A",
+          "actors": [
+            2
+          ]
+        },
+        {
+          "node": "S3_N11",
+          "choice": "C",
+          "actors": []
+        },
+        {
+          "node": "S3_N12",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N13",
+          "choice": "A",
+          "actors": [
+            8
+          ]
+        },
+        {
+          "node": "S3_N14",
+          "choice": "B",
+          "actors": [
+            4
+          ]
+        },
+        {
+          "node": "S3_N15",
+          "choice": "D",
+          "actors": [
+            7
+          ]
+        },
+        {
+          "node": "S3_N16",
+          "choice": "B",
+          "actors": [
+            8
+          ]
+        },
+        {
+          "node": "S3_N17",
+          "choice": "A",
+          "actors": [
+            9
+          ]
+        },
+        {
+          "node": "S3_N18",
+          "choice": "D",
+          "actors": [
+            0
+          ]
+        },
+        {
+          "node": "S3_N19",
+          "choice": "C",
+          "actors": [
+            5
+          ]
+        },
+        {
+          "node": "S3_N20",
+          "choice": "A",
+          "actors": [
+            9
+          ]
+        },
+        {
+          "node": "S3_N21",
+          "choice": "B",
+          "actors": [
+            6,
+            7
+          ]
+        },
+        {
+          "node": "S3_N22",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N23",
+          "choice": "A",
+          "actors": [
+            9
+          ]
+        },
+        {
+          "node": "S3_N24",
+          "choice": "C",
+          "actors": []
+        }
+      ],
+      "living": 9
+    },
+    "S3_E11": {
+      "playerCount": 7,
+      "steps": [
+        {
+          "node": "S3_N01",
+          "choice": "A",
+          "actors": [
+            6
+          ]
+        },
+        {
+          "node": "S3_N02",
+          "choice": "C",
+          "actors": [
+            0
+          ]
+        },
+        {
+          "node": "S3_N03",
+          "choice": "C",
+          "actors": [
+            2
+          ]
+        },
+        {
+          "node": "S3_N04",
+          "choice": "A",
+          "actors": [
+            1,
+            4
+          ]
+        },
+        {
+          "node": "S3_N05",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N06",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N07",
+          "choice": "A",
+          "actors": [
+            3,
+            4
+          ]
+        },
+        {
+          "node": "S3_N08",
+          "choice": "A",
+          "actors": [
+            4
+          ]
+        },
+        {
+          "node": "S3_N09",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N10",
+          "choice": "D",
+          "actors": [
+            3
+          ]
+        },
+        {
+          "node": "S3_N11",
+          "choice": "A",
+          "actors": [
+            3
+          ]
+        },
+        {
+          "node": "S3_N12",
+          "choice": "C",
+          "actors": [
+            5
+          ]
+        },
+        {
+          "node": "S3_N13",
+          "choice": "C",
+          "actors": [
+            5,
+            4
+          ]
+        },
+        {
+          "node": "S3_N14",
+          "choice": "C",
+          "actors": [
+            2
+          ]
+        },
+        {
+          "node": "S3_N15",
+          "choice": "B",
+          "actors": [
+            3,
+            4
+          ]
+        },
+        {
+          "node": "S3_N16",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N17",
+          "choice": "C",
+          "actors": [
+            4
+          ]
+        },
+        {
+          "node": "S3_N18",
+          "choice": "A",
+          "actors": [
+            5,
+            3
+          ]
+        },
+        {
+          "node": "S3_N19",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N20",
+          "choice": "C",
+          "actors": [
+            2
+          ]
+        },
+        {
+          "node": "S3_N21",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N22",
+          "choice": "B",
+          "actors": [
+            4
+          ]
+        },
+        {
+          "node": "S3_N23",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N24",
+          "choice": "C",
+          "actors": []
+        }
+      ],
+      "living": 7
+    },
+    "S3_E12": {
+      "playerCount": 10,
+      "steps": [
+        {
+          "node": "S3_N01",
+          "choice": "B",
+          "actors": [
+            7
+          ]
+        },
+        {
+          "node": "S3_N02",
+          "choice": "A",
+          "actors": []
+        },
+        {
+          "node": "S3_N03",
+          "choice": "C",
+          "actors": [
+            1
+          ]
+        },
+        {
+          "node": "S3_N04",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N05",
+          "choice": "A",
+          "actors": [
+            0
+          ]
+        },
+        {
+          "node": "S3_N06",
+          "choice": "A",
+          "actors": [
+            9
+          ]
+        },
+        {
+          "node": "S3_N07",
+          "choice": "A",
+          "actors": [
+            5,
+            8
+          ]
+        },
+        {
+          "node": "S3_N08",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N09",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N10",
+          "choice": "A",
+          "actors": [
+            6
+          ]
+        },
+        {
+          "node": "S3_N11",
+          "choice": "C",
+          "actors": []
+        },
+        {
+          "node": "S3_N12",
+          "choice": "C",
+          "actors": [
+            0
+          ]
+        },
+        {
+          "node": "S3_N13",
+          "choice": "C",
+          "actors": [
+            3,
+            8
+          ]
+        },
+        {
+          "node": "S3_N14",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N15",
+          "choice": "D",
+          "actors": [
+            0
+          ]
+        },
+        {
+          "node": "S3_N16",
+          "choice": "C",
+          "actors": [
+            4
+          ]
+        },
+        {
+          "node": "S3_N17",
+          "choice": "A",
+          "actors": [
+            9
+          ]
+        },
+        {
+          "node": "S3_N18",
+          "choice": "A",
+          "actors": [
+            3,
+            0
+          ]
+        },
+        {
+          "node": "S3_N19",
+          "choice": "A",
+          "actors": [
+            9
+          ]
+        },
+        {
+          "node": "S3_N20",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N21",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N22",
+          "choice": "C",
+          "actors": [
+            9
+          ]
+        },
+        {
+          "node": "S3_N23",
+          "choice": "A",
+          "actors": [
+            1
+          ]
+        },
+        {
+          "node": "S3_N24",
+          "choice": "C",
+          "actors": []
+        }
+      ],
+      "living": 10
+    },
+    "S3_E13": {
+      "playerCount": 10,
+      "steps": [
+        {
+          "node": "S3_N01",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N02",
+          "choice": "C",
+          "actors": [
+            7
+          ]
+        },
+        {
+          "node": "S3_N03",
+          "choice": "C",
+          "actors": [
+            0
+          ]
+        },
+        {
+          "node": "S3_N04",
+          "choice": "A",
+          "actors": [
+            2,
+            3
+          ]
+        },
+        {
+          "node": "S3_N05",
+          "choice": "A",
+          "actors": [
+            2
+          ]
+        },
+        {
+          "node": "S3_N06",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N07",
+          "choice": "A",
+          "actors": [
+            6,
+            0
+          ]
+        },
+        {
+          "node": "S3_N08",
+          "choice": "B",
+          "actors": [
+            9
+          ]
+        },
+        {
+          "node": "S3_N09",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N10",
+          "choice": "A",
+          "actors": [
+            4
+          ]
+        },
+        {
+          "node": "S3_N11",
+          "choice": "A",
+          "actors": [
+            7
+          ]
+        },
+        {
+          "node": "S3_N12",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N13",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N14",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N15",
+          "choice": "D",
+          "actors": [
+            5
+          ]
+        },
+        {
+          "node": "S3_N16",
+          "choice": "A",
+          "actors": []
+        },
+        {
+          "node": "S3_N17",
+          "choice": "C",
+          "actors": [
+            2
+          ]
+        },
+        {
+          "node": "S3_N18",
+          "choice": "C",
+          "actors": []
+        },
+        {
+          "node": "S3_N19",
+          "choice": "A",
+          "actors": [
+            7
+          ]
+        },
+        {
+          "node": "S3_N20",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N21",
+          "choice": "B",
+          "actors": [
+            4,
+            3
+          ]
+        },
+        {
+          "node": "S3_N22",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N23",
+          "choice": "A",
+          "actors": [
+            1
+          ]
+        },
+        {
+          "node": "S3_N24",
+          "choice": "D",
+          "actors": []
+        }
+      ],
+      "living": 10
+    },
+    "S3_E14": {
+      "playerCount": 7,
+      "steps": [
+        {
+          "node": "S3_N01",
+          "choice": "A",
+          "actors": [
+            0
+          ]
+        },
+        {
+          "node": "S3_N02",
+          "choice": "C",
+          "actors": [
+            5
+          ]
+        },
+        {
+          "node": "S3_N03",
+          "choice": "D",
+          "actors": [
+            1
+          ]
+        },
+        {
+          "node": "S3_N04",
+          "choice": "C",
+          "actors": [
+            0
+          ]
+        },
+        {
+          "node": "S3_N05",
+          "choice": "A",
+          "actors": [
+            1
+          ]
+        },
+        {
+          "node": "S3_N06",
+          "choice": "A",
+          "actors": [
+            2
+          ]
+        },
+        {
+          "node": "S3_N07",
+          "choice": "A",
+          "actors": [
+            5,
+            4
+          ]
+        },
+        {
+          "node": "S3_N08",
+          "choice": "A",
+          "actors": [
+            2
+          ]
+        },
+        {
+          "node": "S3_N09",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N10",
+          "choice": "B",
+          "actors": [
+            5
+          ]
+        },
+        {
+          "node": "S3_N11",
+          "choice": "A",
+          "actors": [
+            1
+          ]
+        },
+        {
+          "node": "S3_N12",
+          "choice": "C",
+          "actors": [
+            3
+          ]
+        },
+        {
+          "node": "S3_N13",
+          "choice": "C",
+          "actors": [
+            4,
+            1
+          ]
+        },
+        {
+          "node": "S3_N14",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N15",
+          "choice": "D",
+          "actors": [
+            6
+          ]
+        },
+        {
+          "node": "S3_N16",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N17",
+          "choice": "C",
+          "actors": [
+            3
+          ]
+        },
+        {
+          "node": "S3_N18",
+          "choice": "D",
+          "actors": [
+            2
+          ]
+        },
+        {
+          "node": "S3_N19",
+          "choice": "C",
+          "actors": [
+            4
+          ]
+        },
+        {
+          "node": "S3_N20",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N21",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N22",
+          "choice": "A",
+          "actors": [
+            0
+          ]
+        },
+        {
+          "node": "S3_N23",
+          "choice": "A",
+          "actors": [
+            3
+          ]
+        },
+        {
+          "node": "S3_N24",
+          "choice": "D",
+          "actors": []
+        }
+      ],
+      "living": 6
+    },
+    "S3_E15": {
+      "playerCount": 10,
+      "steps": [
+        {
+          "node": "S3_N01",
+          "choice": "A",
+          "actors": [
+            2
+          ]
+        },
+        {
+          "node": "S3_N02",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N03",
+          "choice": "D",
+          "actors": [
+            5
+          ]
+        },
+        {
+          "node": "S3_N04",
+          "choice": "A",
+          "actors": [
+            2,
+            1
+          ]
+        },
+        {
+          "node": "S3_N05",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N06",
+          "choice": "C",
+          "actors": [
+            3
+          ]
+        },
+        {
+          "node": "S3_N07",
+          "choice": "A",
+          "actors": [
+            8,
+            1
+          ]
+        },
+        {
+          "node": "S3_N08",
+          "choice": "A",
+          "actors": [
+            0
+          ]
+        },
+        {
+          "node": "S3_N09",
+          "choice": "A",
+          "actors": [
+            4
+          ]
+        },
+        {
+          "node": "S3_N10",
+          "choice": "C",
+          "actors": [
+            0,
+            2
+          ]
+        },
+        {
+          "node": "S3_N11",
+          "choice": "A",
+          "actors": [
+            7
+          ]
+        },
+        {
+          "node": "S3_N12",
+          "choice": "C",
+          "actors": [
+            0
+          ]
+        },
+        {
+          "node": "S3_N13",
+          "choice": "C",
+          "actors": [
+            3,
+            2
+          ]
+        },
+        {
+          "node": "S3_N14",
+          "choice": "A",
+          "actors": [
+            3
+          ]
+        },
+        {
+          "node": "S3_N15",
+          "choice": "A",
+          "actors": [
+            9
+          ]
+        },
+        {
+          "node": "S3_N16",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N17",
+          "choice": "C",
+          "actors": [
+            2
+          ]
+        },
+        {
+          "node": "S3_N18",
+          "choice": "C",
+          "actors": []
+        },
+        {
+          "node": "S3_N19",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N20",
+          "choice": "C",
+          "actors": [
+            6
+          ]
+        },
+        {
+          "node": "S3_N21",
+          "choice": "B",
+          "actors": [
+            8,
+            5
+          ]
+        },
+        {
+          "node": "S3_N22",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N23",
+          "choice": "C",
+          "actors": [
+            0,
+            6
+          ]
+        },
+        {
+          "node": "S3_N24",
+          "choice": "D",
+          "actors": []
+        }
+      ],
+      "living": 0
+    },
+    "S3_E16": {
+      "playerCount": 10,
+      "steps": [
+        {
+          "node": "S3_N01",
+          "choice": "B",
+          "actors": [
+            9
+          ]
+        },
+        {
+          "node": "S3_N02",
+          "choice": "C",
+          "actors": [
+            4
+          ]
+        },
+        {
+          "node": "S3_N03",
+          "choice": "D",
+          "actors": [
+            8
+          ]
+        },
+        {
+          "node": "S3_N04",
+          "choice": "A",
+          "actors": [
+            2,
+            4
+          ]
+        },
+        {
+          "node": "S3_N05",
+          "choice": "A",
+          "actors": [
+            2
+          ]
+        },
+        {
+          "node": "S3_N06",
+          "choice": "C",
+          "actors": [
+            3
+          ]
+        },
+        {
+          "node": "S3_N07",
+          "choice": "C",
+          "actors": [
+            7
+          ]
+        },
+        {
+          "node": "S3_N08",
+          "choice": "C",
+          "actors": [
+            2
+          ]
+        },
+        {
+          "node": "S3_N09",
+          "choice": "A",
+          "actors": [
+            3
+          ]
+        },
+        {
+          "node": "S3_N10",
+          "choice": "D",
+          "actors": [
+            5
+          ]
+        },
+        {
+          "node": "S3_N11",
+          "choice": "A",
+          "actors": [
+            4
+          ]
+        },
+        {
+          "node": "S3_N12",
+          "choice": "A",
+          "actors": [
+            6
+          ]
+        },
+        {
+          "node": "S3_N13",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N14",
+          "choice": "C",
+          "actors": [
+            7
+          ]
+        },
+        {
+          "node": "S3_N15",
+          "choice": "B",
+          "actors": [
+            4,
+            7
+          ]
+        },
+        {
+          "node": "S3_N16",
+          "choice": "C",
+          "actors": [
+            0
+          ]
+        },
+        {
+          "node": "S3_N17",
+          "choice": "D",
+          "actors": [
+            8
+          ]
+        },
+        {
+          "node": "S3_N18",
+          "choice": "A",
+          "actors": [
+            4,
+            1
+          ]
+        },
+        {
+          "node": "S3_N19",
+          "choice": "A",
+          "actors": [
+            8
+          ]
+        },
+        {
+          "node": "S3_N20",
+          "choice": "C",
+          "actors": [
+            5
+          ]
+        },
+        {
+          "node": "S3_N21",
+          "choice": "A",
+          "actors": [
+            0
+          ]
+        },
+        {
+          "node": "S3_N22",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N23",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N24",
+          "choice": "D",
+          "actors": []
+        }
+      ],
+      "living": 0
+    },
+    "S3_E17": {
+      "playerCount": 4,
+      "steps": [
+        {
+          "node": "S3_N01",
+          "choice": "B",
+          "actors": [
+            2
+          ]
+        },
+        {
+          "node": "S3_N02",
+          "choice": "A",
+          "actors": []
+        },
+        {
+          "node": "S3_N03",
+          "choice": "A",
+          "actors": [
+            0
+          ]
+        },
+        {
+          "node": "S3_N04",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N05",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N06",
+          "choice": "A",
+          "actors": [
+            3
+          ]
+        },
+        {
+          "node": "S3_N07",
+          "choice": "D",
+          "actors": [
+            3
+          ]
+        },
+        {
+          "node": "S3_N08",
+          "choice": "C",
+          "actors": [
+            2
+          ]
+        },
+        {
+          "node": "S3_N09",
+          "choice": "B",
+          "actors": [
+            0
+          ]
+        },
+        {
+          "node": "S3_N10",
+          "choice": "B",
+          "actors": [
+            1
+          ]
+        },
+        {
+          "node": "S3_N11",
+          "choice": "A",
+          "actors": [
+            3
+          ]
+        },
+        {
+          "node": "S3_N12",
+          "choice": "B",
+          "actors": []
+        }
+      ],
+      "living": 0
+    },
+    "S3_E18": {
+      "playerCount": 4,
+      "steps": [
+        {
+          "node": "S3_N01",
+          "choice": "C",
+          "actors": [
+            3,
+            2
+          ]
+        },
+        {
+          "node": "S3_N02",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N03",
+          "choice": "A",
+          "actors": [
+            2
+          ]
+        },
+        {
+          "node": "S3_N04",
+          "choice": "A",
+          "actors": [
+            2,
+            1
+          ]
+        },
+        {
+          "node": "S3_N05",
+          "choice": "C",
+          "actors": []
+        }
+      ],
+      "living": 0
+    },
+    "S3_E19": {
+      "playerCount": 7,
+      "steps": [
+        {
+          "node": "S3_N01",
+          "choice": "C",
+          "actors": [
+            1,
+            4
+          ]
+        },
+        {
+          "node": "S3_N02",
+          "choice": "A",
+          "actors": []
+        },
+        {
+          "node": "S3_N03",
+          "choice": "D",
+          "actors": [
+            1
+          ]
+        },
+        {
+          "node": "S3_N04",
+          "choice": "A",
+          "actors": [
+            6,
+            3
+          ]
+        },
+        {
+          "node": "S3_N05",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N06",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N07",
+          "choice": "D",
+          "actors": [
+            0
+          ]
+        },
+        {
+          "node": "S3_N08",
+          "choice": "B",
+          "actors": [
+            5
+          ]
+        },
+        {
+          "node": "S3_N09",
+          "choice": "C",
+          "actors": [
+            3
+          ]
+        },
+        {
+          "node": "S3_N10",
+          "choice": "D",
+          "actors": [
+            4
+          ]
+        },
+        {
+          "node": "S3_N11",
+          "choice": "D",
+          "actors": []
+        }
+      ],
+      "living": 7
+    },
+    "S3_E20": {
+      "playerCount": 4,
+      "steps": [
+        {
+          "node": "S3_N01",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N02",
+          "choice": "B",
+          "actors": [
+            2
+          ]
+        },
+        {
+          "node": "S3_N03",
+          "choice": "D",
+          "actors": [
+            2
+          ]
+        },
+        {
+          "node": "S3_N04",
+          "choice": "B",
+          "actors": [
+            3
+          ]
+        },
+        {
+          "node": "S3_N05",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N06",
+          "choice": "A",
+          "actors": [
+            1
+          ]
+        },
+        {
+          "node": "S3_N07",
+          "choice": "C",
+          "actors": [
+            0
+          ]
+        },
+        {
+          "node": "S3_N08",
+          "choice": "D",
+          "actors": []
+        },
+        {
+          "node": "S3_N09",
+          "choice": "B",
+          "actors": [
+            2
+          ]
+        },
+        {
+          "node": "S3_N10",
+          "choice": "B",
+          "actors": [
+            1
+          ]
+        },
+        {
+          "node": "S3_N11",
+          "choice": "C",
+          "actors": []
+        },
+        {
+          "node": "S3_N12",
+          "choice": "A",
+          "actors": [
+            0
+          ]
+        },
+        {
+          "node": "S3_N13",
+          "choice": "A",
+          "actors": [
+            0
+          ]
+        },
+        {
+          "node": "S3_N14",
+          "choice": "C",
+          "actors": [
+            0
+          ]
+        },
+        {
+          "node": "S3_N15",
+          "choice": "D",
+          "actors": [
+            0
+          ]
+        },
+        {
+          "node": "S3_N16",
+          "choice": "B",
+          "actors": [
+            0
+          ]
+        }
+      ],
+      "living": 0
+    }
+  }
+}

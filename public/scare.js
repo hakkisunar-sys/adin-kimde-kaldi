@@ -10,7 +10,7 @@ const STATIC_D = 2.6;          // yavaş karıncalanma
 const FACE_MS = 2600;
 const OUT_MS = 420;
 
-const VARIANTS = {
+const VARIANTS_SON_SEFER = {
   JS01: { tint: [40, 115, 135], mode: 'wave', text: ['SU SEVİYESİ', '▒▒▒▒▒▒▒', 'NEFES YOK'] },
   JS02: { tint: [150, 55, 30], mode: 'stutter', text: ['MOTOR ARIZASI', 'ERR 0x02', 'PERVANE ▓▓▓'] },
   JS03: { tint: [120, 95, 60], mode: 'slide', text: ['KAPI AÇIK', 'KAPI AÇIK', 'K█PI ███K'] },
@@ -21,21 +21,53 @@ const VARIANTS = {
   JS08: { tint: [205, 170, 90], mode: 'flare', text: ['IŞIĞA BAKMA', 'MERCEK AÇIK', '◯◯◯'] },
 };
 
+const VARIANTS_SON_MISAFIRLER = {
+  JS01: { tint: [175, 150, 140], mode: 'slide', text: ['ÜST KAT TADİLATTA', 'O BENİM ANNEM DEĞİL', 'AÇIN ARTIK'] },
+  JS02: { tint: [40, 115, 160], mode: 'wave', text: ['ADINI SÖYLE', 'SU ÇOK SAKİN', '▒▒▒▒'] },
+  JS03: { tint: [150, 125, 90], mode: 'stutter', text: ['FAZLADAN YATAK', 'BİR KİŞİ DAHA', 'SEN DEĞİLSİN'] },
+  JS04: { tint: [160, 120, 110], mode: 'shatter', text: ['AÇSANA', 'AÇSANA', 'A Ç S A N A'] },
+  JS05: { tint: [165, 195, 205], mode: 'roll', text: ['CAMI KIRMAYIN', 'ARKANA BAKMA', '░░░░'] },
+  JS06: { tint: [120, 145, 95], mode: 'scan', text: ['ANAHTARI UNUTTUNUZ', 'CAMI AÇIN', '▓▓▓'] },
+  JS07: { tint: [195, 155, 95], mode: 'flare', text: ['GÜLÜMSEYİN', 'OTURMAK FOTOĞRAFA GİRMEKTİR', '◯'] },
+  JS08: { tint: [115, 100, 140], mode: 'tunnel', text: ['YUKARI BAKMA', 'TAVANDA', '▒▒▒'] },
+};
+const STORY_MEDIA = {
+  son_sefer: { dir: 'son-sefer', variants: VARIANTS_SON_SEFER, vibrate: [90, 40, 180] },
+  son_misafirler: { dir: 'son-misafirler', variants: VARIANTS_SON_MISAFIRLER, vibrate: [250, 80, 400, 80, 700] },
+};
+const cfg = (story) => STORY_MEDIA[story] || STORY_MEDIA.son_sefer;
+
 const media = { images: {}, buffers: {}, loading: {} };
-const urlFor = (key, ext) => `/media/son-sefer/${key.toLowerCase()}.${ext}`;
+const urlFor = (story, key, ext) => `/media/${cfg(story).dir}/${key.toLowerCase()}.${ext}`;
+const mkey = (story, key) => `${story}:${key}`;
 
 /** Görselleri ve sesleri önceden yükler (ölüm olmadan hiçbir şey gösterilmez/çalınmaz). */
-export function preloadScares(ctx) {
-  for (const key of Object.keys(VARIANTS)) {
-    if (!media.images[key]) { const im = new Image(); im.decoding = 'async'; im.src = urlFor(key, 'webp'); media.images[key] = im; }
-    if (ctx && !media.buffers[key] && !media.loading[key]) {
-      media.loading[key] = fetch(urlFor(key, 'mp3'))
+export function preloadScares(ctx, story = 'son_sefer') {
+  for (const key of Object.keys(cfg(story).variants)) {
+    const k = mkey(story, key);
+    if (!media.images[k]) { const im = new Image(); im.decoding = 'async'; im.src = urlFor(story, key, 'webp'); media.images[k] = im; }
+    if (ctx && !media.buffers[k] && !media.loading[k]) {
+      media.loading[k] = fetch(urlFor(story, key, 'mp3'))
         .then((r) => r.arrayBuffer())
         .then((b) => new Promise((res, rej) => ctx.decodeAudioData(b, res, rej)))
-        .then((buf) => { media.buffers[key] = buf; })
-        .catch(() => { media.loading[key] = null; });
+        .then((buf) => { media.buffers[k] = buf; })
+        .catch(() => { media.loading[k] = null; });
     }
   }
+}
+
+/** Lobideki "Sesi dene": kısa ve yüksek bir parazit patlaması — telefon sesini ayarlamak için. */
+export function testBlast(ctx, volume = 0.85) {
+  if (!ctx) return false;
+  const len = Math.floor(ctx.sampleRate * 0.7);
+  const buf = ctx.createBuffer(1, len, ctx.sampleRate);
+  const d = buf.getChannelData(0);
+  for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.min(1, i / 400) * Math.min(1, (len - i) / 4000);
+  const src = ctx.createBufferSource(); src.buffer = buf;
+  const f = ctx.createBiquadFilter(); f.type = 'bandpass'; f.frequency.value = 2200; f.Q.value = 0.4;
+  const g = ctx.createGain(); g.gain.value = Math.max(0, Math.min(1, volume));
+  src.connect(f).connect(g).connect(ctx.destination); src.start();
+  return true;
 }
 
 /**
@@ -43,7 +75,10 @@ export function preloadScares(ctx) {
  * Bittiğinde (veya dokunarak geçildiğinde) onDone çağrılır.
  */
 export function playScare(key, opts, onDone) {
-  const v = VARIANTS[key] || VARIANTS.JS01;
+  const story = opts.story || 'son_sefer';
+  const C = cfg(story);
+  const v = C.variants[key] || C.variants.JS01;
+  const mk = mkey(story, key);
   const [tr, tg, tb] = v.tint;
   let finished = false, raf = 0, src = null;
   const timers = [];
@@ -69,7 +104,7 @@ export function playScare(key, opts, onDone) {
 
   const face = document.createElement('div');
   face.className = 'scare-face';
-  const im = media.images[key] || Object.assign(new Image(), { src: urlFor(key, 'webp') });
+  const im = media.images[mk] || Object.assign(new Image(), { src: urlFor(story, key, 'webp') });
   for (const cls of ['r', 'c', 'm']) {
     const layer = document.createElement('div');
     layer.className = 'scare-layer ' + cls;
@@ -85,11 +120,11 @@ export function playScare(key, opts, onDone) {
   const hitAt = t0 + SCARE_HIT * 1000;
 
   // ses: tek kaynak, HIT'e kadar giriş + vuruş aynı dosyada
-  if (opts.sound && opts.ctx && media.buffers[key]) {
+  if (opts.sound && opts.ctx && media.buffers[mk]) {
     try {
       const c = opts.ctx;
       src = c.createBufferSource();
-      src.buffer = media.buffers[key];
+      src.buffer = media.buffers[mk];
       const gain = c.createGain();
       gain.gain.value = Math.max(0, Math.min(1, opts.volume ?? 0.85));
       src.connect(gain).connect(c.destination);
@@ -147,7 +182,7 @@ export function playScare(key, opts, onDone) {
       root.classList.add('hit');
       canvas.style.opacity = '';
       txt.textContent = '';
-      if (opts.vibrate && navigator.vibrate) navigator.vibrate([90, 40, 180]);
+      if (opts.vibrate && navigator.vibrate) navigator.vibrate(C.vibrate);
     }
     if (!pre) {
       const k = (now - hitAt) / FACE_MS;

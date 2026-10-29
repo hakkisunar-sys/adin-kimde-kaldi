@@ -5,6 +5,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { STORY as S1 } from './engine.js';
 import { STORY as S2 } from './sonsefer/engine.js';
+import { STORY as S3 } from './sonmisafir/engine.js';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const S2_INTRO = JSON.parse(fs.readFileSync(path.join(here, '../content/son-sefer/intro.json'), 'utf8'));
@@ -27,6 +28,15 @@ export const STORIES = [
     tags: ['Kalıcı ölüm', 'Görevli seçimi', 'Jumpscare', '20 final'],
     contentVersion: S2.contentVersion,
     intro: S2_INTRO,
+  },
+  {
+    id: 'son_misafirler',
+    engine: 'survival',
+    title: 'Son Misafirler',
+    tagline: 'Kiraladığınız villada ilk fotoğrafı siz çekmediniz. Üst kattaki kilitli odada biri var.',
+    tags: ['Kalıcı ölüm', 'Görevli seçimi', 'Çok yüksek jumpscare', '20 final'],
+    contentVersion: S3.contentVersion,
+    intro: S3.intro,
   },
 ];
 export const DEFAULT_STORY = STORIES[0].id;

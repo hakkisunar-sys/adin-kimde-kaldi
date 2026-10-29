@@ -1,4 +1,4 @@
-# Adın Kimde Kaldı? · Son Sefer
+# Adın Kimde Kaldı? · Son Sefer · Son Misafirler
 
 Telefonlardan ortak karar verilen, dallanan Türkçe korku oyunu. 4–10 kişi. 20 karar yeri, 80 seçenek, 20 final.
 Hikâye önceden yazılmış içerikten çalışır; dış yapay zekâ servisi, API anahtarı veya ücretli bir hizmet gerekmez.
@@ -11,6 +11,7 @@ Oda kurulunca ev sahibi lobide hikâyeyi seçer; herkes aynı hikâyeyi oynar. O
 |---|---|---|
 | **Adın Kimde Kaldı?** | `classic` — dört seçenek, ortak karar, ölüm yok | `content/story.json` (kaynak: `content/kaynak.md`) |
 | **Son Sefer** | `survival` — önce eylem, sonra görevli(ler) oylanır; yorgunluk, kalıcı ölüm, ölülere özel sayfalar, jumpscare | `content/son-sefer/` |
+| **Son Misafirler** | `survival` — Son Sefer kuralları + evin oyuncuyu “tanıma” sayacı, son kararda hazırlık listesi, çok yüksek jumpscare | `content/son-misafirler/` |
 
 ### Son Sefer'de ölüm ve jumpscare
 
@@ -22,6 +23,16 @@ Oda kurulunca ev sahibi lobide hikâyeyi seçer; herkes aynı hikâyeyi oynar. O
 - Bağlantı koparsa eski ölüm efekti kendiliğinden tekrar oynamaz; ölüm kartında “Efekti izle” düğmesi çıkar.
 
 Sesler `tools/make-sounds.py` ile sıfırdan sentezlenir (dış kayıt yok). Değiştirmek için `public/media/son-sefer/js01.mp3 … js08.mp3` dosyalarını aynı adla değiştirmeniz yeterli; vuruş anı dosyanın 3,6. saniyesinde olmalı.
+
+### Son Misafirler: sade metin
+
+Paketten gelen metin `content/son-misafirler/story.orig.json` olarak saklanır. Oyuncunun gördüğü sadeleştirilmiş metin `content/son-misafirler/simple/*.json` dosyalarındadır; `node tools/build-son-misafirler.mjs` ikisini birleştirip `story.json` üretir. Koşullar, etkiler, ölümler ve finaller asıl paketten aynen alınır; test bunu satır satır doğrular. Duruma göre değişen cümleler `[[flag:childFreed|doğruysa|yanlışsa]]` ve `[[dead|…|…]]` biçimindedir.
+
+Sesler `python3 tools/make-sounds-s3.py` ile üretilir; Son Sefer'dekilerden yaklaşık 4 dB daha gür, çığlık bölümü neredeyse sürekli tepe seviyededir.
+
+### Kopan oyuncuyu oylamadan çıkarma (bütün hikâyeler)
+
+Bir oyuncunun bağlantısı koparsa oyun onu bekler. Ev sahibi alt çubuktaki “oylamadan çıkar” ile onu geçici olarak seçmen ve görevli adayı listesinden çıkarabilir; o turdaki oyu iptal olur, tur kalanlarla kapanır. Oyuncu aynı telefondan geri dönünce otomatik olarak yeniden seçmen olur. Karakter ölmez.
 
 ### Yeni hikâye eklemek
 
@@ -83,6 +94,7 @@ npm test
 
 - `test/sonsefer.test.js` — Son Sefer motoru: 90 sonuç, paketteki 20 doğrulanmış final yolu, 4–10 kişilik son-yaşayan yolları, yorgunluk eşikleri, toplu ölüm varyantları, final öncelikleri.
 - `test/sonsefer-room.test.js` — Son Sefer odası: hikâye seçimi, görevli/yardımcı oylaması ve eşitliği, ölümün yalnız ölene gitmesi, ölünün oy verip aday olamaması, restart, botlarla tam oyun.
+- `test/sonmisafir.test.js` — Son Misafirler: sadeleştirmenin mantığı değiştirmediği, paketteki 20 final yolu (4/7/10 kişi), N15C/N16B eşikleri, arınma sırası, koşullu cümleler, 4–10 kişide metin.
 - `test/story.test.js` — içerik sayıları, ileri yönlü grafik, belgedeki (Ek B) 20 örnek yolun her birinin doğru finale çıkması, final öncelikleri (Ek C), stain sınırları, N19A çözümleyici, 4–10 kişide yer tutucu yerleşimi, katkı satırları, hatırlatmalar.
 - `test/multiplayer.test.js` — gerçek WebSocket istemcileriyle: 3 kişiyle başlamama, 11. kişi engeli, tam oyun, 2–2 / 1–1–1–1 / 2–2–2–0 / 4–4–1–1 eşitlikleri, elenen seçeneğin reddi, 20 tur üst üste eşitlik, iki sekmeden çift oy, aynı isteğin tekrarı, eski tur oyu, kopma beklemesi, VOTING ve RESULT ortasında sunucu yeniden başlatma, ev sahibi devri ve duraklatma.
 

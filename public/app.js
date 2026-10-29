@@ -1,7 +1,7 @@
 // Adın Kimde Kaldı? — istemci. Sunucu tek otoritedir; burada yalnız görüntü ve istek var.
 // Bütün kullanıcı/hikâye metinleri textContent ile yazılır (HTML olarak yorumlanmaz).
 
-import { preloadScares, playScare } from './scare.js';
+import { preloadScares, playScare, testBlast } from './scare.js';
 
 const app = document.getElementById('app');
 const layer = document.getElementById('layer');
@@ -27,7 +27,7 @@ const isSign = (p) => /\p{L}/u.test(p) && p === p.toLocaleUpperCase('tr') && p.l
 // ---------- ayarlar ----------
 const SPEEDS = [{ v: 15, t: 'Yavaş' }, { v: 28, t: 'Normal' }, { v: 45, t: 'Hızlı' }];
 const settings = Object.assign(
-  { speed: 28, reduceMotion: matchMedia('(prefers-reduced-motion: reduce)').matches, sound: false, vibrate: false, scare: true, scareSound: true, scareVolume: 0.85 },
+  { speed: 28, reduceMotion: matchMedia('(prefers-reduced-motion: reduce)').matches, sound: false, vibrate: false, scare: true, scareSound: true, scareVolume: 0.85, scareVibrate: true },
   load('akk.settings'),
 );
 // Eski varsayılan jumpscare ses düzeyi %45 idi; daha yüksek yeni varsayılana taşı
@@ -82,9 +82,9 @@ const sound = {
   },
 };
 const buzz = (ms = 30) => { if (settings.vibrate && navigator.vibrate) navigator.vibrate(ms); };
-const isSS = () => snap?.storyId === 'son_sefer';
+const isSS = () => snap?.engine === 'survival'; // ölüm ve jumpscare içeren hikâyeler
 // Tarayıcılar sesi ancak bir dokunuştan sonra açar: her dokunuşta ses bağlamı hazırlanır.
-document.addEventListener('pointerdown', () => { if (isSS() && settings.scareSound) preloadScares(sound.ensure()); }, { passive: true });
+document.addEventListener('pointerdown', () => { if (isSS() && settings.scareSound) preloadScares(sound.ensure(), snap.storyId); }, { passive: true });
 
 // ---------- kişisel ölüm efekti ----------
 const liveDeaths = new Set(); // bu oturumda sunucudan canlı gelen olaylar
@@ -94,7 +94,7 @@ function runScare(p) {
   markScared(p.eventId);
   const done = () => { req('ackDeath', { eventId: p.eventId }); view?.afterScare?.(); };
   if (!settings.scare) return done();
-  playScare(p.key, { ctx: settings.scareSound ? sound.ensure() : null, sound: settings.scareSound, volume: settings.scareVolume, vibrate: settings.vibrate, reduceMotion: settings.reduceMotion }, done);
+  playScare(p.key, { story: snap.storyId, ctx: settings.scareSound ? sound.ensure() : null, sound: settings.scareSound, volume: settings.scareVolume, vibrate: settings.scareVibrate, reduceMotion: settings.reduceMotion }, done);
 }
 function maybeScare() {
   const p = snap?.page?.personal;
@@ -172,8 +172,8 @@ const typedProgress = new Map(); // pageId → yazılmış grafem sayısı (sayf
 
 function render() {
   sound.sync();
-  document.body.classList.toggle('story-son_sefer', isSS());
-  if (isSS() && snap.phase !== 'LOBBY' && settings.scare) preloadScares(settings.scareSound ? sound.ctx : null);
+  for (const id of ['son_sefer', 'son_misafirler']) document.body.classList.toggle('story-' + id, snap?.storyId === id);
+  if (isSS() && snap.phase !== 'LOBBY' && settings.scare) preloadScares(settings.scareSound ? sound.ctx : null, snap.storyId);
   let key;
   if (!snap) key = 'home';
   else if (snap.phase === 'LOBBY') key = 'lobby:' + snap.gameId + ':' + snap.storyId;
@@ -260,9 +260,15 @@ function LobbyView() {
     h('p', { class: 'eyebrow', text: 'Ölüm efektleri · bu telefon' }),
     h('p', { class: 'small', style: 'margin:0 0 8px', text: 'Korku görseli ve sesi yalnız ölen kişinin telefonunda açılır. Kapatırsan sade ölüm kartı görürsün; oyun değişmez.' }),
     toggle('Jumpscare görseli', 'scare'),
-    toggle('Jumpscare sesi', 'scareSound', () => { if (settings.scareSound) preloadScares(sound.ensure()); }),
+    toggle('Jumpscare sesi', 'scareSound', () => { if (settings.scareSound) preloadScares(sound.ensure(), snap.storyId); }),
+    toggle('Ölümde titreşim', 'scareVibrate'),
     volumeRow(),
-    h('button', { class: 'btn', style: 'margin-top:12px', onclick: () => { const c = sound.ensure(); preloadScares(c); toast(c ? 'Ses açık. Telefonun sessiz modda değilse efektleri duyacaksın.' : 'Bu tarayıcı sesi açmadı; sade ölüm kartı gösterilecek.'); }, text: 'Sesi etkinleştir' }),
+    snap.storyId === 'son_misafirler' ? h('p', { class: 'small', style: 'margin:10px 0 0;color:var(--blood-bright)', text: 'Bu hikâyenin çığlıkları çok yüksek. Telefonunun sesini sonuna kadar aç, sessiz modu kapat; ama telefonu kulağına yakın tutma.' }) : null,
+    h('button', { class: 'btn', style: 'margin-top:12px', onclick: () => {
+      const c = sound.ensure(); preloadScares(c, snap.storyId);
+      if (c && testBlast(c, settings.scareVolume)) toast('Bu bir deneme sesiydi. Duymadıysan telefonun sesini aç ve sessiz modu kapat.');
+      else toast('Bu tarayıcı sesi açmadı; sade ölüm kartı gösterilecek.');
+    }, text: 'Sesi etkinleştir ve dene' }),
   ) : null;
   const botName = h('input', { maxlength: 40, placeholder: 'Bot adı (boş bırakılabilir)', 'aria-label': 'Bot adı' });
   let adding = false;
@@ -493,10 +499,11 @@ function PageView() {
   // alt çubuk
   const status = h('p', { class: 'status', role: 'status' });
   const chips = h('div', { class: 'chips' });
+  const exclBox = h('div');
   const skipBtn = h('button', { class: 'btn ghost', text: 'Tam metni göster' });
   const readyBtn = h('button', { class: 'btn primary', text: page.kind === 'tie' ? 'Yeniden oylamaya hazırım' : page.kind === 'ending' ? 'Finali okudum' : 'Okudum' });
   const row = h('div', { class: 'row' }, skipBtn, readyBtn);
-  app.append(h('div', { class: 'dock' }, h('div', { class: 'dock-inner' }, status, chips, row)));
+  app.append(h('div', { class: 'dock' }, h('div', { class: 'dock-inner' }, exclBox, status, chips, row)));
 
   let sending = false;
   const typer = blocks.length ? Typer(story, blocks, s0.pageId, () => { skipBtn.hidden = true; }) : null;
@@ -521,6 +528,7 @@ function PageView() {
       if (ready) { readyBtn.textContent = 'Okudun · diğerleri bekleniyor'; skipBtn.hidden = true; }
       const off = s.players.filter((p) => !p.connected).length;
       status.textContent = `Şu an ${s.readyCount}/${s.castCount} kişi okudu` + (off ? ` · ${off} kişinin bağlantısı bekleniyor` : '');
+      exclBox.replaceChildren(...[excludeRow(s)].filter(Boolean));
       chips.replaceChildren(...s.players.map((p) => h('span', {
         class: 'chip' + (p.ready ? ' on' : '') + (p.connected ? '' : ' off') + (s.survival?.players[p.id]?.alive === false ? ' dead' : ''),
         title: p.connected ? (p.ready ? 'Okudu' : 'Okuyor') : 'Bağlantı bekleniyor',
@@ -530,11 +538,27 @@ function PageView() {
   };
 }
 
+/** Ev sahibi için: bağlantısı kopan oyuncuyu geçici olarak oylamadan çıkarma satırı. */
+function excludeRow(s) {
+  if (!s.me?.isHost) return null;
+  const off = s.players.filter((p) => !p.connected && !p.isBot && p.id !== s.me.id);
+  if (!off.length) return null;
+  return h('div', { class: 'excl' }, off.map((p) => h('div', {},
+    h('span', { text: p.excluded ? `${p.name} oylamada değil (dönünce geri gelir)` : `${p.name} bağlantısı koptu, bekleniyor` }),
+    h('button', { class: 'linkbtn', onclick: () => act('exclude', { targetId: p.id, excluded: !p.excluded }), text: p.excluded ? 'geri al' : 'oylamadan çıkar' }))));
+}
+
+const GHOST_WORDS = {
+  son_sefer: { one: 'Suyun altındaki ses', many: 'Suyun altındaki sesler' },
+  son_misafirler: { one: 'Fotoğrafın arkasındasın', many: 'Fotoğrafın arkasındakiler' },
+};
+const ghostWord = () => GHOST_WORDS[snap?.storyId] || { one: 'Öldün', many: 'Ölenler' };
+
 function rosterCard(page, lostNow) {
   return h('div', { class: 'roster' },
     lostNow?.length ? h('div', { class: 'lost' }, h('b', { text: 'Ölen' }), lostNow.join(', ')) : null,
     h('div', {}, h('b', { text: 'Yaşayan' }), page.alive.length ? page.alive.join(', ') : 'Kimse'),
-    page.dead.length ? h('div', {}, h('b', { text: 'Suyun altındaki sesler' }), page.dead.join(', ')) : null,
+    page.dead.length ? h('div', {}, h('b', { text: ghostWord().many }), page.dead.join(', ')) : null,
   );
 }
 function ghostCard(g) {
@@ -586,7 +610,7 @@ function VotingView() {
   const actorVote = ss && v.kind !== 'ACTION';
   app.append(topbar(`${s0.roomCode} · ${actorVote ? 'Görevli seçimi' : 'Karar'}`));
   if (v.isRepeat) app.append(h('p', { class: 'repeat', text: `Yeniden oylama · ${ss ? v.kindRound : v.round}. tur` }));
-  if (ss && s0.survival?.me.alive === false) app.append(h('div', { class: 'dead-tag', text: 'Suyun altındaki ses · oy verebilirsin, göreve seçilemezsin' }));
+  if (ss && s0.survival?.me.alive === false) app.append(h('div', { class: 'dead-tag', text: `${ghostWord().one} · oy verebilirsin, göreve seçilemezsin` }));
   if (actorVote) {
     app.append(h('div', { class: 'actionbox' }, h('small', { text: `Seçilen eylem: ${v.action.id}` }), v.action.label,
       h('span', { class: 'brief', text: v.action.brief }),
@@ -605,23 +629,27 @@ function VotingView() {
   if (ss && !actorVote && v.equipment) app.append(h('p', { class: 'equip' }, h('b', { text: 'Ekipman: ' }), v.equipment.length ? v.equipment.join(', ') : 'henüz yok'));
   const labelOf = (id) => v.options.find((o) => o.id === id)?.label ?? id;
   const opts = v.options.map((o, i) => h('button', {
-    class: 'opt', role: 'radio', 'aria-checked': 'false', 'aria-label': actorVote ? `${o.label}, ${o.fatigueLabel}` : `${o.id}: ${o.label}`,
+    class: 'opt', role: 'radio', 'aria-checked': 'false', 'aria-label': actorVote ? `${o.label}, ${o.fatigueLabel}${o.exposureLabel ? ', ev onu ' + o.exposureLabel : ''}` : `${o.id}: ${o.label}`,
     onclick: () => { if (snap.voting.myVote || locking) return; selected = o.id; paint(); },
   },
   h('span', { class: 'letter', text: actorVote ? String(i + 1) : o.id }),
   actorVote
     ? h('span', { class: 'body' }, o.label + (o.isMe ? ' (sen)' : ''),
       h('span', { class: 'fat', 'aria-hidden': 'true' }, [0, 1].map((k) => h('i', { class: k < o.fatigue ? 'on' : '' }))),
-      h('span', { class: 'brief', text: o.fatigueLabel }))
+      h('span', { class: 'brief', text: o.fatigueLabel + (o.exposureLabel ? ` · Ev onu: ${o.exposureLabel}` : '') }),
+      o.exposureLabel ? h('span', { class: 'fat exp', 'aria-hidden': 'true', title: 'Evin bu kişiyi ne kadar tanıdığı' }, [0, 1, 2].map((k) => h('i', { class: k < o.exposure ? 'on' : '' }))) : null)
     : h('span', { class: 'body' }, o.label,
       o.need != null ? h('span', { class: 'need', text: o.need === 0 ? 'Ortak karar' : o.need === 1 ? 'Görevli: 1 kişi' : 'Görevli: 2 kişi' }) : null,
-      o.need ? h('span', { class: 'brief', text: o.brief }) : null)));
+      o.need ? h('span', { class: 'brief', text: o.brief }) : null,
+      !o.need && o.checklist ? h('span', { class: 'brief', text: o.brief }) : null,
+      o.checklist ? h('span', { class: 'checklist' }, o.checklist.map((c) => h('span', { class: c.ok ? 'ok' : 'no', text: (c.ok ? '✓ ' : '✗ ') + c.label }))) : null)));
   app.append(h('div', { class: 'options', role: 'radiogroup', 'aria-labelledby': 'q' }, opts));
-  if (ss && v.ghosts?.length) app.append(h('p', { class: 'small', style: 'margin-top:14px' }, h('b', { text: 'Suyun Altındaki Ses — oy kullanabilir: ' }), v.ghosts.join(', ')));
+  if (ss && v.ghosts?.length) app.append(h('p', { class: 'small', style: 'margin-top:14px' }, h('b', { text: `${ghostWord().many} — oy kullanabilir: ` }), v.ghosts.join(', ')));
 
   const status = h('p', { class: 'status', role: 'status' });
   const lockBtn = h('button', { class: 'btn primary', text: 'Oyumu kilitle' });
-  app.append(h('div', { class: 'dock' }, h('div', { class: 'dock-inner' }, status, lockBtn)));
+  const exclBox = h('div');
+  app.append(h('div', { class: 'dock' }, h('div', { class: 'dock-inner' }, exclBox, status, lockBtn)));
   lockBtn.onclick = async () => {
     if (!selected) return;
     locking = true; paint();
@@ -641,7 +669,8 @@ function VotingView() {
     lockBtn.textContent = actorVote
       ? (mine ? `Oyun kilitlendi: ${labelOf(mine)}` : locking ? 'Gönderiliyor…' : selected ? `${labelOf(selected)} · oyumu kilitle` : 'Bir kişi seç')
       : (mine ? `Oyun kilitlendi: ${mine}` : locking ? 'Gönderiliyor…' : selected ? `${selected} seçeneğine oyumu kilitle` : 'Bir seçenek seç');
-    const off = snap.players.filter((p) => !p.connected).length;
+    exclBox.replaceChildren(...[excludeRow(snap)].filter(Boolean));
+    const off = snap.players.filter((p) => !p.connected && !p.excluded).length;
     status.textContent = `${snap.voting.votedCount}/${snap.castCount} kişi oy verdi` + (off ? ` · ${off} kişinin bağlantısı bekleniyor` : '') + (mine ? ' · oylar tur kapanınca açıklanır' : '');
   }
   return { update: paint };
@@ -729,7 +758,8 @@ function openSettings() {
     toggle('Hareketi azalt (metin bir anda görünür)', 'reduceMotion'),
     toggle('Ses (rüzgâr, daktilo)', 'sound'),
     toggle('Titreşim', 'vibrate'),
-    isSS() ? [h('p', { class: 'eyebrow', style: 'margin-top:20px', text: 'Son Sefer · ölüm efektleri' }), toggle('Jumpscare görseli', 'scare'), toggle('Jumpscare sesi', 'scareSound'), volumeRow()] : null,
+    isSS() ? [h('p', { class: 'eyebrow', style: 'margin-top:20px', text: `${snap.storyTitle} · ölüm efektleri` }), toggle('Jumpscare görseli', 'scare'), toggle('Jumpscare sesi', 'scareSound'), toggle('Ölümde titreşim', 'scareVibrate'), volumeRow(),
+      h('button', { class: 'btn ghost', onclick: () => { if (!testBlast(sound.ensure(), settings.scareVolume)) toast('Ses açılamadı.'); }, text: 'Sesi dene' })] : null,
     ...extra,
     snap?.me ? h('p', { class: 'note', text: `Sen: ${snap.me.name}` }) : null,
   );

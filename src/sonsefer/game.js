@@ -1,14 +1,20 @@
-// SON SEFER — oda akışı: okuma, eylem/görevli/yardımcı oylaması, ölüm olayları, ölü sayfaları.
-// Saf motor (engine.js) burada sunucu odasına bağlanır. room.js'teki ortak yardımcılar `core` ile gelir.
-import {
+// Hayatta kalma hikâyeleri (Son Sefer, Son Misafirler) için ortak oda akışı:
+// okuma, eylem/görevli/yardımcı oylaması, ölüm olayları, ölü sayfaları.
+// Her hikâyenin saf motoru (engine.js) aynı arayüzü sunar ve makeGame(E) ile bağlanır.
+// room.js'teki ortak yardımcılar `core` ile gelir.
+
+export function makeGame(E) {
+const {
   STORY, NODES, ENDINGS, initialState, resolve, livingIds, deadIds, focusId, fill, paras, taskNeed,
-  briefFor, ghostPageFor, DEATH_CARD, FATIGUE_LABELS, equipmentOf, clone,
-} from './engine.js';
+  briefFor, ghostPageFor, DEATH_CARD, equipmentOf, clone,
+} = E;
+const statusOf = E.statusOf || ((s, pid) => ({ fatigue: s.fatigue[pid] ?? 0, fatigueLabel: E.FATIGUE_LABELS[s.fatigue[pid] ?? 0] }));
+const checklistFor = E.checklistFor || null;
 
 const nameOf = (room, pid) => room.cast.find((c) => c.playerId === pid)?.displayName ?? '?';
 const isBot = (room, pid) => !!room.players.find((p) => p.id === pid)?.isBot;
 
-export function start(room, core) {
+function start(room, core) {
   room.contentVersion = STORY.contentVersion;
   room.ss = {
     state: initialState(room.cast),
@@ -23,7 +29,7 @@ export function start(room, core) {
     ghostSeen: {},
     deathEvents: [],
   };
-  enterNode(room, 'S2_N01', core);
+  enterNode(room, E.FIRST_NODE, core);
 }
 
 function enterNode(room, nodeId, core) {
@@ -65,14 +71,14 @@ function openVote(room, kind, eligible, core, fresh) {
 }
 
 // ---------- Okudum ----------
-export function markReady(room, pid, { pageId, phaseVersion }, core) {
+function markReady(room, pid, { pageId, phaseVersion }, core) {
   if (!core.inCast(room, pid)) core.fail('Bu oyunun kadrosunda değilsin.');
   if (room.paused) core.fail('Oyun duraklatıldı.');
   if (!['READING', 'RESULT', 'TIE_RESULT', 'ENDING'].includes(room.phase)) core.fail('Şu an okunacak sayfa yok.');
   if (phaseVersion !== room.phaseVersion || pageId !== room.currentPageId) core.fail('STALE');
   if (room.readyPlayerIds.includes(pid)) return;
   room.readyPlayerIds.push(pid);
-  if (room.cast.every((c) => room.readyPlayerIds.includes(c.playerId))) advance(room, core);
+  if (core.allReady(room)) advance(room, core);
   else core.bump(room);
 }
 
@@ -89,7 +95,7 @@ function advance(room, core) {
       break;
     case 'RESULT': {
       const last = room.decisionLog.at(-1);
-      if (last.target.startsWith('S2_N')) enterNode(room, last.target, core);
+      if (last.target.startsWith(E.PREFIX)) enterNode(room, last.target, core);
       else {
         room.endingId = last.target;
         room.phase = 'ENDING';
@@ -106,7 +112,7 @@ function advance(room, core) {
 }
 
 // ---------- Oylama ----------
-export function castVote(room, pid, { nodeId, voteRound, optionId, phaseVersion }, core) {
+function castVote(room, pid, { nodeId, voteRound, optionId, phaseVersion }, core) {
   if (!core.inCast(room, pid)) core.fail('Bu oyunun kadrosunda değilsin.');
   if (room.paused) core.fail('Oyun duraklatıldı.');
   if (room.phase !== 'VOTING' || phaseVersion !== room.phaseVersion || nodeId !== room.currentNodeId || voteRound !== room.voteRound) core.fail('STALE');
@@ -117,7 +123,7 @@ export function castVote(room, pid, { nodeId, voteRound, optionId, phaseVersion 
     core.fail('Oyun kilitlendi; bu turda değiştirilemez.');
   }
   room.votesByPlayerId[pid] = optionId;
-  if (room.cast.every((c) => room.votesByPlayerId[c.playerId])) closeRound(room, core);
+  if (core.allVoted(room)) closeRound(room, core);
   else core.bump(room);
 }
 
@@ -138,19 +144,27 @@ function closeRound(room, core) {
   room.votesByPlayerId = {};
   const node = NODES[room.currentNodeId];
   const living = livingIds(ss.entry, room.cast);
+  // geçici olarak oylamadan çıkarılan (bağlantısı kopuk) oyuncular da göreve aday olmaz
+  const avail = living.filter((p) => !(room.excluded || []).includes(p));
+  const cands = avail.length ? avail : living;
   if (ss.voteKind === 'ACTION') {
     ss.optionId = winner;
     const need = taskNeed(node.options.find((o) => o.id === winner), living.length);
     if (need === 0) return finish(room, core);
-    if (living.length === 1) { ss.actors = [living[0]]; return finish(room, core); }
-    openVote(room, 'PRIMARY', living, core, true);
+    if (cands.length === 1) {
+      ss.actors = [cands[0]];
+      if (need === 2) ss.actors.push(living.find((p) => p !== cands[0]));
+      return finish(room, core);
+    }
+    openVote(room, 'PRIMARY', cands, core, true);
     return core.bump(room, true);
   }
   if (ss.voteKind === 'PRIMARY') {
     ss.actors = [winner];
     const need = taskNeed(node.options.find((o) => o.id === ss.optionId), living.length);
     if (need < 2) return finish(room, core);
-    const rest = living.filter((p) => p !== winner);
+    let rest = cands.filter((p) => p !== winner);
+    if (!rest.length) rest = living.filter((p) => p !== winner);
     if (rest.length === 1) { ss.actors.push(rest[0]); return finish(room, core); }
     openVote(room, 'HELPER', rest, core, true);
     return core.bump(room, true);
@@ -188,14 +202,20 @@ function finish(room, core) {
   core.bump(room, true);
 }
 
-export function ackDeath(room, pid, eventId, core) {
+function recheck(room, core) {
+  if (['READING', 'RESULT', 'TIE_RESULT', 'ENDING'].includes(room.phase) && core.allReady(room)) { advance(room, core); return true; }
+  if (room.phase === 'VOTING' && core.allVoted(room)) { closeRound(room, core); return true; }
+  return false;
+}
+
+function ackDeath(room, pid, eventId, core) {
   const e = room.ss?.deathEvents.find((x) => x.id === eventId && x.playerId === pid);
   if (!e) core.fail('Olay bulunamadı.');
   if (e.status === 'pending' || e.status === 'delivered') { e.status = 'acknowledged'; core.bump(room); }
 }
 
 /** Sunucunun yalnız ölenin bağlantısına canlı göndermesi gereken olaylar. */
-export function takeLiveDeaths(room) {
+function takeLiveDeaths(room) {
   const out = (room.ss?.deathEvents || []).filter((e) => !e.liveSent);
   for (const e of out) e.liveSent = true;
   return out;
@@ -211,7 +231,7 @@ function aliveLists(room, state) {
   };
 }
 
-export function renderPage(room, desc, pid) {
+function renderPage(room, desc, pid) {
   const cast = room.cast;
   if (desc.kind === 'scene') {
     const n = NODES[desc.nodeId];
@@ -243,7 +263,7 @@ export function renderPage(room, desc, pid) {
     const out = {
       kind: 'result', nodeId: n.id, title: n.title, optionId: d.optionId, label: opt.label,
       actors: d.actors.map((p) => nameOf(room, p)),
-      paragraphs: paras(fill(c.text, { cast, state: d.postState, focus: d.focus, actors: d.actors })),
+      paragraphs: paras(fill(c.text, { cast, state: d.postState, condState: d.preState, focus: d.focus, actors: d.actors })),
       tally: actionRound.tally,
       rounds: d.rounds.filter((r) => r.kind === 'ACTION').length,
       deathsNow: d.deaths.map((x) => nameOf(room, x.playerId)),
@@ -265,18 +285,18 @@ function renderEnding(room, endingId) {
   const s = room.ss.state;
   return {
     kind: 'ending', endingId, title: e.title, classification: e.class,
-    paragraphs: paras(fill(e.text, { cast: room.cast, state: s })),
+    paragraphs: paras(fill(e.text, { cast: room.cast, state: s, victims: (room.decisionLog.at(-1)?.deaths || []).map((x) => x.playerId) })),
     ...aliveLists(room, s),
   };
 }
 
-export function decorate(snap, room, pid) {
+function decorate(snap, room, pid) {
   const ss = room.ss;
   if (!ss) return snap;
   const s = room.phase === 'VOTING' ? ss.entry : ss.state;
   snap.survival = {
     me: { alive: s.alive[pid] !== false, fatigue: s.fatigue[pid] ?? 0 },
-    players: Object.fromEntries(room.cast.map((c) => [c.playerId, { alive: s.alive[c.playerId], fatigue: s.fatigue[c.playerId], fatigueLabel: FATIGUE_LABELS[s.fatigue[c.playerId]] }])),
+    players: Object.fromEntries(room.cast.map((c) => [c.playerId, { alive: s.alive[c.playerId], ...statusOf(s, c.playerId) }])),
   };
   const myDeath = ss.deathEvents.find((e) => e.playerId === pid);
   if (myDeath) snap.survival.myDeath = { eventId: myDeath.id, key: myDeath.key, status: myDeath.status, nodeTitle: NODES[myDeath.nodeId].title };
@@ -294,6 +314,7 @@ export function decorate(snap, room, pid) {
       v.question = node.question;
       v.options = node.options.filter((o) => room.eligibleOptionIds.includes(o.id)).map((o) => ({
         id: o.id, label: o.label, need: taskNeed(o, living.length), brief: briefFor(o, living.length),
+        checklist: checklistFor ? checklistFor(node.id, o.id, ss.entry) : null,
       }));
     } else {
       const opt = node.options.find((o) => o.id === ss.optionId);
@@ -302,7 +323,7 @@ export function decorate(snap, room, pid) {
       v.question = ss.voteKind === 'PRIMARY' ? (need === 2 ? 'Birinci görevli kim olsun?' : 'Bu işi kim yapacak?') : 'İkinci görevli kim olsun?';
       if (ss.voteKind === 'HELPER') v.primaryName = nameOf(room, ss.actors[0]);
       v.options = room.eligibleOptionIds.map((p) => ({
-        id: p, label: nameOf(room, p), fatigue: ss.entry.fatigue[p], fatigueLabel: FATIGUE_LABELS[ss.entry.fatigue[p]], isMe: p === pid,
+        id: p, label: nameOf(room, p), ...statusOf(ss.entry, p), isMe: p === pid,
       }));
     }
     snap.voting = v;
@@ -328,7 +349,7 @@ export function decorate(snap, room, pid) {
   return snap;
 }
 
-export function notes(room, pid) {
+function notes(room, pid) {
   return room.pageHistory
     .filter((d) => d.kind === 'scene' || d.kind === 'result')
     .map((d) => {
@@ -343,4 +364,7 @@ export function notes(room, pid) {
         contribution: [r.kind === 'result' && r.deathsNow.length ? 'Kaybedilen: ' + r.deathsNow.join(', ') : null, ...extra].filter(Boolean).join('\n\n') || null,
       };
     });
+}
+
+return { start, markReady, castVote, ackDeath, takeLiveDeaths, renderPage, decorate, notes, recheck };
 }

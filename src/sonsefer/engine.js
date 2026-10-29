@@ -12,6 +12,9 @@ export const JS_KEYS = STORY.jumpscares.map((j) => j.key); // JS01..JS08
 export const FLAGS = Object.keys(STORY.initialFlags);
 export const FATIGUE_LABELS = ['Dinç', 'Yorulmuş', 'Tükenmiş'];
 const FINAL_NODE = 'S2_N20';
+export const PREFIX = 'S2_N';
+export const FIRST_NODE = 'S2_N01';
+export const MEDIA_DIR = 'son-sefer';
 
 export const nodeNum = (id) => Number(id.replace(/^S2_N/, ''));
 

@@ -1,0 +1,2424 @@
+{
+  "storyId": "son_misafirler",
+  "version": "1.0",
+  "title": "Son Misafirler",
+  "playerMin": 4,
+  "playerMax": 10,
+  "initialFlags": {
+    "cameraClue": false,
+    "childClue": false,
+    "map": false,
+    "pole": false,
+    "proof": false,
+    "routeClue": false,
+    "invited": false,
+    "poolKey": false,
+    "identityRule": false,
+    "tagged": false,
+    "negative": false,
+    "mirrorCovered": false,
+    "power": false,
+    "lamp": false,
+    "wardKnown": false,
+    "roomKey": false,
+    "sealKnown": false,
+    "childFreed": false,
+    "gate": false,
+    "route": false,
+    "camera": false,
+    "cleanKnown": false,
+    "wardIntact": true
+  },
+  "nodes": [
+    {
+      "id": "S3_N01",
+      "title": "Fotoğrafı Kim Çekti?",
+      "scene": "Villa, ilandaki fotoğraflardan daha büyük görünüyor. Bahçede havuz, salonun önünde uzun bir masa, üst katta boyası biraz solmuş ahşap kepenkler var. Anahtarı söylendiği gibi saksının altında buluyorsunuz. {FOCUS}, valizleri kapıya bırakırken ilk kez gerçekten tatile çıktığını hissediyor.\n\nMangal hazırlanıyor. Biri müziği açıyor; odalar paylaşılırken yatakların rahatlığı hakkında gereksiz uzun bir tartışma dönüyor. Sonra telefonları salondaki zamanlayıcıya bırakıp hep birlikte havuz kenarında fotoğraf çektiriyorsunuz.\n\nFotoğrafta hepiniz varsınız. Ama görüntü, telefonu bıraktığınız masadan değil, havuzun karşı kıyısından çekilmiş. Üst katın kilitli penceresinde bir kadın duruyor. Perdeler şimdi kapalı. Ev sahibinin mesajı hâlâ ekranda: “Üst kattaki oda tadilatta.”",
+      "question": "İlk garipliği nasıl araştırıyorsunuz?",
+      "choices": {
+        "A": {
+          "label": "Orijinal fotoğrafı ve ilanı karşılaştırıp kaydediyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Fotoğrafın ayrıntılarını inceleyecek kişi.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A}, görüntünün saatini ve bakış açısını not ediyor. İlanın eski sürümünde aynı masanın üstünde makaralı bir fotoğraf makinesi var. Telefon görüntüsünü silmeden saklıyorsunuz.",
+              "effects": {
+                "cameraClue": true
+              }
+            }
+          ]
+        },
+        "B": {
+          "label": "Kadına seslenmek için kilitli odanın kapısını zorluyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Kapının altındaki çizgiyi geçmeden kilide bakılabilir; zorlamak korumayı bozar.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A} kapıyı zorladığında pervazdaki kesintisiz beyaz çizgi çatlıyor. İçeriden bir çocuk “O benim annem değil,” diye fısıldıyor. Kapı açılmıyor.",
+              "effects": {
+                "wardIntact": false,
+                "childClue": true
+              }
+            }
+          ]
+        },
+        "C": {
+          "label": "Bahçeyi, çıkışları ve havuz ekipmanını kontrol ediyoruz.",
+          "taskCount": 2,
+          "taskBrief": "Biri bahçe planını, diğeri havuzun kuru servis dolabını kontrol eder.",
+          "soloBrief": "Tek yaşayan kişi sabit tutucu veya kendinden kilitlenen mandalı kullanarak aynı işi tek başına yapar; ölü bir yardımcı anlatılmaz.",
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "Servis kapısının havuzun arkasında kaldığını, uzun bir kurtarma çubuğunun dolapta durduğunu görüyorsunuz. Çubuğu alıp plana çıkışı işaretliyorsunuz.",
+              "effects": {
+                "map": true,
+                "pole": true
+              }
+            }
+          ]
+        },
+        "D": {
+          "label": "Yol yorgunluğudur deyip birlikte yemek yiyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Ortak karar.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "Sofra kuruluyor. Tabakları saydığınızda bir tane fazla olduğunu görüyorsunuz. Fazla tabağı kaldırıp birbirinizin yanında dinleniyorsunuz.",
+              "effects": {
+                "restAll": 1
+              }
+            }
+          ]
+        }
+      },
+      "next": "S3_N02"
+    },
+    {
+      "id": "S3_N02",
+      "title": "00.17",
+      "scene": "Mutfak saati 00.17 olduğunda televizyon açılıyor. Eski bir doğum günü kaydı: aynı salon, aynı masa, başında boş bir sandalye. Kadın kameraya dönüyor. “Misafirler de geldiğine göre başlayabiliriz.”\n\nKayıtta kapı çalıyor. Sizin kapınız da çalıyor.\n\nDışarıdaki adam bakıcı olduğunu söylüyor. Elindeki poşetlerde yolda konuştuğunuz ama sipariş vermediğiniz yiyecekler var. Kapı kamerasında yüzü seçiliyor; fakat yağmur başlamasına rağmen ne saçında ne omzunda bir damla var. Kapının yanında, ev sahibinin bıraktığı zarfın üstünde eski bakıcının fotoğrafı duruyor. Fotoğraftaki yüz aynı; tarih 1996.",
+      "question": "Kapıdaki kişiye ne yapıyorsunuz?",
+      "choices": {
+        "A": {
+          "label": "Bakıcıyı içeri davet ediyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Davetin geri alınabileceğine ilişkin henüz bir kanıt yok.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "“Nihayet,” diyor adam. Eşiği geçtiği anda salondaki bütün sandalyeler masaya doğru sürtünüyor. Adam mutfağa yürürken camda yansıması görünmüyor.",
+              "effects": {
+                "invited": true
+              }
+            }
+          ]
+        },
+        "B": {
+          "label": "Kapıyı açmadan ev sahibini arıyor, mesajları saklıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Telefonu kullanacak kişi.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A}, aramanın bağlanmadığını görüyor. Eski mesajların altında yeni bir satır beliriyor: “Yüzüne bakma. Camdan konuş.” Ekran görüntüsünü saklıyorsunuz.",
+              "effects": {
+                "proof": true
+              }
+            }
+          ]
+        },
+        "C": {
+          "label": "Üst sahanlıktan geliş yolunu kontrol ediyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Kuru iç merdivenden camın gerisinde gözlem yapacak kişi.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A}, evin çevresinde ayak izi olmadığını fark ediyor. Bahçe kapısının motoruna giden kuru servis hattı da yukarıdan görünüyor.",
+              "effects": {
+                "map": true
+              }
+            }
+          ]
+        },
+        "D": {
+          "label": "Hep birlikte arabalara binip ayrılıyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Bütün grup birlikte gider; oyuncu ayrı bırakılmaz.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "Yol tek yönde gidiyor. Yine de aynı villanın önüne dönüyorsunuz. Balkonda kendi silüetleriniz var. Yol kenarında kırmızı taş yerine bir kez beyaz taş gördüğünüzü hatırlıyorsunuz.",
+              "effects": {
+                "routeClue": true
+              }
+            }
+          ]
+        }
+      },
+      "next": "S3_N03"
+    },
+    {
+      "id": "S3_N03",
+      "title": "Havuzun Dibindeki Arkadaş",
+      "scene": "Havuz lambası yanıyor. Dipte {FOCUS} yüzüne benzeyen biri yatıyor. Gerçek {FOCUS} grubun yanında; fotoğraftaki giysilerinin aynısı suyun içinde dalgalanıyor.\n\nSuyun kenarında bir pirinç anahtar var. Dibe oturmuş gibi görünse de havuzun kuru servis ızgarasına takılı. Yan duvardaki kabartmada “Havuz kapağı” yazıyor. Kurtarma çubuğuyla almak mümkün. Suyun içindeki yüz gözlerini açıyor. Siz konuşmayı kestiğiniz hâlde ağzı konuşur gibi hareket etmeyi sürdürüyor.",
+      "question": "Anahtarı ve sudaki kişiyi ne yapıyorsunuz?",
+      "choices": {
+        "A": {
+          "label": "Anahtarı kurtarma çubuğuyla alıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Kuru kenardan çalışılacak. Çubuk yoksa dolabı güvenle açıp önce çubuk alınır.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A}, kuru kenardan uzanıp anahtarı ızgaradan çıkarıyor. Sudaki yüz çubuğun ucuna değil, elinize bakıyor.",
+              "effects": {
+                "pole": true,
+                "poolKey": true
+              }
+            }
+          ]
+        },
+        "B": {
+          "label": "Sudaki arkadaşımızı kurtarmak için dalıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Yanınızdaki gerçek kişi ile sudaki beden aynı anda görülüyor.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A} suya girince alttaki yüz yukarı dönüyor. Bir bedenin olması gereken yerde saçlar ve karanlık açılıyor. Suyun üstü yeniden düzleşiyor.",
+              "effects": {},
+              "kill": "primary",
+              "jumpscare": "JS02"
+            }
+          ]
+        },
+        "C": {
+          "label": "Izgaradaki yazıyı fotoğraflayıp sudan uzaklaşıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Güvenli kuru taraftan inceleme.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A}, anahtarın yerini ve servis dolabının çizimini kaydediyor. Sonra havuz lambasını kuru düğmeden kapatıyorsunuz.",
+              "effects": {
+                "map": true
+              }
+            }
+          ]
+        },
+        "D": {
+          "label": "Havuzdaki sese adımızı söyleyip yanıt bekliyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Suyun karşısındaki kişiye doğrudan seslenecek kişi.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A} kendi adını söylediğinde dipteki ağız ilk kez düzgün kapanıyor. Artık bir kelimeyi doğru söyleyebiliyor. Evin size ait sesleri topladığını anlıyorsunuz.",
+              "effects": {
+                "tagged": true
+              }
+            }
+          ]
+        }
+      },
+      "next": "S3_N04"
+    },
+    {
+      "id": "S3_N04",
+      "title": "Fazladan Yatak",
+      "scene": "Odaları yeniden sayıyorsunuz. Başta boş olan küçük odada şimdi yapılmış bir yatak var. Üstünde {FOCUS} çantasının aynısı, yastıkta yeni bir baş izi. Gerçek çanta aşağıdaki salonda.\n\nYatağın kenarında bir yetişkin oturuyor. Yüzünü çevirdiğinde içinizden birine benziyor; hareketi biraz geç tamamlıyor. Kapı eşiğinin altına sıkışmış küçük bir etiket var: “Eşyayı değil, geldiğin yolu kontrol et.” Aynanın önüne çekilmiş örtü, koridorun gerçek kapısını görünür bırakıyor.",
+      "question": "Odadaki benzerle nasıl karşılaşıyorsunuz?",
+      "choices": {
+        "A": {
+          "label": "Kapıya girmeden kendi eşyalarımızı ve geliş yolumuzu karşılaştırıyoruz.",
+          "taskCount": 2,
+          "taskBrief": "İki kişi birbirinin çantasını ve odanın sabit işaretlerini kontrol eder.",
+          "soloBrief": "Tek yaşayan kişi sabit tutucu veya kendinden kilitlenen mandalı kullanarak aynı işi tek başına yapar; ölü bir yardımcı anlatılmaz.",
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "Çantadaki fermuar ters tarafta. Gerçek odaların kapı eşiklerinde bahçedeki taş tozu var; bu eşik tertemiz. Yanlış odayı işaretleyip kapatıyorsunuz.",
+              "effects": {
+                "identityRule": true
+              }
+            }
+          ]
+        },
+        "B": {
+          "label": "Yatağın kenarındaki kişiye dokunuyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Benzerin hareketleri insan hareketleriyle uyuşmuyor.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A}, omza dokununca oturan beden geriye dönmeden yüzünü çeviriyor. Yatakta açılan çöküntü iki kişilik oluyor. Sonra yalnız biri kalkıyor; o da kapının dışında duramıyor.",
+              "effects": {},
+              "kill": "primary",
+              "jumpscare": "JS03"
+            }
+          ]
+        },
+        "C": {
+          "label": "Örtülü aynayı açıp kendi yüzümüzü yakından kontrol ediyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Aynanın altından odanın tersini gösteren bir ışık sızıyor.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A}, yüzünün aynada kendisinden önce gülümsediğini görüyor. Geri çekiliyor ama yansıma elini cama bırakıyor.",
+              "effects": {
+                "tagged": true
+              }
+            }
+          ]
+        },
+        "D": {
+          "label": "Kapıyı kapatıp topluca salona dönüyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Hiç kimse odada tek başına bırakılmaz.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "Koridorda herkes birbirinin adını ve geldiği yönü kontrol ediyor. Yatak gıcırtısı kapının arkasında kalıyor. Kısa bir süre soluklanıyorsunuz.",
+              "effects": {
+                "restAll": 1
+              }
+            }
+          ]
+        }
+      },
+      "next": "S3_N05"
+    },
+    {
+      "id": "S3_N05",
+      "title": "Duvarın İçindeki Telefon",
+      "scene": "Salon duvarının içinden telefon çalıyor. Ekranınızdaki numara size ait. {FOCUS}, duvar kâğıdında dikdörtgen bir kabarıklık görüyor. Kâğıdın bir köşesi kalkmış; arkasındaki dar kapının iç tarafında telefon ışığı var.\n\nKapı aralığından uzanan gölge, arayanın omzuna benziyor ama yerde devam etmiyor. Süpürgelikteki vida, eski servis planının kopyasını tutuyor. Planı almak için aralığa el sokmak gerekmiyor. Telefon sesi bir anda kesiliyor. İçeriden sizin sesinizle “Açsana,” deniyor.",
+      "question": "Duvarın ardına nasıl yaklaşıyorsunuz?",
+      "choices": {
+        "A": {
+          "label": "Süpürgelikteki servis planını dışarıdan alıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Kâğıda kuru dış kenardan ulaşılır.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A}, planın alt kenarını çıkarıyor. Eski servis kapısı, avlu ve odanın koruyucu çizgisi işaretli. İçerideki telefon kapalı olmasına rağmen titreşiyor.",
+              "effects": {
+                "map": true
+              }
+            }
+          ]
+        },
+        "B": {
+          "label": "Telefonu almak için aralıktan uzanıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Gölgede beden devamı yok; eli uzatmak tehlikeli.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A} elini aralığa sokuyor. Duvar kâğıdı bir nefes gibi genişliyor. Arkasındaki yüz, kapının tamamını dolduruyor. Telefon yeniden çaldığında arkadaşınız cevap vermiyor.",
+              "effects": {},
+              "kill": "primary",
+              "jumpscare": "JS04"
+            }
+          ]
+        },
+        "C": {
+          "label": "Dar kapıdan sırayla geçerek dışarı çıkmayı deniyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Planda burası çıkış değil, kapatılmış oda boşluğu olarak gösteriliyor.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "İlk adımda salon arkanızda bir fotoğraf kadar küçülüyor. Duvarın öte tarafında hepinizin omuzları birbirine değiyor. Dışarıdaki yeni misafirler, telefonlarının neden çaldığını anlamıyor.",
+              "effects": {},
+              "kill": "all",
+              "jumpscare": "JS04",
+              "ending": "S3_E18"
+            }
+          ]
+        },
+        "D": {
+          "label": "Aramayı reddedip kapı aralığını kapatıyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Ortak karar.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "Telefonu açmıyorsunuz. Kapının dış kolunu indirip kâğıdı yerine bastırıyorsunuz. Duvarın içinde bir el uzun süre kolu yokluyor. Sonunda ses uzaklaşıyor.",
+              "effects": {}
+            }
+          ]
+        }
+      },
+      "next": "S3_N06"
+    },
+    {
+      "id": "S3_N06",
+      "title": "Banyo Aynası",
+      "scene": "Banyoda musluk kendi kendine açılıyor. Buhar, kapı aralığından koridora taşıyor. Aynada bir yetişkin kadın, kameraya bakar gibi size dönük duruyor. Arkanızdaki boş banyoda kimse yok.\n\nLavabonun altında bir fotoğraf zarfı var. Zarfın köşesi eşikten görülüyor. Askıdaki kalın havlu aynanın üstüne atılabilir. Aynanın çerçevesinde küçük bir bakım etiketi: “Camı sökmeyin. Gümüş yüzeyi kesintisiz bırakın.” Kadın ağzını oynatıyor; sesi giderden geliyor.",
+      "question": "Banyoda ne yapıyorsunuz?",
+      "choices": {
+        "A": {
+          "label": "Aynayı örtüp fotoğraf zarfını alıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Önce havlu atılır; ardından göz teması kurmadan zarf alınır.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A}, aynayı örttüğünde su kesiliyor. Zarftaki eski negatifte kadın yüzünün bulunduğu yerde bir insan silüeti yok; yalnız karanlık bir boşluk var.",
+              "effects": {
+                "negative": true,
+                "mirrorCovered": true
+              }
+            }
+          ]
+        },
+        "B": {
+          "label": "Aynadaki eli tutup kadını dışarı çıkarıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Görüntünün odada fiziksel karşılığı yok.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A} cama dokunuyor. Parmaklarınızın olduğu yer çukurlaşıyor. Öteki el bileği kapatınca ayna tekrar sertleşiyor. Banyoda yalnız musluk sesi kalıyor.",
+              "effects": {},
+              "kill": "primary",
+              "jumpscare": "JS05"
+            }
+          ]
+        },
+        "C": {
+          "label": "Aynayı kırarak geçidi kapatıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Etiket gümüş yüzeyin kesilmemesini söylüyor.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A}, aynayı kırıyor. Her parça farklı bir koridoru yansıtıyor. Kadının yüzü kayboluyor ama artık bütün kırıkların içinden bakabiliyor.",
+              "effects": {
+                "tagged": true,
+                "mirrorCovered": false
+              }
+            }
+          ]
+        },
+        "D": {
+          "label": "Kapıyı kapatıp havluyu dışarıdan koluna asıyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Birlikte geri çekilme.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "Banyonun kapısını kapatıyor, yanlışlıkla açılmaması için havluyla işaretliyorsunuz. Musluğun altında biri ellerini yıkamayı sürdürüyor. Kısa bir dinlenme fırsatı buluyorsunuz.",
+              "effects": {
+                "restAll": 1
+              }
+            }
+          ]
+        }
+      },
+      "next": "S3_N07"
+    },
+    {
+      "id": "S3_N07",
+      "title": "Tavandaki Ayak İzleri",
+      "scene": "Elektrikler sönüyor. Bodrum merdiveninin başında akülü bir el feneri var. Işığı aşağı tuttuğunuzda tavanda çıplak ayak izleri görünüyor.\n\nSigorta kutusunun önündeki zemin kuru. Etikette önce giriş kesicisinin indirilmesi, sonra yan devrenin çalıştırılması istenmiş. Tavandaki izlerin altında su ve gevşemiş kablo var. Duvara sabit mandal, ışığı ve kutu kapağını aynı anda tutabiliyor. {FOCUS}, ışığın yetişmediği yerde bir saç tutamının aşağı sallandığını görüyor.",
+      "question": "Elektriği nasıl geri getiriyorsunuz?",
+      "choices": {
+        "A": {
+          "label": "Kuru yan devreyi talimata göre iki kişiyle açıyoruz.",
+          "taskCount": 2,
+          "taskBrief": "Biri feneri, diğeri kuru kesiciyi kullanır; tek kişide sabit mandal vardır.",
+          "soloBrief": "Tek yaşayan kişi sabit tutucu veya kendinden kilitlenen mandalı kullanarak aynı işi tek başına yapar; ölü bir yardımcı anlatılmaz.",
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "Giriş kesiliyor, yan hat açılıyor. Havuz değil koridor lambaları yanıyor. Tavandaki ayak izleri karanlıkta kalıyor.",
+              "effects": {
+                "power": true
+              }
+            }
+          ]
+        },
+        "B": {
+          "label": "Islak kabloyu çekerek kutuya ulaşmaya çalışıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Islak alan ve tavandaki izler açıkça tehlike gösteriyor.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A} kabloyu çekince üstteki saçlar hareket ediyor. Tavanda tutunan yüz bir anda göz hizasına iniyor. Fener yerde kendi etrafında dönüyor.",
+              "effects": {},
+              "kill": "primary",
+              "jumpscare": "JS08"
+            }
+          ]
+        },
+        "C": {
+          "label": "Feneri alıp bodrumdan çıkıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Kapı yanındaki kuru fener alınacak.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A}, feneri alıyor. Şimdilik elektrik gelmiyor; ama ellerinizde sabit ve güvenilir bir ışık var.",
+              "effects": {
+                "lamp": true
+              }
+            }
+          ]
+        },
+        "D": {
+          "label": "Bütün kesicileri birlikte kaldırıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Kutudaki sıra talimatı bunun tersini söylüyor.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A} bütün kolları kaldırıyor. Ev kısa bir an gündüz kadar aydınlanıyor. O an her camda bir yüz beliriyor. Kesiciler tekrar atıyor.",
+              "effects": {
+                "power": false,
+                "tagged": true
+              }
+            }
+          ]
+        }
+      },
+      "next": "S3_N08"
+    },
+    {
+      "id": "S3_N08",
+      "title": "Kasetin Başlangıcı",
+      "scene": "Yan sehpanın çekmecesinde 1996 yazan bir kaset var. Üzerindeki el yazısı, kilitli odadan gelen nottaki yazıyla aynı. Televizyonun altında küçük bir oynatıcı hâlâ aküyle çalışıyor.\n\nKayıtta gerçek anne, çocuğun doğum günü pastasını getiriyor. Bir sonraki kesitte mutfaktan annesinin aynısı çıkıyor. İlki görüntünün kenarında hâlâ duruyor. Çocuk masanın altına saklanıyor. Babanın eli kamerayı çevirirken bir cümle duyuluyor: “Kamera gördüğünü saklıyor. O, saklananı değiştiremiyor.”\n\nKasetin kapağında asıl negatifin saklandığı çekmece işaretli. Televizyondaki boş sandalye, şimdi odanın içinde gıcırdıyor.",
+      "question": "Kayda ne yapıyorsunuz?",
+      "choices": {
+        "A": {
+          "label": "İki annenin aynı anda göründüğü bölümü koruyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Kaset ve tarih birlikte kaydedilir.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A}, iki yüzün aynı anda bulunduğu kareyi saklıyor. Annenin kaçmadığını, çocuğu yukarı götürmeye çalıştığını görüyorsunuz.",
+              "effects": {
+                "proof": true,
+                "childClue": true
+              }
+            }
+          ]
+        },
+        "B": {
+          "label": "Kaseti yakarak hayaletleri yok etmeye çalışıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Kamera kaydının koruyucu niteliği az önce gösterildi.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A} kaseti şöminede yakıyor. Plastik kokusu geliyor. Yedek negatif daha önce alınmışsa elinizde kalıyor; bu kasetin kanıtı ise kayboluyor.",
+              "effects": {
+                "proof": false
+              }
+            }
+          ]
+        },
+        "C": {
+          "label": "Kasetteki çekmeceyi bulup negatifi alıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Salonun kuru alt çekmecesi; banyo gerektirmez.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A}, ince negatif şeridini ışığa tutmadan zarfına koyuyor. Şeridin sonunda çocuk odasının kapısı ve kesintisiz çizgisi görünüyor.",
+              "effects": {
+                "negative": true
+              }
+            }
+          ]
+        },
+        "D": {
+          "label": "Televizyonu kapatıp birbirimizi sakinleştiriyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Ortak dinlenme.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "Ekran kapanıyor ama masadaki boş sandalye bir süre daha sallanıyor. Hiç kimse oturmuyor. Birbirinize olanları anlatarak nefesinizi topluyorsunuz.",
+              "effects": {
+                "restAll": 1
+              }
+            }
+          ]
+        }
+      },
+      "next": "S3_N09"
+    },
+    {
+      "id": "S3_N09",
+      "title": "Kapının İki Tarafı",
+      "scene": "Üst kattaki odanın kapısının altında yeni bir kâğıt var: “Ben Deniz. Annem kapıyı dışarıdan kapattı. Sonra onun sesi içeriden gelmeye başladı.”\n\nKapının dışında otuz yıllık çizikler var; kilidin iç tarafında kırılma izi yok. Birinin dışarıdan içeri girmeye çalıştığı belli. Kenardaki eski not: “Yüzüne inanma. Yazıyı eşiğin dışından oku. Çizgi kesilirse beyaz macunla onar.” Küçük bir tamir kutusu hâlâ sahanlıkta.\n\nİçeriden yetişkin bir kadın “Açın artık, çocuğu alın,” diyor. Ardından çok daha uzaktan bir çocuk “Beni ona vermeyin,” diye fısıldıyor.",
+      "question": "Kilitli odaya nasıl yaklaşıyorsunuz?",
+      "choices": {
+        "A": {
+          "label": "Yazıyı okuyup tamir kutusuyla çizgiyi onarıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Eşiğin dışından koruyucu çerçeveyi kesintisiz tamamlayacak kişi.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A}, çatlakları dolduruyor. Kadın sesi uzaklaşıyor. Kâğıdın arkasında çocukla konuşmanın güvenli yöntemi var: kapıyı açmadan yazıyla anlaşmak.",
+              "effects": {
+                "wardIntact": true,
+                "wardKnown": true,
+                "childClue": true
+              }
+            }
+          ]
+        },
+        "B": {
+          "label": "Kadın sesine güvenip kapıyı söküyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Kapının koruyucu olduğu dış çiziklerle gösteriliyor.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A}, menteşeyi çekince kapının karanlığından yetişkin bir yüz uzanıyor. Ağzındaki ses hâlâ sakin. Elini bıraktığınızda kapı kanadı artık sizi ayırmıyor.",
+              "effects": {
+                "wardIntact": false
+              },
+              "kill": "primary",
+              "jumpscare": "JS01"
+            }
+          ]
+        },
+        "C": {
+          "label": "Çocuğa kâğıtla gerçek adını ve o geceyi soruyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Kapı açılmaz; notlar eşikten geçirilir.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A}, dönen kâğıtta Deniz adını ve bir anahtar çizimini görüyor. Çocuk duvarın içindeki dar saklanma bölümünde kaldığını anlatıyor. Kapalı odanın içinde başka bir kapı daha var.",
+              "effects": {
+                "childClue": true,
+                "wardKnown": true
+              }
+            }
+          ]
+        },
+        "D": {
+          "label": "Şimdilik kapıyı kapalı bırakıp diğer kanıtları arıyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Geri çekilme.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "Kapıyı zorlamıyorsunuz. Çocuk iki kere hafifçe vuruyor. Koridorun öteki ucundan daha sert, üçüncü bir vuruş geliyor.",
+              "effects": {}
+            }
+          ]
+        }
+      },
+      "next": "S3_N10"
+    },
+    {
+      "id": "S3_N10",
+      "title": "Havuzun Kuru Haznesi",
+      "scene": "Havuzun servis kapağının altında su dolu bir kuyu değil, kuru bir bakım haznesi bulunuyor. Kapağın üst kilidi pirinç anahtara uyuyor. Cam gözlem penceresinden küçük metal bir kutu görünüyor.\n\nPlanın kenarında “Üst çekmece kuru hattan açılır; alt kapağı açmayın” yazıyor. Alt kapaktan, biraz önce kaybetmiş olabileceğiniz birinin sesi geliyor. Kimse ölmediyse kendi sesiniz geliyor. {FOCUS}, sesin durduğu anlarda aşağıdan tırnak sesleri duyuyor.",
+      "question": "Haznedeki kutuyu nasıl alıyorsunuz?",
+      "choices": {
+        "A": {
+          "label": "Üst kilidi anahtarla açıp kuru çekmeceyi çekiyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Pirinç anahtar gerekir; yoksa zorlamak yerine kapak kapatılır.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "flag": "poolKey"
+              },
+              "text": "{A}, kuru çekmeceyi açıyor. Kutuda oda anahtarının yedeği ve gerçek annenin bıraktığı son not var: “Onu sabaha değil, geldiği yere teslim edin.”",
+              "effects": {
+                "roomKey": true,
+                "proof": true
+              }
+            },
+            {
+              "when": {
+                "always": true
+              },
+              "text": "Anahtar elinizde yok. {A}, kilidi zorlamadan geri dönüyor. Kapağın dışındaki çizim korunuyor.",
+              "effects": {}
+            }
+          ]
+        },
+        "B": {
+          "label": "Alt kapağı açıp seslenen kişiye iniyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Üstte alt kapağın açılmaması uyarısı var.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A} alt kapağı kaldırıyor. Su düz bir yüzey olarak yükseliyor; içindeki ağız önce nefes almayı deniyor. Kapak yeniden kapandığında arkadaşınız aşağıda kalmış oluyor.",
+              "effects": {},
+              "kill": "primary",
+              "jumpscare": "JS02"
+            }
+          ]
+        },
+        "C": {
+          "label": "Kuru servis koluyla kutuyu üst kanala taşıyoruz.",
+          "taskCount": 2,
+          "taskBrief": "Çubuk varsa biri kolu uzatır diğeri üst mandalı sabitler.",
+          "soloBrief": "Tek yaşayan kişi sabit tutucu veya kendinden kilitlenen mandalı kullanarak aynı işi tek başına yapar; ölü bir yardımcı anlatılmaz.",
+          "cases": [
+            {
+              "when": {
+                "flag": "pole"
+              },
+              "text": "Çubuğu üst kanala sokup kutuyu kuru tarafa çekiyorsunuz. Oda anahtarını ve annenin notunu alıyorsunuz.",
+              "effects": {
+                "roomKey": true,
+                "proof": true
+              }
+            },
+            {
+              "when": {
+                "always": true
+              },
+              "text": "Servis koluna ulaşacak çubuk yok. İkiniz kapağı açık bırakmadan geri çekiliyorsunuz. Başka bir anahtar yolu aramanız gerekecek.",
+              "effects": {}
+            }
+          ]
+        },
+        "D": {
+          "label": "Kutuyu bırakıp servis kapısının mekanizmasını inceliyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Bahçe tarafındaki kuru mekanizma.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A}, motorun elektriksiz kaldığını, ama kolun elle de sabitlenebildiğini görüyor. Kapı henüz açılmıyor; güzergâhı kaydediyorsunuz.",
+              "effects": {
+                "map": true
+              }
+            }
+          ]
+        }
+      },
+      "next": "S3_N11"
+    },
+    {
+      "id": "S3_N11",
+      "title": "Mutfak Camındaki Bakıcı",
+      "scene": "Mutfak camında bir yüz beliriyor. Kapıdan içeri almış olsanız bile bakıcı şimdi dışarıda. Aynı anda koridordan adımlarını duyuyorsunuz.\n\nCamın içine buğu tutmuyor; nefesi dış tarafta da görünmüyor. Dışarıdaki adam avucunu gösteriyor: “Anahtarı unuttunuz. Açın, vereyim.” Tezgâhın yanındaki eski bakıcı dolabında “oda yedeği” yazan bir göz var. Göz kuru taraftan açılıyor. Adamın ceket cebinde görünen anahtarın dişleri ise anahtar deliğine uymuyor.",
+      "question": "Bakıcıyla ne yapıyorsunuz?",
+      "choices": {
+        "A": {
+          "label": "Camı kapalı tutup içerideki yedek anahtarı alıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Kuru dolabın küçük gözü açılacak.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A}, gerçek yedek anahtarı buluyor. Camdaki adam gülümsemeyi bırakıyor. Cebindeki anahtarın görüntüsü camda bir an gecikiyor.",
+              "effects": {
+                "roomKey": true,
+                "identityRule": true
+              }
+            }
+          ]
+        },
+        "B": {
+          "label": "Camı açıp uzattığı anahtarı alıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Anahtarın dişleri ve nefes eksikliği önce gösterildi.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A} camı açtığında yüz çerçeveyi dolduruyor. Dışarıdaki elin kolu yok; karanlık tezgâhın içine uzanıyor. Anahtar yere düşmüyor.",
+              "effects": {},
+              "kill": "primary",
+              "jumpscare": "JS06"
+            }
+          ]
+        },
+        "C": {
+          "label": "Bakıcının davetini geri aldığımızı söyleyip kapıları kapatıyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Bu hareket tek başına önceki daveti silmez.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "Bütün kapıları kapatıyorsunuz. Davet edilmişse ayak sesleri içeride kalıyor; edilmemişse dışarıda. Sözün tek başına yetmediğini anlıyorsunuz.",
+              "effects": {
+                "identityRule": true
+              }
+            }
+          ]
+        },
+        "D": {
+          "label": "Bakıcının teklif ettiği yeni konaklama formunu onaylıyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Formun alt satırı misafirliğin yeni kiracı bulunana dek süreceğini söylüyor.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "Ekranda “Ev sahibi oldunuz” yazıyor. Sabah kapı çalıyor. Yeni gelenlere anahtarı nereye bıraktığınızı söylemek istiyorsunuz; ağzınızdan yalnız hazır ilan metni çıkıyor.",
+              "effects": {},
+              "ending": "S3_E19"
+            }
+          ]
+        }
+      },
+      "next": "S3_N12"
+    },
+    {
+      "id": "S3_N12",
+      "title": "Masada Bir Yer Daha",
+      "scene": "Salona döndüğünüzde sofra yeniden kurulmuş. Tabaklarda sıcak yemek var. Masanın başındaki kadın, kasetteki anneye benziyor; fakat fotoğrafta karanlık çıkan yüz de bu.\n\nSandalyelerin arkasında isimleriniz yazıyor. En son sandalye Deniz için ayrılmış. Masanın altında, aile fotoğrafına bağlanan ince siyah bir şerit duruyor. Şeridin üstünde küçük bir uyarı: “Oturmak, kadraja girmektir.” Yemek kokusu çok tanıdık. Kadın tek tek isimlerinizi sayıyor.",
+      "question": "Sofrayla ne yapıyorsunuz?",
+      "choices": {
+        "A": {
+          "label": "Şeridi yerinden sökmeden bağlantısını fotoğraflıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Masanın dışında kalınacak.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A}, şeridin sandalyeleri aile fotoğrafına bağladığını kaydediyor. Evin sizi neden masaya oturtmak istediği anlaşılıyor.",
+              "effects": {
+                "proof": true,
+                "cameraClue": true
+              }
+            }
+          ]
+        },
+        "B": {
+          "label": "Hep birlikte yerlerimize oturup doğum gününü tamamlıyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Oturmanın aile kadrajına katılmak olduğu açıkça gösterildi.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "Sandalyeler masaya kilitleniyor. Kadının yüzü fotoğrafta yerine oturuyor. Artık sofrada hiç boş yer yok. Sabah temizlikçi masayı silerken çerçevenizdeki tozu da alıyor.",
+              "effects": {},
+              "kill": "all",
+              "jumpscare": "JS07",
+              "ending": "S3_E17"
+            }
+          ]
+        },
+        "C": {
+          "label": "Kadının verdiği kadehi alıp adımızı doğruluyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Yüzünüze ve adınıza yönelik teklif.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A} kadehi aldığında yüzeydeki yansıma bir an bağımsız hareket ediyor. Masadan kalkabiliyorsunuz ama ev artık sesinizle aynı anda konuşabiliyor.",
+              "effects": {
+                "tagged": true
+              }
+            }
+          ]
+        },
+        "D": {
+          "label": "Kimse oturmadan su içip birlikte dinleniyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Masadaki yiyecekler kullanılmaz; kendi kapalı su şişeleriniz alınır.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "Kendi suyunuzu içiyor, sandalyelerden uzak duruyorsunuz. Kadın isimleri saymayı bitirince baştan başlıyor.",
+              "effects": {
+                "restAll": 1
+              }
+            }
+          ]
+        }
+      },
+      "next": "S3_N13"
+    },
+    {
+      "id": "S3_N13",
+      "title": "Fotoğraftaki Boşluk",
+      "scene": "Merdivendeki aile fotoğrafında yüzleriniz belirmeye başlamış. Bu, öldüğünüz anlamına gelmiyor; fotoğraf size yer hazırlıyor. Ölenler varsa onların görüntüsü sabit, yaşayanlarınki bulanık.\n\nÇerçevenin arkasındaki kâğıtta annenin el yazısı var: “Ön yüz aldığı kişiyi bırakmaz. Ters taraftaki negatif ise içeri gireni tutar.” Fotoğrafta yetişkin kadının eli çerçevenin kenarını kavramış gibi duruyor. Çerçeveyi çevirmek için duvardaki kuru yan mandal kullanılabilir; yüzeye dokunmak gerekmez.",
+      "question": "Aile fotoğrafına ne yapıyorsunuz?",
+      "choices": {
+        "A": {
+          "label": "Yan mandalı kullanıp arka yazıyı ve negatifi inceliyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Fotoğrafın ön yüzüne dokunulmaz.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A}, arka kapağın çizimini çıkarıyor. Kaynağı kapatmak için gerçek kayıt, çocuğun saklandığı yerin açılması ve kesintisiz çerçeve gerektiği yazıyor. Küçük bir negatif kopyası da elinizde.",
+              "effects": {
+                "sealKnown": true,
+                "negative": true
+              }
+            }
+          ]
+        },
+        "B": {
+          "label": "Fotoğrafın önündeki eli tutup arkadaşımızı çekiyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Fotoğrafın alanı tuttuğu notta yazılı.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A} eli tuttuğunda parmaklar çerçevenin dışına çıkıyor. Duvardaki cam arkadaşınızın silüetini düzleştiriyor. Yeni yüz, diğerlerinden daha net.",
+              "effects": {},
+              "kill": "primary",
+              "jumpscare": "JS07"
+            }
+          ]
+        },
+        "C": {
+          "label": "Fotoğrafı duvardan indirip yüzünü kapatıyoruz.",
+          "taskCount": 2,
+          "taskBrief": "İki kişi arka mandallardan tutar, ön yüz örtülür.",
+          "soloBrief": "Tek yaşayan kişi sabit tutucu veya kendinden kilitlenen mandalı kullanarak aynı işi tek başına yapar; ölü bir yardımcı anlatılmaz.",
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "Çerçeveyi yere değil, sabit duvar dayanağına ters çeviriyorsunuz. Arkadaki tarifi birlikte okuyorsunuz.",
+              "effects": {
+                "sealKnown": true
+              }
+            }
+          ]
+        },
+        "D": {
+          "label": "Fotoğrafın görüntüsüne bakmadan koridoru geçiyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Güvenli geri çekilme.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "Çerçeveyi arkanızda bırakıyorsunuz. Camın içinden gelen tıkırtı, adımlarınızla aynı ritimde sürüyor.",
+              "effects": {}
+            }
+          ]
+        }
+      },
+      "next": "S3_N14"
+    },
+    {
+      "id": "S3_N14",
+      "title": "Saklanan Çocuk",
+      "scene": "Odanın kapısı yeniden karşınızda. Önceki kararlarınızın bıraktığı çizik ve onarımlar aynı yerde. Kâğıtta yeni bir cümle var: “Ben kapının arkasında değilim. Dolabın arkasındayım.”\n\nGerçek Deniz, oda içindeki dar saklanma bölümünde. Otuz yıldır bedeni yaş almayan bir hayalet; hâlâ o gecede. Onu kurtarmak bir çocuğu arabaya bindirmek değil, saklandığı gecenin dışına çıkmasına yardım etmek. Annesinin iki farklı görüntüsünü gösteren kayıt ona gerçeği hatırlatabilir.\n\nKilit anahtarla, koruyucu çizgi bozulmadan açılabiliyor. Kapının altından gelen yetişkin kadın sesi ise “Önce çizgiyi kazıyın,” diyor.",
+      "question": "Deniz için ne yapıyorsunuz?",
+      "choices": {
+        "A": {
+          "label": "Anahtar ve kayıtla korumayı bozmadan saklanma bölümünü açıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Oda anahtarı, kanıt ve sağlam çizgi gerekir; eksikse kapı zorlanmaz.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "all": [
+                  {
+                    "flag": "roomKey"
+                  },
+                  {
+                    "flag": "proof"
+                  },
+                  {
+                    "flag": "wardIntact"
+                  }
+                ]
+              },
+              "text": "{A}, anahtarı çevirip kaydı açık eşikten gösteriyor. Deniz, annesinin karanlık yansıma olmadığını anlıyor. Saklandığı bölümden çıkıp odadaki küçük sandalyeye oturuyor. Sizi tanıyor; ilk kez o geceyi anlatabiliyor.",
+              "effects": {
+                "childFreed": true
+              }
+            },
+            {
+              "when": {
+                "always": true
+              },
+              "text": "Gereken anahtar, kayıt veya kesintisiz çizgi eksik. {A}, kapıyı zorlamadan bırakıyor. Deniz içeride kalıyor.",
+              "effects": {}
+            }
+          ]
+        },
+        "B": {
+          "label": "Kadının dediğini yapıp çizgiyi kazıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Çizginin koruma olduğu daha önce gösterildi.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A}, çizginin son parçasını kazıyınca ses kapının dışına geçiyor. Kadının yüzü pervazın içinden uzanıyor. Çocuk saklandığı yerde sessizleşiyor.",
+              "effects": {
+                "wardIntact": false
+              },
+              "kill": "primary",
+              "jumpscare": "JS01"
+            }
+          ]
+        },
+        "C": {
+          "label": "Önce eksikleri tamamlayıp çocuğa ne yapacağımızı yazıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Güvenli hazırlık: tamir kutusu ve odanın kuru belge gözü.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A}, eşiği onarıyor ve belge gözündeki gerçek aile kaydını alıyor. Deniz cevap veriyor: “Olanı hatırlatın, çıkabilirim.” Bir sonraki fırsata hazırlanıyorsunuz.",
+              "effects": {
+                "wardIntact": true,
+                "wardKnown": true,
+                "proof": true
+              }
+            }
+          ]
+        },
+        "D": {
+          "label": "Çocuğu bırakıp yalnız kendimizi kurtarmaya karar veriyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Bu karar çocuğu öldürmez; onu bu aşamada içeride bırakır.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "Deniz kapıya vurmayı bırakıyor. Kadının sesi ilk kez çok uzaktan geliyor: “Misafirler gidiyor.” Siz yine de başka bir çıkış arıyorsunuz.",
+              "effects": {}
+            }
+          ]
+        }
+      },
+      "next": "S3_N15"
+    },
+    {
+      "id": "S3_N15",
+      "title": "Servis Kapısı",
+      "scene": "Havuzun arkasındaki servis kapısına ulaşıyorsunuz. Kapının öte yanında kısa bir avlu ve taş patika var. Elektrik gelmişse motorun ışığı yanıyor. Gelmemişse elle çalışan üst mandal görülebiliyor.\n\nMandalın altında ağır kapak var. Üzerinde “Askıya almadan altına girmeyin” yazıyor. Bahçedeki sabit destek, kapağı yukarıda tutabiliyor. Patikanın kavşağında beyaz taşlar görünürken ana yoldaki kırmızı lambalar tekrar aynı villaya dönüyor.",
+      "question": "Servis çıkışını nasıl hazırlıyorsunuz?",
+      "choices": {
+        "A": {
+          "label": "Elektrikli motoru kuru panelden çalıştırıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Elektrik varsa kapı açılır; yoksa panel zorlanmaz.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "flag": "power"
+              },
+              "text": "{A}, kuru düğmeye basıyor. Kapı üst raya oturuyor. Gerçek avluya erişim artık açık.",
+              "effects": {
+                "gate": true
+              }
+            },
+            {
+              "when": {
+                "always": true
+              },
+              "text": "Panelin ışığı yok. {A}, kablolara dokunmadan geri çekiliyor. Kapı henüz açılmadı.",
+              "effects": {}
+            }
+          ]
+        },
+        "B": {
+          "label": "Sabit destekle kapağı askıya alıp elle açıyoruz.",
+          "taskCount": 2,
+          "taskBrief": "Biri sabit desteği, diğeri üst mandalı kullanır; tek kişide kilitli destek yeterlidir.",
+          "soloBrief": "Tek yaşayan kişi sabit tutucu veya kendinden kilitlenen mandalı kullanarak aynı işi tek başına yapar; ölü bir yardımcı anlatılmaz.",
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "Kapak sabitleniyor. Üst mandal raydan ayrılınca servis kapısı açılıyor. Kimsenin geride tutması gerekmiyor.",
+              "effects": {
+                "gate": true
+              }
+            }
+          ]
+        },
+        "C": {
+          "label": "Kapağı sabitlemeden altına giriyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Yorgunluk 2 veya taklit düzeyi 3 ise geri çekilme başarısız; risk görev ekranında açık gösterilir.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "any": [
+                  {
+                    "actorFatigueAtLeast": 2
+                  },
+                  {
+                    "actorExposureAtLeast": 3
+                  }
+                ]
+              },
+              "text": "{A}, kapağı kaldırdığı anda tavandaki yüz kendi sesinizle sesleniyor. Yorulmuş kol kapağı tutamıyor. Üstteki gölge arkadaşınızı karanlığa çekiyor.",
+              "effects": {},
+              "kill": "primary",
+              "jumpscare": "JS08"
+            },
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A}, kapağın kayacağını fark edip geri çekiliyor. Kapı açılmıyor; bu işi sabit destek olmadan sürdürmemeye karar veriyorsunuz.",
+              "effects": {}
+            }
+          ]
+        },
+        "D": {
+          "label": "Önce beyaz taşların güzergâhını kaydediyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Kapı içinden gözlem; henüz çıkış yapılmaz.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A}, beyaz taşların dışarıdaki eski servis patikasını işaretlediğini görüyor. Kırmızı ışıklar aynı noktaya dönüyor.",
+              "effects": {
+                "route": true,
+                "map": true
+              }
+            }
+          ]
+        }
+      },
+      "next": "S3_N16"
+    },
+    {
+      "id": "S3_N16",
+      "title": "Henüz Söylemediğiniz Cümle",
+      "scene": "Boş odanın içinde kendi seslerinizle tartışılıyor. Birinizin “Kapıyı ben açarım,” dediğini duyuyorsunuz. Henüz kimse bunu söylemedi.\n\nKoridorda küçük bir ses kayıt cihazı duruyor. Üstünde “O tekrarlar. Siz susunca devam ediyorsa siz değildir” yazıyor. Dışarıdan gelen bütün sesler bir an aynı nefesi alıyor. Yanınızdaki gerçek insanların solukları birbirinden farklı.\n\n{FOCUS}, aynı görevlere tekrar tekrar gidenlerin seslerinin içeride daha net duyulduğunu fark ediyor. Evin öğrendiği yüzler, kapıların karanlığında daha kolay beliriyor.",
+      "question": "Seslerin arasından gerçeği nasıl ayırıyorsunuz?",
+      "choices": {
+        "A": {
+          "label": "Birlikte susup kayıttaki gecikmeyi karşılaştırıyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Ortak gözlem.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "Siz susunca içerideki tartışma sürüyor. Gerçek grubun yanınızda olduğunu, tek bir tanıdık sesin kimlik kanıtı olmadığını kesinleştiriyorsunuz.",
+              "effects": {
+                "identityRule": true,
+                "restAll": 1
+              }
+            }
+          ]
+        },
+        "B": {
+          "label": "Kendi sesimize cevap verip odaya tek başımıza giriyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Taklit düzeyi 3 ise varlık kişiyi tam yüzüyle karşılar; bu risk aday kartında görünür.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "actorExposureAtLeast": 3
+              },
+              "text": "{A} kapıdan girince karşısındaki benzer hiç gecikmeden gülümsüyor. Bu kez adınızı doğru söylüyor. Kapı kapandığında odadaki sesler bir kişi artıyor.",
+              "effects": {},
+              "kill": "primary",
+              "jumpscare": "JS03"
+            },
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A}, kendi cümlesinin yanlış yerde nefes aldığını fark edip geri çıkıyor. Yüzünüzü biraz daha öğrenmiş olsa da kapıdan geçemiyor.",
+              "effects": {
+                "tagged": true
+              }
+            }
+          ]
+        },
+        "C": {
+          "label": "Kayıt cihazının altındaki çıkış çizimini alıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Cihazın dış gözü kuru ve açıktır.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A}, beyaz taşların bulunduğu gerçek yolun çizimini alıyor. Çizimde ana yoldan dönülmemesi gerektiği yazıyor.",
+              "effects": {
+                "route": true
+              }
+            }
+          ]
+        },
+        "D": {
+          "label": "Sesleri bastırmak için ismimizi hep birlikte tekrar ediyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Ev sesleri topluyor; tekrar etmek ona malzeme verebilir.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "Duvarın içindeki sesler kusursuzlaşıyor. Artık hepinizin söylediği tek bir kelimeyi aynı anda çıkarabiliyorlar.",
+              "effects": {
+                "tagged": true
+              }
+            }
+          ]
+        }
+      },
+      "next": "S3_N17"
+    },
+    {
+      "id": "S3_N17",
+      "title": "Negatifteki Kadın",
+      "scene": "Salondaki eski fotoğraf makinesi, masanın altındaki güvenli gözden çıkarılıyor. Akülü lambası çalışıyor. Şarj bağlantısı da koridor hattına takılabiliyor.\n\nYanındaki kullanım notu: “Ön yüz yaşayanı alır. Negatif içeri gireni tutar. Kaydı kanıtla. Işığı kapatma.” Bir sonraki satırda gerçek annenin yazısı var: “Çocuğu sahnenin dışına çıkarın. Sonra geldiği çerçeveyi kapatın.”\n\nMakinenin vizöründe odaya dönük bir yüz var. Vizöre göz dayamadan gövdenin arkasındaki çizimleri okumak mümkün. Tehdit, kameranın sakladığı gerçek görüntüyü değiştiremiyor.",
+      "question": "Fotoğraf makinesini nasıl hazırlıyorsunuz?",
+      "choices": {
+        "A": {
+          "label": "Vizöre bakmadan negatif yuvasını ve kapanış tarifini hazırlıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Kuru gövde kapağı ve akü kullanılır; eksik negatif makinenin yedek gözündedir.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A}, yedek negatif şeridini buluyor. Mekanizmanın nasıl kapanacağını okuyup kamerayı hazır ediyorsunuz.",
+              "effects": {
+                "negative": true,
+                "sealKnown": true,
+                "camera": true
+              }
+            }
+          ]
+        },
+        "B": {
+          "label": "Vizöre gözümüzü dayayıp içerideki kadını çağırıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Vizörde fiziksel odada olmayan bir yüz önceden gösterildi.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A}, gözünü vizöre götürüyor. Çerçevedeki kadın birden yaklaşınca dışarıdaki beden hareketsiz kalıyor. Fotoğrafın içinde bir el cama vuruyor.",
+              "effects": {},
+              "kill": "primary",
+              "jumpscare": "JS07"
+            }
+          ]
+        },
+        "C": {
+          "label": "Makineyi ön yüzünü örtüp yanımızda taşıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Makine hasarsız alınır; tarif henüz okunmaz.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A}, ön kapağı kapatıp makineyi alıyor. Aküsü dolu; son kullanım için sabit ev ışığı yine gerekebilir.",
+              "effects": {
+                "camera": true
+              }
+            }
+          ]
+        },
+        "D": {
+          "label": "Makineyi bırakıp akülü ışığı ve servis planını alıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Kamera yerinde kalır.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A}, ışığı ve planın kopyasını alıyor. Karanlıkta yürünebilecek yolunuz var; fotoğrafla kapanış hazırlanmıyor.",
+              "effects": {
+                "lamp": true,
+                "map": true
+              }
+            }
+          ]
+        }
+      },
+      "next": "S3_N18"
+    },
+    {
+      "id": "S3_N18",
+      "title": "Yüzünüzde Kalan İz",
+      "scene": "Mutfak masasının üstünde gerçek annenin küçük el aynası duruyor. Bu ayna banyodaki geçit değil: arkası baştan sona kapalı, gümüş yüzeyi kırılmamış. Yanında “Ört, say, gerçek ışıkta tekrar bak” yazıyor.\n\nYüzlerinize baktığınızda bazılarının gözleri bir an geç kırpılıyor. Evin sizden aldığı izi görebiliyorsunuz. Kuru örtü, gerçek adları yazdığınız liste ve kesintisiz ışıkla iz ayrılabiliyor. Camın içindeki küçük yüzü parmakla çekmeye çalışmak ise aynayı bir kapıya dönüştürüyor.",
+      "question": "Taklit izini ne yapıyorsunuz?",
+      "choices": {
+        "A": {
+          "label": "Örtü ve gerçek listeyle kontrolü ışık altında tamamlıyoruz.",
+          "taskCount": 2,
+          "taskBrief": "Sabit ışık varsa iz ve davet temizlenir; yoksa güvenli biçimde yalnız tarif öğrenilir.",
+          "soloBrief": "Tek yaşayan kişi sabit tutucu veya kendinden kilitlenen mandalı kullanarak aynı işi tek başına yapar; ölü bir yardımcı anlatılmaz.",
+          "cases": [
+            {
+              "when": {
+                "flag": "power"
+              },
+              "text": "Örtü kalktığında yansımalarınız yeniden aynı anda hareket ediyor. İçeri davet edilmiş bakıcının adımları da dışarı çekiliyor. Evin topladığı iz ayrıldı; bundan sonraki görevler yine yüzleri öğretebilir.",
+              "effects": {
+                "tagged": false,
+                "invited": false,
+                "resetExposure": true,
+                "cleanKnown": true
+              }
+            },
+            {
+              "when": {
+                "always": true
+              },
+              "text": "Sabit ışık yok. Camı açmıyor, örtülü bırakıyorsunuz. Tarifi kaydediyorsunuz; iz henüz temizlenmedi.",
+              "effects": {
+                "cleanKnown": true
+              }
+            }
+          ]
+        },
+        "B": {
+          "label": "Yansımadaki gecikmiş yüzü elimizle çekiyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Camı kapıya dönüştürme tehlikesi metinde verildi.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A}, kendi yansımasının eline uzanıyor. Küçük ayna bir anda odanın tamamı kadar derinleşiyor. İçerideki yüz, kendi yüzünüz değil.",
+              "effects": {},
+              "kill": "primary",
+              "jumpscare": "JS05"
+            }
+          ]
+        },
+        "C": {
+          "label": "Örtüyü kapalı tutup dinleniyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Fiziksel temas yok.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "Aynayı örtülü bırakıyorsunuz. Kısa bir sessizlikte gerçek seslerinizi yeniden duyabiliyorsunuz. İz temizlenmiyor ama yorgunluğunuz azalıyor.",
+              "effects": {
+                "restAll": 1
+              }
+            }
+          ]
+        },
+        "D": {
+          "label": "Aynayı ters çevirip servis yolunu çiziyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Arkadan güvenli okuma.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A}, çerçevenin arkasında avlu çıkışını buluyor. Eski ev planında ana yolun sahte, beyaz taşların gerçek olduğu gösterilmiş.",
+              "effects": {
+                "route": true,
+                "map": true
+              }
+            }
+          ]
+        }
+      },
+      "next": "S3_N19"
+    },
+    {
+      "id": "S3_N19",
+      "title": "Deniz İçin İkinci Fırsat",
+      "scene": "Üst katta çocuk kapının arkasına son bir kâğıt itiyor. Daha önce onu saklandığı yerden çıkardıysanız kâğıdı odadaki küçük sandalyeden yazıyor; çıkarmadıysanız dolabın arkasından.\n\n“Annemin yüzünü takan şey, annemin hatıralarını bilmiyor. Bana sarı uçurtmayı sorun.” Kapının dışındaki küçük kuru servis gözünde yedek anahtar, fotoğraf kopyası ve tamir macunu duruyor. Çocuk onları ilk misafirlerden beri biriktirmiş.\n\nKadın sesi koridorun ucundan geliyor: “Havuzdan çıkarırsanız ben götürürüm.” Havuzdaki bedenin hâlâ yetişkin olduğunu biliyorsunuz.",
+      "question": "Çocuğun son isteğine ne yapıyorsunuz?",
+      "choices": {
+        "A": {
+          "label": "Servis gözündeki araçlarla korumayı onarıp kaydı gösteriyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Tamir, anahtar ve kayıt aynı kuru gözde; önce çerçeve onarılır, sonra güvenli açılış yapılır.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A}, çerçeveyi tamamlayıp gerçek aile kaydını gösteriyor. Deniz zaten çıktıysa son hatırasını anlatıyor; çıkmadıysa saklandığı bölümün kapısını kendi açıyor. Sarı uçurtmayı annesinin onardığını hatırlıyor. Kimliğini çalan şeyin annesi olmadığını artık biliyor.",
+              "effects": {
+                "wardIntact": true,
+                "wardKnown": true,
+                "proof": true,
+                "roomKey": true,
+                "childClue": true,
+                "childFreed": true
+              }
+            }
+          ]
+        },
+        "B": {
+          "label": "Havuzdaki bedeni çocuk sanıp çıkarmaya gidiyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Bedeni yetişkin; taklidin yanlış olduğu önceden gösterildi.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A} suya eğiliyor. Aşağıdaki yüz çocuk gibi sesleniyor ama ağzının büyüklüğü değişmiyor. Havuz kapağı içeriden kapanıyor.",
+              "effects": {},
+              "kill": "primary",
+              "jumpscare": "JS02"
+            }
+          ]
+        },
+        "C": {
+          "label": "Çocuğu kapalı odada bırakıp çizgiyi onarıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Daha önce çıkmışsa tekrar hapsedilmez; yalnız oda koruması tamamlanır.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A}, koruyucu çizgiyi onarıyor. Deniz nerede duruyorsa orada kalıyor. İçerideyse hâlâ saklı; dışarı çıktıysa geçmişini hatırlamayı sürdürüyor.",
+              "effects": {
+                "wardIntact": true,
+                "wardKnown": true
+              }
+            }
+          ]
+        },
+        "D": {
+          "label": "Onunla vedalaşıp çıkışa dönüyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Bu seçim önceki kurtarmayı geri almaz.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "“Ona ismimi söylemeyin,” diyor Deniz. Gerçek adını değil, ondan çalınan sesi korumaya çalıştığını anlıyorsunuz. Merdivenleri birlikte iniyorsunuz.",
+              "effects": {}
+            }
+          ]
+        }
+      },
+      "next": "S3_N20"
+    },
+    {
+      "id": "S3_N20",
+      "title": "Yeniden Çalışan Ev",
+      "scene": "Koridor lambaları titriyor. Evin bütün kapıları aynı anda kapanıp açılıyor. Bodrumdan yetişkin birinin tavan boyunca yürüdüğünü duyuyorsunuz.\n\nBu kez merdivene inmek zorunda değilsiniz. Salon duvarındaki kuru yedek panel, bodrumun yan devresine bağlı. İç kapağın arkasında kısa talimat var: “Önce giriş kapalı, sonra servis açık.” Yanındaki küçük metal kart, fotoğrafın ters mandalını da gösteriyor.\n\n{FOCUS}, ışık kesildiğinde kadın yüzünün bütün camlarda daha belirgin olduğunu görüyor. Evde kalıcı bir ışık olmadan kapanışın sürdürülemeyeceğini anlıyorsunuz.",
+      "question": "Son hazırlığa hangi işi ekliyorsunuz?",
+      "choices": {
+        "A": {
+          "label": "Kuru yedek panelden servis ışığını açıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Bodruma inilmez; doğru sıra yazılıdır.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A}, sırayı uyguluyor. Koridor ışığı sabitleniyor. Fotoğraf makinesinin şarj bağlantısı ve servis motoru aynı anda yeniden çalışıyor.",
+              "effects": {
+                "power": true
+              }
+            }
+          ]
+        },
+        "B": {
+          "label": "Bodrumdaki yürüyen kişiyi bulmaya gidiyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Tavandaki izler insanın yerde yürümediğini gösteriyor.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A}, son basamağa geldiğinde ses kesiliyor. Tavandaki yüz, size doğru değil kendi kolunun içinden eğiliyor. Fener ışığı merdivenlere geri dönemiyor.",
+              "effects": {},
+              "kill": "primary",
+              "jumpscare": "JS08"
+            }
+          ]
+        },
+        "C": {
+          "label": "Panel yanındaki ters mandal tarifini alıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Güvenli kuru okuma.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A}, çerçevenin kapanış tarifini alıyor. Tam kapanış için gerçek kanıt, sahneden çıkarılan çocuk ve sabit ışık birlikte gerekiyor.",
+              "effects": {
+                "sealKnown": true
+              }
+            }
+          ]
+        },
+        "D": {
+          "label": "Mutfakta bekleyip görevleri yeniden dağıtıyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Dinlenme bütün yaşayanları etkiler.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "Kimseyi karanlığa göndermiyorsunuz. Son işleri kimin yapacağını konuşurken kollarınızın titremesi biraz azalıyor.",
+              "effects": {
+                "restAll": 1
+              }
+            }
+          ]
+        }
+      },
+      "next": "S3_N21"
+    },
+    {
+      "id": "S3_N21",
+      "title": "Gerçek Çıkışın Rengi",
+      "scene": "Bahçedeki patika üçe ayrılıyor. Kırmızı lambalar ana yola, beyaz taşlar eski servis çıkışına, mavi ışık havuzun arka duvarına gidiyor.\n\nTelefonun ilan fotoğrafında beyaz taşlar yok. Eski bakım planında ise yalnız onlar dışarıya bağlanıyor. Aynı yerde duran ve kayıtlar arasında değişmeyen şey, villanın taklidi değil. Servis kapısının kolu hâlâ içeriden açılabilir.\n\nKapının dışında bir araba far yakıyor. Sürücü yüzünü göstermiyor. “Yol burası,” diye sizin sesinizle sesleniyor.",
+      "question": "Kaçış yolunu nasıl hazırlıyorsunuz?",
+      "choices": {
+        "A": {
+          "label": "Beyaz taşlarla planı eşleştirip gerçek yolu belirliyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Kuru avludan gözlem; sahte sürücüye yaklaşılmaz.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A}, sabit taşları eski plandaki mesafelerle eşleştiriyor. Gerçek yol, ana yolun bir parça aşağısındaki servis patikası.",
+              "effects": {
+                "route": true,
+                "map": true
+              }
+            }
+          ]
+        },
+        "B": {
+          "label": "Servis kapısını elle kilitli açık konuma getiriyoruz.",
+          "taskCount": 2,
+          "taskBrief": "Sabit destek ve üst mandal; kimse kapıyı tutmak için geride kalmaz.",
+          "soloBrief": "Tek yaşayan kişi sabit tutucu veya kendinden kilitlenen mandalı kullanarak aynı işi tek başına yapar; ölü bir yardımcı anlatılmaz.",
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "Üst mandal açık konuma kilitleniyor. Servis kapısı artık enerji kesilse de kapanmayacak.",
+              "effects": {
+                "gate": true
+              }
+            }
+          ]
+        },
+        "C": {
+          "label": "Yüzünü göstermeyen sürücüye arabayla bizi götürmesini söylüyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Sürücü sizin sesinizle konuşuyor.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A}, camına yaklaştığında direksiyonun arkasındaki yüz bakıcının yüzüne dönüşüyor. Kapı açılmadan kolunuz içeride kalıyor.",
+              "effects": {},
+              "kill": "primary",
+              "jumpscare": "JS06"
+            }
+          ]
+        },
+        "D": {
+          "label": "Çıkışı erteleyip kimlik kontrolünü yeniliyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Sabit ışık varsa izler temizlenir. Işık yoksa yalnız yorgunluk azalır.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "flag": "power"
+              },
+              "text": "Örtü, liste ve sabit ışıkla yüzlerinizi karşılaştırıyorsunuz. Taklit izi ve eski davet ayrılıyor. Bu kontrol ortak yapıldığı için yeni görev izi eklenmiyor.",
+              "effects": {
+                "tagged": false,
+                "invited": false,
+                "resetExposure": true,
+                "restAll": 1
+              }
+            },
+            {
+              "when": {
+                "always": true
+              },
+              "text": "Sabit ışık olmadan aynayı açmıyorsunuz. Birlikte dinleniyorsunuz; evin aldığı iz hâlâ kalıyor.",
+              "effects": {
+                "restAll": 1
+              }
+            }
+          ]
+        }
+      },
+      "next": "S3_N22"
+    },
+    {
+      "id": "S3_N22",
+      "title": "Gidenlerin Defteri",
+      "scene": "Kapının yanındaki konuk defteri açılıyor. İlk sayfalarda tatil yorumları var. Sonra aynı el yazısı farklı isimlerle tekrarlanıyor. Son sayfada sizin adlarınız yazılı; çıkış tarihi boş.\n\nDefterin arasında eski bir servis kartı duruyor. Kartta üç beyaz taş, bir dış avlu ve koruyucu kapının çizimi var. Üstündeki not kısa: “İsmini çizmek seni silmez. Gerçek kaydı yanına al.” Duvarın arkasından bir telefon daha çalıyor.\n\n{FOCUS}, kalemin kâğıda kendiliğinden yeni bir cümle yazdığını görüyor: “Konaklamadan çok memnun kaldık.” Mürekkep henüz kurumamış. Adlarınızı silmek yerine kartı almak için defterin kuru kenarını kullanabilirsiniz.",
+      "question": "Deftere nasıl karşılık veriyorsunuz?",
+      "choices": {
+        "A": {
+          "label": "Gerçek servis kartını alıp çıkış çizimini kaydediyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Sayfaya imza atılmaz; kuru kart dış kenardan alınır.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A}, servis kartını alıyor. Beyaz taşlı yol ve açık kapıya giden avlu aynı planda. Defterdeki isminiz hâlâ orada, ama bu tek başına sizi içeride tutamıyor.",
+              "effects": {
+                "map": true,
+                "route": true
+              }
+            }
+          ]
+        },
+        "B": {
+          "label": "Duvarın içindeki sese defterimizi bulduğumuzu söylüyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Telefon sesi duvarın arkasından geliyor; güvenilir kimlik kanıtı değil.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A} duvara sesleniyor. Cevap kendi sesinizle geliyor, bu kez bütün cümleyi aynı nefeste kurabiliyor. Ev bir yüz daha öğrendi.",
+              "effects": {
+                "tagged": true
+              }
+            }
+          ]
+        },
+        "C": {
+          "label": "Karttaki koruyucu oda tarifini okuyup çerçeveyi onarıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Kuru tamir kutusuyla sadece dış çizgi tamamlanır.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A}, notun devamını okuyup koruyucu çizgiyi kesintisiz tamamlıyor. Gece kapanmazsa sığınabileceğiniz yerin kuralını artık biliyorsunuz.",
+              "effects": {
+                "wardIntact": true,
+                "wardKnown": true
+              }
+            }
+          ]
+        },
+        "D": {
+          "label": "Defteri kapatıp son hazırlıktan önce dinleniyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Hiç kimse yeni sözleşme imzalamaz.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "Defter kapanıyor. Kalemin içeride yazmayı sürdürdüğünü duyuyorsunuz. Kendi isimlerinizi birbirinize sesli söyleyip kısa bir süre dinleniyorsunuz.",
+              "effects": {
+                "restAll": 1
+              }
+            }
+          ]
+        }
+      },
+      "next": "S3_N23"
+    },
+    {
+      "id": "S3_N23",
+      "title": "Son Kadraj",
+      "scene": "Sabah yaklaşıyor gibi; fakat gökyüzündeki solukluk her birkaç dakikada bir geri sönüyor. Salondaki aile fotoğrafında boş yerleriniz artık belli. Henüz oturmadığınız için yerleşmemişler.\n\nFotoğraf makinesinin yanında yedek şerit ve gerçek doğum günü kaydının kâğıt dökümü var. Bütün kapanış parçaları burada tamamlanabilir; ama tek bir iş seçmek zorundasınız. Sonra ev, bu salonu yeniden kuracak.\n\nKadın, merdivenin başında duruyor. Ayakları hiçbir basamağa basmıyor. “Bir kişi kalsın, ötekiler gitsin,” diyor. Kapının sabit mandalıysa kimseyi geride bırakmadan çalışabiliyor.",
+      "question": "Son hazırlık hakkınızı neye kullanıyorsunuz?",
+      "choices": {
+        "A": {
+          "label": "Kamerayı negatif, kanıt ve ters mandal tarifiyle hazırlıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Masadaki kuru parçalar tamamlanır.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A}, yedek şeridi takıp kaydı sabitliyor. Kamera ve kapanış tarifi hazır. Çocuk ve ışıkla ilgili önceki kararlarınız değişmiyor.",
+              "effects": {
+                "camera": true,
+                "negative": true,
+                "proof": true,
+                "sealKnown": true
+              }
+            }
+          ]
+        },
+        "B": {
+          "label": "Bir kişiyi kadınla bırakıp diğerlerini kurtarmayı deniyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Kimsenin geride kalması mekanik olarak gerekli değil; kadın doğrulanmamış bir pazarlık sunuyor.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "{A} merdivene yaklaşınca kadının yüzü tanıdığı birine benziyor. Arkasını döndüğünde basamaklar çoktan kapanmış. Diğerleri için hiçbir yeni kapı açılmıyor.",
+              "effects": {},
+              "kill": "primary",
+              "jumpscare": "JS01"
+            }
+          ]
+        },
+        "C": {
+          "label": "Dışarıdaki servis yolunu ve açık kapıyı son kez hazırlıyoruz.",
+          "taskCount": 2,
+          "taskBrief": "Kilitli açık üst mandal ve sabit taşlar birlikte kontrol edilir.",
+          "soloBrief": "Tek yaşayan kişi sabit tutucu veya kendinden kilitlenen mandalı kullanarak aynı işi tek başına yapar; ölü bir yardımcı anlatılmaz.",
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "Kapıyı açık kilitliyor, gerçek patikayı planda işaretliyorsunuz. Kimse arkada kalmıyor.",
+              "effects": {
+                "gate": true,
+                "map": true,
+                "route": true
+              }
+            }
+          ]
+        },
+        "D": {
+          "label": "Işık ve kimlik kontrolünü birlikte son kez tamamlıyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Kuru duvar paneliyle ışık açılır; sonra ortak kontrol yapılır.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "always": true
+              },
+              "text": "Kuru panel açılıyor. Örtülü ayna ve listeyle yüzlerinizin izini ayırıyorsunuz. Eski davet kapanıyor. Bu ortak kontrol yeni fiziksel görev izi eklemiyor.",
+              "effects": {
+                "power": true,
+                "tagged": false,
+                "invited": false,
+                "resetExposure": true,
+                "restAll": 1
+              }
+            }
+          ]
+        }
+      },
+      "next": "S3_N24"
+    },
+    {
+      "id": "S3_N24",
+      "title": "Anahtarı Masaya Bırakın",
+      "scene": "Saat yine 00.17. Salon bir an için ilk geldiğiniz hâline dönüyor. Masada saksının altından aldığınız anahtar duruyor. Telefonda ev sahibinin son mesajı açılıyor: “Çıkarken anahtarı bırakmanız yeterli.”\n\nAma artık biliyorsunuz: Anahtarı bırakmak geceyi kapatmıyor. Çerçevenin ters mandalı, beyaz taşlı servis yolu ve fotoğraf makinesi ayrı çıkışlar sunuyor. Her birinin hazırlığı farklı.\n\nÇocuk saklandığı yerden çıktıysa merdivenin başında gerçek annesinin silüetini görüyor; çıkmadıysa kapalı odadan iki hafif vuruş geliyor. Yetişkin kadın masadaki boş sandalyeyi çekiyor.\n\nKimseyi yeniden göreve göndermeyeceksiniz. Son kararı hep birlikte uygulayacaksınız. Elinizdeki hazırlıklar görev kartında açıkça gösteriliyor.",
+      "question": "Geceyi nasıl bitiriyorsunuz?",
+      "choices": {
+        "A": {
+          "label": "Gerçek kaydı kullanıp geldiği çerçeveyi tersinden kapatıyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Gerekli: kanıt, serbest Deniz, kapanış tarifi, negatif ve sabit elektrik. Eksikse sağlam koruyucu odaya sığınma yalnız onun tarifi biliniyorsa mümkün.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "all": [
+                  {
+                    "all": [
+                      {
+                        "flag": "proof"
+                      },
+                      {
+                        "flag": "childFreed"
+                      },
+                      {
+                        "flag": "sealKnown"
+                      },
+                      {
+                        "flag": "power"
+                      },
+                      {
+                        "flag": "negative"
+                      }
+                    ]
+                  },
+                  {
+                    "deadCountEquals": 0
+                  }
+                ]
+              },
+              "text": "Gerçek kayıt, Deniz ve sabit ışık aynı anda yerinde. Çerçevenin ters mandalını kapatıyorsunuz.",
+              "effects": {},
+              "ending": "S3_E01"
+            },
+            {
+              "when": {
+                "all": [
+                  {
+                    "flag": "proof"
+                  },
+                  {
+                    "flag": "childFreed"
+                  },
+                  {
+                    "flag": "sealKnown"
+                  },
+                  {
+                    "flag": "power"
+                  },
+                  {
+                    "flag": "negative"
+                  }
+                ]
+              },
+              "text": "Bütün kapanış parçaları yerinde. Sağ kalanlar çerçevenin ters mandalını kapatıyor.",
+              "effects": {},
+              "ending": "S3_E02"
+            },
+            {
+              "when": {
+                "all": [
+                  {
+                    "flag": "wardIntact"
+                  },
+                  {
+                    "flag": "wardKnown"
+                  }
+                ]
+              },
+              "text": "Kapanış tamamlanamıyor. Bildiğiniz sağlam koruyucu odaya çekilip eşiği kapatıyorsunuz.",
+              "effects": {},
+              "ending": "S3_E03"
+            },
+            {
+              "when": {
+                "always": true
+              },
+              "text": "Eksik kapanışta çerçeve ters dönmüyor. Koruyucu odaya güvenli geçiş de yok. Salonun kapıları yer değiştiriyor.",
+              "effects": {},
+              "ending": "S3_E04"
+            }
+          ]
+        },
+        "B": {
+          "label": "Servis kapısından beyaz taşların dış avlusuna kaçıyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Gerekli: açık servis kapısı ve harita. Deniz serbestse size gerçek avluyu gösterir. Taklit izi veya davet varsa dışarıya sızabilir.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "all": [
+                  {
+                    "flag": "gate"
+                  },
+                  {
+                    "flag": "map"
+                  },
+                  {
+                    "flag": "childFreed"
+                  },
+                  {
+                    "not": {
+                      "contaminated": true
+                    }
+                  }
+                ]
+              },
+              "text": "Deniz açık kapıdan gerçek avluya doğru bakıyor. Evin izi sizden ayrılmış durumda.",
+              "effects": {},
+              "ending": "S3_E05"
+            },
+            {
+              "when": {
+                "all": [
+                  {
+                    "flag": "gate"
+                  },
+                  {
+                    "flag": "map"
+                  },
+                  {
+                    "flag": "childFreed"
+                  }
+                ]
+              },
+              "text": "Deniz gerçek avluyu gösteriyor; fakat sizden ayrılmamış bir iz de eşikten geçiyor.",
+              "effects": {},
+              "ending": "S3_E06"
+            },
+            {
+              "when": {
+                "all": [
+                  {
+                    "flag": "gate"
+                  },
+                  {
+                    "flag": "map"
+                  }
+                ]
+              },
+              "text": "Açık kapı ve planla dış avluya geçiyorsunuz. Çocuk sizi yönlendiremiyor; taş kapı arkanızda kapanıyor.",
+              "effects": {},
+              "ending": "S3_E07"
+            },
+            {
+              "when": {
+                "always": true
+              },
+              "text": "Hazırlanmamış servis geçidi sizi dışarı vermiyor. Attığınız adımlar ana bahçeye dönüyor.",
+              "effects": {},
+              "ending": "S3_E08"
+            }
+          ]
+        },
+        "C": {
+          "label": "Gerçek servis yolundan ana yola çıkıp yardım çağırıyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Gerekli: yol bilgisi, açık kapı ve gerçek yol işaretini aydınlatan elektrik. Araba kendi aküsüyle çalışır; ev elektriği arabanın enerjisi değildir.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "all": [
+                  {
+                    "flag": "route"
+                  },
+                  {
+                    "flag": "gate"
+                  },
+                  {
+                    "flag": "power"
+                  },
+                  {
+                    "not": {
+                      "contaminated": true
+                    }
+                  }
+                ]
+              },
+              "text": "Kapı, yol işareti ve ışık hazır. Yüzlerinizde evin izi kalmamış.",
+              "effects": {},
+              "ending": "S3_E09"
+            },
+            {
+              "when": {
+                "all": [
+                  {
+                    "flag": "route"
+                  },
+                  {
+                    "flag": "gate"
+                  },
+                  {
+                    "flag": "power"
+                  }
+                ]
+              },
+              "text": "Gerçek yola çıkıyorsunuz. Evin sizden aldığı iz de araç camında beliriyor.",
+              "effects": {},
+              "ending": "S3_E10"
+            },
+            {
+              "when": {
+                "flag": "gate"
+              },
+              "text": "Kapı açık, ama gerçek kavşak işareti doğrulanamıyor. Araba sisin içinde yanlış yola giriyor.",
+              "effects": {},
+              "ending": "S3_E11"
+            },
+            {
+              "when": {
+                "always": true
+              },
+              "text": "Servis kapısı açılmıyor. Sabahı gösteren ana yol hâlâ villanın duvarında bitiyor.",
+              "effects": {},
+              "ending": "S3_E12"
+            }
+          ]
+        },
+        "D": {
+          "label": "Kadını negatifin içine alıp görüntüyü orada kilitliyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Tam sonuç için kamera, negatif, kanıt, serbest Deniz ve sabit ışık gerekir. Bu yöntem çerçeveyi yok etmez; varlığı taşınabilir bir görüntüye kapatır.",
+          "soloBrief": null,
+          "cases": [
+            {
+              "when": {
+                "all": [
+                  {
+                    "flag": "camera"
+                  },
+                  {
+                    "flag": "negative"
+                  },
+                  {
+                    "flag": "proof"
+                  },
+                  {
+                    "flag": "childFreed"
+                  },
+                  {
+                    "flag": "power"
+                  }
+                ]
+              },
+              "text": "Gerçek kayıt ve Deniz karşısında kadın görüntüye dönüyor. Sabit ışık altında negatif kapanıyor.",
+              "effects": {},
+              "ending": "S3_E13"
+            },
+            {
+              "when": {
+                "all": [
+                  {
+                    "flag": "camera"
+                  },
+                  {
+                    "flag": "negative"
+                  },
+                  {
+                    "flag": "proof"
+                  }
+                ]
+              },
+              "text": "Kamera ve gerçek kayıt kadını yakalıyor, ama geceyi sahnesinden bütünüyle ayıramıyorsunuz.",
+              "effects": {},
+              "ending": "S3_E14"
+            },
+            {
+              "when": {
+                "flag": "camera"
+              },
+              "text": "Hazır makineyi ateşliyorsunuz. Gerçek kayıt olmadan objektif karşısındaki kimliği ayıramıyor.",
+              "effects": {},
+              "kill": "all",
+              "jumpscare": "JS07",
+              "ending": "S3_E15"
+            },
+            {
+              "when": {
+                "always": true
+              },
+              "text": "Hazır kamera olmadan çerçeveye bakıyorsunuz. Fotoğrafı çeken bu kez ev oluyor.",
+              "effects": {},
+              "kill": "all",
+              "jumpscare": "JS07",
+              "ending": "S3_E16"
+            }
+          ]
+        }
+      },
+      "next": null
+    }
+  ],
+  "endings": [
+    {
+      "id": "S3_E01",
+      "title": "Son Misafirler",
+      "text": "Çerçevenin arkasındaki mandal kapandığında kadın ilk kez kendi sesiyle konuşmaya çalışıyor. Çıkan ses, boş bir odada çekilen sandalyenin sesi. Deniz merdivenden iniyor. Gerçek annesinin silüeti kapıda bekliyor; çocuğun elini tuttuğunda ikisi de sabah ışığında dağılıyor.\n\nBahçe kapısı artık düz bir yola açılıyor. Hepiniz dışarıdasınız: {ALIVE_NAMES}. Bir hafta sonra ilanı aradığınızda hiçbir sonuç çıkmıyor. Çektiğiniz fotoğrafta pencere boş. Bu kez fotoğrafı kimin çektiğini biliyorsunuz.",
+      "status": "all_survive",
+      "childOutcome": "free",
+      "entityOutcome": "sealed"
+    },
+    {
+      "id": "S3_E02",
+      "title": "Boş Kalan Koltuklar",
+      "text": "Çerçeve kapanıyor. Deniz, gerçek annesinin yanına gidiyor. Sabah yolu açılıyor ama arabada bazı koltuklar boş: {DEAD_NAMES}. Geri dönüp çağırmak kimseyi geri getirmiyor.\n\nSağ kalanlar {ALIVE_NAMES}. Villa artık yeni misafir alamıyor. Son fotoğrafı silmiyorsunuz; kaybettiklerinizin yüzleri, evin onları yerleştirdiği çerçevede kalmıyor. Onları hatırlayan son kayıt sizde.",
+      "status": "survivors_escape",
+      "childOutcome": "free",
+      "entityOutcome": "sealed"
+    },
+    {
+      "id": "S3_E03",
+      "title": "Kapısı Açılmayan Sabah",
+      "text": "Koruyucu odaya sığınıyorsunuz. Beyaz çizginin dışından biri bütün gece kapıyı yokluyor. Pencere sabahı gösteriyor ama saatiniz 00.17'yi geçmiyor.\n\nİçeride yaşayanlar {ALIVE_NAMES}. Ne acıkıyor ne de yaşlanıyorsunuz. Dışarıdan yeni valizlerin sesi geldiğinde kapıya iki hafif vuruş yapıyorsunuz. Artık başkalarını uyaran odanın içindesiniz.",
+      "status": "alive_trapped",
+      "childOutcome": "state_preserved",
+      "entityOutcome": "active"
+    },
+    {
+      "id": "S3_E04",
+      "title": "Her Kapı Aynı Salon",
+      "text": "Çerçeve kapanmıyor. Salondan çıktığınız kapı sizi aynı salona getiriyor; bu kez pencere bir kapı, merdiven bir dolap. Evin planı elinizde kâğıt olmaktan öteye gidemiyor.\n\n{ALIVE_NAMES} hayatta. Ama her dönüşte birbirinizin adını biraz daha zor hatırlıyorsunuz. Dışarıdaki ilanda artık “çok odalı” yazıyor. İlan fotoğraflarında görünmüyorsunuz; henüz.",
+      "status": "alive_lost_in_house",
+      "childOutcome": "state_preserved",
+      "entityOutcome": "active"
+    },
+    {
+      "id": "S3_E05",
+      "title": "Avlunun Ötesi",
+      "text": "Deniz size gerçek avluyu gösteriyor. Ardından annesinin sesini bu kez yüzüne bakmadan tanıyor; ikisi eski taşların arasında kayboluyor. Siz duvarın dışına geçiyorsunuz. {ALIVE_NAMES} için yol açık.\n\nArkanızdaki villa küçülmüyor. Kötülük kapatılmadı; yalnız sizi takip edecek iz bulamadı. Ertesi ay başka bir hesapta aynı evin ilanını görüyorsunuz. Yeni misafirleri uyarabilecek gerçek kayıtlar elinizde.",
+      "status": "survivors_escape",
+      "childOutcome": "free",
+      "entityOutcome": "active_contained_in_villa"
+    },
+    {
+      "id": "S3_E06",
+      "title": "Avludaki İkinci Gölge",
+      "text": "Deniz gerçek avluya ulaşıyor; annesinin hatırasıyla birlikte geceden ayrılıyor. Siz de duvarın dışına çıkıyorsunuz. Birinizin gölgesi ise taş eşiğin üzerinde bir an geride kalıyor.\n\nEve vardığınızda {ALIVE_NAMES} hâlâ birlikte. Mutfak camındaki yansıma, odada kimse yokken size dönüyor. Villa arkanızda kaldı. İçinden çıkan şey kalmadı.",
+      "status": "survivors_escape_contaminated",
+      "childOutcome": "free",
+      "entityOutcome": "escaped_with_group"
+    },
+    {
+      "id": "S3_E07",
+      "title": "İki Duvar Arasında",
+      "text": "Servis kapısından gerçek bir avluya geçiyorsunuz. Kapı arkanızda kapanıyor. Dış duvarın ardında trafik sesi var, fakat çıkış kapısı yıllardır örülmüş.\n\n{ALIVE_NAMES} burada hayatta kalıyor. Duvardan gelen iki hafif vuruş, içeride bıraktığınız çocuğun sesi. Ne villa sizi geri alıyor ne de avlu sizi dışarı veriyor. Gün ilerliyor; gölgeniz hiç uzamıyor.",
+      "status": "alive_trapped_in_courtyard",
+      "childOutcome": "still_hidden",
+      "entityOutcome": "active"
+    },
+    {
+      "id": "S3_E08",
+      "title": "Yeniden Hoş Geldiniz",
+      "text": "Patika havuzun başında bitiyor. Salonda müzik çalıyor. Masada taze mangal malzemesi, kapının yanında ilk gelişinizdeki valizler var.\n\n{ALIVE_NAMES} yaptığınız her şeyi hatırlıyor. Ölenler geri gelmiyor. Telefonunuza aynı anahtar mesajı düşüyor. Bu bir yeniden başlama düğmesi değil; bitmiş gecenin içinde aynı başlangıca mahkûmsunuz.",
+      "status": "alive_loop",
+      "childOutcome": "state_preserved",
+      "entityOutcome": "active"
+    },
+    {
+      "id": "S3_E09",
+      "title": "Gerçek Yoldan Çıkanlar",
+      "text": "Beyaz taşlar sizi gerçek kavşağa götürüyor. Araba sonunda villayı arkasında bırakıyor. Bu kez yolun sonunda açık bir benzinlik var; görevli sizin görmediğiniz geceyi yaşamamış.\n\n{ALIVE_NAMES} yardım çağırıyor. Çocuğun durumu son kartta anlatılıyor: {CHILD_EPILOGUE}. Evin kaynağı kapanmadı, ama sizden iz taşımıyor. Verdiğiniz ihbar üzerine aynı villaya giden ekip, boş bir arazi buluyor.",
+      "status": "survivors_escape",
+      "childOutcome": "state_preserved",
+      "entityOutcome": "active_elsewhere"
+    },
+    {
+      "id": "S3_E10",
+      "title": "Eve Kadar",
+      "text": "Gerçek yoldan çıkıyorsunuz. Telefonlar yeniden şebeke buluyor. {ALIVE_NAMES} ilk kez normal insan sesleri duyuyor. Çocuğun durumu: {CHILD_EPILOGUE}.\n\nBir hafta sonra konaklama bildirimi geliyor. Kapak fotoğrafında hepiniz havuz başındasınız; kaybettikleriniz de orada. Sizin hesabınızdan yazılmış yorum: “Çok güzel bir hafta sonuydu. Kesinlikle tekrar geleceğiz.” O gece yatak odanızın kapısında aynı beyaz çizgi beliriyor.",
+      "status": "survivors_escape_contaminated",
+      "childOutcome": "state_preserved",
+      "entityOutcome": "escaped_with_group"
+    },
+    {
+      "id": "S3_E11",
+      "title": "Hiç Bitmeyen Çevre Yolu",
+      "text": "Kapıdan çıkıp karanlık kavşağa giriyorsunuz. Şehir tabelası her beş kilometrede bir aynı mesafeyi gösteriyor. Arkadaki villa görünmüyor; önünüzdeki yol da hiçbir yere varmıyor.\n\n{ALIVE_NAMES} arabada hayatta. Yakıt ibresi sabit. Radyoda kendi konuşmanız, siz söylemeden birkaç saniye önce duyuluyor. Çocuğun durumu: {CHILD_EPILOGUE}.",
+      "status": "alive_road_loop",
+      "childOutcome": "state_preserved",
+      "entityOutcome": "active"
+    },
+    {
+      "id": "S3_E12",
+      "title": "Camın Öte Yanındaki Kurtarma",
+      "text": "Kapalı servis kapısının arkasından siren duyuyorsunuz. Bir kurtarma görevlisi duvarın öte yanında durup size ışık tutuyor. Siz bağırdığınızda yüzü korkuyla değişiyor; onun gördüğü şey insan değil.\n\n{ALIVE_NAMES}, villanın pencerelerinde yaşayan gölgeler olarak kalıyorsunuz. Dışarıdaki görevliler kapı numarasını not edip uzaklaşıyor. Henüz ölmediniz. Onlara kendinizi anlatacak bir yüzünüz kalmadı.",
+      "status": "alive_displaced",
+      "childOutcome": "state_preserved",
+      "entityOutcome": "active"
+    },
+    {
+      "id": "S3_E13",
+      "title": "Sakın Banyo Etmeyin",
+      "text": "Flaş patlıyor. Kadın negatifin içine doğru katlanıyor. Deniz, annesinin gerçek hatırasıyla geceden ayrılıyor. Kapılar açılıyor ve {ALIVE_NAMES} dışarı çıkıyor.\n\nEv sıradan bir binaya dönüşüyor ama şerit elinizde. Üzerindeki tek kare hâlâ sıcak. Zarfın üstüne tek cümle yazıyorsunuz: “Bu negatifi asla banyo etmeyin.” Kötülüğü yok etmediniz; taşınabilir bir hapishaneye kapattınız.",
+      "status": "survivors_escape_with_containment",
+      "childOutcome": "free",
+      "entityOutcome": "trapped_in_negative"
+    },
+    {
+      "id": "S3_E14",
+      "title": "Donmuş Kare",
+      "text": "Flaş yanıyor ve sönmüyor. Kadın size ulaşamıyor; sizin de kapıya uzanan eliniz tamamlanmıyor. Salonun dışında zaman akıyor.\n\n{ALIVE_NAMES} bu ışıklı anda hayatta. Düşünebiliyor, konuşabiliyorsunuz; hareketleriniz aynı saniyenin içinde dönüyor. Yıllar sonra bir koleksiyoncu, boş bir evin içinde hâlâ yanmakta olan fotoğraf makinesini buluyor. Çocuğun durumu: {CHILD_EPILOGUE}.",
+      "status": "alive_time_frozen",
+      "childOutcome": "state_preserved",
+      "entityOutcome": "frozen_with_group"
+    },
+    {
+      "id": "S3_E15",
+      "title": "Ailenin Yeni Yüzleri",
+      "text": "Gerçek kayıtla ayrılmayan objektif kimi alacağını bilmiyor. Flaş patladığında {FINAL_VICTIMS} görüntünün içine çekiliyor. Önceden kaybettikleriniz geri dönmüyor.\n\nÇerçevedeki aile artık yeni yüzler taşıyor. Sizi tanıyan biri ilanı açtığında kısa bir an gözlerinizin hareket ettiğini görüyor. Ekranı kapattığında fotoğraf yeniden sıradanlaşıyor.",
+      "status": "all_dead",
+      "childOutcome": "state_preserved",
+      "entityOutcome": "active"
+    },
+    {
+      "id": "S3_E16",
+      "title": "Fotoğrafı Ev Çekti",
+      "text": "Hazır olmayan makinenin düğmesine basıyorsunuz. Ses sizin elinizden değil, merdivendeki çerçeveden geliyor. {FINAL_VICTIMS} bir an için bütün odaları aynı anda görüyor.\n\nSonra hiçbir oda yok. İlan güncelleniyor: yeni yataklar, yeni havuz fotoğrafları, yeni bir aile. Kameranın olmadığı bir gecede fotoğrafı ev çekti.",
+      "status": "all_dead",
+      "childOutcome": "state_preserved",
+      "entityOutcome": "active"
+    },
+    {
+      "id": "S3_E17",
+      "title": "Doğum Günü Tamamlandı",
+      "text": "Sofradaki son sandalye doluyor. {FINAL_VICTIMS} nefes almayı bırakırken kayıttaki mumlar yeniden yanıyor. Daha önce ölenler, fotoğraftaki yerlerinden çıkmıyor.\n\nDeniz için ayrılan sandalye yine boş. Kadın artık bir sonraki misafirleri bekleyebilir. Otuz yıl önce bitmeyen doğum günü, sizin yüzlerinizle bir kez daha tamamlanıyor.",
+      "status": "all_dead",
+      "childOutcome": "state_preserved",
+      "entityOutcome": "active"
+    },
+    {
+      "id": "S3_E18",
+      "title": "Duvarın İçindeki Zil",
+      "text": "{FINAL_VICTIMS} duvarın arkasında kalıyor. Dar boşlukta hiçbir kapı yok. Telefonlarınız hâlâ şarjlı, fakat arayabildiğiniz tek numara kendinizinki.\n\nBir gün duvarın dışından valiz sesi geliyor. Arama tuşuna basıyorsunuz. Yeni gelenler, kendi numaralarından arandıklarını görünce şaşırıyor. Sesiniz artık telefonun değil duvarın içinden geliyor.",
+      "status": "all_dead",
+      "childOutcome": "state_preserved",
+      "entityOutcome": "active"
+    },
+    {
+      "id": "S3_E19",
+      "title": "Yeni Ev Sahipleri",
+      "text": "Form onaylandığında {ALIVE_NAMES} misafir olmaktan çıkıyor. Yaşıyorsunuz; ama bahçe kapısı artık siz yaklaşınca açılmıyor. Sadece gelenleri karşılayabiliyorsunuz.\n\nEkranda yeni bir rezervasyon görünüyor. Bütün geceyi anlatmak istiyorsunuz. Yazdığınız cümle gönderilirken değişiyor: “İyi tatiller. Anahtar saksının altında.” Daha önce ölenler bu anlaşmayla dirilmiyor.",
+      "status": "alive_bound_as_hosts",
+      "childOutcome": "state_preserved",
+      "entityOutcome": "active"
+    },
+    {
+      "id": "S3_E20",
+      "title": "Anahtar Saksının Altında",
+      "text": "Son yaşayan kişinin sesi de kesiliyor. Ölenler: {DEAD_NAMES}. Villa kimsenin arkasından koşmuyor. Sandalyeleri yerine çekiyor, havuzun ışığını kapatıyor, anahtarı yeniden saksının altına bırakıyor.\n\nSabah ilan takvimi açılıyor. Bugünün karşısında tek bir kelime var: “Müsait.”",
+      "status": "all_dead",
+      "childOutcome": "state_preserved",
+      "entityOutcome": "active"
+    }
+  ],
+  "assetManifest": {
+    "JS01": {
+      "image": "assets/images/JS01.png",
+      "audio": "assets/audio/JS01.wav"
+    },
+    "JS02": {
+      "image": "assets/images/JS02.png",
+      "audio": "assets/audio/JS02.wav"
+    },
+    "JS03": {
+      "image": "assets/images/JS03.png",
+      "audio": "assets/audio/JS03.wav"
+    },
+    "JS04": {
+      "image": "assets/images/JS04.png",
+      "audio": "assets/audio/JS04.wav"
+    },
+    "JS05": {
+      "image": "assets/images/JS05.png",
+      "audio": "assets/audio/JS05.wav"
+    },
+    "JS06": {
+      "image": "assets/images/JS06.png",
+      "audio": "assets/audio/JS06.wav"
+    },
+    "JS07": {
+      "image": "assets/images/JS07.png",
+      "audio": "assets/audio/JS07.wav"
+    },
+    "JS08": {
+      "image": "assets/images/JS08.png",
+      "audio": "assets/audio/JS08.wav"
+    }
+  }
+}

@@ -7,7 +7,11 @@ import {
 } from './engine.js';
 import { validateName } from './names.js';
 import { DEFAULT_STORY, storyById, storyList } from './stories.js';
-import * as SS from './sonsefer/game.js';
+import { makeGame } from './sonsefer/game.js';
+import * as SSE from './sonsefer/engine.js';
+import * as SME from './sonmisafir/engine.js';
+
+const SURVIVAL = { son_sefer: makeGame(SSE), son_misafirler: makeGame(SME) };
 
 export const MIN_PLAYERS = 4;
 export const MAX_PLAYERS = 10;
@@ -52,10 +56,12 @@ function freshGameFields() {
     lastTie: null,
     decisionLog: [],
     endingId: null,
-    ss: null, // Son Sefer oyun durumu
+    ss: null, // hayatta kalma hikâyelerinin oyun durumu
+    excluded: [], // ev sahibinin geçici olarak oylamadan çıkardığı (bağlantısı kopuk) oyuncular
   };
 }
 const isSurvival = (room) => storyById(room.storyId).engine === 'survival';
+const sv = (room) => SURVIVAL[room.storyId];
 
 export function createRoom(code, hostName, now = Date.now()) {
   const v = validateName(hostName);
@@ -132,6 +138,10 @@ function bump(room, phaseChange = false) {
 }
 
 const inCast = (room, pid) => room.cast.some((c) => c.playerId === pid);
+/** Etkin seçmenler: kadro eksi geçici olarak çıkarılanlar. */
+const voterIds = (room) => room.cast.map((c) => c.playerId).filter((id) => !(room.excluded || []).includes(id));
+const allReady = (room) => voterIds(room).every((id) => room.readyPlayerIds.includes(id));
+const allVoted = (room) => voterIds(room).every((id) => room.votesByPlayerId[id]);
 const isHost = (room, pid) => room.hostId === pid;
 
 // ---------- Bağlantı / ev sahibi devri ----------
@@ -139,6 +149,7 @@ export function setConnected(room, playerId, connected) {
   const p = room.players.find((x) => x.id === playerId);
   if (!p || p.isBot || p.connected === connected) return false;
   p.connected = connected;
+  if (connected && room.excluded?.includes(playerId)) room.excluded = room.excluded.filter((x) => x !== playerId);
   if (!connected && room.hostId === playerId) transferHost(room);
   if (connected && !room.players.find((x) => x.id === room.hostId)?.connected) transferHost(room);
   bump(room);
@@ -185,7 +196,7 @@ export function startGame(room, playerId, shuffle = cryptoShuffle) {
   room.decisionLog = [];
   room.pageHistory = [];
   if (isSurvival(room)) {
-    SS.start(room, core);
+    sv(room).start(room, core);
     bump(room, true);
     return;
   }
@@ -237,14 +248,14 @@ function openVoting(room, eligible) {
 
 // ---------- Okudum ----------
 export function markReady(room, playerId, { pageId, phaseVersion }) {
-  if (isSurvival(room)) return SS.markReady(room, playerId, { pageId, phaseVersion }, core);
+  if (isSurvival(room)) return sv(room).markReady(room, playerId, { pageId, phaseVersion }, core);
   if (!inCast(room, playerId)) fail('Bu oyunun kadrosunda değilsin.');
   if (room.paused) fail('Oyun duraklatıldı.');
   if (!['READING', 'RESULT', 'TIE_RESULT', 'ENDING'].includes(room.phase)) fail('Şu an okunacak sayfa yok.');
   if (phaseVersion !== room.phaseVersion || pageId !== room.currentPageId) fail('STALE');
   if (room.readyPlayerIds.includes(playerId)) return;
   room.readyPlayerIds.push(playerId);
-  if (room.cast.every((c) => room.readyPlayerIds.includes(c.playerId))) advanceAfterRead(room);
+  if (allReady(room)) advanceAfterRead(room);
   else bump(room);
 }
 
@@ -278,7 +289,7 @@ function advanceAfterRead(room) {
 
 // ---------- Oylama ----------
 export function castVote(room, playerId, { nodeId, voteRound, optionId, phaseVersion }) {
-  if (isSurvival(room)) return SS.castVote(room, playerId, { nodeId, voteRound, optionId, phaseVersion }, core);
+  if (isSurvival(room)) return sv(room).castVote(room, playerId, { nodeId, voteRound, optionId, phaseVersion }, core);
   if (!inCast(room, playerId)) fail('Bu oyunun kadrosunda değilsin.');
   if (room.paused) fail('Oyun duraklatıldı.');
   if (room.phase !== 'VOTING' || phaseVersion !== room.phaseVersion || nodeId !== room.currentNodeId || voteRound !== room.voteRound) fail('STALE');
@@ -289,7 +300,7 @@ export function castVote(room, playerId, { nodeId, voteRound, optionId, phaseVer
     fail('Oyun kilitlendi; bu turda değiştirilemez.');
   }
   room.votesByPlayerId[playerId] = optionId;
-  if (room.cast.every((c) => room.votesByPlayerId[c.playerId])) closeRound(room);
+  if (allVoted(room)) closeRound(room);
   else bump(room);
 }
 
@@ -336,6 +347,32 @@ function resolveDecision(room, optionId) {
   room.votesByPlayerId = {};
   setPage(room, { kind: 'result', nodeId: room.currentNodeId, decisionIndex: index });
   bump(room, true);
+}
+
+// ---------- Bağlantısı kopan oyuncuyu geçici olarak oylamadan çıkarma ----------
+export function setExcluded(room, playerId, targetId, excluded) {
+  if (!isHost(room, playerId)) fail('Yalnız ev sahibi oyuncuyu oylamadan çıkarabilir.');
+  if (room.phase === 'LOBBY' || room.phase === 'FINISHED') fail('Şu an oylama yok.');
+  if (!inCast(room, targetId)) fail('Oyuncu bulunamadı.');
+  const t = room.players.find((p) => p.id === targetId);
+  room.excluded ||= [];
+  if (excluded) {
+    if (t?.connected) fail('Bağlı oyuncu oylamadan çıkarılamaz.');
+    if (room.excluded.includes(targetId)) return;
+    room.excluded.push(targetId);
+    delete room.votesByPlayerId[targetId]; // bu turdaki oyu iptal
+  } else {
+    room.excluded = room.excluded.filter((x) => x !== targetId);
+  }
+  if (!recheck(room)) bump(room);
+}
+
+/** Seçmen listesi değişince turun bitip bitmediğini yeniden değerlendirir. */
+function recheck(room) {
+  if (isSurvival(room)) return sv(room).recheck(room, core);
+  if (['READING', 'RESULT', 'TIE_RESULT', 'ENDING'].includes(room.phase) && allReady(room)) { advanceAfterRead(room); return true; }
+  if (room.phase === 'VOTING' && allVoted(room)) { closeRound(room); return true; }
+  return false;
 }
 
 // ---------- Ev sahibi işlemleri ----------
@@ -389,6 +426,7 @@ export function snapshot(room, playerId) {
       isBot: !!p?.isBot,
       ready: room.readyPlayerIds.includes(id),
       voted: !!room.votesByPlayerId[id],
+      excluded: (room.excluded || []).includes(id),
     };
   });
   const snap = {
@@ -405,14 +443,14 @@ export function snapshot(room, playerId) {
     pageId: room.currentPageId,
     page: null,
     readyCount: room.readyPlayerIds.length,
-    castCount: room.cast.length,
+    castCount: room.cast.length - (room.excluded || []).length,
   };
   const story = storyById(room.storyId);
   snap.storyId = story.id;
   snap.storyTitle = story.title;
   snap.engine = story.engine;
   if (room.phase === 'LOBBY') { snap.intro = story.intro; snap.stories = storyList(); }
-  if (room.phase !== 'LOBBY' && isSurvival(room)) return SS.decorate(snap, room, playerId);
+  if (room.phase !== 'LOBBY' && isSurvival(room)) return sv(room).decorate(snap, room, playerId);
   snap.page = room.page ? renderPage(room, room.page) : null;
   if (room.phase === 'VOTING') {
     const node = NODES[room.currentNodeId];
@@ -450,7 +488,7 @@ export function snapshot(room, playerId) {
 
 /** "Gecenin notları": yalnız okunmuş geçmiş sayfalar. */
 export function notes(room, playerId) {
-  if (isSurvival(room)) return SS.notes(room, playerId);
+  if (isSurvival(room)) return sv(room).notes(room, playerId);
   return room.pageHistory
     .filter((d) => d.kind === 'scene' || d.kind === 'result')
     .map((d) => {
@@ -461,13 +499,13 @@ export function notes(room, playerId) {
 
 export function ackDeath(room, playerId, eventId) {
   if (!isSurvival(room)) fail('Bu hikâyede ölüm olayı yok.');
-  SS.ackDeath(room, playerId, eventId, core);
+  sv(room).ackDeath(room, playerId, eventId, core);
 }
-export const takeLiveDeaths = (room) => (isSurvival(room) ? SS.takeLiveDeaths(room) : []);
+export const takeLiveDeaths = (room) => (isSurvival(room) ? sv(room).takeLiveDeaths(room) : []);
 
 // Hikâye sürücülerine verilen ortak yardımcılar
 const core = {
-  fail, bump, setPage: (room, desc) => setPage(room, desc), botIds, inCast, tallyVotes, newId,
+  fail, bump, setPage: (room, desc) => setPage(room, desc), botIds, inCast, tallyVotes, newId, allReady, allVoted,
   randomInt: (n) => crypto.randomInt(n),
 };
 

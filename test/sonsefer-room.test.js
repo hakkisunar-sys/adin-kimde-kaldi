@@ -174,3 +174,63 @@ test('Son Sefer: 1 kişi + 3 bot tam oyunu bitirir; botların ölümü kimseye j
   }
   await srv.close();
 });
+
+test('Son Misafirler: 1 kişi + 3 bot tam oyunu bitirir; metinde açık yer tutucu/koşul kalmaz', async () => {
+  const srv = await fresh();
+  for (let trial = 0; trial < 4; trial++) {
+    const host = new Client(srv.port); await host.open();
+    await host.req('create', { name: 'Yalnız' });
+    assert.ok((await host.req('setStory', { storyId: 'son_misafirler' })).ok);
+    for (let i = 0; i < 3; i++) await host.req('addBot');
+    await host.until((s) => s.players.length === 4 && s.storyId === 'son_misafirler');
+    await host.req('start');
+    await host.until((s) => s.phase === 'READING');
+    assert.equal(host.snap.page.nodeId, 'S3_N01');
+    let guard = 0;
+    while (!['ENDING', 'FINISHED'].includes(host.snap.phase) && guard++ < 900) {
+      const s = host.snap;
+      for (const t of [JSON.stringify(s.page || {}), JSON.stringify(s.voting || {})]) assert.ok(!/\{[A-Z_]+\}|\[\[/.test(t), t.slice(0, 200));
+      if (s.phase === 'VOTING') {
+        if (s.voting.kind !== 'ACTION') assert.ok(s.voting.options.every((o) => o.exposureLabel), 'tanınma etiketi yok');
+        if (s.voting.nodeId === 'S3_N24' && s.voting.kind === 'ACTION') assert.ok(s.voting.options.every((o) => Array.isArray(o.checklist)));
+        const o = s.voting.options;
+        await host.vote(o[(guard * 5 + trial) % o.length].id);
+      } else assert.ok((await host.ready()).ok);
+      await host.until((x) => x.phaseVersion > s.phaseVersion);
+    }
+    assert.equal(host.snap.phase, 'ENDING');
+    assert.match(host.snap.ending.endingId, /^S3_E\d\d$/);
+    assert.ok(!/\{|\[\[/.test(host.snap.ending.paragraphs.join('')));
+    host.close();
+  }
+  await srv.close();
+});
+
+test('ev sahibi kopan oyuncuyu oylamadan çıkarır: oyu iptal, tur kapanır, aday olmaz, dönünce geri gelir', async () => {
+  const srv = await fresh();
+  const { cs, host, code } = await startSS(4, srv);
+  // Kişi 3 kopar
+  const gone = cs[3];
+  const goneSession = gone.session;
+  await everyoneReady(cs);                     // N01 okuma
+  await gone.vote('B');                        // oy verip kopuyor
+  gone.close();
+  await host.until((s) => s.players.some((p) => !p.connected));
+  const goneId = goneSession.playerId;
+  assert.match((await cs[1].req('exclude', { targetId: goneId, excluded: true })).error, /ev sahibi/);
+  assert.ok((await host.req('exclude', { targetId: goneId, excluded: true })).ok);
+  await host.until((s) => s.players.find((p) => p.id === goneId).excluded && s.voting.votedCount === 0);
+  const live = cs.slice(0, 3);
+  await everyoneVotes(live, () => 'B');        // N01 B: 1 görevli
+  assert.equal(host.snap.voting.kind, 'PRIMARY');
+  assert.ok(!host.snap.voting.options.some((o) => o.id === goneId), 'çıkarılan aday olmamalı');
+  await everyoneVotes(live, (s) => s.voting.options[0].id);
+  assert.equal(host.snap.phase, 'RESULT');
+  // geri dönünce yeniden seçmen
+  const back = new Client(srv.port); await back.open();
+  await back.req('resume', { roomCode: code, playerId: goneId, key: goneSession.key });
+  await host.until((s) => !s.players.find((p) => p.id === goneId).excluded);
+  assert.equal(host.snap.castCount, 4);
+  [...live, back].forEach((c) => c.close());
+  await srv.close();
+});

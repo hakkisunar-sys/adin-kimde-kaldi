@@ -1,0 +1,90 @@
+{
+  "S3_N10": {
+    "title": "Havuzun Altındaki Bölme",
+    "scene": "Havuzun yanındaki servis kapağını kaldırıyorsunuz. Altında su yok, kuru bir bakım bölmesi var. Kapağın üst kilidi pirinç anahtara uyuyor. Küçük bir camın arkasında metal bir kutu görünüyor.\n\nPlanın kenarında bir uyarı var: “Kutuyu üstteki çekmeceden alın. Alttaki kapağı asla açmayın.” [[dead|Alttaki kapaktan kaybettiğiniz arkadaşınızın sesi geliyor. {LAST_DEAD} sizi çağırıyor.|Alttaki kapaktan kendi sesiniz geliyor.]] {FOCUS}, ses durduğunda aşağıdan tırnak sesleri duyuyor.",
+    "question": "Bölmedeki kutuyu nasıl alıyorsunuz?",
+    "choices": {
+      "A": { "label": "Üst kilidi pirinç anahtarla açıp çekmeceyi çekiyoruz.", "taskBrief": "Pirinç anahtar gerekir. Anahtar yoksa kilit zorlanmaz, kapak kapatılır.", "cases": ["{A} çekmeceyi açıyor. Kutuda çocuğun odasının yedek anahtarı ve gerçek annenin son notu var: “Onu sabaha değil, geldiği yere geri gönderin.”", "Pirinç anahtar elinizde yok. {A} kilidi zorlamadan geri dönüyor."] },
+      "B": { "label": "Alttaki kapağı açıp bizi çağıran kişiye iniyoruz.", "taskBrief": "Dikkat: Uyarı, alttaki kapağın asla açılmamasını söylüyor.", "cases": ["{A} alttaki kapağı kaldırıyor. Aşağıdan su dümdüz bir duvar gibi yükseliyor. İçindeki bir ağız nefes almayı deniyor. Kapak yeniden kapandığında arkadaşınız aşağıda kalıyor."] },
+      "C": { "label": "Kurtarma çubuğuyla kutuyu üstten kendimize çekiyoruz.", "taskBrief": "Kurtarma çubuğu gerekir. Biri çubuğu uzatır, diğeri mandalı tutar.", "soloBrief": "Tek kalan kişi mandalı kendiliğinden kilitlenen konuma alıp çubuğu tek başına kullanır.", "cases": ["Çubuğu üstteki kanala sokup kutuyu kendinize çekiyorsunuz. İçinden odanın yedek anahtarı ve annenin notu çıkıyor.", "Elinizde kurtarma çubuğu yok. Kapağı açık bırakmadan geri çekiliyorsunuz. Anahtara başka bir yoldan ulaşmanız gerekecek."] },
+      "D": { "label": "Kutuyu bırakıp bahçe kapısının mekanizmasını inceliyoruz.", "taskBrief": "Bahçe tarafındaki güvenli mekanizma incelenir.", "cases": ["{A} bakıyor: Kapının motoru elektriksiz kalmış, ama kol elle de sabitlenebiliyor. Kapı henüz açılmıyor. Yolu haritaya işliyorsunuz."] }
+    }
+  },
+  "S3_N11": {
+    "title": "Mutfak Camındaki Bakıcı",
+    "scene": "Mutfak camında bakıcının yüzü beliriyor. [[flag:invited|Onu içeri almıştınız. Şimdi camın dışında duruyor, ama aynı anda koridordan onun ayak seslerini duyuyorsunuz.|Onu içeri almamıştınız. Şimdi camın dışında duruyor.]]\n\nCam buğulanmıyor. Adam hiç nefes almıyor. Avucunu gösteriyor: “Anahtarınızı unuttunuz. Camı açın, vereyim.” Tezgâhın yanındaki eski dolapta “oda yedeği” yazan bir göz var; içeriden kolayca açılıyor. Adamın cebindeki anahtarın dişleri ise kapının kilidine hiç uymuyor.",
+    "question": "Bakıcıya ne yapıyorsunuz?",
+    "choices": {
+      "A": { "label": "Camı kapalı tutup dolaptaki yedek anahtarı alıyoruz.", "taskBrief": "İçerideki dolabın küçük gözü açılır.", "cases": ["{A} gerçek yedek anahtarı buluyor. Camdaki adam gülümsemeyi bırakıyor. Cebindeki anahtarın görüntüsü camda bir an gecikiyor."] },
+      "B": { "label": "Camı açıp uzattığı anahtarı alıyoruz.", "taskBrief": "Dikkat: Adam nefes almıyor ve anahtarı kilide uymuyor.", "cases": ["{A} camı açıyor. Yüz bütün pencereyi dolduruyor. Uzanan elin arkasında bir kol yok, sadece karanlık var. Anahtar hiç yere düşmüyor."] },
+      "C": { "label": "Ona “Davetimizi geri alıyoruz” deyip bütün kapıları kapatıyoruz.", "taskBrief": "Sadece söylemek, önceki bir daveti silmeye yetmeyebilir.", "cases": ["Bütün kapıları kapatıyorsunuz. [[flag:invited|Ama onu bir kez içeri almıştınız: Ayak sesleri içeride kalıyor. Sadece söylemenin yetmediğini anlıyorsunuz.|Onu hiç içeri almadığınız için ayak sesleri dışarıda kalıyor. Yine de sadece söylemenin bir daveti silmediğini öğreniyorsunuz.]]"] },
+      "D": { "label": "Bakıcının uzattığı yeni konaklama formunu onaylıyoruz.", "taskBrief": "Formun en altında küçük harflerle yazıyor: Misafirlik, yeni kiracı gelene kadar sürer.", "cases": ["Ekranda “Ev sahibi oldunuz” yazıyor. Sabah kapı çalıyor. Yeni gelenlere anahtarın yerini söylemek istiyorsunuz. Ağzınızdan sadece hazır ilan cümleleri çıkıyor."] }
+    }
+  },
+  "S3_N12": {
+    "title": "Masada Bir Yer Daha",
+    "scene": "Salona dönüyorsunuz. Sofra yeniden kurulmuş, tabaklarda sıcak yemek var. Masanın başında bir kadın oturuyor. Kasetteki anneye benziyor, ama bu, fotoğraflarda karanlık çıkan yüz.\n\nSandalyelerin arkasında sizin isimleriniz yazıyor. En sondaki sandalye Deniz'e ayrılmış. Masanın altından ince siyah bir şerit duvardaki aile fotoğrafına uzanıyor. Şeridin üstünde bir uyarı: “Oturmak, fotoğrafa girmektir.” Kadın isimlerinizi tek tek sayıyor.",
+    "question": "Sofraya ne yapıyorsunuz?",
+    "choices": {
+      "A": { "label": "Şeride dokunmadan nereye bağlandığını fotoğraflıyoruz.", "taskBrief": "Masadan uzak durulur.", "cases": ["{A} şeridin sandalyeleri aile fotoğrafına bağladığını kaydediyor. Evin sizi neden masaya oturtmak istediğini artık anlıyorsunuz."] },
+      "B": { "label": "Hep birlikte oturup doğum gününü tamamlıyoruz.", "taskBrief": "Dikkat: Uyarı, oturmanın fotoğrafa girmek olduğunu söylüyor.", "cases": ["Oturduğunuz anda sandalyeler masaya kilitleniyor. Kadının yüzü fotoğrafta yerine oturuyor. Sofrada artık boş yer kalmıyor. Sabah temizlikçi masayı silerken çerçevedeki yüzlerinizin tozunu da alıyor."] },
+      "C": { "label": "Kadının uzattığı kadehi alıp adımızı söylüyoruz.", "taskBrief": "Kadın yüzünüzü ve adınızı istiyor.", "cases": ["{A} kadehi alıyor. İçindeki yansıma bir an kendi kendine hareket ediyor. Masadan kalkabiliyorsunuz, ama ev artık sizin sesinizle konuşabiliyor."] },
+      "D": { "label": "Kimse oturmadan kendi suyumuzu içip dinleniyoruz.", "taskBrief": "Masadaki yiyeceklere dokunulmaz.", "cases": ["Kendi şişelerinizden su içip sandalyelerden uzak duruyorsunuz. Kadın isimleri saymayı bitiriyor ve baştan başlıyor."] }
+    }
+  },
+  "S3_N13": {
+    "title": "Fotoğraftaki Boşluk",
+    "scene": "Merdivendeki büyük aile fotoğrafında sizin yüzleriniz belirmeye başlamış. Bu, öldüğünüz anlamına gelmiyor. Ev, fotoğrafta size yer hazırlıyor. [[dead|Ölen arkadaşlarınızın yüzleri fotoğrafta net. Yaşayanlarınki ise bulanık.|Şimdilik hepinizin yüzü bulanık.]]\n\nÇerçevenin arkasında annenin yazısı var: “Fotoğrafın ön yüzü aldığını bırakmaz. Arkasındaki negatif ise içeri gireni hapseder.” Fotoğraftaki kadının eli çerçevenin kenarını tutuyor gibi. Duvardaki yan mandalla çerçeveyi, fotoğrafa dokunmadan çevirebilirsiniz.",
+    "question": "Aile fotoğrafına ne yapıyorsunuz?",
+    "choices": {
+      "A": { "label": "Yan mandalla çerçeveyi çevirip arkasını inceliyoruz.", "taskBrief": "Fotoğrafın ön yüzüne dokunulmaz.", "cases": ["{A} çerçevenin arkasındaki çizimi çıkarıyor. Bu şeyi kapatmak için üç şey gerekiyor: gerçek kayıt, çocuğun saklandığı yerden çıkması ve sağlam bir çerçeve. Arkadan küçük bir negatif kopyası da çıkıyor."] },
+      "B": { "label": "Fotoğraftan uzanan eli tutup arkadaşımızı çekiyoruz.", "taskBrief": "Dikkat: Not, fotoğrafın ön yüzünün dokunanı tuttuğunu söylüyor.", "cases": ["{A} eli tutuyor. Parmaklar çerçevenin dışına çıkıyor. Cam, arkadaşınızın bedenini dümdüz ediyor. Fotoğrafta yeni bir yüz beliriyor; diğerlerinden daha net."] },
+      "C": { "label": "Fotoğrafı duvardan indirip yüzünü kapatıyoruz.", "taskBrief": "İki kişi çerçeveyi arkasından tutar, ön yüzü kapatılır.", "soloBrief": "Tek kalan kişi çerçeveyi duvardaki sabit tutucuya yaslayıp tek başına çevirir.", "cases": ["Çerçeveyi yere değil, duvardaki tutucuya ters çeviriyorsunuz. Arkasındaki tarifi birlikte okuyorsunuz."] },
+      "D": { "label": "Fotoğrafa bakmadan koridordan geçip gidiyoruz.", "taskBrief": "Güvenli geri çekilme.", "cases": ["Çerçeveyi arkanızda bırakıyorsunuz. Camın içinden gelen tıkırtı adımlarınızla aynı ritimde devam ediyor."] }
+    }
+  },
+  "S3_N14": {
+    "title": "Saklanan Çocuk",
+    "scene": "Yine kilitli odanın önündesiniz. Kapının altından yeni bir kâğıt geliyor: “Kapının arkasında değilim. Dolabın arkasındayım.”\n\nArtık gerçeği biliyorsunuz. Deniz otuz yıl önce bu evde öldü. O, büyümeyen bir çocuk hayaleti ve hâlâ o gecenin içinde saklanıyor. Onu kurtarmak, arabaya bindirip götürmek değil. Ona o gece gerçekten ne olduğunu hatırlatıp saklandığı yerden çıkmasına yardım etmek. İki anneyi birlikte gösteren kayıt, gerçeği hatırlamasını sağlayabilir.\n\nOdanın kapısı anahtarla, beyaz çizgiye dokunmadan açılabilir. Kapının altından kadının sesi geliyor: “Önce şu beyaz çizgiyi kazıyın.”",
+    "question": "Deniz için ne yapıyorsunuz?",
+    "choices": {
+      "A": { "label": "Anahtar ve kayıtla, çizgiyi bozmadan saklanma yerini açıyoruz.", "taskBrief": "Gerekenler: oda anahtarı, kanıt (kayıt) ve sağlam beyaz çizgi. Biri eksikse kapı zorlanmaz.", "cases": ["[[flag:childFreed|{A} kayıtları açık kapıdan bir kez daha gösteriyor. Deniz zaten saklandığı yerden çıkmıştı; bu kez annesini daha net hatırlıyor.|{A} anahtarı çevirip kaydı Deniz'e gösteriyor. Deniz, karanlık yüzün annesi olmadığını anlıyor. Saklandığı yerden çıkıp odadaki küçük sandalyeye oturuyor. Sizi tanıyor ve ilk kez o geceyi anlatabiliyor.]]", "Oda anahtarı, kanıt ya da sağlam beyaz çizgiden biri eksik. {A} kapıyı zorlamadan bırakıyor. Deniz içeride kalıyor."] },
+      "B": { "label": "Kadının dediğini yapıp beyaz çizgiyi kazıyoruz.", "taskBrief": "Dikkat: Beyaz çizginin bir koruma olduğu daha önce gösterildi.", "cases": ["{A} çizginin son parçasını kazıyor. Kadının sesi bir anda kapının bu tarafına geçiyor. Yüzü kapı pervazının içinden uzanıyor. Çocuk saklandığı yerde susuyor."] },
+      "C": { "label": "Önce eksikleri tamamlayıp Deniz'e ne yapacağımızı yazıyoruz.", "taskBrief": "Güvenli hazırlık: tamir kutusu ve odanın yanındaki belge gözü.", "cases": ["{A} beyaz çizgiyi onarıyor ve belge gözündeki gerçek aile kaydını alıyor. Deniz cevap yazıyor: “Bana olanı hatırlatın, o zaman çıkabilirim.” Bir sonraki fırsata hazırsınız."] },
+      "D": { "label": "Deniz'i bırakıp sadece kendimizi kurtarmaya karar veriyoruz.", "taskBrief": "Bu karar çocuğa zarar vermez, ama onu şimdilik içeride bırakır.", "cases": ["Deniz kapıya vurmayı bırakıyor. Kadının sesi çok uzaklardan geliyor: “Misafirler gidiyor.” Siz başka bir çıkış aramaya devam ediyorsunuz."] }
+    }
+  },
+  "S3_N15": {
+    "title": "Servis Kapısı",
+    "scene": "Havuzun arkasındaki servis kapısına geliyorsunuz. Kapının ardında küçük bir avlu ve taşlı bir patika var. [[flag:power|Elektrik geldiği için kapı motorunun ışığı yanıyor.|Elektrik yok, ama kapının üstünde elle açılan bir mandal görünüyor.]]\n\nMandalın altında ağır bir kapak var. Üstünde yazıyor: “Kapağı desteğe takmadan altına girmeyin.” Yanda kapağı yukarıda tutacak sabit bir destek var. Patikada beyaz taşlar görünüyor. Ana yoldaki kırmızı lambalar ise yine villaya geri dönüyor.",
+    "question": "Servis kapısını nasıl açıyorsunuz?",
+    "choices": {
+      "A": { "label": "Elektrikli motoru düğmesinden çalıştırıyoruz.", "taskBrief": "Elektrik varsa kapı açılır. Yoksa düğme zorlanmaz.", "cases": ["{A} düğmeye basıyor. Kapı rayına oturup açılıyor. Avluya giden yol açık.", "Düğmenin ışığı yanmıyor, elektrik yok. {A} kablolara dokunmadan geri çekiliyor. Kapı açılmadı."] },
+      "B": { "label": "Kapağı desteğe takıp kapıyı elle açıyoruz.", "taskBrief": "Biri desteği takar, diğeri mandalı açar. Kimse kapıyı tutmak için geride kalmaz.", "soloBrief": "Tek kalan kişi kendiliğinden kilitlenen desteği takar ve mandalı tek başına açar.", "cases": ["Kapak desteğe sabitleniyor. Mandal açılınca servis kapısı da açılıyor. Kimsenin geride kalıp tutmasına gerek yok."] },
+      "C": { "label": "Kapağı desteğe takmadan altına giriyoruz.", "taskBrief": "Tehlike: Görevli Tükenmiş ise ya da ev onu Öğrenmiş ise geri çekilemez ve ölür.", "cases": ["{A} kapağı kaldırdığı anda tavandan bir yüz, sizin sesinizle sesleniyor. Yorgun kollar kapağı tutamıyor. Yukarıdaki gölge arkadaşınızı karanlığa çekiyor.", "{A} kapağın kayacağını fark edip zamanında geri çekiliyor. Kapı açılmıyor. Bu işi destek olmadan yapmamaya karar veriyorsunuz."] },
+      "D": { "label": "Önce beyaz taşların gittiği yolu kaydediyoruz.", "taskBrief": "Kapının içinden bakılır, henüz dışarı çıkılmaz.", "cases": ["{A} beyaz taşların eski servis yolunu gösterdiğini görüyor. Kırmızı lambalar ise hep aynı yere dönüyor. Gerçek yol beyaz taşlardan geçiyor."] }
+    }
+  },
+  "S3_N16": {
+    "title": "Henüz Söylemediğiniz Cümle",
+    "scene": "Boş bir odadan sizin seslerinizle konuşmalar geliyor. Birinizin “Kapıyı ben açarım” dediğini duyuyorsunuz. Ama henüz kimse bunu söylemedi.\n\nKoridorda küçük bir ses kayıt cihazı duruyor. Üstünde yazıyor: “O tekrar eder. Siz sustuğunuzda konuşma devam ediyorsa, konuşan siz değilsiniz.”\n\n{FOCUS} bir şey fark ediyor: Çok göreve gidenlerin sesleri içeride daha net duyuluyor. Ev, en çok gördüğü yüzleri daha iyi öğreniyor.",
+    "question": "Gerçek sesleri sahte olanlardan nasıl ayırıyorsunuz?",
+    "choices": {
+      "A": { "label": "Hep birlikte susup içerideki konuşmayı dinliyoruz.", "taskBrief": "Ortak gözlem.", "cases": ["Siz susuyorsunuz, içerideki konuşma devam ediyor. Gerçek arkadaşlarınızın yanınızda olduğunu, tanıdık bir sesin kimlik kanıtı olmadığını kesin olarak anlıyorsunuz."] },
+      "B": { "label": "Kendi sesimize cevap verip odaya tek başımıza giriyoruz.", "taskBrief": "Tehlike: Ev görevliyi Öğrenmiş ise içerideki benzeri onu tam yüzüyle karşılar ve görevli ölür.", "cases": ["{A} odaya giriyor. İçerideki benzeri hiç gecikmeden gülümsüyor ve adını doğru söylüyor. Kapı kapandığında içerideki sesler bir kişi artıyor.", "{A} kendi sesinin yanlış yerde nefes aldığını fark edip geri çıkıyor. Ev yüzünü biraz daha öğrendi, ama kapıdan geçemedi."] },
+      "C": { "label": "Kayıt cihazının altındaki çıkış çizimini alıyoruz.", "taskBrief": "Cihazın yanındaki göz açık ve güvenli.", "cases": ["{A} çizimi alıyor. Beyaz taşlı gerçek yol çizilmiş. Altına not düşülmüş: “Ana yoldan dönmeyin.”"] },
+      "D": { "label": "Sesleri bastırmak için hep birlikte isimlerimizi tekrarlıyoruz.", "taskBrief": "Ev sesleri topluyor. Tekrar etmek ona malzeme verebilir.", "cases": ["Duvarın içindeki sesler kusursuzlaşıyor. Artık hepinizin söylediği bir kelimeyi aynı anda söyleyebiliyorlar."] }
+    }
+  },
+  "S3_N17": {
+    "title": "Negatifteki Kadın",
+    "scene": "Masanın altındaki gözden eski fotoğraf makinesini çıkarıyorsunuz. Pili çalışıyor, şarj kablosu da koridordaki prize takılabiliyor.\n\nYanında bir not var: “Ön yüz yaşayanı alır. Negatif içeri gireni hapseder. Gerçek kaydı kullan. Işığı kapatma.” Altında gerçek annenin yazısı: “Önce çocuğu o geceden çıkarın. Sonra o şeyin geldiği çerçeveyi kapatın.”\n\nMakinenin vizöründe, yani bakılan küçük camında, odaya dönük bir yüz var. Vizöre bakmadan makinenin arkasındaki çizimleri okuyabilirsiniz.",
+    "question": "Fotoğraf makinesiyle ne yapıyorsunuz?",
+    "choices": {
+      "A": { "label": "Vizöre bakmadan negatifi takıp makineyi hazırlıyoruz.", "taskBrief": "Makinenin arka kapağı ve pili kullanılır. Yedek negatif makinenin içinde.", "cases": ["{A} yedek negatifi buluyor. Makinenin o şeyi nasıl hapsedeceğini okuyup makineyi hazırlıyorsunuz."] },
+      "B": { "label": "Vizörden bakıp içerideki kadını çağırıyoruz.", "taskBrief": "Dikkat: Vizördeki yüz odada gerçekten yok.", "cases": ["{A} gözünü vizöre dayıyor. İçerideki kadın bir anda yaklaşıyor. {A} olduğu yerde donup kalıyor. Fotoğrafın içinden bir el cama vuruyor."] },
+      "C": { "label": "Makinenin önünü kapatıp yanımıza alıyoruz.", "taskBrief": "Makine sağlam alınır, ama nasıl kullanılacağı henüz okunmaz.", "cases": ["{A} makinenin kapağını kapatıp alıyor. Pili dolu. Kullanmak için evde elektriğin açık olması yine gerekebilir."] },
+      "D": { "label": "Makineyi bırakıp feneri ve ev planını alıyoruz.", "taskBrief": "Makine yerinde kalır.", "cases": ["{A} feneri ve planın bir kopyasını alıyor. Karanlıkta yürüyebileceğiniz bir yolunuz var, ama makineyle bir şey hazırlamadınız."] }
+    }
+  }
+}

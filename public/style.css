@@ -307,3 +307,17 @@ body.story-son_sefer .scene-title { color: var(--salt); }
 .mode-flare.hit .scare-face { animation: flare .95s ease-out; }
 @keyframes flare { 0% { filter: brightness(.6) contrast(1.6) sepia(.6); } 100% { filter: none; } }
 .reduce-motion .scare-face { transform: none !important; }
+
+/* ================= Son Misafirler teması: solmuş villa, eski fotoğraf ================= */
+body.story-son_misafirler {
+  --blood: #7d3b44;          /* solmuş şarap */
+  --blood-bright: #c0707a;
+  --salt: #c2a678;           /* eski fotoğraf sarısı */
+}
+body.story-son_misafirler .scene-title { color: var(--salt); }
+.fat.exp i.on { background: var(--salt); border-color: var(--salt); }
+.checklist { display: flex; flex-wrap: wrap; gap: 4px 10px; margin-top: 8px; font-family: var(--mono); font-size: 12px; }
+.checklist .ok { color: var(--ok); }
+.checklist .no { color: var(--ink-faint); }
+.excl { font-size: 14px; color: var(--ink-dim); margin: 0 0 8px; display: grid; gap: 4px; text-align: center; }
+.excl > div { display: flex; gap: 8px; justify-content: center; align-items: center; flex-wrap: wrap; }

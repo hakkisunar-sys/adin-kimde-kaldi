@@ -1,0 +1,144 @@
+{
+  "S3_N18": {
+    "title": "Yüzünüzde Kalan İz",
+    "scene": "Mutfak masasında gerçek annenin küçük el aynası duruyor. Bu, banyodaki gibi bir geçit değil: arkası tamamen kapalı, camı sağlam. Yanında bir not: “Ört, say, ışıkta tekrar bak.”\n\nBirbirinizin yüzüne bakınca bazılarınızın gözlerini bir an geç kırptığını görüyorsunuz. Ev üzerinizde bir iz bırakmış. Bu iz; aynayı örterek, gerçek isimlerinizi listeye yazarak ve sabit bir ışık altında kontrol ederek silinebilir. Ama aynadaki küçük yüzü parmakla çekmeye çalışmak, aynayı bir kapıya çevirir.",
+    "question": "Üzerinizdeki izi ne yapıyorsunuz?",
+    "choices": {
+      "A": { "label": "Ayna, isim listesi ve ışıkla kontrolü tamamlıyoruz.", "taskBrief": "Evde elektrik varsa iz ve önceki davet silinir. Elektrik yoksa sadece nasıl yapılacağı öğrenilir.", "soloBrief": "Tek kalan kişi aynayı duvardaki tutucuya takıp kontrolü tek başına yapar.", "cases": ["Örtüyü kaldırdığınızda yansımalarınız yeniden sizinle aynı anda hareket ediyor. İçeri davet edilmiş bakıcının ayak sesleri de dışarı çekiliyor. Ev üzerinizdeki izi kaybetti. Ama yeni görevler yüzlerinizi yine öğretebilir.", "Evde elektrik yok. Aynayı açmadan örtülü bırakıyorsunuz. Nasıl yapılacağını öğrendiniz, ama iz henüz silinmedi."] },
+      "B": { "label": "Aynadaki gecikmeli yüzü elimizle çekip çıkarıyoruz.", "taskBrief": "Dikkat: Not, bunun aynayı bir kapıya çevireceğini söylüyor.", "cases": ["{A} kendi yansımasının eline uzanıyor. Küçük ayna bir anda koca bir oda kadar derinleşiyor. İçerideki yüz, {A} değil."] },
+      "C": { "label": "Aynayı örtülü bırakıp dinleniyoruz.", "taskBrief": "Aynaya dokunulmaz.", "cases": ["Aynayı örtülü bırakıyorsunuz. Kısa bir sessizlikte kendi gerçek seslerinizi yeniden duyuyorsunuz. İz silinmiyor, ama yorgunluğunuz azalıyor."] },
+      "D": { "label": "Aynayı ters çevirip arkasındaki çıkış yolunu çiziyoruz.", "taskBrief": "Aynanın arkası güvenle okunur.", "cases": ["{A} aynanın arkasında avluya çıkan yolu buluyor. Eski planda yazıyor: Ana yol sahte, beyaz taşlar gerçek."] }
+    }
+  },
+  "S3_N19": {
+    "title": "Deniz İçin İkinci Fırsat",
+    "scene": "[[flag:childFreed|Deniz artık odadaki küçük sandalyede oturuyor. Kapının altından son bir kâğıt itiyor.|Deniz hâlâ dolabın arkasındaki saklanma yerinde. Kapının altından son bir kâğıt itiyor.]]\n\n“Annemin yüzünü takan şey, annemin anılarını bilmiyor. Bana sarı uçurtmayı sorun.” Kapının yanındaki küçük gözde yedek bir anahtar, bir fotoğraf kopyası ve tamir macunu var. Deniz bunları yıllardır biriktirmiş.\n\nKoridorun ucundan kadının sesi geliyor: “Onu havuzdan çıkarırsanız ben götürürüm.” Ama havuzdaki bedenin bir yetişkin olduğunu biliyorsunuz.",
+    "question": "Deniz'in son isteği için ne yapıyorsunuz?",
+    "choices": {
+      "A": { "label": "Gözdeki malzemelerle çizgiyi onarıp kaydı Deniz'e gösteriyoruz.", "taskBrief": "Tamir macunu, anahtar ve kayıt aynı gözde. Önce beyaz çizgi onarılır, sonra kapı güvenle açılır.", "cases": ["{A} beyaz çizgiyi tamamlayıp gerçek aile kaydını gösteriyor. [[flag:childFreed|Deniz son anısını anlatıyor.|Deniz saklandığı yerin kapısını kendisi açıyor.]] Sarı uçurtmayı annesinin tamir ettiğini hatırlıyor. Kimliğini çalan şeyin annesi olmadığını artık biliyor."] },
+      "B": { "label": "Havuzdaki bedeni Deniz sanıp çıkarmaya gidiyoruz.", "taskBrief": "Dikkat: Havuzdaki beden bir yetişkin. Bu bir taklit.", "cases": ["{A} suya eğiliyor. Aşağıdaki yüz bir çocuk gibi sesleniyor, ama ağzı kocaman. Havuzun kapağı içeriden kapanıyor."] },
+      "C": { "label": "Deniz'i olduğu yerde bırakıp sadece çizgiyi onarıyoruz.", "taskBrief": "Deniz daha önce çıktıysa geri kapatılmaz; sadece oda korunur.", "cases": ["{A} beyaz çizgiyi onarıyor. [[flag:childFreed|Deniz odadaki sandalyesinde kalıyor ve geçmişini hatırlamaya devam ediyor.|Deniz hâlâ saklandığı yerde kalıyor.]]"] },
+      "D": { "label": "Deniz'le vedalaşıp çıkışa dönüyoruz.", "taskBrief": "Bu karar daha önce yaptıklarınızı geri almaz.", "cases": ["“Ona adımı söylemeyin,” diyor Deniz. Gerçek adını değil, ondan çalınan sesi korumaya çalıştığını anlıyorsunuz. Merdivenlerden birlikte iniyorsunuz."] }
+    }
+  },
+  "S3_N20": {
+    "title": "Ev Yeniden Uyanıyor",
+    "scene": "Koridor lambaları titriyor. Evdeki bütün kapılar aynı anda kapanıp açılıyor. Bodrumdan, tavanda yürüyen birinin sesleri geliyor.\n\nBu kez bodruma inmeniz gerekmiyor. Salon duvarında yedek bir elektrik paneli var. Kapağının içinde talimat yazıyor: “Önce ana şalter kapalı, sonra servis şalteri açık.” Yanındaki metal kart, aile fotoğrafının nasıl kapatılacağını da gösteriyor.\n\n{FOCUS} fark ediyor: Işık söndüğünde kadının yüzü bütün camlarda daha belirgin oluyor. Evde sabit bir ışık olmadan o şeyi kapatamazsınız.",
+    "question": "Son hazırlık için hangi işi yapıyorsunuz?",
+    "choices": {
+      "A": { "label": "Salondaki panelden elektriği talimata göre açıyoruz.", "taskBrief": "Bodruma inilmez; doğru sıra panelde yazılı.", "cases": ["{A} talimattaki sırayı uyguluyor. Koridor ışıkları sabit yanıyor. Fotoğraf makinesinin şarjı ve servis kapısının motoru yeniden çalışıyor."] },
+      "B": { "label": "Bodruma inip yürüyen kişiyi buluyoruz.", "taskBrief": "Dikkat: Tavandaki izler, bunun yerde yürüyen bir insan olmadığını gösteriyor.", "cases": ["{A} son basamağa geliyor. Sesler kesiliyor. Tavandaki yüz, kendi kolunun arasından aşağı sarkıyor. Fenerin ışığı merdivene geri dönmüyor."] },
+      "C": { "label": "Paneldeki kartı alıp fotoğrafı kapatma yöntemini öğreniyoruz.", "taskBrief": "Güvenle okunur.", "cases": ["{A} kartı alıyor. O şeyi tamamen kapatmak için üç şey birlikte gerekiyor: gerçek kayıt, o geceden çıkmış bir Deniz ve evde sabit bir ışık."] },
+      "D": { "label": "Mutfakta dinlenip son işleri paylaşıyoruz.", "taskBrief": "Dinlenmek bütün yaşayanlara iyi gelir.", "cases": ["Kimseyi karanlığa göndermiyorsunuz. Son işleri kimin yapacağını konuşurken ellerinizin titremesi biraz azalıyor."] }
+    }
+  },
+  "S3_N21": {
+    "title": "Gerçek Çıkışın Rengi",
+    "scene": "Bahçedeki patika üçe ayrılıyor. Kırmızı lambalar ana yola, beyaz taşlar eski servis çıkışına, mavi ışık havuzun arkasındaki duvara gidiyor.\n\nTelefondaki ilan fotoğraflarında beyaz taşlar yok. Ama eski ev planında dışarıya çıkan tek yol onlar. Ev her şeyi değiştirebiliyor, ama beyaz taşları değiştiremiyor. Servis kapısının kolu hâlâ içeriden açılabiliyor.\n\nKapının dışında bir araba farlarını yakıyor. Sürücünün yüzü görünmüyor. Sizin sesinizle bağırıyor: “Yol burası!”",
+    "question": "Kaçış yolunu nasıl hazırlıyorsunuz?",
+    "choices": {
+      "A": { "label": "Beyaz taşları planla karşılaştırıp gerçek yolu buluyoruz.", "taskBrief": "Avludan bakılır; arabaya yaklaşılmaz.", "cases": ["{A} beyaz taşları eski plandaki mesafelerle karşılaştırıyor. Gerçek yol, ana yolun biraz altından geçen servis patikası."] },
+      "B": { "label": "Servis kapısını açık konumda kilitliyoruz.", "taskBrief": "Destek ve mandal kullanılır; kimse kapıyı tutmak için geride kalmaz.", "soloBrief": "Tek kalan kişi kendiliğinden kilitlenen mandalı kullanarak kapıyı tek başına açık kilitler.", "cases": ["Mandal açık konumda kilitleniyor. Servis kapısı artık elektrik gitse bile kapanmayacak."] },
+      "C": { "label": "Yüzünü göstermeyen sürücüye bizi götürmesini söylüyoruz.", "taskBrief": "Dikkat: Sürücü sizin sesinizle konuşuyor.", "cases": ["{A} arabanın camına yaklaşıyor. Direksiyondaki yüz bakıcının yüzüne dönüşüyor. Kapı açılmadan {A} içeri çekiliyor."] },
+      "D": { "label": "Çıkışı erteleyip ayna ve ışıkla iz kontrolünü yeniliyoruz.", "taskBrief": "Evde elektrik varsa iz ve davet silinir. Yoksa sadece dinlenirsiniz.", "cases": ["Ayna, isim listesi ve ışıkla yüzlerinizi karşılaştırıyorsunuz. Evin bıraktığı iz ve eski davet siliniyor. Bunu hep birlikte yaptığınız için kimsenin üzerinde yeni iz kalmıyor.", "Evde elektrik olmadan aynayı açmıyorsunuz. Birlikte dinleniyorsunuz, ama evin bıraktığı iz hâlâ üzerinizde."] }
+    }
+  },
+  "S3_N22": {
+    "title": "Misafir Defteri",
+    "scene": "Kapının yanındaki misafir defteri kendiliğinden açılıyor. İlk sayfalarda tatil yorumları var. Sonra hep aynı el yazısı, farklı isimlerle. Son sayfada sizin isimleriniz yazıyor. Çıkış tarihi boş.\n\nDefterin arasında eski bir servis kartı var. Üzerinde üç beyaz taş, bir avlu ve korunan kapının çizimi var. Notta yazıyor: “Adını silmek seni kurtarmaz. Gerçek kaydı yanına al.” Duvarın arkasında bir telefon daha çalıyor.\n\n{FOCUS}, kalemin kendi kendine yeni bir cümle yazdığını görüyor: “Konaklamadan çok memnun kaldık.” Mürekkep daha kurumamış.",
+    "question": "Deftere ne yapıyorsunuz?",
+    "choices": {
+      "A": { "label": "Servis kartını alıp çıkış çizimini kaydediyoruz.", "taskBrief": "Deftere bir şey yazılmaz; kart kenardan alınır.", "cases": ["{A} kartı alıyor. Beyaz taşlı yol ve açık kapıya giden avlu aynı çizimde. Defterde adınız hâlâ yazılı, ama bu tek başına sizi burada tutamaz."] },
+      "B": { "label": "Duvardaki sese defteri bulduğumuzu söylüyoruz.", "taskBrief": "Ses duvarın arkasından geliyor; tanıdık bir ses kanıt değildir.", "cases": ["{A} duvara sesleniyor. Cevap sizin sesinizle geliyor; bu kez bütün cümleyi tek nefeste söylüyor. Ev bir yüz daha öğrendi."] },
+      "C": { "label": "Karttaki tarifi okuyup beyaz çizgiyi onarıyoruz.", "taskBrief": "Tamir kutusuyla sadece dıştaki çizgi tamamlanır.", "cases": ["{A} notun devamını okuyup beyaz çizgiyi tamamen onarıyor. Gece bitmezse sığınabileceğiniz korumalı odanın kuralını artık biliyorsunuz."] },
+      "D": { "label": "Defteri kapatıp son hazırlıktan önce dinleniyoruz.", "taskBrief": "Kimse deftere imza atmaz.", "cases": ["Defter kapanıyor. Kalemin içeride yazmaya devam ettiğini duyuyorsunuz. İsimlerinizi birbirinize yüksek sesle söyleyip biraz dinleniyorsunuz."] }
+    }
+  },
+  "S3_N23": {
+    "title": "Son Kadraj",
+    "scene": "Sabah olacak gibi oluyor, ama gökyüzü her birkaç dakikada bir yeniden kararıyor. Salondaki aile fotoğrafında sizin yerleriniz artık hazır. Henüz oturmadığınız için boş duruyorlar.\n\nFotoğraf makinesinin yanında yedek negatif ve doğum günü kaydının kâğıda dökülmüş hâli var. Ama sadece tek bir işe vaktiniz var. Sonra ev salonu yeniden kuracak.\n\nKadın merdivenin başında duruyor. Ayakları basamaklara değmiyor. “Bir kişi kalsın, diğerleri gitsin,” diyor. Oysa servis kapısının mandalı, kimseyi geride bırakmadan da çalışıyor.",
+    "question": "Son hazırlığınızı neye harcıyorsunuz?",
+    "choices": {
+      "A": { "label": "Fotoğraf makinesini negatif, kayıt ve tarifle hazırlıyoruz.", "taskBrief": "Masadaki parçalar tamamlanır.", "cases": ["{A} yedek negatifi takıp kaydı yerleştiriyor. Fotoğraf makinesi ve o şeyi kapatma tarifi hazır. Deniz ve elektrikle ilgili önceki kararlarınız aynı kalıyor."] },
+      "B": { "label": "Bir kişiyi kadınla bırakıp diğerlerini kurtarmayı deniyoruz.", "taskBrief": "Dikkat: Kimsenin geride kalması gerekmiyor. Kadın güvenilmez bir pazarlık teklif ediyor.", "cases": ["{A} merdivene yaklaşıyor. Kadının yüzü, tanıdığı birinin yüzüne benziyor. {A} arkasını döndüğünde basamaklar çoktan kapanmış. Diğerleri için hiçbir yeni kapı açılmıyor."] },
+      "C": { "label": "Servis yolunu ve açık kapıyı son kez hazırlıyoruz.", "taskBrief": "Açık kilitlenen mandal ve beyaz taşlar birlikte kontrol edilir.", "soloBrief": "Tek kalan kişi mandalı kendiliğinden kilitlenen konuma alıp yolu tek başına kontrol eder.", "cases": ["Kapıyı açık konumda kilitliyor, gerçek yolu haritada işaretliyorsunuz. Kimse geride kalmıyor."] },
+      "D": { "label": "Elektriği açıp ayna ve ışıkla iz kontrolünü hep birlikte yapıyoruz.", "taskBrief": "Önce salondaki panelden elektrik açılır, sonra herkes birlikte kontrol edilir.", "cases": ["Salondaki panel açılıyor. Örtülü ayna ve isim listesiyle yüzlerinizdeki izi siliyorsunuz. Eski davet de kapanıyor. Bunu birlikte yaptığınız için kimsenin üzerinde yeni iz kalmıyor."] }
+    }
+  },
+  "S3_N24": {
+    "title": "Anahtarı Masaya Bırakın",
+    "scene": "Saat yine 00.17. Salon bir an için ilk geldiğiniz günkü hâline dönüyor. Masada, saksının altından aldığınız anahtar duruyor. Ev sahibinden son bir mesaj geliyor: “Çıkarken anahtarı bırakmanız yeterli.”\n\nAma artık biliyorsunuz: Anahtarı bırakmak geceyi bitirmez. Önünüzde dört yol var: aile fotoğrafını tersinden kapatmak, beyaz taşlı servis kapısından kaçmak, gerçek yoldan ana yola çıkmak ya da kadını fotoğraf makinesiyle negatife hapsetmek. Her biri için farklı hazırlıklar gerekiyor.\n\n[[flag:childFreed|Merdivenin başında Deniz'in gerçek annesinin silüeti görünüyor.|Kapalı odadan iki hafif vuruş geliyor.]] Kadın masadaki boş sandalyeyi çekiyor.\n\nKimse yeni bir göreve gitmeyecek. Son kararı hep birlikte vereceksiniz. Her seçeneğin altında, elinizde hangi hazırlıkların olduğu yazıyor.",
+    "question": "Geceyi nasıl bitiriyorsunuz?",
+    "choices": {
+      "A": { "label": "Gerçek kaydı kullanıp aile fotoğrafını tersinden kapatıyoruz.", "taskBrief": "Gerekenler: kanıt, serbest Deniz, kapatma tarifi, negatif ve elektrik. Eksik varsa, sağlam beyaz çizgili korumalı odaya sığınabilirsiniz (çizginin kuralını biliyorsanız).", "cases": ["Gerçek kayıt, Deniz ve sabit ışık aynı anda yerinde. Aile fotoğrafının arkasındaki mandalı kapatıyorsunuz.", "Gereken her şey yerinde. Sağ kalanlar aile fotoğrafının arkasındaki mandalı kapatıyor.", "Fotoğrafı kapatmak için bir şey eksik. Bildiğiniz korumalı odaya çekilip kapısını kapatıyorsunuz.", "Fotoğrafı kapatmak için bir şey eksik ve korumalı odaya güvenle geçemiyorsunuz. Salonun kapıları yer değiştirmeye başlıyor."] },
+      "B": { "label": "Servis kapısından beyaz taşlı avluya kaçıyoruz.", "taskBrief": "Gerekenler: açık servis kapısı ve harita. Deniz serbestse size gerçek avluyu gösterir. Üzerinizde evin izi ya da bir davet kaldıysa, o da sizinle gelebilir.", "cases": ["Deniz açık kapıdan gerçek avluyu gösteriyor. Evin izi sizden tamamen silinmiş.", "Deniz size gerçek avluyu gösteriyor. Ama üzerinizden silinmemiş bir iz de sizinle birlikte eşikten geçiyor.", "Açık kapı ve haritayla avluya geçiyorsunuz. Deniz size yol gösteremiyor. Arkanızda taş kapı kapanıyor.", "Servis kapısı hazır değil. Attığınız her adım sizi yeniden bahçeye getiriyor."] },
+      "C": { "label": "Gerçek yoldan ana yola çıkıp yardım çağırıyoruz.", "taskBrief": "Gerekenler: gerçek yol bilgisi, açık servis kapısı ve yolu aydınlatan elektrik. Üzerinizde iz kaldıysa sizinle gelir.", "cases": ["Kapı açık, yol belli, ışık yanıyor. Yüzlerinizde evin izi kalmamış.", "Gerçek yola çıkıyorsunuz. Ama evin üzerinizde bıraktığı iz de arabanın camında beliriyor.", "Kapı açık, ama gerçek yolu doğrulayamıyorsunuz. Araba sisin içinde yanlış yola sapıyor.", "Servis kapısı açılmıyor. Sabaha giden yol hâlâ villanın duvarında bitiyor."] },
+      "D": { "label": "Kadını fotoğraf makinesiyle negatifin içine hapsediyoruz.", "taskBrief": "Gerekenler: hazır fotoğraf makinesi, negatif, kanıt, serbest Deniz ve elektrik. Bu yol o şeyi yok etmez; taşınabilir bir fotoğrafa hapseder.", "cases": ["Gerçek kayıt ve Deniz karşısında kadın bir görüntüye dönüşüyor. Sabit ışık altında negatif kapanıyor.", "Fotoğraf makinesi ve kayıt kadını yakalıyor, ama o geceyi tamamen kapatamıyorsunuz.", "Makineyi çalıştırıyorsunuz. Ama gerçek kayıt olmadan makine kimi alacağını ayırt edemiyor.", "Hazır bir fotoğraf makineniz yok. Aile fotoğrafına bakıyorsunuz. Bu kez fotoğrafı ev çekiyor."] }
+    }
+  },
+  "_endings": {
+    "S3_E01": { "title": "Son Misafirler", "text": "Fotoğrafın arkasındaki mandal kapanıyor. Kadın ilk kez kendi sesiyle konuşmaya çalışıyor, ama ağzından sadece boş bir odada sürüklenen sandalye sesi çıkıyor. Deniz merdivenden iniyor. Gerçek annesi kapıda bekliyor. Deniz annesinin elini tutuyor ve ikisi sabah ışığında kayboluyor.\n\nBahçe kapısı artık düz bir yola açılıyor. Hepiniz dışarıdasınız: {ALIVE_NAMES}. Bir hafta sonra ilanı arıyorsunuz ama bulamıyorsunuz. Çektiğiniz fotoğrafta pencere artık boş. Bu kez fotoğrafı kimin çektiğini biliyorsunuz." },
+    "S3_E02": { "title": "Boş Kalan Koltuklar", "text": "O şey kapanıyor. Deniz gerçek annesinin yanına gidiyor. Sabah yol açılıyor, ama arabada bazı koltuklar boş: {DEAD_NAMES}. Geri dönüp seslenmek kimseyi geri getirmiyor.\n\nSağ kalanlar: {ALIVE_NAMES}. Villa artık yeni misafir alamıyor. Son fotoğrafı silmiyorsunuz. Kaybettiğiniz arkadaşlarınızın yüzleri artık evin çerçevesinde değil. Onları hatırlayan tek kayıt sizde." },
+    "S3_E03": { "title": "Kapısı Açılmayan Sabah", "text": "Korumalı odaya sığınıyorsunuz. Beyaz çizginin dışından biri bütün gece kapıyı yokluyor. Pencereden sabah görünüyor, ama saat 00.17'yi hiç geçmiyor.\n\nİçeride hayatta olanlar: {ALIVE_NAMES}. Ne acıkıyor ne de yaşlanıyorsunuz. Dışarıdan yeni valiz sesleri geldiğinde kapıya iki kez hafifçe vuruyorsunuz. Artık yeni gelenleri uyaran odanın içindesiniz." },
+    "S3_E04": { "title": "Her Kapı Aynı Salon", "text": "O şey kapanmıyor. Salondan hangi kapıdan çıksanız yine aynı salona giriyorsunuz. Pencere bir kapıya, merdiven bir dolaba dönüşüyor. Elinizdeki plan artık hiçbir işe yaramıyor.\n\n{ALIVE_NAMES} hâlâ hayatta. Ama her turda birbirinizin adını biraz daha zor hatırlıyorsunuz. İlanda artık “çok odalı” yazıyor. İlan fotoğraflarında görünmüyorsunuz. Henüz." },
+    "S3_E05": { "title": "Avlunun Ötesi", "text": "Deniz size gerçek avluyu gösteriyor. Sonra annesinin sesini, yüzüne bakmadan tanıyor. İkisi eski taşların arasında kayboluyor. Siz duvarın dışına çıkıyorsunuz. {ALIVE_NAMES} için yol açık.\n\nArkanızdaki villa ise olduğu yerde duruyor. O şey kapanmadı; sadece sizi takip edecek bir iz bulamadı. Ertesi ay başka bir sitede aynı evin ilanını görüyorsunuz. Yeni misafirleri uyarabilecek kayıtlar sizde." },
+    "S3_E06": { "title": "Avludaki İkinci Gölge", "text": "Deniz gerçek avluya ulaşıyor ve annesinin anısıyla birlikte o geceden ayrılıyor. Siz de duvarın dışına çıkıyorsunuz. Ama birinizin gölgesi taş eşikte bir an geride kalıyor.\n\nEve vardığınızda {ALIVE_NAMES} hâlâ birlikte. Mutfak camındaki yansıma, odada kimse yokken size dönüyor. Villa arkanızda kaldı. İçinden çıkan şey ise kalmadı." },
+    "S3_E07": { "title": "İki Duvar Arasında", "text": "Servis kapısından gerçek bir avluya çıkıyorsunuz. Kapı arkanızda kapanıyor. Dış duvarın ardından trafik sesleri geliyor, ama çıkış kapısı yıllar önce tuğlayla örülmüş.\n\n{ALIVE_NAMES} burada hayatta kalıyor. Duvardan gelen iki hafif vuruş, içeride bıraktığınız Deniz'in sesi. Ne villa sizi geri alıyor ne de avlu dışarı bırakıyor. Gün ilerliyor ama gölgeleriniz hiç uzamıyor." },
+    "S3_E08": { "title": "Yeniden Hoş Geldiniz", "text": "Patika havuzun başında bitiyor. Salonda müzik çalıyor. Masada taze mangal malzemeleri, kapının yanında ilk geldiğiniz günkü valizler var.\n\n{ALIVE_NAMES} yaşanan her şeyi hatırlıyor. Ölenler geri gelmiyor. Telefonunuza yine aynı mesaj geliyor: Anahtar saksının altında. Bu yeniden başlamak değil; bitmeyen bir gecenin başına geri döndünüz." },
+    "S3_E09": { "title": "Gerçek Yoldan Çıkanlar", "text": "Beyaz taşlar sizi gerçek kavşağa çıkarıyor. Araba sonunda villayı geride bırakıyor. Yolun sonunda açık bir benzinlik var. Oradaki görevli, sizin yaşadığınız geceden hiç haberdar değil.\n\n{ALIVE_NAMES} yardım çağırıyor. Deniz'in durumu: {CHILD_EPILOGUE} Ev kapanmadı, ama artık üzerinizde onun izi yok. İhbarınız üzerine villaya giden ekip orada sadece boş bir arazi buluyor." },
+    "S3_E10": { "title": "Eve Kadar", "text": "Gerçek yoldan çıkıyorsunuz. Telefonlar yeniden çekiyor. {ALIVE_NAMES} ilk kez gerçek insan sesleri duyuyor. Deniz'in durumu: {CHILD_EPILOGUE}\n\nBir hafta sonra konaklama sitesinden bir bildirim geliyor. Fotoğrafta hepiniz havuzun başındasınız; kaybettikleriniz de orada. Sizin hesabınızdan bir yorum yazılmış: “Çok güzel bir hafta sonuydu. Kesinlikle tekrar geleceğiz.” O gece yatak odanızın kapısının önünde aynı beyaz çizgi beliriyor." },
+    "S3_E11": { "title": "Hiç Bitmeyen Yol", "text": "Kapıdan çıkıp karanlık kavşağa giriyorsunuz. Tabelalar her beş kilometrede bir aynı mesafeyi gösteriyor. Arkada villa görünmüyor, önünüzdeki yol da hiçbir yere varmıyor.\n\n{ALIVE_NAMES} arabada hayatta. Benzin hiç azalmıyor. Radyoda kendi konuşmalarınız, siz söylemeden birkaç saniye önce çalıyor. Deniz'in durumu: {CHILD_EPILOGUE}" },
+    "S3_E12": { "title": "Camın Öte Yanındaki Kurtarma", "text": "Kapalı servis kapısının arkasından siren sesi geliyor. Bir kurtarma görevlisi duvarın öbür tarafından size fenerle bakıyor. Siz bağırdığınızda yüzü korkuyla değişiyor. Onun gördüğü şey insan değil.\n\n{ALIVE_NAMES}, villanın pencerelerinde yaşayan gölgelere dönüşüyor. Görevliler kapı numarasını not alıp gidiyor. Henüz ölmediniz, ama kim olduğunuzu anlatacak bir yüzünüz kalmadı." },
+    "S3_E13": { "title": "Sakın Banyo Etmeyin", "text": "Flaş patlıyor. Kadın negatifin içine doğru katlanıp kayboluyor. Deniz, annesinin gerçek anısıyla birlikte o geceden ayrılıyor. Kapılar açılıyor ve {ALIVE_NAMES} dışarı çıkıyor.\n\nEv sıradan bir binaya dönüşüyor. Ama negatif şeridi hâlâ elinizde ve üzerindeki tek kare hâlâ sıcak. Zarfın üstüne tek bir cümle yazıyorsunuz: “Bu negatifi asla banyo etmeyin.” O şeyi yok etmediniz; cebinizde taşınabilen bir hapishaneye kapattınız." },
+    "S3_E14": { "title": "Donmuş Kare", "text": "Flaş yanıyor ve bir daha sönmüyor. Kadın size ulaşamıyor. Ama sizin kapıya uzanan eliniz de hiç oraya varmıyor. Salonun dışında zaman akmaya devam ediyor.\n\n{ALIVE_NAMES} bu ışıklı anın içinde hayatta. Düşünebiliyor, konuşabiliyorsunuz, ama hep aynı saniyenin içinde dönüp duruyorsunuz. Yıllar sonra bir koleksiyoncu, boş bir evde hâlâ flaşı yanan eski bir fotoğraf makinesi buluyor. Deniz'in durumu: {CHILD_EPILOGUE}" },
+    "S3_E15": { "title": "Ailenin Yeni Yüzleri", "text": "Gerçek kayıt olmadan fotoğraf makinesi kimi alacağını bilemiyor. Flaş patladığında {FINAL_VICTIMS} fotoğrafın içine çekiliyor. Daha önce kaybettikleriniz de geri dönmüyor.\n\nAile fotoğrafında artık yeni yüzler var. Sizi tanıyan biri ilanı açtığında bir an gözlerinizin kıpırdadığını görüyor. Ekranı kapattığında fotoğraf yine sıradan görünüyor." },
+    "S3_E16": { "title": "Fotoğrafı Ev Çekti", "text": "Hazır olmayan makinenin düğmesine basıyorsunuz. Deklanşör sesi sizin elinizden değil, merdivendeki aile fotoğrafından geliyor. {FINAL_VICTIMS} bir anlığına evin bütün odalarını aynı anda görüyor.\n\nSonra hiçbir oda kalmıyor. İlan güncelleniyor: yeni yataklar, yeni havuz fotoğrafları, yeni bir aile. Bu gece fotoğrafı ev çekti." },
+    "S3_E17": { "title": "Doğum Günü Tamamlandı", "text": "Sofradaki son sandalye de doluyor. {FINAL_VICTIMS} nefes almayı bırakırken, eski videodaki mumlar yeniden yanıyor. Daha önce ölenler de fotoğraftaki yerlerinden çıkamıyor.\n\nDeniz'in sandalyesi yine boş. Kadın artık yeni misafirleri bekleyebilir. Otuz yıl önce yarım kalan doğum günü, bu kez sizin yüzlerinizle tamamlandı." },
+    "S3_E18": { "title": "Duvarın İçindeki Zil", "text": "{FINAL_VICTIMS} duvarın arkasında kalıyor. O dar boşlukta hiçbir kapı yok. Telefonlarınızın şarjı hâlâ dolu, ama arayabildiğiniz tek numara kendi numaranız.\n\nBir gün duvarın dışından valiz sesleri geliyor. Arama tuşuna basıyorsunuz. Yeni gelenler, kendi numaralarından arandıklarını görünce şaşırıyor. Sesiniz artık telefondan değil, duvarın içinden geliyor." },
+    "S3_E19": { "title": "Yeni Ev Sahipleri", "text": "Form onaylandığında {ALIVE_NAMES} misafir olmaktan çıkıyor. Hayattasınız, ama bahçe kapısı artık size açılmıyor. Sadece yeni gelenleri karşılayabiliyorsunuz.\n\nEkranda yeni bir rezervasyon beliriyor. Onlara bütün geceyi anlatmak istiyorsunuz. Yazdığınız mesaj gönderilirken değişiyor: “İyi tatiller. Anahtar saksının altında.” Daha önce ölenler bu anlaşmayla geri gelmiyor." },
+    "S3_E20": { "title": "Anahtar Saksının Altında", "text": "Hayatta kalan son kişinin sesi de kesiliyor. Ölenler: {DEAD_NAMES}. Villa kimsenin peşinden koşmuyor. Sandalyeleri yerine çekiyor, havuzun ışığını kapatıyor ve anahtarı yeniden saksının altına bırakıyor.\n\nSabah ilan takvimi açılıyor. Bugünün yanında tek bir kelime yazıyor: “Müsait.”" }
+  },
+  "_extras": {
+    "intro": {
+      "paragraphs": [
+        "Bir hafta sonu için havuzlu bir villa kiraladınız. Anahtar saksının altında, mangal hazır. Ama ilk çektiğiniz fotoğrafta, üst kattaki kilitli odanın penceresinde bir kadın görüyorsunuz.",
+        "Her turda dört seçenekten birini birlikte seçin. Gerekirse o işi kimin yapacağını da oylayın. Ölüm kalıcıdır: Ölenler göreve gidemez, ama hikâyeyi okumaya ve oy vermeye devam eder.",
+        "Ev, sık göreve gidenlerin yüzünü öğrenir. Görevli seçerken kimin yorgun olduğuna ve evin kimi ne kadar tanıdığına dikkat edin. Uyarıları okuyun: Tehlikeli seçeneklerin hepsinde bir ipucu var."
+      ],
+      "goal": "Villanın gerçek çıkışını bulun ve mümkünse bu gecenin bir daha yaşanmasını engelleyin. Hepiniz kurtulabilirsiniz; kimseyi feda etmek zorunda değilsiniz.",
+      "rules": [
+        "Her turda dört seçenekten birine oy verirsiniz. En çok oy alan seçilir.",
+        "Görev gerekiyorsa yaşayanlar arasından görevli seçersiniz. Bazı işlere iki kişi gider.",
+        "Eşitlikte yalnız eşit kalanlar yeniden oylanır. Kura yok, ev sahibinin ayrıcalığı yok.",
+        "Ölüm geri alınmaz. Ölenler oy verir ama göreve gidemez.",
+        "Göreve giden yorulur ve ev onun yüzünü daha iyi tanır. Bu bazı tehlikeli işlerde ölüme yol açabilir; bu durumlar görev kartında açıkça yazar.",
+        "Acele yok. Yavaş okumak kimseyi öldürmez."
+      ],
+      "contentNote": "Bu hikâyede ölüm anında, yalnız ölen kişinin telefonunda aniden açılan korku görseli ve ÇOK YÜKSEK bir çığlık sesi vardır. Telefonunun sesini aç, ama kulağına yakın tutma. Görsel ve ses Ayarlar'dan ayrı ayrı kapatılabilir; kapatmak oyunu değiştirmez. Hikâyede bir çocuk hayaleti vardır; çocuğa yönelik şiddet yoktur."
+    },
+    "deathCard": { "title": "Fotoğrafın Arkasındasın", "text": "Karakterin öldü. Artık göreve seçilemezsin. Hikâyeyi okumaya, oy vermeye ve arkadaşlarınla konuşmaya devam edebilirsin. Göreceğin kısa notlar onlara yardımcı olabilir." },
+    "childEpilogue": {
+      "free": "Deniz saklandığı yerden çıktı. Ama annesine kavuşması için bu gecenin tamamen kapanması gerekiyor.",
+      "hidden": "Deniz hâlâ odadaki saklanma yerinde kaldı."
+    },
+    "ghostPages": [
+      { "range": [1, 4], "title": "Fotoğrafın Arkası", "text": "Fotoğrafın arkasındasın. Odalar kâğıt kadar ince, ama arkadaşlarının sesleri gerçek. Havuzdaki beden onların bedeni değil. Sahte sesler, siz sustuktan sonra da konuşmaya devam ediyor." },
+      { "range": [5, 8], "title": "Duvarın İçi", "text": "Duvarın içinden odaların sınırlarını görüyorsun. Yırtık duvar kâğıdı bir geçit. Ama kırılmamış ayna ve eski negatif, karanlığı bir yüzeyde tutabiliyor." },
+      { "range": [9, 12], "title": "Kapıyı Kim Çaldı?", "text": "Kadının kapıya dışarıdan vurduğunu görüyorsun. Beyaz çizgi çocuğu içeride tutmak için çekilmemiş. Gerçek anne, başka bir yüzün içeri girmesini engellemeye çalışmış." },
+      { "range": [13, 16], "title": "Fotoğrafın İki Yüzü", "text": "Fotoğrafın ön yüzü, dokunanı alıyor. Arkasındaki negatif ise içeri gireni hapsedebiliyor. Kaybedilen arkadaşlar geri gelmeyecek. Ama çocuğun anısı hâlâ kurtarılabilir." },
+      { "range": [17, 20], "title": "Kameranın Sakladığı", "text": "Kamera gerçekte yaşananı sakladığı için, annenin yüzünü takan şey o kayda karışamıyor. Açık kapıyı kimsenin tutması gerekmiyor. Mandal yeterli." },
+      { "range": [21, 24], "title": "Beyaz Taşların Sonu", "text": "Beyaz taşların bittiği yerde evin duvarı görünmüyor. Ama evin üzerinizde bıraktığı iz de sizinle oradan geçebilir. Son anda ışık altında yapılan kontrol, eve kadar sizi izleyecek ikinci gölgeyi ayırabilir." }
+    ],
+    "equipment": [
+      ["poolKey", "Pirinç anahtar"], ["pole", "Kurtarma çubuğu"], ["map", "Ev planı"], ["proof", "Kanıt (gerçek kayıt)"],
+      ["negative", "Negatif"], ["roomKey", "Oda anahtarı"], ["lamp", "El feneri"], ["camera", "Hazır fotoğraf makinesi"],
+      ["route", "Gerçek yol bilgisi"], ["power", "Elektrik açık"], ["gate", "Servis kapısı açık"], ["childFreed", "Deniz serbest"]
+    ],
+    "finalChecklist": {
+      "A": [["proof", "Kanıt"], ["childFreed", "Deniz serbest"], ["sealKnown", "Kapatma tarifi"], ["negative", "Negatif"], ["power", "Elektrik"], ["wardIntact", "Sağlam beyaz çizgi (sığınak)"], ["wardKnown", "Çizginin kuralı (sığınak)"]],
+      "B": [["gate", "Açık servis kapısı"], ["map", "Harita"], ["childFreed", "Deniz serbest"], ["!contaminated", "Üzerinizde iz yok"]],
+      "C": [["route", "Gerçek yol bilgisi"], ["gate", "Açık servis kapısı"], ["power", "Elektrik"], ["!contaminated", "Üzerinizde iz yok"]],
+      "D": [["camera", "Hazır fotoğraf makinesi"], ["negative", "Negatif"], ["proof", "Kanıt"], ["childFreed", "Deniz serbest"], ["power", "Elektrik"]]
+    }
+  }
+}
