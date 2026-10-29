@@ -274,3 +274,67 @@ test('ev sahibi koparsa yetki en erken katılan bağlı oyuncuya geçer; durakla
   cs.slice(1).forEach((c) => c.close());
   await srv.close();
 });
+
+test('botlar: tek kişi + 3 bot tam oyunu bitirir; botlar okumayı beklemez ve geçerli oy verir', async () => {
+  const srv = await fresh();
+  const host = new Client(srv.port); await host.open();
+  await host.req('create', { name: 'Yalnız' });
+  const code = host.session.roomCode;
+  assert.match((await host.req('start')).error, /En az 4/);
+  for (let i = 0; i < 3; i++) assert.ok((await host.req('addBot', { name: i === 0 ? 'Robot Ali' : '' })).ok);
+  await host.until((s) => s.players.length === 4);
+  assert.deepEqual(host.snap.players.filter((p) => p.isBot).map((p) => p.name), ['Robot Ali', 'Deniz', 'Umut']);
+  assert.ok(host.snap.players.filter((p) => p.isBot).every((p) => p.connected));
+  assert.ok((await host.req('start')).ok);
+  await host.until((s) => s.phase === 'READING');
+  assert.equal(host.snap.readyCount, 3);
+  let guard = 0;
+  while (!['ENDING', 'FINISHED'].includes(host.snap.phase) && guard++ < 400) {
+    const s = host.snap;
+    if (s.phase === 'VOTING') {
+      assert.equal(s.voting.votedCount, 3);
+      await host.vote(s.voting.options[0].id);
+    } else await host.ready();
+    await host.until((x) => x.phaseVersion > s.phaseVersion);
+  }
+  assert.equal(host.snap.phase, 'ENDING');
+  const room = srv.rooms.get(code);
+  for (const d of room.decisionLog) for (const r of d.rounds) assert.equal(Object.values(r.tally).reduce((a, b) => a + b, 0), 4);
+  host.close();
+  await srv.close();
+});
+
+test('botlar: 10 karakter sınırı, yalnız ev sahibi ekler/çıkarır, ad çakışması, oyun içinde eklenmez, restart sonrası bağlı', async () => {
+  const db = tmpDb();
+  let srv = await startServer({ port: 0, host: '127.0.0.1', dbFile: db, quiet: true });
+  const host = new Client(srv.port); await host.open();
+  await host.req('create', { name: 'Deniz' });
+  const code = host.session.roomCode;
+  const guest = new Client(srv.port); await guest.open();
+  await guest.req('join', { roomCode: code, name: 'Misafir' });
+  assert.match((await guest.req('addBot')).error, /ev sahibi/);
+  assert.match((await host.req('addBot', { name: 'misafir' })).error, /kullanılıyor/);
+  for (let i = 0; i < 8; i++) assert.ok((await host.req('addBot')).ok);
+  assert.match((await host.req('addBot')).error, /dolu/);
+  await host.until((s) => s.players.length === 10);
+  assert.ok(!host.snap.players.some((p) => p.isBot && p.name === 'Deniz')); // insan adıyla çakışan bot adı atlanır
+  const bot = host.snap.players.find((p) => p.isBot);
+  assert.match((await guest.req('leave', { targetId: bot.id })).error, /ev sahibi/);
+  assert.ok((await host.req('leave', { targetId: bot.id })).ok);
+  await host.until((s) => s.players.length === 9);
+  assert.ok((await host.req('start')).ok);
+  await host.until((s) => s.phase === 'READING');
+  assert.match((await host.req('addBot')).error, /lobide/);
+  const sess = [host.session, guest.session];
+  host.close(); guest.close();
+  await srv.close();
+  srv = await startServer({ port: 0, host: '127.0.0.1', dbFile: db, quiet: true });
+  const h2 = new Client(srv.port); await h2.open();
+  await h2.req('resume', { roomCode: code, playerId: sess[0].playerId, key: sess[0].key });
+  await h2.until((s) => s.phase === 'READING');
+  assert.ok(h2.snap.players.filter((p) => p.isBot).every((p) => p.connected));
+  assert.ok(h2.snap.me.isHost);
+  assert.equal(h2.snap.readyCount, 7);
+  h2.close();
+  await srv.close();
+});

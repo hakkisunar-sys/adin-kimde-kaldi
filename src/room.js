@@ -86,9 +86,35 @@ export function joinRoom(room, name) {
   return { player, key };
 }
 
+// ---------- Botlar ----------
+export const BOT_NAMES = ['Deniz', 'Umut', 'Derya', 'Evren', 'Ekin', 'Kayra', 'Toprak', 'Bulut', 'Ilgın', 'Yağmur', 'Özgür', 'Aydın', 'Doğa', 'Nehir', 'Ufuk', 'Tuna'];
+
+export function addBot(room, playerId, name) {
+  if (!isHost(room, playerId)) fail('Bot yalnız ev sahibi tarafından eklenebilir.');
+  if (room.phase !== 'LOBBY') fail('Bot yalnız lobide eklenebilir.');
+  if (room.players.length >= MAX_PLAYERS) fail(`Oda dolu (en fazla ${MAX_PLAYERS} karakter; botlar dahil).`);
+  let v;
+  if (name && name.trim()) {
+    v = validateName(name);
+    if (v.error) fail(v.error);
+    if (room.players.some((p) => p.nameKey === v.key)) fail('Bu ad odada kullanılıyor. Başka bir ad seç.');
+  } else {
+    const free = BOT_NAMES.map(validateName).find((x) => !room.players.some((p) => p.nameKey === x.key));
+    if (!free) fail('Bot için boş ad kalmadı; bir ad yaz.');
+    v = free;
+  }
+  room.joinSeq += 1;
+  const bot = { id: newId(), name: v.name, nameKey: v.key, tokenHash: null, joinSeq: room.joinSeq, connected: true, isBot: true };
+  room.players.push(bot);
+  bump(room);
+  return bot;
+}
+
+const botIds = (room) => room.cast.filter((c) => room.players.find((p) => p.id === c.playerId)?.isBot).map((c) => c.playerId);
+
 export function authenticate(room, playerId, key) {
   const p = room.players.find((x) => x.id === playerId);
-  if (!p) return null;
+  if (!p || p.isBot || !p.tokenHash) return null;
   const a = Buffer.from(p.tokenHash, 'hex');
   const b = Buffer.from(hashKey(key), 'hex');
   return a.length === b.length && crypto.timingSafeEqual(a, b) ? p : null;
@@ -106,7 +132,7 @@ const isHost = (room, pid) => room.hostId === pid;
 // ---------- Bağlantı / ev sahibi devri ----------
 export function setConnected(room, playerId, connected) {
   const p = room.players.find((x) => x.id === playerId);
-  if (!p || p.connected === connected) return false;
+  if (!p || p.isBot || p.connected === connected) return false;
   p.connected = connected;
   if (!connected && room.hostId === playerId) transferHost(room);
   if (connected && !room.players.find((x) => x.id === room.hostId)?.connected) transferHost(room);
@@ -115,17 +141,17 @@ export function setConnected(room, playerId, connected) {
 }
 
 function transferHost(room) {
-  const next = room.players.filter((p) => p.connected).sort((a, b) => a.joinSeq - b.joinSeq)[0];
+  const next = room.players.filter((p) => p.connected && !p.isBot).sort((a, b) => a.joinSeq - b.joinSeq)[0];
   if (next) room.hostId = next.id;
 }
 
 export function leaveLobby(room, playerId, targetId = playerId) {
   if (room.phase !== 'LOBBY') fail('Oyun sürerken odadan çıkılamaz; karakterin hikâyede kalır.');
   if (targetId !== playerId) {
-    if (!isHost(room, playerId)) fail('Yalnız ev sahibi bağlantısı kopmuş oyuncuyu çıkarabilir.');
+    if (!isHost(room, playerId)) fail('Yalnız ev sahibi oyuncu çıkarabilir.');
     const t = room.players.find((p) => p.id === targetId);
     if (!t) fail('Oyuncu bulunamadı.');
-    if (t.connected) fail('Bağlı oyuncu çıkarılamaz.');
+    if (t.connected && !t.isBot) fail('Bağlı oyuncu çıkarılamaz.');
   }
   room.players = room.players.filter((p) => p.id !== targetId);
   if (room.hostId === targetId) transferHost(room);
@@ -163,7 +189,7 @@ function setPage(room, desc) {
   room.pageSeq += 1;
   room.page = desc;
   room.currentPageId = `${room.gameId}.${room.pageSeq}`;
-  room.readyPlayerIds = [];
+  room.readyPlayerIds = botIds(room);
 }
 
 function enterNode(room, nodeId) {
@@ -183,6 +209,7 @@ function openVoting(room, eligible) {
   room.voteRound += 1;
   room.eligibleOptionIds = eligible;
   room.votesByPlayerId = {};
+  for (const id of botIds(room)) room.votesByPlayerId[id] = eligible[crypto.randomInt(eligible.length)];
 }
 
 // ---------- Okudum ----------
@@ -334,6 +361,7 @@ export function snapshot(room, playerId) {
       name: p ? p.name : '?',
       connected: !!p?.connected,
       isHost: room.hostId === id,
+      isBot: !!p?.isBot,
       ready: room.readyPlayerIds.includes(id),
       voted: !!room.votesByPlayerId[id],
     };

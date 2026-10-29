@@ -20,7 +20,7 @@ export function startServer({ port = 3000, host = '0.0.0.0', dbFile = path.join(
   const store = new Store(dbFile);
   const rooms = new Map();
   for (const r of store.loadAll(ROOM_MAX_AGE)) {
-    for (const p of r.players) p.connected = false; // yeniden başlatmada herkes bağlantısız başlar
+    for (const p of r.players) if (!p.isBot) p.connected = false; // yeniden başlatmada herkes bağlantısız başlar
     rooms.set(r.roomCode, r);
   }
   log(`kayıttan ${rooms.size} oda yüklendi`);
@@ -193,6 +193,7 @@ export function startServer({ port = 3000, host = '0.0.0.0', dbFile = path.join(
     try {
       switch (msg.type) {
         case 'start': R.startGame(room, pid); break;
+        case 'addBot': R.addBot(room, pid, str(msg.name, 200)); break;
         case 'ready': R.markReady(room, pid, { pageId: str(msg.pageId), phaseVersion: msg.phaseVersion }); break;
         case 'vote': R.castVote(room, pid, { nodeId: str(msg.nodeId, 4), voteRound: msg.voteRound, optionId: str(msg.optionId, 1), phaseVersion: msg.phaseVersion }); break;
         case 'pause': R.setPaused(room, pid, !!msg.paused); break;

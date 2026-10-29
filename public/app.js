@@ -222,6 +222,25 @@ function LobbyView() {
   const startBtn = h('button', { class: 'btn primary', onclick: () => act('start'), text: 'Oyunu başlat' });
   const waitNote = h('p', { class: 'status' });
   const intro = snap.intro;
+  const botName = h('input', { maxlength: 40, placeholder: 'Bot adı (boş bırakılabilir)', 'aria-label': 'Bot adı' });
+  let adding = false;
+  const addBot = async (times = 1) => {
+    if (adding) return;
+    adding = true; botBtn.disabled = fillBtn.disabled = true;
+    for (let i = 0; i < times; i++) {
+      const r = await act('addBot', { name: i === 0 ? botName.value : '' });
+      if (!r.ok) break;
+      if (i === 0) botName.value = '';
+    }
+    adding = false;
+    view?.update?.(snap);
+  };
+  const botBtn = h('button', { class: 'btn', onclick: () => addBot(1), text: '+ Bot ekle' });
+  const fillBtn = h('button', { class: 'btn ghost' });
+  const botBox = h('div', { class: 'botbox' },
+    h('p', { class: 'eyebrow', style: 'margin-top:16px', text: 'Botlar' }),
+    h('p', { class: 'small', style: 'margin:0 0 10px', text: 'Botlar hikâyede karakter olur, okumayı beklemez ve rastgele oy verir.' }),
+    h('label', { class: 'field' }, botName), botBtn, fillBtn);
   const share = async () => {
     try {
       if (navigator.share) await navigator.share({ title: 'Adın Kimde Kaldı?', text: `Oda kodu: ${snap.roomCode}`, url: joinUrl });
@@ -240,7 +259,7 @@ function LobbyView() {
         ),
       ),
     ),
-    h('div', { class: 'card' }, h('p', { class: 'eyebrow', text: 'Oyuncular' }), list, count),
+    h('div', { class: 'card' }, h('p', { class: 'eyebrow', text: 'Oyuncular' }), list, count, botBox),
     h('div', { class: 'card' },
       intro.paragraphs.slice(0, 1).map((p) => h('p', { text: p })),
       h('div', { class: 'goal' }, h('b', { text: 'Amacınız' }), intro.goal),
@@ -260,16 +279,27 @@ function LobbyView() {
       list.replaceChildren(...s.players.map((p) => h('li', {},
         h('span', { class: 'dot' + (p.connected ? '' : ' off'), title: p.connected ? 'Bağlı' : 'Bağlantı bekleniyor' }),
         h('span', { class: 'name', text: p.name }),
+        p.isBot ? h('span', { class: 'tag', text: 'bot' }) : null,
         p.id === s.me.id ? h('span', { class: 'tag', text: 'sen' }) : null,
         p.isHost ? h('span', { class: 'tag', text: 'ev sahibi' }) : null,
-        s.me.isHost && !p.connected && p.id !== s.me.id ? h('button', { class: 'linkbtn', onclick: () => act('leave', { targetId: p.id }), text: 'çıkar' }) : null,
+        s.me.isHost && (!p.connected || p.isBot) && p.id !== s.me.id ? h('button', { class: 'linkbtn', onclick: () => act('leave', { targetId: p.id }), text: 'çıkar' }) : null,
       )));
       const n = s.players.length;
-      count.textContent = `${n}/${s.limits.max} kişi · en az ${s.limits.min} kişiyle başlar`;
+      const bots = s.players.filter((p) => p.isBot).length;
+      count.textContent = `${n}/${s.limits.max} karakter` + (bots ? ` (${bots} bot)` : '') + ` · en az ${s.limits.min} ile başlar`;
+      botBox.hidden = !s.me.isHost;
+      const room = s.limits.max - n;
+      botBtn.disabled = adding || room <= 0;
+      botBtn.textContent = room <= 0 ? 'Oda dolu' : '+ Bot ekle';
+      const need = n < s.limits.min ? s.limits.min - n : room;
+      fillBtn.hidden = room <= 0;
+      fillBtn.disabled = adding;
+      fillBtn.textContent = n < s.limits.min ? `${need} bot ekleyip ${s.limits.min}'e tamamla` : `Odayı botlarla doldur (+${need})`;
+      fillBtn.onclick = () => addBot(need);
       startBtn.hidden = !s.me.isHost;
       startBtn.disabled = n < s.limits.min || n > s.limits.max;
       waitNote.textContent = s.me.isHost
-        ? (n < s.limits.min ? `Başlamak için ${s.limits.min - n} kişi daha gerekiyor.` : 'Herkes geldiyse başlatabilirsin.')
+        ? (n < s.limits.min ? `Başlamak için ${s.limits.min - n} kişi daha gerekiyor (bot da olur).` : 'Herkes geldiyse başlatabilirsin.')
         : 'Ev sahibinin oyunu başlatması bekleniyor.';
     },
   };

@@ -3,6 +3,12 @@
 Telefonlardan ortak karar verilen, dallanan Türkçe korku oyunu. 4–10 kişi. 20 karar yeri, 80 seçenek, 20 final.
 Hikâye önceden yazılmış içerikten çalışır; dış yapay zekâ servisi, API anahtarı veya ücretli bir hizmet gerekmez.
 
+## Botlar
+
+Ev sahibi lobide **+ Bot ekle** ile istediği kadar bot ekleyebilir (toplam karakter sınırı 10, botlar dahil). Tek kişi + 3 botla bile oynanır.
+Botlar hikâyede normal karakter olur: isimleri metne yerleşir, okumayı beklemezler ve her turda uygun seçenekler arasından rastgele oy verirler.
+Eşitlikte yeniden oylamaya da katılırlar. Ev sahibi lobide botu **çıkar** ile silebilir.
+
 ## Çalıştırma
 
 Gerekli: **Node.js 22.13 veya üstü** (yerleşik `node:sqlite` kullanılır).
