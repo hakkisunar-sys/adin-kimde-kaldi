@@ -27,6 +27,16 @@ Sır gerektiren bir ayar yoktur.
 
 ## İnternette yayınlama
 
+### Tek tıkla Render (ücretsiz)
+
+[![Render'a kur](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/hakkisunar-sys/adin-kimde-kaldi)
+
+Düğmeye bas, GitHub ile giriş yap, **Apply / Deploy**'a bas. Birkaç dakika sonra `https://adin-kimde-kaldi-xxxx.onrender.com` gibi bir adres verir; herkes telefonundan bu adrese girer.
+
+Ücretsiz planda: 15 dakika kimse girmezse sunucu uyur, ilk açılış yaklaşık bir dakika sürer. Oyun sürerken uyumaz. Kalıcı disk olmadığı için sunucu yeniden başlarsa açık odalar silinir (yeni oda kurmak yeterli).
+
+### Başka bir yer
+
 Tek bir Node süreci olarak çalışan herhangi bir yerde barınabilir (Render, Railway, Fly.io, kendi VPS'iniz…). Koşullar:
 
 - WebSocket desteği (`/ws` yolu) ve HTTPS (istemci otomatik `wss://` kullanır).
