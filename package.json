@@ -1,0 +1,22 @@
+{
+  "name": "adin-kimde-kaldi",
+  "version": "1.0.0",
+  "description": "Telefonlardan ortak karar verilen Türkçe korku oyunu",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node --no-warnings --test --test-concurrency=1 test/*.test.js",
+    "start": "node --no-warnings src/server.js",
+    "extract": "node tools/extract.mjs"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "qrcode": "^1.5.4",
+    "ws": "^8.22.0"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22.13"
+  }
+}

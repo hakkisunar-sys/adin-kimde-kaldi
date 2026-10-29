@@ -1,0 +1,1502 @@
+{
+  "contentVersion": "1.0",
+  "title": "ADIN KİMDE KALDI?",
+  "intro": {
+    "paragraphs": [
+      "Gece yolunu kaybeden bir arkadaş grubusunuz. Birlikte kiraladığınız geniş minibüs, haritada adı görünmeyen bir köyde duruyor. Telefonlarınıza, sizin yapmadığınız bir konaklama kaydı geliyor. Köy isimlerinizi biliyor. İçeride bir şey, o isimlerin size ait olduğuna sizi bile şüphe ettirmek istiyor.",
+      "Hikâyeyi okuyun, aranızda konuşun ve dört seçenekten birine oy verin. En çok oy alan karar hepiniz için uygulanır. Eşit kalan seçenekler yeniden oylanır; eşitlik çözülene kadar devam edemezsiniz. Yanlış bir karar hemen her zaman son değildir. Gördüğünüz yazılara, tarihlerin tutarsızlığına ve birbirinizi nasıl hatırladığınıza dikkat edin.",
+      "Bu bir grup hikâyesidir. Karakterinizin başına gelenler oy hakkınızı almaz. Finali birlikte göreceksiniz."
+    ],
+    "goal": "Gün doğmadan köyden hep birlikte çıkın. Gerçek isimlerinizi yanınızda götürün. Birinizi geride bırakmak, kurtulmak sayılmaz.",
+    "rules": [
+      "Aynı hikâyenin içindesiniz; bireysel kazanma veya gizli hain rolü yok.",
+      "Her karar için bir kişi bir oy verir. Seçiminiz oylama kapanana kadar diğerlerinden gizlidir.",
+      "En çok oyu alan seçenek seçilir; yüzde 50'yi aşması gerekmez.",
+      "Eşitlikte yalnız eşit kalan seçenekler arasında yeniden oy verilir.",
+      "Metni hızlı açmanız yalnız sizin ekranınızı etkiler. Herkes okumadan karar başlamaz.",
+      "Ekranınızdaki tuhaflıklar hikâyeye aittir. Oyun telefonunuzun rehberine, fotoğraflarına, konumuna veya mikrofonuna erişmez."
+    ],
+    "contentNote": "Yoğun psikolojik korku, kimlik kaybı, tehdit ve çocuk biçimindeki doğaüstü varlık tasvirleri. Önerilen anlatı kitlesi 16 yaş ve üzeridir; bu mağaza yaş derecelendirmesi değildir. Ses ve titreşim kapatılabilir."
+  },
+  "contributions": {
+    "N01-N05": "{FOCUS}, yanındaki {PARTNER} ile göz göze geliyor. Aynı sesi ikisi de duymuş; biri ötekine işaret ediyor. Kimseyi yalnız bırakmadan hareket etmeniz gerektiği artık daha açık.",
+    "N06-N10": "{FOCUS}, gördüğünüz ayrıntıyı bir kâğıda not ediyor. {PARTNER}, daha önceki yazıyla karşılaştırıyor. Yanlış hatırlarsanız köyün bunu sizin yerinize tamamlayabileceğini hissediyorsunuz.",
+    "N11-N15": "{FOCUS}, grubun arka tarafını kontrol ediyor. {PARTNER}, önünüzdeki geçide bakıyor. Bir an için hepinizin aynı anda aynı yöne bakmamasının sizi koruduğunu düşünüyorsunuz.",
+    "N16-N20": "{FOCUS}, kendi elini yanındaki {PARTNER} eline bastırıyor. İki ayrı nabız hissediliyor. Görüntüler aynı şeyi söylemese de hâlâ gerçek insanlarla yürüyorsunuz."
+  },
+  "reminders": {
+    "voiceTaken": "{P4}, konuşmaya çalışınca dudaklarından yalnız hava çıkıyor.",
+    "guest": "Aranızdaki adımlara bazen küçük bir çift ayak sesi daha karışıyor.",
+    "borrowedName": "{P2}, defterde kendi adının yanına ilişmiş yabancı harflere bakıyor.",
+    "mirrored": "{P3}, gölgesinin hareketini bir nefes gecikmeyle takip ettiğini fark ediyor.",
+    "memoryLost": "Biriniz, yolculuğun ilk saatini hatırlamaya çalışırken cümlesini yarım bırakıyor.",
+    "bargain": "Verdiğiniz söz, biri kulağınıza tekrar ediyormuş gibi zihninizde dönüyor."
+  },
+  "special": {
+    "restoreOk": "Karbon izi asıl harfleri gösteriyor. Her ismi bir hatıra ve canlı bir el doğruluyor. Mühür bastığınızda kâğıttan çıkan soğuk kesiliyor. Harfler yerlerine oturuyor. İlk kez defter sizi değil, siz defteri tutuyorsunuz.",
+    "restoreFail": "Mühür kâğıda basılıyor, fakat izinin bir yanı boş kalıyor. Kanıt, tanıklık, gerçek sayı veya hazırlanmış geçişten biri eksik. Hangi harfin kime ait olduğunu kesinleştiremiyorsunuz. İsimler hâlâ okunuyor; ama artık yalnız size ait değiller.",
+    "crossOk": "Çizginin ötesinde zemin sertleşiyor. Son el de eşiği geçtiğinde köyden bir kapı kapanma sesi geliyor.",
+    "crossBad": "Çizgiye bastığınızda grubun arasındaki bir boşluk, gölge gibi uzuyor. Son adımın size ait olup olmadığını anlayamıyorsunuz.",
+    "voiceAddon": "Bu ses bir an odada dolaşıp {P4} boğazında susuyor."
+  },
+  "nodes": [
+    {
+      "id": "N01",
+      "title": "Kaydı Olmayan Köy",
+      "text": [
+        "Saat 23.17. Yağmur, aracın tavanına içeriden vuruluyormuş gibi sert yağıyor. Navigasyon ana yolu griye boyayıp sizi dar bir köy yoluna sokalı on yedi dakika oldu. Hiçbiriniz son kavşakta bir tabela gördüğünü hatırlamıyor.",
+        "Motor, kuru bir öksürükle duruyor.",
+        "{P1}, telefonunu cama yaklaştırıyor. Şebeke yok. Yine de bütün ekranlar aynı anda aydınlanıyor.",
+        "KONAKLAMA KAYDINIZ TAMAMLANDI.",
+        "Altında isimleriniz var. {ROSTER_LINES}",
+        "Listenin en altında bir isim daha duruyor: SALİH.",
+        "{P2}, bu adın üzerine dokunuyor. Ekranda bir fotoğraf açılıyor: Aracınız arkadan çekilmiş. Fotoğrafta bagaj kapağı aralık. Karanlığın içinde beyaz bir el seçiliyor.",
+        "Çekim saati: 23.18.",
+        "Telefonların saati henüz 23.17. Köyün yukarısında tek bir pencere yanıyor. Bagajdan, tırnağın sac üzerinde gezdirilmesine benzeyen bir ses geliyor."
+      ],
+      "question": "Araçtan gelen sesi duyunca ne yapıyorsunuz?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Kimseyi ayırmadan ışığı yanan binaya yürüyoruz.",
+          "result": [
+            "Aracı kilitliyorsunuz. Bagajdaki ses, uzaklaştıkça hızlanıyor. Binanın kapısına vardığınızda birden kesiliyor; bu kez kapının öte yanından geliyor."
+          ],
+          "effects": {},
+          "next": "N02"
+        },
+        {
+          "id": "B",
+          "label": "Bagajı açıp ne olduğunu birlikte kontrol ediyoruz.",
+          "result": [
+            "Bagaj bomboş. {P1}, kapağı kapatırken içeriden bir nefes yüzüne çarpıyor. Binaya yürüdüğünüzde çamurda sizin ayakkabılarınıza ait olmayan bir iz daha var."
+          ],
+          "effects": {
+            "guest": true,
+            "stain": 1
+          },
+          "next": "N02"
+        },
+        {
+          "id": "C",
+          "label": "Telefonlardaki Salih kaydını siliyoruz.",
+          "result": [
+            "İsim siliniyor. Yerinde {P2} yazıyor. {P2}, kendi adını yüksek sesle söyleyince boğazından tanımadığınız birinin öksürüğü çıkıyor."
+          ],
+          "effects": {
+            "borrowedName": true,
+            "stain": 1
+          },
+          "next": "N02"
+        },
+        {
+          "id": "D",
+          "label": "Kornaya basıp yardım çağırıyoruz.",
+          "result": [
+            "Korna çalmıyor. Köydeki bütün evlerden birer kere sizin kornanızın sesi geliyor. Son evin ardından, çamurun içinden ağır adımlar yaklaşmaya başlıyor."
+          ],
+          "effects": {
+            "stain": 2
+          },
+          "next": "N02"
+        }
+      ]
+    },
+    {
+      "id": "N02",
+      "title": "Bir Bardak Fazla",
+      "text": [
+        "Kapının üzerindeki solmuş levhada YOLCU EVİ yazıyor. {P3}, tokmağa uzanmadan kapı açılıyor.",
+        "İçeride soba yanıyor. Masada {N} bardak çay var. Henüz dokunmadığınız sandalyelerin minderleri, birileri az önce kalkmış gibi çökük. Duvar saatinin akrebi yok.",
+        "Tezgâhtaki konaklama defteri bugünün tarihine açık. İsimleriniz, sizin el yazılarınıza benzeyen yazılarla alt alta dizilmiş. Son satırdaki Salih adı ıslak görünüyor.",
+        "Üst katta bir sandalye sürükleniyor.",
+        "Ardından {P4} sesleniyor: “Ben aşağı iniyorum. Sakın benimle konuşmayın.”",
+        "{P4} yanınızda. Dudakları kıpırdamıyor.",
+        "Tezgâhın altına kazınmış ince bir yazı fark ediyorsunuz: “İçeride yüzünü gördüğünün dışarıdaki sesine cevap verme.”",
+        "Merdivende ilk basamak gıcırdıyor. Masaya baktığınızda bardak sayısı {N_PLUS_1} olmuş."
+      ],
+      "question": "Merdivenden inen sese karşı ne yapıyorsunuz?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Birlikte tezgâhın arkasına geçip defteri ve yazıyı inceliyoruz.",
+          "result": [
+            "Merdivenden inen şey tezgâhın önünde duruyor. Çıplak ayaklarını görüyorsunuz; ayak bileklerinin üstünde hiçbir şey yok. Bir süre sonra tavana doğru geri çekiliyor."
+          ],
+          "effects": {
+            "rule": true
+          },
+          "next": "N03"
+        },
+        {
+          "id": "B",
+          "label": "Hepimiz arka kapıdan avluya çıkıyoruz.",
+          "result": [
+            "Arka kapı açılıyor. İçeriden gelen adımlar kapıya kadar geliyor, fakat eşiği geçemiyor. Avlunun duvarındaki eski gazete, yağmurdan korunmuş duruyor."
+          ],
+          "effects": {},
+          "next": "N04"
+        },
+        {
+          "id": "C",
+          "label": "{P4}, kendi sesine kim olduğunu soruyor.",
+          "result": [
+            "“Benim,” diyor yukarıdaki ses. {P4} cevap vermek istiyor; ağzı açık kalıyor. Bundan sonra kendi sesi yalnızca üst kattan duyuluyor."
+          ],
+          "effects": {
+            "voiceTaken": true,
+            "stain": 1
+          },
+          "next": "N03"
+        },
+        {
+          "id": "D",
+          "label": "Fazladan bardağı kırıp kapıya tuz döküyoruz.",
+          "result": [
+            "Bardak yere değmeden çatlıyor. Tuz sobanın altına doğru sürünüyor. Üst kattaki ses gülüyor: “Bunu size kim öğretti?” Tezgâhın ardına sığınıyorsunuz."
+          ],
+          "effects": {
+            "stain": 1
+          },
+          "next": "N03"
+        }
+      ]
+    },
+    {
+      "id": "N03",
+      "title": "Defterin Altındaki El",
+      "text": [
+        "Tezgâhın arkasında yere çömeliyorsunuz. Defterin arkasına yapışmış bir sayfa var. Kâğıdı kaldırınca altındaki tahta yüzeyde bir avuç izi görüyorsunuz. Sanki biri tezgâhın içinden yukarı doğru bastırmış.",
+        "Sayfada yarım bırakılmış bir not:",
+        "“Ben bekçi Salih. Bu deftere yazılan isimler kaybolmasın diye buradayım. Yukarıdan benim sesim gelirse…”",
+        "Cümlenin devamı koparılmış.",
+        "{P1}, defterdeki adının altında beliren ince çizgiye bakıyor. Çizgi yavaşça imzaya dönüşüyor. {P1} elini masaya bastırınca çizgi duruyor.",
+        "Duvarın içinden bir parmak çıkıyor. Önce yalnız tırnak, ardından ilk boğum. Tezgâhın tahtasını yırtmadan, suyun yüzeyinden geçer gibi uzanıyor. Deftere doğru ilerliyor.",
+        "Arka kapının sürgüsü kendi kendine açılıyor."
+      ],
+      "question": "Defterle ne yapıyorsunuz?",
+      "options": [
+        {
+          "id": "A",
+          "label": "El yazılarını inceleyip defteri kapatarak yanımıza alıyoruz.",
+          "result": [
+            "{P1}, kendi yazısını hatırladığı bir cümleyle karşılaştırıyor. Harfler aynı; imzalar değil. Defteri alınca duvardaki parmak içeri çekiliyor. Sahte imzaları tanımayı öğreniyorsunuz."
+          ],
+          "effects": {
+            "forgeryKnown": true
+          },
+          "next": "N04"
+        },
+        {
+          "id": "B",
+          "label": "Adların yanına tek tek imza atıyoruz.",
+          "result": [
+            "Kalem son imzada elinize yapışıyor. Satırların altına siz yazmadan bir kelime ekleniyor: KABUL. Defter bir anlığına nefes alır gibi kabarıyor."
+          ],
+          "effects": {
+            "borrowedName": true,
+            "stain": 1
+          },
+          "next": "N04"
+        },
+        {
+          "id": "C",
+          "label": "Islak Salih satırını çizip defteri alıyoruz.",
+          "result": [
+            "Çizginin altından kan değil, siyah soba isi sızıyor. Arka kapıda duran bir gölge başını eğiyor. Defterin köşesi, sayfa kopmuş gibi eksiliyor."
+          ],
+          "effects": {
+            "stain": 2
+          },
+          "next": "N04"
+        },
+        {
+          "id": "D",
+          "label": "Sayfaları telefonla fotoğraflayıp defteri yanımıza alıyoruz.",
+          "result": [
+            "Fotoğrafta adlarınızın altında başka tarihler görünüyor: 1967, 1988, 2004. Kâğıtta görünmeyen bu katmanları kaydediyorsunuz. Son fotoğrafta bir el kameraya doğru uzanıyor."
+          ],
+          "effects": {
+            "proof": true,
+            "stain": 1
+          },
+          "next": "N04"
+        }
+      ]
+    },
+    {
+      "id": "N04",
+      "title": "Kapıdaki Çocuk",
+      "text": [
+        "Avlu, binanın arkasında dar bir dikdörtgen. Kuyu taşla kapatılmış. Duvarda yağmur yemeyen bir gazete kupürü var: “Kar yüzünden yolu kapanan yolculardan haber alınamıyor.” Tarih: 17 Kasım 1967.",
+        "Fotoğraftaki misafirhane aynı. Pencerede bir çocuk duruyor. Yüzünün bulunduğu yer, kâğıt yıpranmadığı hâlde bembeyaz.",
+        "Avlu kapısının dışında bir çocuk öksürüyor.",
+        "“İçeride kaç kişisiniz?”",
+        "Kapının dibinden iki küçük ayakkabı görünüyor. İkisi de size dönük. Topuk izleri ise kapıdan uzaklaşıyor.",
+        "{P2}, taşın üzerindeki ikinci yazıyı eliyle temizliyor:",
+        "“Sayını söyleme. Sayını kendin bil.”",
+        "Çocuk bu kez {P3} sesini kullanıyor: “Bir kişiyim. Üşüdüm.”",
+        "{P3}, sizin aranızda duruyor. Çocuğun gölgesi kapının altından avluya uzanıyor; incecik parmakları defteri tutan elinize doğru ilerliyor."
+      ],
+      "question": "Kapıdaki çocuğa nasıl karşılık veriyorsunuz?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Bir kişi olduğumuzu söyleyip gitmesini istiyoruz.",
+          "result": [
+            "“Bir kişi,” diye tekrarlıyor. Defterde {P2} adının yanına başka bir soyadı ekleniyor. Yalan, sayıdan çok birinizin adına tutunmuş gibi duruyor."
+          ],
+          "effects": {
+            "borrowedName": true,
+            "stain": 1
+          },
+          "next": "N05"
+        },
+        {
+          "id": "B",
+          "label": "Cevap vermeden birbirimizi sayıyor, eski kuyunun tarafına çekiliyoruz.",
+          "result": [
+            "Çocuğun ayakkabıları kıpırdamadan kapıdan uzaklaşıyor. Kupürün altındaki el yazısını okuyorsunuz: “İsmi olmayanı içeri alma.”"
+          ],
+          "effects": {
+            "rule": true
+          },
+          "next": "N05"
+        },
+        {
+          "id": "C",
+          "label": "Arka sokaktan köy meydanına kaçıyoruz.",
+          "result": [
+            "Sokak sizi çamaşırhane duvarına çıkarıyor. Avlu kapısındaki öksürük artık ağzınızın dibinde. Dönüp bakmıyorsunuz. Defter, siz fark etmeden {P1} kolunun altında belirmiş."
+          ],
+          "effects": {
+            "stain": 1
+          },
+          "next": "N06"
+        },
+        {
+          "id": "D",
+          "label": "Kapıyı aralayıp çocuğu içeri alıyoruz.",
+          "result": [
+            "Kapının arkasında kimse yok. Buna rağmen aranızdan küçük, ıslak ayaklar geçiyor. Masum birini dışarıda bırakmamış olmanın rahatlığı, ayak sesleri tavana çıkınca kayboluyor."
+          ],
+          "effects": {
+            "guest": true,
+            "stain": 2
+          },
+          "next": "N05"
+        }
+      ]
+    },
+    {
+      "id": "N05",
+      "title": "Yukarıdaki Sofra",
+      "text": [
+        "Kuyunun yanındaki merdiven, misafirhanenin üst katına açılıyor. Aşağıdaki avluda yağmur şiddetlenirken üst sahanlık kupkuru.",
+        "Koridorun sonundaki oda aydınlık. Sofrada {N} kişi oturuyor. Yüzleri arkaya dönük. Kıyafetleri sizin kıyafetleriniz.",
+        "{P1}, masanın başında oturan kendi sırtına bakıyor. Sandalyedeki baş, gövdesi dönmeden yavaşça yana eğiliyor.",
+        "Kapının çerçevesindeki çentikler harf oluşturuyor: “Davet, açılan kapıyla tamamlanır. Oturan kalkmaz.”",
+        "Sofradakilerden biri sandalyesini geri çekiyor. Yerde sürünen iki ayak, koridora doğru dönüyor. Bilekleri ters tarafta.",
+        "Aşağıdan bir radyo cızırtısı geliyor. Arada, bir ses “Çamaşırhanedeki nüshayı bulun,” diyor.",
+        "Kapı kolu, dışarıdan tutulmuş gibi aşağı iniyor. Henüz odaya adım atmadınız."
+      ],
+      "question": "Sofra odasının önünde ne yapıyorsunuz?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Odaya girmeden geri çekilip radyonun sesini izliyoruz.",
+          "result": [
+            "Merdivenin ilk basamağına bastığınızda odadaki bütün sandalyeler birlikte geri itiliyor. Aşağı inene kadar nefesinizi tutuyorsunuz. Misafirhanenin yanındaki çamaşırhane kapısı açık."
+          ],
+          "effects": {},
+          "next": "N06"
+        },
+        {
+          "id": "B",
+          "label": "Kapıyı kapatıp arkasına ortak bir işaret çiziyoruz.",
+          "result": [
+            "Çentiklerin arasındaki açık halkayı tamamlıyorsunuz. Kapının öte yanındaki tırnak sesleri bir anda kesiliyor. Aynı işaretin aşağıdaki çamaşırhane taşında da bulunduğunu görüyorsunuz."
+          ],
+          "effects": {
+            "seal": true
+          },
+          "next": "N06"
+        },
+        {
+          "id": "C",
+          "label": "Sofradaki yerlerimize oturup ne istediklerini öğreniyoruz.",
+          "result": [
+            "Sandalyeler geriye gitmiyor. Aşağıdan kapı tokmağı duyuluyor. Ağzınız, siz istemeden “Hoş geldiniz” diyor. Önünüzdeki çayda, yeni gelen yolcuların yüzleri var."
+          ],
+          "effects": {},
+          "next": "E13"
+        },
+        {
+          "id": "D",
+          "label": "Birimiz pencereden yardım isterken diğerleri koridorda bekliyor.",
+          "result": [
+            "{P3}, pencereye dokunuyor. Cam su gibi yumuşuyor. Hepinizin bedenleri camın içine çekilirken aşağıda far ışıkları beliriyor. Sesiniz dışarı ulaşmıyor."
+          ],
+          "effects": {},
+          "next": "E15"
+        }
+      ]
+    },
+    {
+      "id": "N06",
+      "title": "İki Nüsha",
+      "text": [
+        "Eski çamaşırhanede beton yalaklar var. Muslukların ağzı telle bağlanmış. İçlerinden su yerine bazen nefes sesi geliyor.",
+        "{P2}, duvarın oyuk gözünde metal bir kutu buluyor. İçinde bekçi Salih imzalı tutanak ve misafir defterinden alınmış karbon nüsha duruyor.",
+        "Tutanak, 1967 kışında köylülerin yolcuları binaya kapattığını anlatıyor. Dışarıdakiler yardım çığlıklarına cevap vermemiş. Sabah içeride kimse bulunamamış. Sonra köylüler, olanları unutsunlar diye konaklama kayıtlarını silmiş.",
+        "Son satır daha yeni bir kalemle eklenmiş:",
+        "“Yanlışımız kapıyı açmak değildi. İçeridekilerin var olduğunu inkâr etmekti. Asıl defter kayıt değil, şahitliktir. Silerseniz sıra size gelir.”",
+        "Radyodan yumuşak bir ses geliyor: “Defteri yok edin. Ancak öyle özgür kalırsınız.”",
+        "Karbon nüshadaki isimler, radyodaki her kelimede biraz daha soluyor."
+      ],
+      "question": "Kutudaki belgeleri nasıl kullanıyorsunuz?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Tutanağı ve karbon nüshayı birlikte koruyup asıl defterle karşılaştırıyoruz.",
+          "result": [
+            "İki kâğıt üst üste gelince ıslak mürekkeple sonradan eklenen harfler ayrılıyor. Salih kaydı bir misafirin değil, bekçinin kaydı. Radyodaki ses bunu özellikle saklamış."
+          ],
+          "effects": {
+            "proof": true,
+            "rule": true
+          },
+          "next": "N07"
+        },
+        {
+          "id": "B",
+          "label": "Karbon nüshayı telefonla kaydedip katlayarak defterin arasına koyuyoruz.",
+          "result": [
+            "Fotoğraf kanıtı bozulmadan kalıyor. Hoparlörden bir süre kendi nefesiniz geliyor. Ardından radyo susuyor. Nüshayı yanınıza alıyorsunuz."
+          ],
+          "effects": {
+            "proof": true
+          },
+          "next": "N07"
+        },
+        {
+          "id": "C",
+          "label": "Belgeleri bırakıp radyonun tarif ettiği kestirme yola çıkıyoruz.",
+          "result": [
+            "Radyo “Aferin” diyor. Siz sokağa çıktığınızda aynı kelimeyi bütün musluklar tekrarlıyor. Duvarın dışında kendinizi meydanda buluyorsunuz."
+          ],
+          "effects": {
+            "stain": 1
+          },
+          "next": "N07"
+        },
+        {
+          "id": "D",
+          "label": "Kutuyu açmadan yüksek sesle yardım çağırıyoruz.",
+          "result": [
+            "Musluk telleri geriliyor. Yalakta beliren ağızlar sizin isimlerinizi sırayla deniyor. Kimseye yaklaşmadan dışarı çıkıyorsunuz. Son ağız, seslerden birini tutmayı başarıyor."
+          ],
+          "effects": {
+            "voiceTaken": true,
+            "stain": 2
+          },
+          "next": "N07"
+        }
+      ]
+    },
+    {
+      "id": "N07",
+      "title": "Kuru Çeşme",
+      "text": [
+        "Meydandaki çeşmenin suyu kesik. Çanağında kuru yaprak yerine tırnak büyüklüğünde kâğıtlar birikmiş. Her birinde bir isim var.",
+        "Çeşmenin taşına sırtını vermiş bir kişi görüyorsunuz. Yüzü bir bezle örtülü. Elinde boş bir bardak tutuyor.",
+        "“Adım bende değil,” diyor. “Sizinkini geri verirlerse benimkini de okuyun.”",
+        "Bezin altından sarkan çenesinde derin bir çukur var; sesi oradan değil, çeşmenin oluğundan geliyor.",
+        "Taşa kazınmış küçük yazıda şu cümle okunuyor: “Suyu adıyla isteyen, adını suda bırakır.”",
+        "{P4}, çeşmenin yalağında arkanızdaki sokağın yansımasını görüyor. Yansımanın içinde biriniz el sallıyor. Gerçek sokakta kimse yok.",
+        "Bezli kişi bardağı uzatıyor. “Bir yudum. Sonra hiçbir şeyden korkmayacaksınız.”"
+      ],
+      "question": "Çeşmenin başında ne yapıyorsunuz?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Bardağı almadan taşın yazısını ve isim kâğıtlarını inceliyoruz.",
+          "result": [
+            "Çeşmenin arkasında kapalı bir mektebin anahtarı bulunuyor. {P4}, suyun içindeki elin kendisini değil, omzunun arkasında duran birini çağırdığını fark ediyor. Oradan uzaklaşıyorsunuz."
+          ],
+          "effects": {
+            "rule": true
+          },
+          "next": "N08"
+        },
+        {
+          "id": "B",
+          "label": "Bir yudum içip kendimizi sakinleştiriyoruz.",
+          "result": [
+            "Korku bir anda kesiliyor. Yıllardır bildiğiniz bir anıyı düşünmeye çalışınca zihninizde boş bir mutfak beliriyor. Arkadaşlarınızın yüzünü biliyorsunuz; onları nasıl tanıdığınızı artık bilmiyorsunuz."
+          ],
+          "effects": {
+            "memoryLost": true,
+            "stain": 1
+          },
+          "next": "N08"
+        },
+        {
+          "id": "C",
+          "label": "Çeşmeye dokunmadan ses gelen eski mektebe ilerliyoruz.",
+          "result": [
+            "Arkanızdaki bardak taşta yuvarlanıyor. Hiç kırılmıyor. Mektebin arka kapısını açık buluyorsunuz; yanındaki cam odadan geçmeden içeri giriyorsunuz."
+          ],
+          "effects": {},
+          "next": "N09"
+        },
+        {
+          "id": "D",
+          "label": "Yansımadaki arkadaşın uzattığı eli tutuyoruz.",
+          "result": [
+            "Su yüzeyi sertleşip parmaklarınıza kilitleniyor. Sokak yukarı doğru devriliyor. Kuru taşın içinden öteki tarafınıza geçerken bezli kişi yüzündeki örtüyü kaldırıyor: yüz sizin."
+          ],
+          "effects": {},
+          "next": "E10"
+        }
+      ]
+    },
+    {
+      "id": "N08",
+      "title": "Cam Odası",
+      "text": [
+        "Mektebin yanındaki küçük oda, eski bir berber dükkânı. Aynanın üstüne beyaz kireçle şu yazılmış:",
+        "“Yanındakini camdan sayma.”",
+        "Kapı kapanmıyor ama arkanızdaki meydan artık görünmüyor. Dışarıda, dükkânın içini gösteren ikinci bir oda var. Orada da siz duruyorsunuz.",
+        "{P3}, elini kaldırıyor. Karşıdaki {P3}, elini bir nefes gecikmeyle kaldırıyor. Sonra gerçek {P3} elini indirmediği hâlde indiriyor.",
+        "Aynanın köşesinde bir anahtar asılı. Altında mektebin ismi var: KARADUT İLKMEKTEBİ. Yanında okulun kapısına uzanan gerçek bir geçit bulunuyor.",
+        "Aynadaki grup omuz omuza yaklaşıyor. Aralarında tam bir kişinin geçebileceği kadar boşluk açılıyor.",
+        "Karşıdaki {P1}, kendi camına parmağıyla yazıyor: “Sizdeki eksik.”"
+      ],
+      "question": "Aynanın karşısından nasıl ayrılıyorsunuz?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Yüzlere bakmadan çerçevedeki anahtarı alıp gerçek geçitten çıkıyoruz.",
+          "result": [
+            "Anahtar soğuk değil, ılık. Mektebin kapısını açıyor. Arkanızdaki camda herkes bir an daha kalıyor; sonra görüntü hep birlikte kararıyor."
+          ],
+          "effects": {},
+          "next": "N09"
+        },
+        {
+          "id": "B",
+          "label": "Gerçek bileklerimizi tutup aynadaki sayıyla karşılaştırıyoruz.",
+          "result": [
+            "Bilekleriniz aynı anda atıyor; camdakilerin göğsü hareket etmiyor. El ele dönüp gerçek geçitten çıkıyorsunuz. Sayıyı görüntüden doğrulamamayı öğreniyorsunuz."
+          ],
+          "effects": {
+            "rule": true
+          },
+          "next": "N09"
+        },
+        {
+          "id": "C",
+          "label": "Aynadakilere hangimizin eksik olduğunu soruyoruz.",
+          "result": [
+            "İçlerinden biri {P3} adını söylüyor. Gerçek {P3} gözlerini kapatınca camdaki karşılığı yürümeye devam ediyor. Grup geri çekiliyor; fakat geçitten çıkan gölgelerden biri cama ait."
+          ],
+          "effects": {
+            "mirrored": true,
+            "stain": 1
+          },
+          "next": "N09"
+        },
+        {
+          "id": "D",
+          "label": "Aynayı kırıp arkasından geçiyoruz.",
+          "result": [
+            "Cam kırılıyor. Her parçada birinizin ağzı açık kalıyor. Kanamıyorsunuz, ama parçalar ayakkabılarınıza yapışıyor. Mektebe girdiğinizde yerdeki izlerden biri ters dönüyor."
+          ],
+          "effects": {
+            "mirrored": true,
+            "stain": 2
+          },
+          "next": "N09"
+        }
+      ]
+    },
+    {
+      "id": "N09",
+      "title": "Yoklama",
+      "text": [
+        "Mektebin sınıfında sıralar duvara çevrilmiş. Tahtada bugünün tarihi, altında “Misafirlerin yoklaması” yazıyor.",
+        "Öğretmen masasındaki çekmecede bir lastik mühür var: ŞAHİTTİR. Yanında Salih tarafından bırakılmış bir kart duruyor.",
+        "“Kaydı kâğıt tutar. İnsanı başka bir insanın hatırladığı doğru anı tutar. Aynı ayrıntıyı iki kişi tamamlayabiliyorsa ses tek başına onu alamaz. Burada adınızı yüksek sesle okumayın.”",
+        "{P1}, {P2} ile paylaştığı bir anıyı düşünmek istiyor. Aklına bir otobüs durağı geliyor. {P2}, o gün durağın önündeki kırık sarı şemsiyeyi hatırlıyor.",
+        "Tahtaya bir çizgi daha çekiliyor.",
+        "Koridordan görünmeyen bir öğretmenin adımları yaklaşıyor. Her sıranın yanında durup bir ismi fısıldıyor. Henüz hiçbirinizin ismini söylemedi."
+      ],
+      "question": "Yoklama size ulaşmadan ne yapıyorsunuz?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Konuşmadan kâğıda ortak bir anının ayrıntılarını yazıp birbirimize tamamlatıyoruz.",
+          "result": [
+            "Ayrıntılar birleşiyor. {P1} ile {P2} arasındaki anı, diğerlerinin kendi hatırladıklarıyla genişliyor. Mührü defterin arasına koyuyorsunuz. Koridordaki adımlar sınıfın önünden geçip gidiyor."
+          ],
+          "effects": {
+            "anchor": true
+          },
+          "next": "N10"
+        },
+        {
+          "id": "B",
+          "label": "Sıralara oturup isimlerimiz söylenince burada diyoruz.",
+          "result": [
+            "Son “burada” kelimesinden sonra görünmeyen biri sıranızın arkasına oturuyor. Tahtaya grup sayınızdan bir fazla çizgi çekiliyor."
+          ],
+          "effects": {
+            "guest": true,
+            "stain": 2
+          },
+          "next": "N10"
+        },
+        {
+          "id": "C",
+          "label": "Mührü alıp sessizce arka merdivene yöneliyoruz.",
+          "result": [
+            "Mührün sapındaki yazıyı son anda okuyorsunuz: “Şahit yoksa mühür susar.” Adımlar arka kapıya varmadan sınıftan çıkıyorsunuz."
+          ],
+          "effects": {},
+          "next": "N10"
+        },
+        {
+          "id": "D",
+          "label": "Yoklama defterine başka isimler yazarak izimizi kaybettiriyoruz.",
+          "result": [
+            "Tahtadaki isimler değişiyor. Bir an için birbirinizi bu yeni adlarla tanıyorsunuz. Asıl isimlerinizi defterde arayarak sınıftan çıkıyorsunuz."
+          ],
+          "effects": {
+            "borrowedName": true,
+            "stain": 1
+          },
+          "next": "N10"
+        }
+      ]
+    },
+    {
+      "id": "N10",
+      "title": "Küçük Soba",
+      "text": [
+        "Arka merdivenin altında sobası sönmemiş dar bir oda var. Duvarda isimlerin üstü kazınmış fotoğraflar asılı. Her boş yüzün altında aynı cümle:",
+        "“Hiç gelmedi.”",
+        "Masadaki kopya kâğıdı, çamaşırhanedeki tutanağın son bölümünü taşıyor. Bir köylü önce kendi kardeşinin adını silmiş. Ertesi sabah kardeşinin yatağının bulunduğu yerde, hiç oda yapılmamış gibi düz bir duvar varmış.",
+        "Soba kapağı açılıyor.",
+        "Radyodaki yumuşak ses bu kez içeriden geliyor: “Yoruldunuz. Kâğıdı bırakın. Sizi artık kimse tutamaz.”",
+        "{P4}, defteri sobaya yaklaştırdığınızda kendi parmaklarının ucunu sayfaların içinden gördüğünü söylüyor.",
+        "Masadaki sandalyenin arkasında başka bir yazı var: “Sayıyı yüzünden değil, canlı elinden doğrula.”"
+      ],
+      "question": "Defter ve isimlerle ilgili kararınız nedir?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Defteri ateşten uzak tutup gerçek ellerimizi tek tek sayıyoruz.",
+          "result": [
+            "Bilekler, avuçlar, aynı anda verilen küçük karşılıklar. Herkesin hâlâ aranızda olduğunu doğruluyorsunuz. Defterdeki kişi sayısı ilk kez sizin sayınızla örtüşüyor."
+          ],
+          "effects": {
+            "namesCounted": true
+          },
+          "next": "N11"
+        },
+        {
+          "id": "B",
+          "label": "İsimlerin üstünü kendi parmak izlerimizle kapatıyoruz.",
+          "result": [
+            "Mürekkep derinizin içine işliyor. Harfleri artık yalnız kâğıtta değil, tırnak diplerinizde de görüyorsunuz. Yumuşak ses teşekkür ediyor."
+          ],
+          "effects": {
+            "borrowedName": true,
+            "stain": 1
+          },
+          "next": "N11"
+        },
+        {
+          "id": "C",
+          "label": "Defteri sobada yakıyoruz.",
+          "result": [
+            "İlk sayfa tutuştuğunda {P1} nefes almayı unutuyor. İkinci sayfada {P2} yüzünü seçemiyorsunuz. Son sayfa kıvrılırken bedenleriniz sobadan çıkan duman gibi tavana yükseliyor."
+          ],
+          "effects": {},
+          "next": "E14"
+        },
+        {
+          "id": "D",
+          "label": "İsim sayfalarını koparıp herkes kendi sayfasını taşıyor.",
+          "result": [
+            "Koparılan yerler bir süre sonra kanar gibi ıslanıyor. Birbirinizi hatırlamak zorlaşıyor. Sayfaları hemen yeniden defterin arasına yerleştiriyorsunuz. Kâğıtlar tamam, fakat zihninizde açılan boşluk kapanmıyor."
+          ],
+          "effects": {
+            "memoryLost": true,
+            "stain": 1
+          },
+          "next": "N11"
+        }
+      ]
+    },
+    {
+      "id": "N11",
+      "title": "Bekçinin Odası",
+      "text": [
+        "Merdivenin arkasındaki geçit, misafirhanenin kullanılmayan bekçi odasına çıkıyor. Buraya daha önce gelmediğinize eminsiniz. Buna rağmen yerdeki çamurlu izler sizin ayakkabılarınızın deseniyle aynı.",
+        "Duvardaki çatlak aynada yalnız eşya görünüyor. İnsanlar görünmüyor.",
+        "Masada iki not var. İlki eski: “Ben Salih. Adlarınızın aslı defterdedir. Benim sesimi duyarsanız yazımı sınayın.”",
+        "İkincisi yeni: “Ben {P1}. Salih yalan söylüyor. İsimlerinizi silin.”",
+        "İkinci notun kenarında henüz kurumamış parmak izleri var. {P1}, notu yazdığını hatırlamıyor.",
+        "Masanın çekmecesindeki karbon kâğıdında, eski notun bastırılmış devamı okunuyor: “Sesi taklit eder. Hatırlamadığı ayrıntıyı kâğıttan çalar.”",
+        "Kapının dışında {P1} sesiyle biri ağlıyor. İçerideki {P1}, kapıya sırtını dönüyor."
+      ],
+      "question": "Hangi kanıta güveniyorsunuz?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Karbon izi ve tarihleri karşılaştırıp eski notun devamını çıkarıyoruz.",
+          "result": [
+            "Salih, köy halkının kayıtları silmesini engellemeye çalışmış. Yeni nottaki harfler doğru, ama elin baskı yönü ters. Kâğıtta kalan gerçek tanıklığı buluyorsunuz."
+          ],
+          "effects": {
+            "proof": true,
+            "forgeryKnown": true
+          },
+          "next": "N12"
+        },
+        {
+          "id": "B",
+          "label": "Yeni not kendi adımızı taşıdığı için onu rehber kabul ediyoruz.",
+          "result": [
+            "Yazının sonuna kendi kendine bir kelime ekleniyor: SÖZ. Sonraki çıkışın sizi eve götüreceğine inanmak istiyorsunuz. Kapıdaki ağlama kesiliyor."
+          ],
+          "effects": {
+            "bargain": true,
+            "stain": 1
+          },
+          "next": "N12"
+        },
+        {
+          "id": "C",
+          "label": "Kapıyı açmadan dışarıdaki sesten ortak anının bir ayrıntısını istiyoruz.",
+          "result": [
+            "Ses duraksıyor. “Sen hatırlat,” diyor. Hatırlatmıyorsunuz. {P1}, kendi nefesini yeniden duyuyor; fakat sesi çalınmış biriniz varsa henüz geri gelmiyor."
+          ],
+          "effects": {
+            "anchor": true
+          },
+          "next": "N12"
+        },
+        {
+          "id": "D",
+          "label": "İki notu da bırakıp koridorun sonundaki çıkışa yöneliyoruz.",
+          "result": [
+            "Koridor, binanın ön kapısına açılıyor. Paspasta dışarıdaki yağmurdan tek damla yok. Kapının arkasında çalışan bir motor duyuyorsunuz."
+          ],
+          "effects": {},
+          "next": "N12"
+        }
+      ]
+    },
+    {
+      "id": "N12",
+      "title": "İçinde Siz Olan Araç",
+      "text": [
+        "Ön kapıdan yolun kenarına çıkıyorsunuz. Aracınız burada. Motor çalışıyor. Camları buğulanmış.",
+        "İçeride {N} kişi uyuyor.",
+        "Sizsiniz.",
+        "{P2}, camdaki buğuyu koluyla siliyor. İçerideki {P2} aynı anda gözlerini açıyor, ama başını kaldırmıyor. Gözleri, yüzünün geri kalanından bağımsız olarak sizi izliyor.",
+        "Arka koltuğun camında içeriden kazınmış bir cümle var: “İlk gelenin yeri dolu.”",
+        "Bagaj kapağının altından çamur akıyor. Çamurun içinde bir el, tırnağıyla metalin dışını yokluyor.",
+        "Aracın aynasına sıkıştırılmış eski yol krokisinde farklı bir geçit işaretli: kuru dere, kilit taşı, sabah eşiği.",
+        "İçerideki {P3}, gözlerini açmadan kilidi kaldırıyor. Boşta kalan bir emniyet kemeri yavaşça çözülüyor."
+      ],
+      "question": "Aracın yanında ne yapıyorsunuz?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Kapıları açmadan dışarıdaki krokideki kuru dere yolunu izliyoruz.",
+          "result": [
+            "Krokiyi aynanın dışından çekip alıyorsunuz. İçeridekiler aynı anda doğruluyor. Kuru dereye giden patikaya koşarken motor sesini arkanızda bırakıyorsunuz."
+          ],
+          "effects": {},
+          "next": "N13"
+        },
+        {
+          "id": "B",
+          "label": "Bagajı açıp içeride kapalı kalan kişiyi kurtarıyoruz.",
+          "result": [
+            "Bagajdaki el bileğinizi kavrıyor. İçerisi aşağıya doğru uzayan bir merdiven. Arkanızdaki araç kapıları kapanırken hepiniz birer birer o karanlığa çekiliyorsunuz."
+          ],
+          "effects": {},
+          "next": "E11"
+        },
+        {
+          "id": "C",
+          "label": "Uyuyan kopyalarımızı dışarı çıkarmaya çalışıyoruz.",
+          "result": [
+            "Kapı koluna dokunduğunuzda camdaki yüzler siliniyor. İçlerinden biri görünmeden aranıza geçiyor. Aracı terk edip kuru dereye yöneliyorsunuz."
+          ],
+          "effects": {
+            "guest": true,
+            "stain": 2
+          },
+          "next": "N13"
+        },
+        {
+          "id": "D",
+          "label": "Bizi daha önce buraya getiren navigasyonu yeniden açıyoruz.",
+          "result": [
+            "Navigasyon dere yolunu gösteriyor. Varış adı EV. Ekranın altında bir sözleşme onayı beliriyor; kapatsanız da işaretli kalıyor. Yol sizi kuru dereye çıkarıyor."
+          ],
+          "effects": {
+            "bargain": true,
+            "stain": 1
+          },
+          "next": "N13"
+        }
+      ]
+    },
+    {
+      "id": "N13",
+      "title": "Bir Kişilik Köprü",
+      "text": [
+        "Kuru derenin üzerinde alçak bir taş köprü var. Altından su sesi geliyor; yatağına baktığınızda yalnız toz görüyorsunuz.",
+        "Köprünün ortasına bir kantar yerleştirilmiş. Kantarın kefesinde boş bir çocuk ayakkabısı duruyor.",
+        "Karşı kıyıdaki levhada şu yazıyor: “Geçiş bedeli bir misafir.”",
+        "{P4}, levhanın arkasındaki daha eski kazımayı fark ediyor: “Yolcular birlikte geçtiğinde kantar işlemez.”",
+        "Köprünün altından {P2} sesleniyor. “Beni buraya bıraktınız.”",
+        "Yanınızdaki {P2} ellerini avuçlarına saklıyor. Kantarın ibresi yavaşça sizin sayınıza yaklaşırken, ayakkabının içinden yeni kesilmiş bir tırnak düşüyor.",
+        "Köprüden tek sıra hâlinde geçilebilir. Fakat önünüzdekinin omzunu ya da elini tutmak mümkün."
+      ],
+      "question": "Köprüyü nasıl geçiyorsunuz?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Birbirimizle fiziksel teması kesmeden hep birlikte geçiyoruz.",
+          "result": [
+            "İlk kişi adım attığında son kişi hâlâ toprakta. Zinciri koparmıyorsunuz. İbre bir türlü sabitlenemiyor. Son kişi de karşıya geçince köprünün altındaki ses, tek bir insan gibi ağlıyor."
+          ],
+          "effects": {},
+          "next": "N14"
+        },
+        {
+          "id": "B",
+          "label": "Birimiz kalmayı kabul ediyor; diğerleri çıkıyor.",
+          "result": [
+            "{P2}, kefenin yanına geçiyor. Kalanlar karşıya ulaştığında levhada “Ödendi” yazıyor. {P2} el sallıyor; siz onun neden tanıdık geldiğini düşünüyorsunuz."
+          ],
+          "effects": {},
+          "next": "E07"
+        },
+        {
+          "id": "C",
+          "label": "Bedel olarak birimizin adını kâğıda yazıp kefeye bırakıyoruz.",
+          "result": [
+            "{P2} adı kâğıtta kalıyor, bedeni yanınızda yürüyor. Bir süre sonra ona seslenirken doğru adı bulamıyorsunuz. Defterde asıl isim hâlâ duruyor; geri alınabilir."
+          ],
+          "effects": {
+            "borrowedName": true,
+            "stain": 2
+          },
+          "next": "N14"
+        },
+        {
+          "id": "D",
+          "label": "En geridekine haber vermeden koşup geçiyoruz.",
+          "result": [
+            "Köprü aranızda uzuyor. Son kişinin adımları duyulmaz oluyor. Karşıdaki yol birden araç yoluna çıkıyor. Kimse dönüp eksik kişiyi soramıyor."
+          ],
+          "effects": {},
+          "next": "E05"
+        }
+      ]
+    },
+    {
+      "id": "N14",
+      "title": "El Değmemiş Hatıra",
+      "text": [
+        "Karşı kıyıda duvarsız bir oda var. Zeminde eski bir halı, ortasında okuldan aldığınız mühürle aynı açık halka işareti.",
+        "Halkanın içinde, sizin ortak anılarınızdan küçük eşyalar beliriyor: sarı bir şemsiye teli, bir bilet, kenarı kırık bir fincan. Bunları buraya kim getirmiş olabilir? Şemsiye telinin ucunda, yıllar önce durağın bankına sürtündüğünde bulaşan sarı boya bile duruyor.",
+        "{P1}, bir eşyaya uzandığında kendi adını hatırlamak zorlaşıyor. Elini geri çekiyor.",
+        "Halkanın kenarında bir cümle var: “Biri anlatır, öteki tamamlar. Üçüncü, kimden duyduğunu hatırlar.”",
+        "Odanın dışında, aynı anıyı anlattığını iddia eden sesler yükseliyor. Her biri doğru başlayıp aynı yanlış ayrıntıyla bitiriyor: “Sonra hepimiz suya girdik.”",
+        "Hiç suya girmediniz."
+      ],
+      "question": "Hatıraları nasıl doğruluyorsunuz?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Eşyalara dokunmadan gerçek arkadaşlarımızın tamamladığı anıyı izliyoruz.",
+          "result": [
+            "Biriniz anlatıyor, diğeri tamamlıyor, kalanlar kimin orada olduğunu doğruluyor. Sahte sesler birer birer susuyor. Çalınan ses geri geliyor; ödünç yazılan isim asıl sahibine bağlanıyor."
+          ],
+          "effects": {
+            "anchor": true,
+            "voiceTaken": false,
+            "borrowedName": false
+          },
+          "next": "N15"
+        },
+        {
+          "id": "B",
+          "label": "Eşyaları bırakıp gerçek bileklerimizi yeniden sayıyoruz.",
+          "result": [
+            "Odanın dışında dolaşan seslerle içinizde duran bedenleri ayırıyorsunuz. Kaç kişi yola çıktığınızı ve kaç kişi olduğunuzu doğruluyorsunuz. Halkanın dışındaki ayak izleri size karışamıyor."
+          ],
+          "effects": {
+            "namesCounted": true
+          },
+          "next": "N15"
+        },
+        {
+          "id": "C",
+          "label": "Hatıralardan birini yanımıza hatıra olarak alıyoruz.",
+          "result": [
+            "{P3}, bileti cebine koyuyor. O anın başlangıcını bir daha hatırlayamıyor. Odanın dışında biri aynı bileti elinde tutarak aranıza girmeye hazırlanıyor."
+          ],
+          "effects": {
+            "memoryLost": true,
+            "guest": true,
+            "stain": 1
+          },
+          "next": "N15"
+        },
+        {
+          "id": "D",
+          "label": "Dışarıdaki seslerin anlattığı anıya uyarak hep birlikte tekrar ediyoruz.",
+          "result": [
+            "“Sonra hepimiz suya girdik.” Zeminde kuru ayaklarınızın çevresinde küçük halkalar açılıyor. Duvarı olmayan odadan sırılsıklam çıkıyorsunuz."
+          ],
+          "effects": {
+            "mirrored": true,
+            "stain": 2
+          },
+          "next": "N15"
+        }
+      ]
+    },
+    {
+      "id": "N15",
+      "title": "Kapıyı Tamamlamak",
+      "text": [
+        "Patika, terk edilmiş bir evin tek başına kalmış kapısına varıyor. Duvar yok. Kapının iki yanından yürümek mümkün görünüyor; fakat yan tarafa atılan her adım sizi yeniden kapının önüne getiriyor.",
+        "Çerçevede üç küçük çentik, altlarında tamamlanmamış bir halka var. Misafirhanedeki kapıda gördüğünüz işaretin aynısı.",
+        "Eşiğin dibinde Salih imzalı bir not:",
+        "“Bu bir dua değildir. İçerisiyle dışarısını ayıran eski bir işarettir. Halka kesikse gelen, gittiğini sanır. Halkayı tamamla; kendi yüzünü kapıya verme.”",
+        "Kapı açılmadan arkasında bir yüz beliriyor. Tahtanın damarları {P3} yüzüne dönüşüyor. Sonra gözleri birer kıymık gibi dışarı uzuyor.",
+        "Eşiğin altında beyaz bir bez ve bir parça kömür buluyorsunuz."
+      ],
+      "question": "Kapıdaki işaretle ne yapıyorsunuz?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Beyaz bezle yüzü kapatıp kömürle eksik halkayı tamamlıyoruz.",
+          "result": [
+            "Tahta yüz bir an kendi yüzünüzmüş gibi acıyor. Sonra çentikler birleşiyor. Camdan gelen izler ayaklarınızdan dökülüyor. Peşinizdeki bazı sesler kapının öte yanında kalıyor."
+          ],
+          "effects": {
+            "seal": true,
+            "mirrored": false,
+            "stain": -2
+          },
+          "next": "N16"
+        },
+        {
+          "id": "B",
+          "label": "Kapıyı hiç açmadan çerçevenin altındaki eşikten geçiyoruz.",
+          "result": [
+            "Bir an tavana doğru yürüyormuşsunuz hissine kapılıyorsunuz. Öte tarafta patika devam ediyor. İşaret açık kalıyor. Kapının ardında biri nefes almaya devam ediyor."
+          ],
+          "effects": {},
+          "next": "N16"
+        },
+        {
+          "id": "C",
+          "label": "Kendi yüzümüzü tahtadaki yüze dayayıp kapıdan izin istiyoruz.",
+          "result": [
+            "Dudaklarınız tahtaya yapışıyor. Kelimeleriniz bütün köye dağılıyor. Sonra sesiniz, kilometrelerce uzaktaki bir telefonun hoparlöründen çıkıyor."
+          ],
+          "effects": {},
+          "next": "E16"
+        },
+        {
+          "id": "D",
+          "label": "Kapıyı kırıp yolu zorla açıyoruz.",
+          "result": [
+            "Kırık parçalar yere değil, karanlığa düşüyor. Çerçeveden geçince arkanızdaki kapı yeniden bütün. Üzerinde bu kez hepinizin yüzü var."
+          ],
+          "effects": {
+            "seal": false,
+            "mirrored": true,
+            "stain": 2
+          },
+          "next": "N16"
+        }
+      ]
+    },
+    {
+      "id": "N16",
+      "title": "Çocukluk Fotoğrafı",
+      "text": [
+        "Kapının öte yanında bir fotoğrafçı vitrini duruyor. Arkasında dükkân yok. Camda asılı fotoğrafta {N} çocuk, misafirhanenin önünde yan yana.",
+        "Yüzler size benziyor. Çok küçük hâlleriniz.",
+        "Altındaki tarih, grubunuzdaki herkesin henüz doğmadığı kadar eski. Buna rağmen {P4}, fotoğraf çekilirken arkasındaki kişinin elinin omzunu nasıl sıktığını hatırlıyor.",
+        "Fotoğrafın kenarındaki yırtıktan, çocukların ayaklarının altında yetişkin ayakkabıları görünüyor. Başlar sonradan yerleştirilmiş olabilir.",
+        "Köy, yalnız kaydı değil, geçmişi de yeniden yazmaya çalışıyor.",
+        "Camın içinden annenize ya da babanıza ait olduğunu iddia eden bir ses gelmiyor. Yalnız size benzeyen o çocuk konuşuyor: “Sen hiç buradan çıkmadın. Büyüdüğünü biz anlattık.”",
+        "Vitrinin yanında dar bir yürüyüş yolu var."
+      ],
+      "question": "Fotoğrafın iddiasına nasıl karşılık veriyorsunuz?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Tarih ve ayakkabı tutarsızlığını esas alıp fotoğrafı almadan ilerliyoruz.",
+          "result": [
+            "{P4}, omzundaki hayalî elin gevşediğini hissediyor. Siz uzaklaşırken çocukların yüzleri birbirine karışıyor. Sahte geçmiş, doğrulanmadığı için tamamlanamıyor."
+          ],
+          "effects": {},
+          "next": "N17"
+        },
+        {
+          "id": "B",
+          "label": "Çocukların biz olduğuna inanıp fotoğrafın arkasındaki kapıyı açıyoruz.",
+          "result": [
+            "Vitrin iki yana açılıyor. İçerideki çocuklar sizin boyunuza kadar uzuyor. Dışarıdaki hayatınız bir fotoğrafın arka yüzü gibi kapanıyor."
+          ],
+          "effects": {},
+          "next": "E19"
+        },
+        {
+          "id": "C",
+          "label": "Fotoğrafı yanımıza alıp daha sonra incelemeye karar veriyoruz.",
+          "result": [
+            "Cam kolayca açılıyor. Fotoğrafa dokunduğunuzda yolculuğun ilk saatleri zihninizden siliniyor. Kimin ne zaman araca bindiğini artık bilmiyorsunuz."
+          ],
+          "effects": {
+            "memoryLost": true,
+            "stain": 1
+          },
+          "next": "N17"
+        },
+        {
+          "id": "D",
+          "label": "Fotoğrafı yırtıp çocuklara isimlerimizi bağırıyoruz.",
+          "result": [
+            "Kâğıt yırtılırken kendi sesleriniz camda kalıyor. Çocuklar isimlerinizi bir daha tekrarlamıyor. Yol açılıyor, fakat yanınızdaki birinin adını yabancı bir adla çağırmaya başlıyorsunuz."
+          ],
+          "effects": {
+            "borrowedName": true,
+            "voiceTaken": true,
+            "stain": 2
+          },
+          "next": "N17"
+        }
+      ]
+    },
+    {
+      "id": "N17",
+      "title": "Aranızdaki Boşluk",
+      "text": [
+        "Yolun iki yanındaki taşlar sırayla yanıyor. Ateş yok; içlerinden soğuk bir ışık sızıyor. Işığa basan gölgeleriniz, bedeninizden bir adım önde ilerliyor.",
+        "Köyden ayrıldığınızı gösteren eski levha görünüyor. Arkasında iki sıra insan duruyor. Bir sıra sizsiniz. Diğer sıra, bütün gece size yetişmeye çalışan karşılıklarınız.",
+        "Gerçek grubunuz henüz dağılmadı. Ancak adımlarınızın arasında bazen bir çift küçük ayak sesi daha duyuluyor.",
+        "Yerdeki çentikler bir cümleye dönüşüyor:",
+        "“Yüzünü değil, senden habersiz değiştiremediğini sor.”",
+        "{P1}, sınıftaki hatırayı düşünüyor. Herkes olayı aynı cümlelerle anlatmıyordu; doğru ayrıntılar farklı ağızlarda birleşiyordu. Kopyalar ise aynı kelimeleri aynı sırayla söylüyordu.",
+        "Karşı sıradan biri, “Bir kişi yanlış,” diyor."
+      ],
+      "question": "Gerçek grubunuzu nasıl belirliyorsunuz?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Birbirimizi suçlamadan, ortak anının farklı ayrıntılarını soruyoruz.",
+          "result": [
+            "Şemsiyenin kırık telini biri, geç gelen otobüsü bir başkası hatırlıyor. Anı, ayrı ağızlarda tamamlanıyor. Aradaki boş yerden ıslak bir nefes yükseliyor; fazladan gelen geri çekiliyor. Eski sözleri de açıkça reddediyorsunuz."
+          ],
+          "effects": {
+            "guest": false,
+            "bargain": false,
+            "stain": -1
+          },
+          "next": "N18"
+        },
+        {
+          "id": "B",
+          "label": "Herkesin yüzüne bakıp tanıdık gelen sırayla ilerliyoruz.",
+          "result": [
+            "Yüzler doğru. Ama yolun kıyısındaki küçük ayak izleri de sizinle yürüyor. Bir görüntünün içeri sızdığını fark etmeden levhayı geçiyorsunuz."
+          ],
+          "effects": {
+            "mirrored": true,
+            "stain": 1
+          },
+          "next": "N18"
+        },
+        {
+          "id": "C",
+          "label": "Defteri kapalı tutup kimseyi sınamadan el ele yürüyoruz.",
+          "result": [
+            "Sıralar iç içe geçiyor. Bir an elinizdeki elin kaç parmağı olduğunu kestiremiyorsunuz. Teması bırakmıyor, patikaya devam ediyorsunuz."
+          ],
+          "effects": {},
+          "next": "N18"
+        },
+        {
+          "id": "D",
+          "label": "Karşı sıraya, gerçek olanın onlar olduğunu kabul ettiğimizi söylüyoruz.",
+          "result": [
+            "Karşıdakiler rahatlamış gibi nefes veriyor. Birinin elinde sizin telefonunuz var. Önünüzdeki dünyayı onlara bıraktığınız anda misafirhanenin kapısında yeni bir grup beliriyor: yine siz."
+          ],
+          "effects": {},
+          "next": "E18"
+        }
+      ]
+    },
+    {
+      "id": "N18",
+      "title": "Sabahın Çizgisi",
+      "text": [
+        "Gökyüzünde ilk kez açık bir renk beliriyor. Kuş sesi yok. Uzakta bir horoz üç kere ötüyor; sesin son hecesi insan nefesine dönüşüyor.",
+        "Önünüzde dereyi kesen beyaz bir taş çizgi var. İlk ışık çizginin üstüne vuruyor, fakat gölgeleriniz hâlâ misafirhaneye doğru uzanıyor.",
+        "Taşın üzerinde aynı halka işareti ve okunabilen son talimat:",
+        "“Işık yetmez. Şahitli adlar kapıya gösterilir. Taş tamamlanır. Canlılar birlikte geçer. Defter içeride bırakılır.”",
+        "Defter, çizgiye yaklaştırıldığında ısınıyor. İçindeki bazı satırlar asıl nüshadan farklı görünüyor. Hâlâ düzeltmek için zamanınız var.",
+        "Yan tarafta, buraya gelişinizi gösteren bir telefon videosu kendiliğinden oynuyor. “Baştan dene,” diyor bir ses. “Bu kez hata yapmazsın.”"
+      ],
+      "question": "Son eşiği nasıl hazırlıyorsunuz?",
+      "options": [
+        {
+          "id": "A",
+          "label": "İşareti taşta tamamlayıp defteri açmadan önce grubun birlikte durmasını sağlıyoruz.",
+          "result": [
+            "Taş yerine oturuyor. Gölgeleriniz ilk kez ayaklarınıza yaklaşıyor. Defterin sayfaları rüzgâr olmadan tek bir yaprakta duruyor: bu gecenin kayıtları."
+          ],
+          "effects": {
+            "exitPrepared": true
+          },
+          "next": "N19"
+        },
+        {
+          "id": "B",
+          "label": "Videodaki başlangıç anına dönmeyi kabul ediyoruz.",
+          "result": [
+            "Ekrandaki yola dokunuyorsunuz. Parmak iziniz yağmur izine dönüşüyor. Motor öksürüyor. Saat 23.17. Birinizin avucunda bu gece henüz almadığınız mührün izi var."
+          ],
+          "effects": {},
+          "next": "E17"
+        },
+        {
+          "id": "C",
+          "label": "Horoz sesini sabahın kanıtı sayıp taşın ötesine hemen geçiyoruz.",
+          "result": [
+            "Işık gözlerinizi alıyor. Çizgiyi geçtiğinizi sanıyorsunuz; ayaklarınız aynı yerde kalmış. Ses bir daha ötüyor ve siz son kaydı okumaya mecbur bırakılıyorsunuz."
+          ],
+          "effects": {
+            "stain": 1
+          },
+          "next": "N19"
+        },
+        {
+          "id": "D",
+          "label": "Radyodaki sesin bizi geçirmesi karşılığında bir söz daha veriyoruz.",
+          "result": [
+            "“Sonra kapıyı açacaksınız,” diyor. Neye, ne zaman olduğunu söylemiyor. Başınızı salladığınızda defter kendi kendine son sayfasını açıyor."
+          ],
+          "effects": {
+            "bargain": true,
+            "stain": 1
+          },
+          "next": "N19"
+        }
+      ]
+    },
+    {
+      "id": "N19",
+      "title": "İsimleri Geri Almak",
+      "text": [
+        "Son sayfada isimleriniz yeniden yazılı. Bazıları sizin bildiğiniz biçimde, bazıları yanlarına eklenmiş yabancı harflerle. Altta Salih satırı, üsttekilerden ayrı bir çerçevede duruyor.",
+        "{P1}, parmağını bir harfin üzerine koyuyor. Harfin altında kâğıt değil, derin bir oda hissediyor. Odanın içinde birisi nefes alıyor.",
+        "ŞAHİTTİR mührü avucunuzda. Sınıftaki kartta yazan cümleyi hatırlıyorsunuz: “Şahit yoksa mühür susar.”",
+        "Karbon nüsha, asıl yazıyı ayırabilir. Ortak hatıra, ismin sahibini tutabilir. Gerçek ellerin sayısı, bir satırın fazladan yazılmasını önleyebilir. Taştaki kapı ise geçişe hazırlanmış olmalı.",
+        "Ses artık rica etmiyor.",
+        "“Bir çizgi çekin,” diyor. “Bir çizgiyi bile çok mu görüyorsunuz?”",
+        "Mürekkep, sayfanın kenarından parmağınıza doğru yürümeye başlıyor."
+      ],
+      "question": "Kayıtlara son müdahaleniz ne olacak?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Asıl yazıyı kanıtla ayırıp anıyla doğruluyor, gerçek kişi sayısına göre mühürlüyoruz.",
+          "result": [
+            "{RESTORE_RESULT}"
+          ],
+          "effects": {
+            "resolveNames": true
+          },
+          "next": "N20"
+        },
+        {
+          "id": "B",
+          "label": "İsimlere dokunmadan önce eşiğin açık işaretini tamamlıyoruz.",
+          "result": [
+            "Eksik taş kapanıyor. Geçiş hazır, fakat isimler hâlâ neyse o. Defteri kapatırken parmaklarınızda siz yazmadan atılmış imzaların baskısını hissediyorsunuz."
+          ],
+          "effects": {
+            "exitPrepared": true
+          },
+          "next": "N20"
+        },
+        {
+          "id": "C",
+          "label": "İsimlerimizin üstünü çizerek kaydı kapatıyoruz.",
+          "result": [
+            "Her çizgide içinizden birine bakmak zorlaşıyor. Defteri bırakmıyor, yeniden birbirinizi saymaya çalışıyorsunuz. Ancak isimlerle bedenleri eşleştiren bağ incelmiş."
+          ],
+          "effects": {
+            "namesRestored": false,
+            "stain": 2
+          },
+          "next": "N20"
+        },
+        {
+          "id": "D",
+          "label": "Sesin istediği son imzayı atıp borcu kabul ediyoruz.",
+          "result": [
+            "Son imza kuruyor. Altında çıkış izni yazmıyor. “Bir dahaki misafirleri kabul eder” yazıyor. Yine de önünüzdeki çizgi aydınlanmaya devam ediyor."
+          ],
+          "effects": {
+            "bargain": true,
+            "borrowedName": true,
+            "namesRestored": false
+          },
+          "next": "N20"
+        }
+      ]
+    },
+    {
+      "id": "N20",
+      "title": "Kimin Eve Döndüğü",
+      "text": [
+        "Gün doğuyor. Ya da bir şey, gökyüzünü gün doğuyormuş gibi aydınlatıyor.",
+        "Köyün sesi bir anlığına tamamen kesiliyor. O sessizlikte kendi kalp atışlarınızı duyuyorsunuz. Herkesin aynı anda duyduğu, birbirine uymayan gerçek ritimler.",
+        "Beyaz çizginin öte yanında asfalt var. Daha ileride aracınız duruyor. Bu kez camlarında buğu yok. Arka kapısı aralık.",
+        "Defter köy tarafında açılmış bekliyor. Sayfalar artık uçuşmuyor.",
+        "{P4} telefonuna bakıyor. Yeni bir arama: EV. Rehberinizde böyle bir kayıt bulunmuyor. Aramanın arkasında hepinizin aynı odada güldüğü bir ses duyuluyor.",
+        "Sağınızda, cam odasındaki karşılıklarınız el ele tutuşmuş bekliyor. Aralarındaki {P1}, “Bu kadar uğraşmana gerek yoktu,” diyor. “Ben senin yerine dönebilirim.”",
+        "Artık bir yol seçmelisiniz."
+      ],
+      "question": "Son adımınız hangisi?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Defteri köy tarafında bırakıp birbirimizin elini tutarak taş eşikten yürüyoruz.",
+          "result": [
+            "{CROSSING_RESULT}"
+          ],
+          "effects": {
+            "routeEnding": "cross"
+          },
+          "next": "ROUTE_CROSS"
+        },
+        {
+          "id": "B",
+          "label": "Araca binip kapıları kilitliyor, köye bakmadan uzaklaşıyoruz.",
+          "result": [
+            "Kontak çevriliyor. Motor ilk denemede çalışıyor. Arka koltuktaki kemerlerden biri, kimse dokunmadan çekilip yerine oturuyor."
+          ],
+          "effects": {
+            "routeEnding": "car"
+          },
+          "next": "ROUTE_CAR"
+        },
+        {
+          "id": "C",
+          "label": "EV aramasını açıp kurtulduğumuzu söylüyoruz.",
+          "result": [
+            "Karşıdan kendi sesiniz geliyor: “Henüz karar vermedik.” Telefon ekranı kararıyor. Sonra yeni bir oylama açılıyor."
+          ],
+          "effects": {},
+          "next": "E20"
+        },
+        {
+          "id": "D",
+          "label": "Karşılıklarımızın teklifini kabul edip onlarla yer değiştiriyoruz.",
+          "result": [
+            "Bir adım atıyorsunuz. Elinizdeki telefon, karşıdakinin elinde beliriyor. Karşı sıranın arkasında, köyün mü yoksa evinizin mi olduğu anlaşılmayan bir kapı açılıyor."
+          ],
+          "effects": {
+            "routeEnding": "copy"
+          },
+          "next": "ROUTE_COPY"
+        }
+      ]
+    }
+  ],
+  "endings": [
+    {
+      "id": "E01",
+      "title": "Eksiksiz",
+      "classification": "Tam başarı",
+      "text": [
+        "Son kişi de beyaz çizgiyi geçince defter kapanıyor. Köyün içinden ilk kez yalnız rüzgâr sesi geliyor. Aracınıza yürüyorsunuz; içeride kimse yok. Hepiniz birbirinizi, isimlerinizi ve aynı gecenin ayrı ayrıntılarını hatırlıyorsunuz.",
+        "{P1}, sabah bir benzinlikte çay söylüyor. Masaya tam {N} bardak geliyor. Kimse sayıyı söylemek zorunda kalmıyor.",
+        "Aylar geçiyor. Kapılarınız çalmıyor. Telefonlarda açıklanamayan fotoğraflar belirmiyor. Biriniz gecenin nasıl bittiğini sorduğunda aynı şeyi hatırlıyorsunuz: İçeride kalan defter bir yük değildi. Bir daha inkâr edilmeyecek insanların kaydıydı.",
+        "Bu kez gerçekten çıktınız."
+      ]
+    },
+    {
+      "id": "E02",
+      "title": "Unutulan Gece",
+      "classification": "Bedelli kurtuluş",
+      "text": [
+        "Sabah yol kenarında uyanıyorsunuz. Hepiniz buradasınız. Araç sağlam. Son hatırladığınız şey, ana yoldaki bir kavşak. Telefonlarınızda köye ait hiçbir fotoğraf yok.",
+        "Bir hafta sonra {P3}, galerisinde yeni bir görüntü buluyor. Hepiniz kendi yataklarınızda uyuyorsunuz. Ayrı evler, ayrı odalar. Ama görüntü tek bir fotoğraf.",
+        "Çekim saati dün gece 03.17.",
+        "Köşesinde, üstü tozlanmış bir konaklama defteri duruyor. Kimse onu tanımıyor. {P3} fotoğrafı silmek için ekrana dokunuyor. Telefon, görüntünün zaten açık olduğunu ve canlı yayının sürdüğünü söylüyor."
+      ]
+    },
+    {
+      "id": "E03",
+      "title": "Konuşmayan",
+      "classification": "Bedelli kurtuluş",
+      "text": [
+        "Hepiniz eve ulaşıyorsunuz. Fakat {P4} sesini geri getiremiyor. Boğazı sağlam; hekimlerin bulduğu bir neden yok. Konuşmaya çalışınca odadaki bütün ampuller hafifçe titriyor.",
+        "{P4}, deftere son bakışta okuduğu cümleyi kimseye yazmıyor. Kalem o kelimelere gelince kâğıdı yırtıyor.",
+        "Yıllar sonra aynı evde kaldığınız bir gece uykusunda konuşmaya başlıyor. Sesi eski sesi. Rahat, yorgun, neredeyse mutlu.",
+        "“Tamam,” diyor. “Artık gelebilirsin.”",
+        "Sabah {P4} yeniden konuşabiliyor. Evdeki bir odanın kapısı ise içeriden kilitli. O odanın dün bir duvar olduğundan hepiniz eminsiniz."
+      ]
+    },
+    {
+      "id": "E04",
+      "title": "Dışarıda Kalan",
+      "classification": "Takip altında kurtuluş",
+      "text": [
+        "Köyden eksiksiz çıktınız. İsimleriniz yerinde. Hiçbirinizin yüzünde bir yabancılık yok. Fakat son işaret arkanızdaki yolu bütünüyle kapatmadı.",
+        "İlk gece {P1}, karşı sokaktaki lambanın altında birini görüyor. İkinci gece başka biriniz aynı kişiyi görüyor. Yüzü seçilmiyor; boyu her defasında bakan kişinin boyuyla aynı.",
+        "Evlerinize giremiyor. Henüz.",
+        "Bir ay boyunca yaklaşmıyor. Sonra {P2}, sabah kapı önüne bırakılmış tek bir çay bardağı buluyor. Bardak sıcak. İçindeki kâğıtta yalnız bir cümle var:",
+        "“Bir gece de sizde kalsam?”"
+      ]
+    },
+    {
+      "id": "E05",
+      "title": "Boş Koltuk",
+      "classification": "Birlikte kurtuluş başarısız",
+      "text": [
+        "Koşu bittiğinde kendinizi aracın yanında buluyorsunuz. Köprü uzakta kalmış. Arka koltuklardan biri boş; kemeri takılı.",
+        "Yola çıktığınızdan beri kaç kişi olduğunuzu soran olmuyor. Boş yere bakınca boğazınız düğümleniyor ama nedenini bilmiyorsunuz. {LOST}, belleğinizden bir ismin silinmesi gibi değil, o ismin hiç var olmaması gibi kayboluyor.",
+        "Eve vardığınızda telefonunuz grup fotoğrafı için anı bildirimi gösteriyor. Omuzlarınızın arasında insan biçiminde bir boşluk var. Altında otomatik bir başlık:",
+        "“Hep birlikte.”",
+        "Boş koltuğun kemeri, siz indikten sonra bir kere çözülüp tekrar takılıyor."
+      ]
+    },
+    {
+      "id": "E06",
+      "title": "Hatırlayan Tek Kişi",
+      "classification": "İsimler geri alınamadı",
+      "text": [
+        "Yolu buluyorsunuz. Araca biniyorsunuz. Eve dönüyorsunuz. Fakat son defa dönüp saydığınızda {LOST} yok.",
+        "{P1} dışında hiç kimse o adı hatırlamıyor. Fotoğraflarda yerini bir ağaç, bir kapı, bazen bomboş bir sandalye doldurmuş. {P1}, aynı kişiyi anlattıkça diğerleri endişeyle birbirine bakıyor.",
+        "Üçüncü gece {P1} telefonuna bir mesaj geliyor.",
+        "“Beni sen de unutursan çıkabileceğim.”",
+        "Ardından ikinci mesaj:",
+        "“Bunu ben yazmadım.”",
+        "İki mesajın da göndericisi {P1}. İkisi de henüz gelmemiş bir tarihten gönderilmiş."
+      ]
+    },
+    {
+      "id": "E07",
+      "title": "Yer Değiştirme",
+      "classification": "Gönüllü kayıp",
+      "text": [
+        "{LOST}, köprünün kefesinde kalıyor. Siz karşı kıyıya ulaştığınızda köprüde artık bir insan değil, küçük bir çocuk ayakkabısı var.",
+        "Yol hemen açılıyor. Aracınıza dönüyor, hiçbir engelle karşılaşmadan evlerinize gidiyorsunuz. Birinin sizi kurtarmak için kaldığını biliyorsunuz. İsmini çıkaramıyorsunuz.",
+        "{P3}, cebinde kendisine ait olmayan bir anahtar buluyor. Hangi kapıyı açtığını bilmediği için aylarca taşıyor.",
+        "Bir gece evinin kilidine anahtarı deniyor. Kapı açılıyor. İçerisi kendi evi değil. Masada sıcak çaylar, açık bir defter ve sizi bekleyen {LOST} var.",
+        "“Sıra kimde?” diye soruyor."
+      ]
+    },
+    {
+      "id": "E08",
+      "title": "Eve Dönen",
+      "classification": "Sahipliği bozulmuş dönüş",
+      "text": [
+        "Köyün çıkışında {LOST} bir an görünmez oluyor. Bir ismi gerçek sahibinden ayıran o küçük yanlışlık, yolu onun altından çekip alıyor. Geri kalanlar asfalta ulaşıyor.",
+        "Ertesi sabah haber geliyor: {LOST} evinde. Evdekilere göre bütün gece oradaydı. Sizle yola hiç çıkmadı.",
+        "Telefonunuzdaki videoda araca bindiği görülüyor. Videoyu kendisine gösterdiğinizde gülümsüyor.",
+        "“Benzemiş,” diyor.",
+        "O sırada ekranın içindeki {LOST}, videonun geri kalanı oynamaya devam ederken başını çevirip size bakıyor. Dudakları sessizce iki kelime söylüyor:",
+        "“İçeri alma.”"
+      ]
+    },
+    {
+      "id": "E09",
+      "title": "Fazladan Yolcu",
+      "classification": "Varlık gruba karıştı",
+      "text": [
+        "Araçta herkesin yüzünü tanıyorsunuz. Herkes bir anı anlatabiliyor. Herkesin oturduğu yer, hep orasıymış gibi geliyor.",
+        "Yalnız kişi sayısı bir fazla.",
+        "Yol kenarında durup sayıyorsunuz. Bir daha sayıyorsunuz. İsimlerin her biri defterinizde var. Fazladan olan, kendine geçmişinizde de bir yer açmış.",
+        "Birini indirmek zorundasınız. Fakat hangi ismi söylediğinizde o kişi en eski, en gerçek anınızı anlatıyor.",
+        "Arka koltuktaki biri iç çekiyor.",
+        "“Hep böyle yapıyorsunuz,” diyor. “Geçen sefer de yanlış kişiyi indirmiştiniz.”",
+        "Hepiniz aynı anda, o yolun kenarında bırakılan birinin yüzünü hatırlıyorsunuz."
+      ]
+    },
+    {
+      "id": "E10",
+      "title": "Yanlış Beden",
+      "classification": "Yansıma yer değiştirdi",
+      "text": [
+        "Eve dönüyorsunuz. Kimse eksik değil. Telefonunuz yüzünüzü tanıyor, kapınızın anahtarı çalışıyor. Günlük hayatınızın bütün küçük kanıtları yerli yerinde.",
+        "{P3}, elini yıkamak için aynanın önüne geçiyor. Aynada gördüğü kişi kendisi değil. Misafirhanenin eski fotoğrafındaki yüzü beyaz bırakılmış yolcu.",
+        "Gerçek yüzünü telefon kamerasında kontrol ediyor: normal. Yeniden aynaya bakıyor: yabancı.",
+        "Aynadaki kişi camın iç yüzüne tırnağıyla yazıyor:",
+        "“Ben senin bedeninde değilim.”",
+        "Bir süre bekliyor. Sonra ikinci satırı ekliyor:",
+        "“Sen benimkinde kaldın.”"
+      ]
+    },
+    {
+      "id": "E11",
+      "title": "Bagaj",
+      "classification": "Aracın içindeki geçit",
+      "text": [
+        "Bagajdaki merdivenin sonu gelmiyor. Yukarıda aracın açık kapağı, küçük bir ışık dikdörtgeni hâlinde kalıyor. Sonra o da kapanıyor.",
+        "Bir anda yeniden koltuklarınızdasınız. Eve dönmüş olmalısınız. Sokak tanıdık, araç duruyor. Fakat dışarıdaki evlerin hiçbirinin kapısı yok.",
+        "Bagajdan üç vuruş geliyor.",
+        "Bu kez açmıyorsunuz. Vuruş, arka koltuğun süngerine geçiyor. Sonra ön koltuğa. Sonra her birinizin oturduğu yerin tam altına.",
+        "{P1}, aracın camını indirmeye çalışıyor. Cam değil, boyanmış bir tahta parçası eline geliyor.",
+        "Aracın dışından bir çocuk soruyor: “İçeride kaç kişisiniz?”"
+      ]
+    },
+    {
+      "id": "E12",
+      "title": "İlk Misafir",
+      "classification": "Davet eve taşındı",
+      "text": [
+        "Araç sizi evlerinize götürüyor. Yol boyunca hiçbiriniz konuşmuyorsunuz. Kapıları kilitleyip kurtulduğunuza inanıyorsunuz.",
+        "İlk kapı {P2} evinde çalıyor. Dışarıda köyde gördüğünüz çocuk var. Ayakkabıları bu kez kuru.",
+        "“Bir kişiyim,” diyor. “Üşüdüm.”",
+        "{P2} kilide dokunmuyor. Telefonla diğerlerini aramak için geri çekiliyor. Evin içinden tanıdık bir ses yükseliyor:",
+        "“Açsana. Kaç saattir seni bekliyor.”",
+        "Antredeki aynada {P2} kendini görüyor. Arkasında, evin iç tarafında duran çocuğu da.",
+        "Kapı hâlâ kilitli. Dışarıdan bir kez daha çalınıyor."
+      ]
+    },
+    {
+      "id": "E13",
+      "title": "Yeni Ev Sahipleri",
+      "classification": "Misafirhane sizi tuttu",
+      "text": [
+        "Sandalyelerden kalkamıyorsunuz. Sofradaki çayın buharı yüzlerinizi kapatıyor. İsimlerinizi hatırlıyorsunuz ama kime ait olduklarını bilmiyorsunuz.",
+        "Sabah oluyor. Merdivenlerden aşağı iniyorsunuz. Bedeniniz yürüyor, eliniz masaya bardak koyuyor. Sayı, kapıya yaklaşan yeni grubun sayısıyla aynı.",
+        "{P1}, kapı tokmağına daha dokunulmadan kapıyı açıyor. Karşıdaki yabancılara söylemek istediği tek cümle “Girmeyin.”",
+        "Ağzından çıkan ise başka:",
+        "“Üst kattan ses gelirse cevap vermeyin.”",
+        "Yeni gelenlerden biri adını söylemek için ağzını açıyor. Hepiniz, istemediğiniz hâlde, aynı anda gülümsüyorsunuz."
+      ]
+    },
+    {
+      "id": "E14",
+      "title": "Defterdeki İsimler",
+      "classification": "Bedenlerin kaybı",
+      "text": [
+        "Ateş söndüğünde defter yanmamış. Yalnız sizin kayıtlarınız kâğıdın içine daha derin işlemiş.",
+        "Artık odaları göremiyorsunuz. Sadece sayfaları çeviren parmakları, arada yüzünüze vuran ışığı ve kapatıldığınızda gelen ağır karanlığı hissediyorsunuz.",
+        "Yıllar sonra biri defteri açıyor. Yeni isimler yazılacak. Bir kalemi hareket ettirebileceğinizi fark ediyorsunuz.",
+        "Bütün gücünüzle “Bizi çıkarın” yazmak istiyorsunuz.",
+        "Kâğıtta başka bir cümle beliriyor:",
+        "“Konaklama kaydınız tamamlandı.”",
+        "Sayfanın altındaki el yazısını tanıyorsunuz. Hepinizin yazısı birbirine karışmış. Yeni gelenler bunun bir karşılama notu olduğunu düşünüyor."
+      ]
+    },
+    {
+      "id": "E15",
+      "title": "Penceredekiler",
+      "classification": "Görüntüye hapsolma",
+      "text": [
+        "Camın içinde nefes alabiliyorsunuz. Fakat başınızı çeviremiyor, pencerenin önünden ayrılamıyorsunuz.",
+        "Geceler birbirini izliyor. Her yağmurda yeni bir araç köy yoluna giriyor. Kurtulabilmeleri için bağırıyorsunuz. Sesiniz camı geçmiyor.",
+        "{P3}, elini dışarı doğru sallamayı öğreniyor. Diğerleri de yapıyor. Hepiniz aşağıdakilere geri dönmelerini anlatmaya çalışıyorsunuz.",
+        "Yoldaki insanlar, ışığı yanan bir evde kendilerini çağıran bir grup görüyor.",
+        "Birisi arkadaşına dönüyor: “Bak, orada insanlar var.”",
+        "Kapıya doğru yürümeye başlıyorlar. Camın içindeki kendi elinizi durduramıyorsunuz."
+      ]
+    },
+    {
+      "id": "E16",
+      "title": "Köyün Sesi",
+      "classification": "Seslere dönüşme",
+      "text": [
+        "Kapıdan geçtiğinizde bedenleriniz arkada kalmıyor; hiç bedeniniz olmamış gibi kayboluyor. Dünyada yalnızca iletilebilen birer sessiniz.",
+        "Bir radyoya, bir su borusuna, açık bir telefonun hoparlörüne tutunabiliyorsunuz. Fakat her uyarınız başka kelimelere dönüşüyor.",
+        "Aylar sonra yağmurlu bir gecede bir grup yolcunun telefonlarına ulaşıyorsunuz. Henüz köye girmemişler. Bu kez hepinizi aynı anda duyurursanız belki doğru söyleyebilirsiniz.",
+        "“Geri dönün,” demeye çalışıyorsunuz.",
+        "Ekranlarda yazı beliriyor:",
+        "“Konaklama kaydınız tamamlandı.”",
+        "Listede onların isimleri var. Son satırda ise bu kez {P1} yazıyor."
+      ]
+    },
+    {
+      "id": "E17",
+      "title": "İkinci Deneme",
+      "classification": "Döngü sonu",
+      "text": [
+        "Motor kuru bir öksürükle duruyor. Saat 23.17. Yağmur aracın tavanına vuruyor.",
+        "{P1}, olacakları hatırlıyor. Diğerleri onun ani korkusunu anlamıyor. Bildirim gelmeden telefonunu kapatıyor. Ekran kapalıyken de yazı beliriyor.",
+        "Bu kez ışığı yanan binaya girmek istemiyorsunuz. Fakat araçtan indiğinizde yol çoktan arkanızda kapanmış.",
+        "Misafirhanenin tezgâhında {P1} kendi el yazısını buluyor:",
+        "“Bu kez bana güvenmeyin.”",
+        "Notun altında çizilmiş on yedi küçük çizgi var. {P1}, bunları hangi denemede çizdiğini hatırlamıyor.",
+        "Üst katta sandalye sürükleniyor. Bu kez sesi duymadan önce hanginizin sesleneceğini biliyorsunuz."
+      ]
+    },
+    {
+      "id": "E18",
+      "title": "Sizden Öncekiler",
+      "classification": "Geçiş hakkını devretme",
+      "text": [
+        "Kapının öte yanında sizin başka bir grubunuz var. Onların yüzleri daha dinç. Üzerlerinde henüz çamur yok. Aynı gecenin başındalar.",
+        "Köyün bütün sesleri susuyor. Bir kuralı, hiç kimse söylemeden biliyorsunuz: Onlar sabaha kadar içeride kalırsa siz çıkabilirsiniz.",
+        "{P4}, karşıdaki kendisine bakıyor. Yardım ister gibi duran o yüz, birkaç saat önce sizin yüzünüzdü.",
+        "Ağzınızı açıyorsunuz. Uyarmak için hâlâ zaman var. Ama karşıdaki kişi “Burada kalabilir miyiz?” diye soruyor.",
+        "Arkanızda asfalt yol beliriyor.",
+        "Eliniz, siz karar vermeden, kapıyı biraz daha açıyor."
+      ]
+    },
+    {
+      "id": "E19",
+      "title": "Çocukluğunuzdaki Köy",
+      "classification": "Geçmişin ele geçirilmesi",
+      "text": [
+        "Vitrinin arkasında bir ev değil, çocukluğunuzun ortaklaşa yeniden yazıldığı bir oda var. Yataklarınız yan yana. Duvarlarda hiç gitmediğiniz okulların karneleri asılı.",
+        "Bütün fotoğraflarda aynı köy.",
+        "Şehirdeki hayatınız önce bir rüya gibi uzaklaşıyor. Sonra rüya olduğunuza inanıyorsunuz. Yıllarca burada yaşadığınızı, ara sıra dışarıda büyüdüğünüzü sandığınızı kabul ediyorsunuz.",
+        "{P2}, kapıdaki boya çizgilerinin boyunu ölçtüğünü görüyor. En üstte bugünün tarihi var. Çizgi insan boyunun çok üzerinde.",
+        "Arkanızdaki çocuklardan biri “Ne kadar büyümüşsün,” diyor.",
+        "Sonra ışığa yaklaşmasını istiyor. Yüzünü görmek için değil. Hangisinin içinde olduğunu anlamak için."
+      ]
+    },
+    {
+      "id": "E20",
+      "title": "Oylama Bitmedi",
+      "classification": "Anlatı içinde sahte oylama",
+      "text": [
+        "Ekran “Kurtuldunuz” yazıyor. İsimleriniz sırayla beliriyor. Ardından yazı siliniyor.",
+        "Yeni soru:",
+        "“Hanginizin eve döndüğüne inanıyorsunuz?”",
+        "Dört isim görünüyor: {P1}, {P2}, {P3}, {P4}.",
+        "Kimse dokunmuyor. Yine de oy sayıları yükseliyor. Önce bir, sonra iki. Oyların toplamı, grubunuzdaki kişi sayısını geçiyor.",
+        "Ekranda bir bildirim daha:",
+        "“Önceki misafirler de oy kullanabilir.”",
+        "{P1}, kararan ekranın yansımasında arkasındaki kapıyı görüyor. Kendi odasının kapısı. Altından, yukarı doğru akan çamur giriyor.",
+        "Son bildirimdeki kelimeler tek tek değişiyor: “Ev sahibi artık siz değilsiniz.”"
+      ]
+    }
+  ]
+}
