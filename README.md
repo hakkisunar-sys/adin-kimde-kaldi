@@ -16,12 +16,12 @@ Oda kurulunca ev sahibi lobide hikâyeyi seçer; herkes aynı hikâyeyi oynar. O
 
 - Ölen oyuncu oy vermeye devam eder, göreve seçilemez, kendine özel kısa sayfalar okur.
 - Jumpscare **yalnız ölenin telefonunda** açılır: sunucu ölüm olayını sadece o kişinin bağlantısına yollar. Diğerleri sade “Ölen / Yaşayan” kartını görür.
-- Akış: ekran kararır → kendine özgü karınca/hışırtı/bozulma (≈1,3 sn) → yüz ve vuruş sesi (≈1 sn) → ölüm kartı. Dokununca geçilir.
+- Akış (≈6,5 sn): ekran kararır, 2,6 sn boyunca karınca ve hışırtı yavaşça yükselir → 1 sn o ölüme özgü sesler ve hızlanan bozulma (bir anlık silik yüz) → yüz tam ekran, vuruş ve çığlık/bağırış (≈2,6 sn) → ölüm kartı. İlk saniyeden sonra dokununca geçilir.
 - Sekiz ölüm türünün her birinin görseli, rengi, bozulma biçimi ve sesi farklıdır. Hızlı beyaz flaş yoktur.
-- Herkes kendi telefonunda jumpscare görselini/sesini kapatabilir, ses düzeyini ayarlayabilir (varsayılan %45). Kapalıysa oyun değişmez.
+- Herkes kendi telefonunda jumpscare görselini/sesini kapatabilir, ses düzeyini ayarlayabilir (varsayılan %85). Kapalıysa oyun değişmez.
 - Bağlantı koparsa eski ölüm efekti kendiliğinden tekrar oynamaz; ölüm kartında “Efekti izle” düğmesi çıkar.
 
-Sesler `tools/make-sounds.py` ile sıfırdan sentezlenir (dış kayıt yok). Değiştirmek için `public/media/son-sefer/js01.mp3 … js08.mp3` dosyalarını aynı adla değiştirmeniz yeterli; vuruş anı dosyanın 1,3. saniyesinde olmalı.
+Sesler `tools/make-sounds.py` ile sıfırdan sentezlenir (dış kayıt yok). Değiştirmek için `public/media/son-sefer/js01.mp3 … js08.mp3` dosyalarını aynı adla değiştirmeniz yeterli; vuruş anı dosyanın 3,6. saniyesinde olmalı.
 
 ### Yeni hikâye eklemek
 

@@ -270,8 +270,8 @@ body.story-son_sefer .scene-title { color: var(--salt); }
 
 /* ================= Jumpscare ================= */
 .scare { position: fixed; inset: 0; z-index: 1000; background: #000; opacity: 0; transition: opacity .15s ease-out; overflow: hidden; touch-action: none; }
-.scare.on { opacity: 1; }
-.scare.out { opacity: 0; transition: opacity .26s ease-in; }
+.scare.on { opacity: 1; transition: opacity .6s ease-out; }
+.scare.out { opacity: 0; transition: opacity .42s ease-in; }
 .scare-noise { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; opacity: .85; mix-blend-mode: screen; }
 .scare.hit .scare-noise { opacity: .22; }
 .scare-tears i { position: absolute; left: -10%; width: 120%; background: var(--tint); mix-blend-mode: screen; opacity: .3; filter: blur(.5px); }
@@ -283,25 +283,27 @@ body.story-son_sefer .scene-title { color: var(--salt); }
 .scare-layer { position: absolute; inset: 0; background-size: cover; background-position: center 30%; }
 .scare-layer.r { mix-blend-mode: screen; filter: sepia(1) saturate(6) hue-rotate(-50deg); opacity: .0; transform: translateX(-7px); }
 .scare-layer.c { mix-blend-mode: screen; filter: sepia(1) saturate(6) hue-rotate(150deg); opacity: .0; transform: translateX(7px); }
-.scare.hit .scare-layer.r, .scare.hit .scare-layer.c { animation: rgbsplit .95s ease-out forwards; }
+.scare.hit .scare-layer.r, .scare.hit .scare-layer.c { animation: rgbsplit 1.6s ease-out forwards; }
+.scare-face.ghosting { visibility: visible; opacity: .16; filter: blur(2px) grayscale(.6); }
+.scare.hit .scare-face { opacity: 1; filter: none; }
 @keyframes rgbsplit { 0% { opacity: .55; } 60% { opacity: .2; } 100% { opacity: 0; } }
 
 /* sekiz giriş biçimi */
-.scare-wave .scare-tears i { border-radius: 50%; height: 3% !important; filter: blur(3px); }
-.scare-wave.hit .scare-face { animation: wobble .95s ease-out; }
+.mode-wave .scare-tears i { border-radius: 50%; height: 3% !important; filter: blur(3px); }
+.mode-wave.hit .scare-face { animation: wobble .95s ease-out; }
 @keyframes wobble { 0% { filter: blur(6px) hue-rotate(20deg); } 40% { filter: blur(0); } }
-.scare-stutter.hit .scare-face { animation: stutterin .95s steps(6); }
+.mode-stutter.hit .scare-face { animation: stutterin .95s steps(6); }
 @keyframes stutterin { 0% { clip-path: inset(0 0 70% 0); } 30% { clip-path: inset(30% 0 20% 0); } 60% { clip-path: inset(0); } }
-.scare-slide.hit .scare-face { animation: slidein .35s cubic-bezier(.2,.9,.2,1); }
+.mode-slide.hit .scare-face { animation: slidein .35s cubic-bezier(.2,.9,.2,1); }
 @keyframes slidein { from { clip-path: inset(0 48% 0 48%); } to { clip-path: inset(0 0 0 0); } }
-.scare-shatter.hit .scare-face { animation: shatter .5s steps(4); }
+.mode-shatter.hit .scare-face { animation: shatter .5s steps(4); }
 @keyframes shatter { 0% { clip-path: polygon(10% 0, 60% 10%, 40% 60%, 0 40%); } 50% { clip-path: polygon(0 0, 100% 5%, 85% 90%, 5% 100%); } 100% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); } }
-.scare-roll.hit .scare-face { animation: rollin .45s cubic-bezier(.2,.8,.3,1); }
+.mode-roll.hit .scare-face { animation: rollin .45s cubic-bezier(.2,.8,.3,1); }
 @keyframes rollin { from { background-position: center; transform: translateY(-35%); } to { transform: translateY(0); } }
-.scare-tunnel::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 45%, transparent 22%, #000 70%); pointer-events: none; }
-.scare-tunnel.hit::after { animation: tunnel .95s ease-out forwards; }
+.mode-tunnel::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 45%, transparent 22%, #000 70%); pointer-events: none; }
+.mode-tunnel.hit::after { animation: tunnel .95s ease-out forwards; }
 @keyframes tunnel { from { opacity: 1; } to { opacity: .55; } }
-.scare-scan .scare-scan, .scare-scan > .scare-scan { background: repeating-linear-gradient(transparent 0 1px, rgba(0,0,0,.55) 1px 3px); }
-.scare-flare.hit .scare-face { animation: flare .95s ease-out; }
+.mode-scan .scare-scan { background: repeating-linear-gradient(transparent 0 1px, rgba(0,0,0,.55) 1px 3px); }
+.mode-flare.hit .scare-face { animation: flare .95s ease-out; }
 @keyframes flare { 0% { filter: brightness(.6) contrast(1.6) sepia(.6); } 100% { filter: none; } }
 .reduce-motion .scare-face { transform: none !important; }

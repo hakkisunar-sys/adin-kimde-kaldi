@@ -27,9 +27,11 @@ const isSign = (p) => /\p{L}/u.test(p) && p === p.toLocaleUpperCase('tr') && p.l
 // ---------- ayarlar ----------
 const SPEEDS = [{ v: 15, t: 'Yavaş' }, { v: 28, t: 'Normal' }, { v: 45, t: 'Hızlı' }];
 const settings = Object.assign(
-  { speed: 28, reduceMotion: matchMedia('(prefers-reduced-motion: reduce)').matches, sound: false, vibrate: false, scare: true, scareSound: true, scareVolume: 0.45 },
+  { speed: 28, reduceMotion: matchMedia('(prefers-reduced-motion: reduce)').matches, sound: false, vibrate: false, scare: true, scareSound: true, scareVolume: 0.85 },
   load('akk.settings'),
 );
+// Eski varsayılan jumpscare ses düzeyi %45 idi; daha yüksek yeni varsayılana taşı
+if (!settings.v2) { if (settings.scareVolume === 0.45) settings.scareVolume = 0.85; settings.v2 = true; save('akk.settings', settings); }
 function load(k) { try { return JSON.parse(localStorage.getItem(k)) || null; } catch { return null; } }
 function save(k, v) { try { v == null ? localStorage.removeItem(k) : localStorage.setItem(k, JSON.stringify(v)); } catch {} }
 function saveSettings() { save('akk.settings', settings); document.documentElement.classList.toggle('reduce-motion', settings.reduceMotion); sound.sync(); }
@@ -211,7 +213,7 @@ function HomeView() {
   homeError = '';
   const heroTitles = h('h1', { class: 'titles' }, h('span', {}, 'ADIN KİMDE KALDI', h('span', { class: 'q', text: '?', style: 'display:inline' })));
   fetch('/api/stories').then((r) => r.json()).then((list) => {
-    heroTitles.replaceChildren(...list.flatMap((st, i) => [i ? h('span', { class: 'amp', text: 'YA DA' }) : null, h('span', { text: st.title.toLocaleUpperCase('tr') })]));
+    heroTitles.replaceChildren(...list.flatMap((st, i) => [i ? h('span', { class: 'amp', text: 'YA DA' }) : null, h('span', { text: st.title.toLocaleUpperCase('tr') })]).filter(Boolean));
   }).catch(() => {});
   const go = async (type) => {
     save('akk.lastName', name.value.trim());

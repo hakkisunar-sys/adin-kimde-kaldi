@@ -1,10 +1,14 @@
 // SON SEFER — jumpscare katmanı. Yalnız ölen oyuncunun cihazında, sunucudan gelen kişisel olayla çalışır.
-// Akış: ekran kararır → "virüs" girişi (karınca, yırtılma, bozuk yazı) → HIT anında yüz + vuruş → kararma → ölüm kartı.
+// Akış (≈6,5 sn):
+//   0.0–2.6 sn  ekran kararır, karınca yavaşça belirir ve yükselir
+//   2.6–3.6 sn  bozulma hızlanır: yırtılmalar, bozuk yazı, bir anlık silik yüz
+//   3.6 sn      yüz tam ekran + vuruş + çığlık; yaklaşık 2,6 sn kalır, sonra kararır
 // Hızlı beyaz flaş yoktur; parazit koyu tonlarda tutulur.
 
-export const SCARE_HIT = 1.3; // saniye — tools/make-sounds.py içindeki HIT ile aynı
-const FACE_MS = 950;
-const OUT_MS = 260;
+export const SCARE_HIT = 3.6;   // saniye — tools/make-sounds.py içindeki HIT ile aynı
+const STATIC_D = 2.6;          // yavaş karıncalanma
+const FACE_MS = 2600;
+const OUT_MS = 420;
 
 const VARIANTS = {
   JS01: { tint: [40, 115, 135], mode: 'wave', text: ['SU SEVİYESİ', '▒▒▒▒▒▒▒', 'NEFES YOK'] },
@@ -45,7 +49,7 @@ export function playScare(key, opts, onDone) {
   const timers = [];
 
   const root = document.createElement('div');
-  root.className = `scare scare-${v.mode}`;
+  root.className = `scare mode-${v.mode}`;
   root.setAttribute('role', 'alert');
   root.setAttribute('aria-label', 'Karakterin öldü');
   root.style.setProperty('--tint', `rgb(${tr},${tg},${tb})`);
@@ -87,22 +91,27 @@ export function playScare(key, opts, onDone) {
       src = c.createBufferSource();
       src.buffer = media.buffers[key];
       const gain = c.createGain();
-      gain.gain.value = Math.max(0, Math.min(1, opts.volume ?? 0.45));
+      gain.gain.value = Math.max(0, Math.min(1, opts.volume ?? 0.85));
       src.connect(gain).connect(c.destination);
       src.start();
     } catch { src = null; }
   }
 
-  let lastNoise = 0, lastBars = 0;
+  let lastNoise = 0, lastBars = 0, ghosted = false;
   function frame(now) {
     if (finished) return;
     const e = (now - t0) / 1000;
     const pre = now < hitAt;
+    const slow = e < STATIC_D;                             // yavaş karıncalanma evresi
+    const rise = Math.min(1, e / STATIC_D);
+    if (pre) canvas.style.opacity = String(slow ? 0.05 + 0.8 * rise ** 1.3 : 0.85);
+    // bir anlık silik yüz (bozulma evresinin ortasında, düşük opaklık — flaş değil)
+    if (!ghosted && e > STATIC_D + 0.45) { ghosted = true; face.classList.add('ghosting'); timers.push(setTimeout(() => face.classList.remove('ghosting'), 140)); }
     // karınca: koyu, renklendirilmiş parazit (~24 fps)
     if (now - lastNoise > 42) {
       lastNoise = now;
       const d = img.data;
-      const amp = pre ? 40 + 70 * Math.min(1, e / SCARE_HIT) : 55;
+      const amp = pre ? (slow ? 30 + 50 * rise : 80 + 40 * Math.min(1, (e - STATIC_D) / (SCARE_HIT - STATIC_D))) : 55;
       const band = v.mode === 'scan' ? Math.floor((e * 90) % canvas.height) : -1;
       for (let y = 0; y < canvas.height; y++) {
         const rowBoost = y === band || y === band + 1 ? 1.6 : 1;
@@ -118,7 +127,7 @@ export function playScare(key, opts, onDone) {
       const moveBars = now - lastBars > 120;
       if (moveBars) lastBars = now;
       for (const bar of tears.children) {
-        if (moveBars && Math.random() < (pre ? 0.5 : 0.25)) {
+        if (moveBars && Math.random() < (pre ? (slow ? 0.08 + 0.25 * rise : 0.6) : 0.25)) {
           bar.style.top = `${Math.random() * 100}%`;
           bar.style.height = `${2 + Math.random() * (v.mode === 'stutter' ? 14 : 6)}%`;
           const dx = (Math.random() - 0.5) * (v.mode === 'shatter' ? 60 : 30);
@@ -126,23 +135,27 @@ export function playScare(key, opts, onDone) {
           bar.style.opacity = String(0.12 + Math.random() * 0.25);
         }
       }
-      // bozuk yazı
-      if (pre && Math.random() < 0.35) {
+      // bozuk yazı — karıncalanmanın sonlarına doğru belirir
+      if (pre && e > 1.4 && Math.random() < (slow ? 0.12 : 0.4)) {
         const line = v.text[Math.floor(Math.random() * v.text.length)];
-        txt.textContent = corrupt(line, Math.min(0.6, e / SCARE_HIT));
+        txt.style.opacity = String(slow ? 0.35 : 1);
+        txt.textContent = corrupt(line, slow ? 0.15 : Math.min(0.65, (e - STATIC_D) * 0.8 + 0.2));
         txt.style.transform = `translate(${(Math.random() - 0.5) * 14}px, ${(Math.random() - 0.5) * 10}px)`;
       }
     }
     if (!pre && !root.classList.contains('hit')) {
       root.classList.add('hit');
+      canvas.style.opacity = '';
       txt.textContent = '';
       if (opts.vibrate && navigator.vibrate) navigator.vibrate([90, 40, 180]);
     }
     if (!pre) {
       const k = (now - hitAt) / FACE_MS;
       if (!opts.reduceMotion) {
-        const shake = Math.max(0, 1 - k) * 9;
-        face.style.transform = `translate(${(Math.random() - 0.5) * shake}px, ${(Math.random() - 0.5) * shake}px) scale(${1.14 - 0.12 * Math.min(1, k * 1.6)})`;
+        // ilk an sert sarsıntı, sonra yüz yavaşça üstüne gelir
+        const shake = Math.max(0, 1 - k * 3) * 11 + 1.2;
+        const zoom = 1.16 - 0.1 * Math.min(1, k * 8) + 0.12 * k;
+        face.style.transform = `translate(${(Math.random() - 0.5) * shake}px, ${(Math.random() - 0.5) * shake}px) scale(${zoom})`;
       }
       if (k >= 1) return end();
     }
@@ -157,7 +170,7 @@ export function playScare(key, opts, onDone) {
     timers.push(setTimeout(() => { root.remove(); onDone?.(); }, OUT_MS));
   }
   function skip() {
-    if (finished) return;
+    if (finished || performance.now() - t0 < 1000) return; // oy düğmesine son dokunuş yanlışlıkla geçirmesin
     try { src?.stop(); } catch {}
     end();
   }

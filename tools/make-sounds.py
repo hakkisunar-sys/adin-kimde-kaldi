@@ -1,20 +1,22 @@
 """SON SEFER — 8 jumpscare sesini sıfırdan sentezler (dış kayıt yok, telifsiz).
 
-Her ses iki bölümden oluşur:
-  0.00 – HIT   : "virüs" girişi — kendine özgü hışırtı / karınca / bozulma
-  HIT  – son   : yüzün belirdiği an — darbe + çığlık/kükreme dokusu + kuyruk
-İstemci görseli tam HIT anında açar (public/app.js → SCARE_HIT).
+Her ses üç bölümden oluşur:
+  0.0 – 2.6 sn : karıncalanma — yavaşça yükselen TV hışırtısı
+  2.6 – 3.6 sn : o ölüme özgü sesler (su, motor, kapı, cam, dalga, tünel, telsiz, lamba)
+  3.6 sn – son : yüzün belirdiği an — darbe + çığlık/bağırış + kuyruk
+İstemci görseli tam HIT anında açar (public/scare.js → SCARE_HIT).
 
 Çalıştır:  python3 tools/make-sounds.py   (numpy + scipy + ffmpeg gerekir)
 Çıktı:     public/media/son-sefer/js01.mp3 … js08.mp3
 """
 import os, subprocess, sys, tempfile, wave
 import numpy as np
-from scipy.signal import lfilter
+from scipy.signal import lfilter, butter
 
 SR = 44100
-HIT = 1.30          # saniye — istemcideki SCARE_HIT ile aynı olmalı
-TOTAL = 3.2
+STATIC_D = 2.6      # karıncalanma süresi
+HIT = 3.6           # saniye — istemcideki SCARE_HIT ile aynı olmalı
+TOTAL = 6.6
 OUT = os.path.join(os.path.dirname(__file__), '..', 'public', 'media', 'son-sefer')
 rng = np.random.default_rng(1967)
 
@@ -125,7 +127,7 @@ def fade_in(n, dur):
 def intro_underwater(n):            # JS01 — boğuk su altı paraziti, kabarcıklar
     x = lp(noise(n), 500) * (0.6 + 0.4 * np.sin(2 * np.pi * 0.9 * np.arange(n) / SR))
     for _ in range(26):                                  # kabarcık "blup"ları
-        at = rng.uniform(0.05, HIT - 0.1); d = rng.uniform(0.03, 0.08)
+        at = rng.uniform(0.05, (n / SR) - 0.1); d = rng.uniform(0.03, 0.08)
         s = seg(d); f = rng.uniform(280, 700) * (1 + 3 * s / d)
         place(x, 0.5 * sine(f) * env(len(s), 0.003, d * 0.6), at)
     return x
@@ -149,7 +151,7 @@ def intro_door(n):                  # JS03 — gıcırdayan kapı + kuru hışı
 
 def intro_glass(n):                 # JS04 — ince cam çınlaması, soğuk tiz parazit
     t = np.arange(n) / SR
-    ring = 0.35 * (np.sin(2 * np.pi * 2793 * t) + np.sin(2 * np.pi * 2801 * t)) * (0.4 + 0.6 * t / HIT)
+    ring = 0.35 * (np.sin(2 * np.pi * 2793 * t) + np.sin(2 * np.pi * 2801 * t)) * (0.4 + 0.6 * t / (n / SR))
     return ring + 0.6 * hp(noise(n), 5000) * (0.5 + 0.5 * np.sin(2 * np.pi * 5.2 * t) ** 2)
 
 
@@ -157,7 +159,7 @@ def intro_waves(n):                 # JS05 — kabaran dalgalar, bordaya vuran s
     t = np.arange(n) / SR
     sw = 0.35 + 0.65 * np.clip(np.sin(2 * np.pi * 0.55 * t - 1.2), 0, None) ** 2
     x = lp(noise(n), 900) * sw
-    x += 0.5 * lp(noise(n), 120) * (0.5 + 0.5 * t / HIT)
+    x += 0.5 * lp(noise(n), 120) * (0.5 + 0.5 * t / (n / SR))
     return x
 
 
@@ -165,7 +167,7 @@ def intro_vent(n):                  # JS06 — dar tünelde hızlanan tıkırtı
     x = 0.25 * bp(noise(n), 1800, 2600)
     at = 0.05
     gap = 0.22
-    while at < HIT - 0.02:
+    while at < (n / SR) - 0.02:
         place(x, hp(noise(int(SR * 0.006)), 2000) * 1.4, at)
         at += gap
         gap = max(0.035, gap * 0.86)
@@ -286,6 +288,95 @@ def rise(dur, f0, f1, kind='glass'):
     return x * (s / dur) ** 2.5
 
 
+
+# ---------------------------------------------------------------- karıncalanma
+def tv_static(n):
+    """Yavaşça yükselen televizyon karıncası: geniş bant hışırtı, çıtırtı, kısa kopmalar."""
+    t = np.arange(n) / SR
+    x = bp(noise(n), 700, 9000)
+    x *= 1 + 0.35 * lp(noise(n), 6)                       # dalgalanma
+    crackle = (rng.random(n) > 0.9993) * noise(n) * 6
+    x += hp(crackle, 1200)
+    drop = np.ones(n)                                      # ara ara sinyal kopması
+    for _ in range(5):
+        at = int(rng.uniform(0.6, n / SR - 0.4) * SR); dd = int(rng.uniform(0.04, 0.12) * SR)
+        drop[at:at + dd] = 0.15
+    x *= lp(drop, 60, 1)
+    x += 0.4 * lp(noise(n), 90)                            # alçak uğultu
+    ramp = 10 ** ((-22 + 22 * (t / (n / SR)) ** 1.1) / 20)  # -26 dB → 0 dB (karıncanın kendi tepesine göre)
+    return x / (np.max(np.abs(x)) + 1e-9) * ramp
+
+
+# ---------------------------------------------------------------- çığlık / bağırış
+def formant_bank(x, formants):
+    y = np.zeros_like(x)
+    for fc, bw, g in formants:
+        lo, hi = max(40, fc - bw / 2), min(SR / 2 - 100, fc + bw / 2)
+        bb, aa = butter(2, [lo / (SR / 2), hi / (SR / 2)], btype='band')
+        y += g * lfilter(bb, aa, x)
+    return y
+
+
+VOWEL_A = [(850, 160, 1.0), (1250, 200, 0.8), (2900, 320, 0.45), (3600, 400, 0.25)]
+VOWEL_E = [(600, 140, 1.0), (1900, 260, 0.8), (2700, 320, 0.5), (3500, 400, 0.25)]
+VOWEL_O = [(550, 140, 1.0), (900, 180, 0.7), (2500, 300, 0.3)]
+
+
+def scream(d, f0, fpk, fend, vowel=VOWEL_A, rough=0.35, voices=2, vib=7.0, detune=0.035, breath=0.18):
+    """Biçimlendirici (formant) sentezle insan benzeri çığlık. Birden çok ses üst üste — 'kopyalanan sesler'."""
+    n = int(SR * d); s = np.arange(n) / SR
+    contour = np.interp(s, [0, 0.07, 0.35 * d, 0.62 * d, d], [f0, fpk, fpk * 1.04, fpk * 0.96, fend])
+    out = np.zeros(n)
+    for v in range(voices):
+        ratio = 1 + detune * (v - (voices - 1) / 2)
+        jit = 1 + 0.025 * lp(noise(n), 18) / 0.05
+        vb = 1 + 0.022 * np.sin(2 * np.pi * (vib + 0.7 * v) * s + rng.uniform(0, 6)) * (0.3 + 0.7 * np.clip(s / 0.4, 0, 1))
+        f = contour * ratio * np.clip(jit, 0.9, 1.1) * vb
+        src = saw(f) + 0.35 * np.sign(np.sin(2 * np.pi * np.cumsum(f) / SR))
+        src *= 1 + rough * lp(noise(n), 70) / 0.08            # hırıltı/pürüz
+        src = lp(src, 6500, 1)
+        voice = formant_bank(src, vowel) + breath * formant_bank(noise(n), vowel)
+        delay = int(rng.uniform(0, 0.05) * SR) if v else 0
+        voice = np.concatenate([np.zeros(delay), voice])[:n]
+        out += voice * (1.0 if v == 0 else 0.6)
+    e = np.clip(s / 0.04, 0, 1) * np.clip((d - s) / 0.35, 0, 1) * (0.85 + 0.15 * np.sin(2 * np.pi * 3.3 * s))
+    return out * e
+
+
+def scream_for(key, d):
+    s_ = np.arange(int(SR * d)) / SR
+    if key == 'js01':   # boğulan çığlık: giderek su altına kapanır
+        x = scream(d, 520, 980, 380, VOWEL_A, rough=0.3, voices=2)
+        closing = np.exp(np.interp(s_, [0, 0.6, d], [np.log(7000), np.log(5000), np.log(450)]))
+        y = np.zeros_like(x); step = 2048
+        for i in range(0, len(x), step):
+            y[i:i + step] = lp(x[i:i + step], closing[i], 1)
+        return y * (1 - 0.5 * (np.sin(2 * np.pi * 11 * s_) > 0.6) * (s_ > 0.8))
+    if key == 'js02':   # önce içe çekilen (ters) çığlık, sonra asıl çığlık
+        r = scream(0.7, 600, 900, 700, VOWEL_E, voices=2)[::-1] * 0.7
+        f = scream(d - 0.6, 700, 1050, 520, VOWEL_A, rough=0.45, voices=2)
+        return np.concatenate([r, f])[: len(s_)]
+    if key == 'js03':   # iki katmanlı pürüzlü tiz çığlık, ani kesiliş
+        x = scream(d, 800, 1300, 1150, VOWEL_E, rough=0.6, voices=2, detune=0.06)
+        return x * (s_ < d * 0.82)
+    if key == 'js04':   # çok tiz, cam gibi
+        return scream(d, 1000, 1650, 1200, VOWEL_E, rough=0.2, voices=2, vib=8.5)
+    if key == 'js05':   # derin bağırış + yaratık
+        a = scream(d, 200, 360, 180, VOWEL_A, rough=0.9, voices=3, vib=5, detune=0.05, breath=0.3)
+        b = scream(d, 600, 900, 500, VOWEL_A, rough=0.4, voices=1) * 0.5
+        return a + b
+    if key == 'js06':   # boğuk feryat, dar tünelden
+        return lp(scream(d, 380, 720, 300, VOWEL_O, rough=0.3, voices=2, vib=5.5), 1500)
+    if key == 'js07':   # telsizden gelen çığlık: bant sınırlı, kopuk
+        x = scream(d, 750, 1150, 600, VOWEL_A, rough=0.4, voices=2)
+        x = bp(x * np.sin(2 * np.pi * 93 * s_) * 0.5 + x, 350, 3200)
+        return x * (0.25 + 0.75 * (np.sin(2 * np.pi * 9 * s_ + 2 * np.sin(2 * np.pi * 1.3 * s_)) > -0.4))
+    if key == 'js08':   # çok sesli, metalik koro
+        x = scream(d, 700, 1150, 650, VOWEL_A, rough=0.3, voices=5, detune=0.05)
+        k = int(SR / 420); y = x.copy(); y[k:] += 0.7 * x[:-k]   # metalik tarak
+        return y
+    raise KeyError(key)
+
 DESIGNS = {
     'js01': (intro_underwater, hit_js01, None),
     'js02': (intro_engine, hit_js02, ('noise', 0.35)),
@@ -301,23 +392,31 @@ DESIGNS = {
 def build(key):
     intro_fn, hit_fn, pre = DESIGNS[key]
     out = np.zeros(int(SR * TOTAL))
-    ni = int(SR * HIT)
+    nh = int(SR * HIT)
+    # 1) karıncalanma: baştan vuruşa kadar yavaşça yükselir
+    out[:nh] += 4.0 * tv_static(nh)          # +12 dB: karınca açıkça duyulsun
+    # 2) o ölüme özgü sesler (son 1 sn)
+    ni = int(SR * (HIT - STATIC_D))
     intro = intro_fn(ni)
-    intro = norm(intro, -15) * fade_in(ni, 0.25) * (0.6 + 0.4 * np.arange(ni) / ni)   # giderek artan
-    out[:ni] += intro
+    intro = norm(intro, -4) * np.clip(np.arange(ni) / (SR * 0.35), 0, 1) * (0.55 + 0.45 * np.arange(ni) / ni)
+    place(out, intro, STATIC_D)
     if pre:
         kind, d = pre
         r = rise(d, 400 if kind == 'glass' else 200, 3500 if kind == 'glass' else 4000, kind)
-        place(out, norm(r, -10), HIT - d)
-    h = hit_fn(TOTAL - HIT)
-    h = rev(h, 1.0, 0.3)
-    h = norm(softclip(norm(h, 0), 1.6), -3)
-    place(out, h, HIT)
-    out = out * np.clip((TOTAL - t_all) / 0.15, 0, 1)                      # uçta yumuşak bitiş
-    peak = np.max(np.abs(out))
-    if peak > 10 ** (-3 / 20):
-        out = out / peak * 10 ** (-3 / 20)
-    return out
+        place(out, norm(r, -6), HIT - d - 0.1)
+    # vuruştan hemen önce kısa sessizlik — vuruş daha sert duyulur
+    gap = int(SR * 0.11)
+    out[nh - gap:nh] *= np.linspace(1, 0.02, gap)
+    # 3) vuruş + çığlık
+    hit = hit_fn(1.6)
+    hit = norm(softclip(norm(rev(hit, 1.0, 0.3), 0), 2.2), -2)
+    place(out, hit, HIT)
+    sc = scream_for(key, TOTAL - HIT - 0.15)
+    sc = norm(softclip(norm(rev(sc, 1.3, 0.3), 0), 2.6), -1.5)
+    place(out, sc, HIT + 0.06)
+    out = softclip(out, 1.4)
+    out = out * np.clip((TOTAL - t_all) / 0.3, 0, 1)
+    return norm(out, -0.5)
 
 
 def write(key, x):
