@@ -1,6 +1,8 @@
 // Adın Kimde Kaldı? — istemci. Sunucu tek otoritedir; burada yalnız görüntü ve istek var.
 // Bütün kullanıcı/hikâye metinleri textContent ile yazılır (HTML olarak yorumlanmaz).
 
+import { preloadScares, playScare } from './scare.js';
+
 const app = document.getElementById('app');
 const layer = document.getElementById('layer');
 
@@ -25,7 +27,7 @@ const isSign = (p) => /\p{L}/u.test(p) && p === p.toLocaleUpperCase('tr') && p.l
 // ---------- ayarlar ----------
 const SPEEDS = [{ v: 15, t: 'Yavaş' }, { v: 28, t: 'Normal' }, { v: 45, t: 'Hızlı' }];
 const settings = Object.assign(
-  { speed: 28, reduceMotion: matchMedia('(prefers-reduced-motion: reduce)').matches, sound: false, vibrate: false },
+  { speed: 28, reduceMotion: matchMedia('(prefers-reduced-motion: reduce)').matches, sound: false, vibrate: false, scare: true, scareSound: true, scareVolume: 0.45 },
   load('akk.settings'),
 );
 function load(k) { try { return JSON.parse(localStorage.getItem(k)) || null; } catch { return null; } }
@@ -78,6 +80,25 @@ const sound = {
   },
 };
 const buzz = (ms = 30) => { if (settings.vibrate && navigator.vibrate) navigator.vibrate(ms); };
+const isSS = () => snap?.storyId === 'son_sefer';
+// Tarayıcılar sesi ancak bir dokunuştan sonra açar: her dokunuşta ses bağlamı hazırlanır.
+document.addEventListener('pointerdown', () => { if (isSS() && settings.scareSound) preloadScares(sound.ensure()); }, { passive: true });
+
+// ---------- kişisel ölüm efekti ----------
+const liveDeaths = new Set(); // bu oturumda sunucudan canlı gelen olaylar
+const scared = new Set(load('akk.scared') || []);
+function markScared(id) { scared.add(id); save('akk.scared', [...scared].slice(-50)); }
+function runScare(p) {
+  markScared(p.eventId);
+  const done = () => { req('ackDeath', { eventId: p.eventId }); view?.afterScare?.(); };
+  if (!settings.scare) return done();
+  playScare(p.key, { ctx: settings.scareSound ? sound.ensure() : null, sound: settings.scareSound, volume: settings.scareVolume, vibrate: settings.vibrate, reduceMotion: settings.reduceMotion }, done);
+}
+function maybeScare() {
+  const p = snap?.page?.personal;
+  if (!p || !liveDeaths.has(p.eventId) || scared.has(p.eventId)) return;
+  runScare(p);
+}
 
 // ---------- bağlantı ----------
 let ws = null, snap = null, session = load('akk.session'), connected = false, retry = 0, everConnected = false;
@@ -102,6 +123,9 @@ function connect() {
       if (m.key) { session = { roomCode: m.roomCode, playerId: m.playerId, key: m.key }; save('akk.session', session); }
     } else if (m.type === 'response') {
       const p = pending.get(m.requestId); if (p) { pending.delete(m.requestId); p(m); }
+    } else if (m.type === 'death') {
+      liveDeaths.add(m.event.eventId);
+      maybeScare();
     } else if (m.type === 'left') {
       session = null; snap = null; save('akk.session', null); render();
     }
@@ -146,9 +170,11 @@ const typedProgress = new Map(); // pageId → yazılmış grafem sayısı (sayf
 
 function render() {
   sound.sync();
+  document.body.classList.toggle('story-son_sefer', isSS());
+  if (isSS() && snap.phase !== 'LOBBY' && settings.scare) preloadScares(settings.scareSound ? sound.ctx : null);
   let key;
   if (!snap) key = 'home';
-  else if (snap.phase === 'LOBBY') key = 'lobby:' + snap.gameId;
+  else if (snap.phase === 'LOBBY') key = 'lobby:' + snap.gameId + ':' + snap.storyId;
   else key = `${snap.phase}:${snap.pageId}:${snap.voting?.round || 0}`;
   if (key !== viewKey) {
     view?.destroy?.();
@@ -163,6 +189,7 @@ function render() {
   }
   view.update?.(snap);
   renderPause();
+  maybeScare();
 }
 
 function topbar(where) {
@@ -182,6 +209,10 @@ function HomeView() {
   code.value = preset;
   const err = h('p', { class: 'error', role: 'alert', text: homeError });
   homeError = '';
+  const heroTitles = h('h1', { class: 'titles' }, h('span', {}, 'ADIN KİMDE KALDI', h('span', { class: 'q', text: '?', style: 'display:inline' })));
+  fetch('/api/stories').then((r) => r.json()).then((list) => {
+    heroTitles.replaceChildren(...list.flatMap((st, i) => [i ? h('span', { class: 'amp', text: 'YA DA' }) : null, h('span', { text: st.title.toLocaleUpperCase('tr') })]));
+  }).catch(() => {});
   const go = async (type) => {
     save('akk.lastName', name.value.trim());
     sound.ensure();
@@ -198,8 +229,8 @@ function HomeView() {
     topbar(''),
     h('section', { class: 'hero' },
       h('p', { class: 'eyebrow', text: '4–10 kişi · telefonlardan ortak karar' }),
-      h('h1', {}, 'ADIN KİMDE', h('br'), 'KALDI', h('span', { class: 'q', text: '?' })),
-      h('p', { text: 'Gece yolunu kaybeden bir arkadaş grubusunuz. Haritada adı olmayan bir köy, isimlerinizi biliyor.' }),
+      heroTitles,
+      h('p', { text: 'Odayı kuran kişi hikâyeyi seçer. Herkes kendi telefonundan okur, birlikte karar verirsiniz.' }),
     ),
     h('div', { class: 'card' },
       h('label', { class: 'field' }, h('span', { text: 'Adın' }), name),
@@ -222,6 +253,15 @@ function LobbyView() {
   const startBtn = h('button', { class: 'btn primary', onclick: () => act('start'), text: 'Oyunu başlat' });
   const waitNote = h('p', { class: 'status' });
   const intro = snap.intro;
+  const storyBox = h('div', { class: 'stories' });
+  const effects = isSS() ? h('div', { class: 'card' },
+    h('p', { class: 'eyebrow', text: 'Ölüm efektleri · bu telefon' }),
+    h('p', { class: 'small', style: 'margin:0 0 8px', text: 'Korku görseli ve sesi yalnız ölen kişinin telefonunda açılır. Kapatırsan sade ölüm kartı görürsün; oyun değişmez.' }),
+    toggle('Jumpscare görseli', 'scare'),
+    toggle('Jumpscare sesi', 'scareSound', () => { if (settings.scareSound) preloadScares(sound.ensure()); }),
+    volumeRow(),
+    h('button', { class: 'btn', style: 'margin-top:12px', onclick: () => { const c = sound.ensure(); preloadScares(c); toast(c ? 'Ses açık. Telefonun sessiz modda değilse efektleri duyacaksın.' : 'Bu tarayıcı sesi açmadı; sade ölüm kartı gösterilecek.'); }, text: 'Sesi etkinleştir' }),
+  ) : null;
   const botName = h('input', { maxlength: 40, placeholder: 'Bot adı (boş bırakılabilir)', 'aria-label': 'Bot adı' });
   let adding = false;
   const addBot = async (times = 1) => {
@@ -243,7 +283,7 @@ function LobbyView() {
     h('label', { class: 'field' }, botName), botBtn, fillBtn);
   const share = async () => {
     try {
-      if (navigator.share) await navigator.share({ title: 'Adın Kimde Kaldı?', text: `Oda kodu: ${snap.roomCode}`, url: joinUrl });
+      if (navigator.share) await navigator.share({ title: snap.storyTitle, text: `Oda kodu: ${snap.roomCode}`, url: joinUrl });
       else { await navigator.clipboard.writeText(joinUrl); toast('Bağlantı kopyalandı.'); }
     } catch {}
   };
@@ -259,6 +299,7 @@ function LobbyView() {
         ),
       ),
     ),
+    h('div', { class: 'card' }, h('p', { class: 'eyebrow', text: 'Hikâye' }), storyBox),
     h('div', { class: 'card' }, h('p', { class: 'eyebrow', text: 'Oyuncular' }), list, count, botBox),
     h('div', { class: 'card' },
       intro.paragraphs.slice(0, 1).map((p) => h('p', { text: p })),
@@ -268,14 +309,20 @@ function LobbyView() {
     h('div', { class: 'card' },
       h('p', { class: 'eyebrow', text: 'Kurallar' }),
       h('ol', { class: 'rules' }, intro.rules.map((r) => h('li', { text: r }))),
-      h('p', { class: 'note' }, h('b', { text: 'İçerik notu: ' }), intro.contentNote),
+      h('p', { class: 'note' }, h('b', { text: isSS() ? 'Başlamadan: ' : 'İçerik notu: ' }), intro.contentNote),
     ),
+    effects,
     h('button', { class: 'btn ghost', onclick: () => { if (confirm('Odadan ayrılmak istiyor musun?')) act('leave'); }, text: 'Odadan ayrıl' }),
   );
   const dock = h('div', { class: 'dock' }, h('div', { class: 'dock-inner' }, waitNote, startBtn));
   app.append(dock);
   return {
     update(s) {
+      storyBox.replaceChildren(...s.stories.map((st) => h('button', {
+        class: 'storycard', 'aria-pressed': String(st.id === s.storyId), disabled: !s.me.isHost,
+        onclick: () => act('setStory', { storyId: st.id }),
+      }, h('h4', { text: st.title }), h('p', { text: st.tagline }), h('div', { class: 'tags' }, st.tags.map((t) => h('span', { class: 'tag', text: t }))))));
+      if (!s.me.isHost) storyBox.append(h('p', { class: 'small', style: 'margin:4px 0 0', text: 'Hikâyeyi ev sahibi seçer.' }));
       list.replaceChildren(...s.players.map((p) => h('li', {},
         h('span', { class: 'dot' + (p.connected ? '' : ' off'), title: p.connected ? 'Bağlı' : 'Bağlantı bekleniyor' }),
         h('span', { class: 'name', text: p.name }),
@@ -370,11 +417,14 @@ function Typer(container, blocks, pageId, onProgress) {
 }
 
 // ---------- Okuma sayfaları: sahne, sonuç, eşitlik, final ----------
-function tallyBars(tally, winner, labelFor) {
-  const max = Math.max(1, ...Object.values(tally));
+function tallyBars(tally, winner) {
+  // tally: {A: 2, ...} veya [{id, short, count}]
+  const rows = Array.isArray(tally) ? tally.map((t) => [t.id, t.count, t.short]) : Object.entries(tally).map(([id, n]) => [id, n, id]);
+  const wide = rows.some((r) => r[2].length > 2);
+  const max = Math.max(1, ...rows.map((r) => r[1]));
   return h('div', { class: 'tally', role: 'list', 'aria-label': 'Oy dağılımı' },
-    Object.entries(tally).map(([id, n]) => h('div', { class: 'bar' + (winner && winner.includes(id) ? ' win' : ''), role: 'listitem', 'aria-label': `${id}: ${n} oy` },
-      h('span', { text: id }),
+    rows.map(([id, n, short]) => h('div', { class: 'bar' + (winner && winner.includes(id) ? ' win' : ''), role: 'listitem', 'aria-label': `${short}: ${n} oy`, style: wide ? 'grid-template-columns: minmax(0,7em) 1fr 2em' : null },
+      h('span', { text: short, style: wide ? 'overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family:var(--serif)' : null }),
       h('span', { class: 'track' }, h('span', { class: 'fill', style: `width:${(n / max) * 100}%` })),
       h('span', { class: 'n', text: n }),
     )));
@@ -390,30 +440,40 @@ function PageView() {
 
   if (page.kind === 'scene') {
     app.append(topbar(`${s0.roomCode} · ${page.title}`), h('div', { class: 'scene-title' + (settings.reduceMotion ? '' : ' flicker'), text: page.title }));
+    if (page.viewerDead) app.append(h('div', { class: 'dead-tag', text: 'Bu sahne hayatta kalanları anlatıyor' }));
+    if (page.focusName) app.append(h('p', { class: 'focusline', text: `Bu bölümün odağı: ${page.focusName}` }));
     if (page.reminder) blocks.push({ text: page.reminder, cls: 'reminder' });
     for (const p of page.paragraphs) blocks.push({ text: p, cls: isSign(p) ? 'sign' : '' });
-    blocks.push({ text: page.contribution, cls: 'contrib' });
+    if (page.contribution) blocks.push({ text: page.contribution, cls: 'contrib' });
+    if (page.dead?.length) blocks.push({ node: rosterCard(page) });
+    if (page.ghost) blocks.push({ node: ghostCard(page.ghost) });
   } else if (page.kind === 'result') {
     const winner = [page.optionId];
+    app.append(topbar(`${s0.roomCode} · ${page.title}`));
+    if (page.personal) app.append(deathCard(page.personal));
+    else if (page.viewerDead) app.append(h('div', { class: 'dead-tag', text: 'Bu sahne hayatta kalanları anlatıyor' }));
     app.append(
-      topbar(`${s0.roomCode} · ${page.title}`),
       h('div', { class: 'scene-title', text: page.rounds > 1 ? `Karar · ${page.rounds}. turda çıktı` : 'Karar' }),
-      h('div', { class: 'chosen' }, h('small', { text: `Seçilen: ${page.optionId}` }), page.label),
+      h('div', { class: 'chosen' }, h('small', { text: `Seçilen: ${page.optionId}` }), page.label,
+        page.actors?.length ? h('small', { style: 'margin:8px 0 0', text: (page.actors.length > 1 ? 'Görevliler: ' : 'Görevli: ') + page.actors.join(', ') }) : null),
       tallyBars(page.tally, winner),
     );
     for (const p of page.paragraphs) blocks.push({ text: p, cls: isSign(p) ? 'sign' : '' });
+    if (page.deathsNow) blocks.push({ node: rosterCard(page, page.deathsNow) });
   } else if (page.kind === 'tie') {
     app.append(
       topbar(`${s0.roomCode} · ${page.title}`),
-      h('div', { class: 'scene-title', text: `${page.round}. tur · eşitlik` }),
+      h('div', { class: 'scene-title', text: `${page.round}. tur · eşitlik` + (page.voteKind === 'PRIMARY' ? ' · görevli' : page.voteKind === 'HELPER' ? ' · ikinci görevli' : '') }),
       h('p', { class: 'tie-head', text: 'Karar çıkmadı. Şu seçenekler yeniden oylanıyor.' }),
       tallyBars(page.tally, page.remaining.map((o) => o.id)),
       h('ul', { class: 'remaining' }, page.remaining.map((o) => h('li', {}, h('b', { text: o.id }), h('span', { text: o.label })))),
-      h('p', { class: 'small', text: 'Aranızda konuşun. Herkes hazır olunca yalnız bu seçenekler arasında yeniden oy vereceksiniz. Eşitlik bozulana kadar hikâye ilerlemez.' }),
+      h('p', { class: 'small', text: page.voteKind && page.voteKind !== 'ACTION'
+        ? 'Görevli seçilemedi. Herkes hazır olunca yalnız bu kişiler arasında yeniden oy vereceksiniz. Eşitlik bozulana kadar kimse göreve gitmez.'
+        : 'Aranızda konuşun. Herkes hazır olunca yalnız bu seçenekler arasında yeniden oy vereceksiniz. Eşitlik bozulana kadar hikâye ilerlemez.' }),
     );
   } else if (page.kind === 'ending') {
     title = page.title;
-    const good = page.endingId === 'E01';
+    const good = page.endingId === 'E01' || page.endingId === 'S2_E01';
     app.append(
       topbar(`${s0.roomCode} · Final`),
       h('div', { class: 'ending-head ' + (good ? 'good' : 'bad') },
@@ -424,6 +484,7 @@ function PageView() {
       blocks.push({ text: p, cls: isSign(p) ? 'sign' : '' });
       if (page.endingId === 'E20' && p.startsWith('Dört isim görünüyor')) blocks.push({ node: FakeVote(s0) });
     }
+    if (page.alive) blocks.push({ node: rosterCard(page) });
   }
   app.append(story);
 
@@ -450,6 +511,7 @@ function PageView() {
 
   return {
     destroy() { typer?.destroy(); },
+    afterScare() { app.querySelector('.watchfx')?.remove(); },
     update(s) {
       const me = s.players.find((p) => p.id === s.me.id);
       const ready = !!me?.ready;
@@ -458,12 +520,31 @@ function PageView() {
       const off = s.players.filter((p) => !p.connected).length;
       status.textContent = `Şu an ${s.readyCount}/${s.castCount} kişi okudu` + (off ? ` · ${off} kişinin bağlantısı bekleniyor` : '');
       chips.replaceChildren(...s.players.map((p) => h('span', {
-        class: 'chip' + (p.ready ? ' on' : '') + (p.connected ? '' : ' off'),
+        class: 'chip' + (p.ready ? ' on' : '') + (p.connected ? '' : ' off') + (s.survival?.players[p.id]?.alive === false ? ' dead' : ''),
         title: p.connected ? (p.ready ? 'Okudu' : 'Okuyor') : 'Bağlantı bekleniyor',
         text: (p.ready ? '✓ ' : '') + p.name,
       })));
     },
   };
+}
+
+function rosterCard(page, lostNow) {
+  return h('div', { class: 'roster' },
+    lostNow?.length ? h('div', { class: 'lost' }, h('b', { text: 'Ölen' }), lostNow.join(', ')) : null,
+    h('div', {}, h('b', { text: 'Yaşayan' }), page.alive.length ? page.alive.join(', ') : 'Kimse'),
+    page.dead.length ? h('div', {}, h('b', { text: 'Suyun altındaki sesler' }), page.dead.join(', ')) : null,
+  );
+}
+function ghostCard(g) {
+  return h('div', { class: 'ghost' }, h('p', { class: 'eyebrow', text: 'Yalnız sana · ölülerin gördüğü' }), h('h4', { text: g.title }), g.paragraphs.map((p) => h('p', { text: p })));
+}
+function deathCard(p) {
+  const box = h('div', { class: 'deathcard', role: 'status' }, h('h3', { text: p.card.title }), h('p', { text: p.card.text }));
+  if (settings.scare && !scared.has(p.eventId) && !liveDeaths.has(p.eventId)) {
+    box.append(h('button', { class: 'btn ghost watchfx', onclick: (e) => { e.currentTarget.remove(); runScare(p); }, text: 'Efekti izle' }));
+  }
+  if (p.ghost) box.append(ghostCard(p.ghost));
+  return box;
 }
 
 function FakeVote(s) {
@@ -499,8 +580,16 @@ function VotingView() {
   const v = s0.voting;
   let selected = v.myVote;
   let locking = false;
-  app.append(topbar(`${s0.roomCode} · Karar`));
-  if (v.isRepeat) app.append(h('p', { class: 'repeat', text: `Yeniden oylama · ${v.round}. tur` }));
+  const ss = !!v.kind;
+  const actorVote = ss && v.kind !== 'ACTION';
+  app.append(topbar(`${s0.roomCode} · ${actorVote ? 'Görevli seçimi' : 'Karar'}`));
+  if (v.isRepeat) app.append(h('p', { class: 'repeat', text: `Yeniden oylama · ${ss ? v.kindRound : v.round}. tur` }));
+  if (ss && s0.survival?.me.alive === false) app.append(h('div', { class: 'dead-tag', text: 'Suyun altındaki ses · oy verebilirsin, göreve seçilemezsin' }));
+  if (actorVote) {
+    app.append(h('div', { class: 'actionbox' }, h('small', { text: `Seçilen eylem: ${v.action.id}` }), v.action.label,
+      h('span', { class: 'brief', text: v.action.brief }),
+      v.primaryName ? h('span', { class: 'need', text: `Birinci görevli: ${v.primaryName}` }) : null));
+  }
   if (s0.page?.kind === 'scene') {
     const d = h('details', { class: 'reread' }, h('summary', { text: 'Sahneyi yeniden oku' }));
     const st = h('div', { class: 'story' });
@@ -511,11 +600,22 @@ function VotingView() {
     app.append(d);
   }
   app.append(h('h2', { class: 'question', id: 'q', text: v.question }));
-  const opts = v.options.map((o) => h('button', {
-    class: 'opt', role: 'radio', 'aria-checked': 'false', 'aria-label': `${o.id}: ${o.label}`,
+  if (ss && !actorVote && v.equipment) app.append(h('p', { class: 'equip' }, h('b', { text: 'Ekipman: ' }), v.equipment.length ? v.equipment.join(', ') : 'henüz yok'));
+  const labelOf = (id) => v.options.find((o) => o.id === id)?.label ?? id;
+  const opts = v.options.map((o, i) => h('button', {
+    class: 'opt', role: 'radio', 'aria-checked': 'false', 'aria-label': actorVote ? `${o.label}, ${o.fatigueLabel}` : `${o.id}: ${o.label}`,
     onclick: () => { if (snap.voting.myVote || locking) return; selected = o.id; paint(); },
-  }, h('span', { class: 'letter', text: o.id }), h('span', { text: o.label })));
+  },
+  h('span', { class: 'letter', text: actorVote ? String(i + 1) : o.id }),
+  actorVote
+    ? h('span', { class: 'body' }, o.label + (o.isMe ? ' (sen)' : ''),
+      h('span', { class: 'fat', 'aria-hidden': 'true' }, [0, 1].map((k) => h('i', { class: k < o.fatigue ? 'on' : '' }))),
+      h('span', { class: 'brief', text: o.fatigueLabel }))
+    : h('span', { class: 'body' }, o.label,
+      o.need != null ? h('span', { class: 'need', text: o.need === 0 ? 'Ortak karar' : o.need === 1 ? 'Görevli: 1 kişi' : 'Görevli: 2 kişi' }) : null,
+      o.need ? h('span', { class: 'brief', text: o.brief }) : null)));
   app.append(h('div', { class: 'options', role: 'radiogroup', 'aria-labelledby': 'q' }, opts));
+  if (ss && v.ghosts?.length) app.append(h('p', { class: 'small', style: 'margin-top:14px' }, h('b', { text: 'Suyun Altındaki Ses — oy kullanabilir: ' }), v.ghosts.join(', ')));
 
   const status = h('p', { class: 'status', role: 'status' });
   const lockBtn = h('button', { class: 'btn primary', text: 'Oyumu kilitle' });
@@ -536,7 +636,9 @@ function VotingView() {
       el.disabled = !!mine || snap.paused;
     }
     lockBtn.disabled = !selected || !!mine || locking || snap.paused;
-    lockBtn.textContent = mine ? `Oyun kilitlendi: ${mine}` : locking ? 'Gönderiliyor…' : selected ? `${selected} seçeneğine oyumu kilitle` : 'Bir seçenek seç';
+    lockBtn.textContent = actorVote
+      ? (mine ? `Oyun kilitlendi: ${labelOf(mine)}` : locking ? 'Gönderiliyor…' : selected ? `${labelOf(selected)} · oyumu kilitle` : 'Bir kişi seç')
+      : (mine ? `Oyun kilitlendi: ${mine}` : locking ? 'Gönderiliyor…' : selected ? `${selected} seçeneğine oyumu kilitle` : 'Bir seçenek seç');
     const off = snap.players.filter((p) => !p.connected).length;
     status.textContent = `${snap.voting.votedCount}/${snap.castCount} kişi oy verdi` + (off ? ` · ${off} kişinin bağlantısı bekleniyor` : '') + (mine ? ' · oylar tur kapanınca açıklanır' : '');
   }
@@ -546,7 +648,7 @@ function VotingView() {
 // ---------- Bitiş ----------
 function FinishedView() {
   const e = snap.ending;
-  const good = e.endingId === 'E01';
+  const good = e.endingId === 'E01' || e.endingId === 'S2_E01';
   const again = h('button', { class: 'btn primary', onclick: () => act('returnToLobby'), text: 'Yeniden oyna' });
   const waitNote = h('p', { class: 'status' });
   const finalText = h('details', { class: 'night' }, h('summary', { text: 'Finali yeniden oku' }),
@@ -554,16 +656,21 @@ function FinishedView() {
   const night = h('details', { class: 'night', open: true }, h('summary', { text: 'Bu gece ne oldu?' }));
   if (e.notes.length) night.append(h('p', { class: 'eyebrow', text: 'Finali belirleyenler' }), h('ul', { class: 'crit' }, e.notes.map((n) => h('li', { text: n }))));
   else if (!good) night.append(h('p', { class: 'small', text: 'Son kararınız geceyi burada bitirdi.' }));
+  if (e.alive) {
+    night.append(h('p', { class: 'eyebrow', text: 'Kurtulanlar ve kayıplar' }), rosterCard(e));
+    if (e.losses.length) night.append(h('ul', { class: 'crit' }, e.losses.map((l) => h('li', { text: `${l.name} — ${l.where}: ${l.label}` }))));
+  }
   night.append(h('p', { class: 'eyebrow', text: `Yolunuz · ${e.path.length} karar` }),
     h('ol', { class: 'path' }, e.path.map((p) => h('li', {},
       h('span', { class: 't', text: p.title }),
       h('span', { text: `${p.winner} — ${p.label}` }),
+      p.actors?.length ? h('span', { class: 'mine', text: 'Görevli: ' + p.actors.join(', ') + (p.deaths.length ? ` · Ölen: ${p.deaths.join(', ')}` : '') }) : (p.deaths?.length ? h('span', { class: 'mine', text: `Ölen: ${p.deaths.join(', ')}` }) : null),
       h('span', { class: 'mine', text: (p.myVote ? `Senin oyun: ${p.myVote}` : '') + (p.repeats ? ` · ${p.repeats} kez yeniden oylandı` : '') }),
     ))));
   app.append(
     topbar(`${snap.roomCode} · Oyun bitti`),
     h('div', { class: 'ending-head ' + (good ? 'good' : 'bad') }, h('div', { class: 'cls', text: e.classification }), h('h2', { text: e.title })),
-    good ? h('p', { text: 'Bu kez gerçekten çıktınız.' }) : h('p', { class: 'small', text: 'Yirmi sondan yalnız biri herkesin, gerçek isimleriyle çıktığı sondur.' }),
+    good ? h('p', { text: 'Bu kez gerçekten çıktınız.' }) : h('p', { class: 'small', text: isSS() ? 'Yirmi sondan yalnız biri herkesin gerçek kıyıya ulaştığı sondur.' : 'Yirmi sondan yalnız biri herkesin, gerçek isimleriyle çıktığı sondur.' }),
     night, finalText,
   );
   app.append(h('div', { class: 'dock' }, h('div', { class: 'dock-inner' }, waitNote, again)));
@@ -599,6 +706,12 @@ function toggle(label, key, after) {
   sw.onclick = () => { settings[key] = !settings[key]; sw.setAttribute('aria-checked', String(settings[key])); if (key === 'sound' && settings.sound) sound.ensure(); saveSettings(); after?.(); };
   return h('div', { class: 'setting' }, h('span', { text: label }), sw);
 }
+function volumeRow() {
+  const r = h('input', { type: 'range', class: 'range', min: 0, max: 100, step: 5, 'aria-label': 'Jumpscare ses düzeyi' });
+  r.value = Math.round(settings.scareVolume * 100);
+  r.oninput = () => { settings.scareVolume = r.value / 100; saveSettings(); };
+  return h('div', { class: 'setting' }, h('span', { text: 'Jumpscare ses düzeyi' }), r);
+}
 function openSettings() {
   const segBtns = SPEEDS.map((sp) => h('button', { 'aria-pressed': String(settings.speed === sp.v), text: sp.t, onclick: () => {
     settings.speed = sp.v; saveSettings(); segBtns.forEach((b, i) => b.setAttribute('aria-pressed', String(SPEEDS[i].v === sp.v)));
@@ -614,6 +727,7 @@ function openSettings() {
     toggle('Hareketi azalt (metin bir anda görünür)', 'reduceMotion'),
     toggle('Ses (rüzgâr, daktilo)', 'sound'),
     toggle('Titreşim', 'vibrate'),
+    isSS() ? [h('p', { class: 'eyebrow', style: 'margin-top:20px', text: 'Son Sefer · ölüm efektleri' }), toggle('Jumpscare görseli', 'scare'), toggle('Jumpscare sesi', 'scareSound'), volumeRow()] : null,
     ...extra,
     snap?.me ? h('p', { class: 'note', text: `Sen: ${snap.me.name}` }) : null,
   );

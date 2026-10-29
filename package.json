@@ -6,7 +6,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "node --no-warnings --test --test-concurrency=1 test/*.test.js",
+    "test": "node --no-warnings --test --test-concurrency=1 --test-timeout=120000 test/*.test.js",
     "start": "node --no-warnings src/server.js",
     "extract": "node tools/extract.mjs"
   },

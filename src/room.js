@@ -6,6 +6,8 @@ import {
   STORY, NODES, ENDINGS, initialState, decide, renderScene, renderResult, renderEnding, criticalNotes,
 } from './engine.js';
 import { validateName } from './names.js';
+import { DEFAULT_STORY, storyById, storyList } from './stories.js';
+import * as SS from './sonsefer/game.js';
 
 export const MIN_PLAYERS = 4;
 export const MAX_PLAYERS = 10;
@@ -50,8 +52,10 @@ function freshGameFields() {
     lastTie: null,
     decisionLog: [],
     endingId: null,
+    ss: null, // Son Sefer oyun durumu
   };
 }
+const isSurvival = (room) => storyById(room.storyId).engine === 'survival';
 
 export function createRoom(code, hostName, now = Date.now()) {
   const v = validateName(hostName);
@@ -67,6 +71,7 @@ export function createRoom(code, hostName, now = Date.now()) {
     players: [player],
     hostId: player.id,
     requestLog: {},
+    storyId: DEFAULT_STORY,
     ...freshGameFields(),
   };
   return { room, player, key };
@@ -158,6 +163,16 @@ export function leaveLobby(room, playerId, targetId = playerId) {
   bump(room);
 }
 
+// ---------- Hikâye seçimi ----------
+export function setStory(room, playerId, storyId) {
+  if (!isHost(room, playerId)) fail('Hikâyeyi yalnız ev sahibi seçebilir.');
+  if (room.phase !== 'LOBBY') fail('Oyun başladıktan sonra hikâye değiştirilemez.');
+  if (!storyList().some((s) => s.id === storyId)) fail('Bilinmeyen hikâye.');
+  if (room.storyId === storyId) return;
+  room.storyId = storyId;
+  bump(room);
+}
+
 // ---------- Oyun başlangıcı ----------
 export function startGame(room, playerId, shuffle = cryptoShuffle) {
   if (!isHost(room, playerId)) fail('Oyunu yalnız ev sahibi başlatabilir.');
@@ -167,6 +182,14 @@ export function startGame(room, playerId, shuffle = cryptoShuffle) {
   if (n > MAX_PLAYERS) fail(`En fazla ${MAX_PLAYERS} oyuncu olabilir.`);
   const ids = shuffle(room.players.map((p) => p.id));
   room.cast = ids.map((id) => ({ playerId: id, displayName: room.players.find((p) => p.id === id).name }));
+  room.decisionLog = [];
+  room.pageHistory = [];
+  if (isSurvival(room)) {
+    SS.start(room, core);
+    bump(room, true);
+    return;
+  }
+  room.contentVersion = STORY.contentVersion;
   room.state = initialState();
   room.flagSetAt = {};
   room.decisionLog = [];
@@ -214,6 +237,7 @@ function openVoting(room, eligible) {
 
 // ---------- Okudum ----------
 export function markReady(room, playerId, { pageId, phaseVersion }) {
+  if (isSurvival(room)) return SS.markReady(room, playerId, { pageId, phaseVersion }, core);
   if (!inCast(room, playerId)) fail('Bu oyunun kadrosunda değilsin.');
   if (room.paused) fail('Oyun duraklatıldı.');
   if (!['READING', 'RESULT', 'TIE_RESULT', 'ENDING'].includes(room.phase)) fail('Şu an okunacak sayfa yok.');
@@ -254,6 +278,7 @@ function advanceAfterRead(room) {
 
 // ---------- Oylama ----------
 export function castVote(room, playerId, { nodeId, voteRound, optionId, phaseVersion }) {
+  if (isSurvival(room)) return SS.castVote(room, playerId, { nodeId, voteRound, optionId, phaseVersion }, core);
   if (!inCast(room, playerId)) fail('Bu oyunun kadrosunda değilsin.');
   if (room.paused) fail('Oyun duraklatıldı.');
   if (room.phase !== 'VOTING' || phaseVersion !== room.phaseVersion || nodeId !== room.currentNodeId || voteRound !== room.voteRound) fail('STALE');
@@ -378,11 +403,17 @@ export function snapshot(room, playerId) {
     players,
     limits: { min: MIN_PLAYERS, max: MAX_PLAYERS },
     pageId: room.currentPageId,
-    page: room.page ? renderPage(room, room.page) : null,
+    page: null,
     readyCount: room.readyPlayerIds.length,
     castCount: room.cast.length,
   };
-  if (room.phase === 'LOBBY') snap.intro = STORY.intro;
+  const story = storyById(room.storyId);
+  snap.storyId = story.id;
+  snap.storyTitle = story.title;
+  snap.engine = story.engine;
+  if (room.phase === 'LOBBY') { snap.intro = story.intro; snap.stories = storyList(); }
+  if (room.phase !== 'LOBBY' && isSurvival(room)) return SS.decorate(snap, room, playerId);
+  snap.page = room.page ? renderPage(room, room.page) : null;
   if (room.phase === 'VOTING') {
     const node = NODES[room.currentNodeId];
     snap.voting = {
@@ -418,7 +449,8 @@ export function snapshot(room, playerId) {
 }
 
 /** "Gecenin notları": yalnız okunmuş geçmiş sayfalar. */
-export function notes(room) {
+export function notes(room, playerId) {
+  if (isSurvival(room)) return SS.notes(room, playerId);
   return room.pageHistory
     .filter((d) => d.kind === 'scene' || d.kind === 'result')
     .map((d) => {
@@ -426,5 +458,17 @@ export function notes(room) {
       return { kind: r.kind, title: r.title, label: r.label || null, reminder: r.reminder || null, paragraphs: r.paragraphs, contribution: r.contribution || null };
     });
 }
+
+export function ackDeath(room, playerId, eventId) {
+  if (!isSurvival(room)) fail('Bu hikâyede ölüm olayı yok.');
+  SS.ackDeath(room, playerId, eventId, core);
+}
+export const takeLiveDeaths = (room) => (isSurvival(room) ? SS.takeLiveDeaths(room) : []);
+
+// Hikâye sürücülerine verilen ortak yardımcılar
+const core = {
+  fail, bump, setPage: (room, desc) => setPage(room, desc), botIds, inCast, tallyVotes, newId,
+  randomInt: (n) => crypto.randomInt(n),
+};
 
 export { GameError };

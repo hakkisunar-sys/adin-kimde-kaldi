@@ -1,0 +1,17 @@
+{
+  "paragraphs": [
+    "Bir kıyı gezisinden dönen arkadaş grubusunuz. Sizin için ayrılmış, grubunuza yetecek büyüklükte küçük bir yolcu teknesindesiniz. Gece motor duruyor. Kaptan kayıp. Telsizden gelen ses, içinizden birini aşağı çağırıyor.",
+    "Kıyıda bir deniz feneri var. Işığı arada yanıp sönüyor. Oraya ulaşıp gerçek yardım hattını açabilirseniz çıkabilirsiniz. Ama sizi yardım etmek için çağıran her ses insan değil.",
+    "Bir eyleme birlikte karar verin. Gerektiğinde onu kimin yapacağını da birlikte seçin. Yorgunluğu, ekipmanı ve gördüğünüz uyarıları dikkate alın. Yanlış kararlar karakterleri öldürebilir. Ölen oyuncu bu gecenin seslerinden birine dönüşerek oy vermeye ve bilgi paylaşmaya devam eder."
+  ],
+  "goal": "Gün doğmadan gerçek kıyıya ulaşın. En az bir kişiyi kurtarabilirsiniz. Herkesi kurtarmak en büyük başarıdır.",
+  "rules": [
+    "Ana hikâye kararında dört eylemden birine oy verirsiniz. En çok oy alan uygulanır; yüzde 50'yi aşması gerekmez.",
+    "Görev gerekiyorsa yaşayan kişiler arasından görevli seçersiniz. Bazı işlerde iki farklı görevli seçilir.",
+    "Eşitlikte yalnız eşit kalan en yüksek seçenek veya kişiler tekrar oylanır. Kura ve ev sahibi ayrıcalığı yoktur.",
+    "Ölüm geri alınmaz. Ölenler oy verir, bilgi aktarır; fiziksel görevlere gidemez.",
+    "Bir kişi sağ kaldığında hikâye devam eder. Herkes öldüğünde son gösterilir.",
+    "Gerçek zaman sınırlaması yoktur. Yavaş okumak karakteri öldürmez. Gün doğumu hikâyenin içinde ilerler."
+  ],
+  "contentNote": "Bu hikâyede ölüm anlarında aniden açılan korku görselleri ve kısa sesler vardır. Bunlar yalnız ölen kişinin kendi telefonunda gösterilir. Ses düzeyi ayarlanabilir; ses ve jumpscare kişisel ayarlardan kapatılabilir. Kapalıysa ölüm ve oyun kuralları değişmez, onun yerine sade ölüm kartı görünür. Görselleri kapatmak bir avantaj sağlamaz."
+}

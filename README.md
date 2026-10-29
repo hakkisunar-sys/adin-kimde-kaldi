@@ -1,7 +1,33 @@
-# Adın Kimde Kaldı?
+# Adın Kimde Kaldı? · Son Sefer
 
 Telefonlardan ortak karar verilen, dallanan Türkçe korku oyunu. 4–10 kişi. 20 karar yeri, 80 seçenek, 20 final.
 Hikâye önceden yazılmış içerikten çalışır; dış yapay zekâ servisi, API anahtarı veya ücretli bir hizmet gerekmez.
+
+## Hikâyeler
+
+Oda kurulunca ev sahibi lobide hikâyeyi seçer; herkes aynı hikâyeyi oynar. Oyun başladıktan sonra değişmez.
+
+| Hikâye | Biçim | İçerik |
+|---|---|---|
+| **Adın Kimde Kaldı?** | `classic` — dört seçenek, ortak karar, ölüm yok | `content/story.json` (kaynak: `content/kaynak.md`) |
+| **Son Sefer** | `survival` — önce eylem, sonra görevli(ler) oylanır; yorgunluk, kalıcı ölüm, ölülere özel sayfalar, jumpscare | `content/son-sefer/` |
+
+### Son Sefer'de ölüm ve jumpscare
+
+- Ölen oyuncu oy vermeye devam eder, göreve seçilemez, kendine özel kısa sayfalar okur.
+- Jumpscare **yalnız ölenin telefonunda** açılır: sunucu ölüm olayını sadece o kişinin bağlantısına yollar. Diğerleri sade “Ölen / Yaşayan” kartını görür.
+- Akış: ekran kararır → kendine özgü karınca/hışırtı/bozulma (≈1,3 sn) → yüz ve vuruş sesi (≈1 sn) → ölüm kartı. Dokununca geçilir.
+- Sekiz ölüm türünün her birinin görseli, rengi, bozulma biçimi ve sesi farklıdır. Hızlı beyaz flaş yoktur.
+- Herkes kendi telefonunda jumpscare görselini/sesini kapatabilir, ses düzeyini ayarlayabilir (varsayılan %45). Kapalıysa oyun değişmez.
+- Bağlantı koparsa eski ölüm efekti kendiliğinden tekrar oynamaz; ölüm kartında “Efekti izle” düğmesi çıkar.
+
+Sesler `tools/make-sounds.py` ile sıfırdan sentezlenir (dış kayıt yok). Değiştirmek için `public/media/son-sefer/js01.mp3 … js08.mp3` dosyalarını aynı adla değiştirmeniz yeterli; vuruş anı dosyanın 1,3. saniyesinde olmalı.
+
+### Yeni hikâye eklemek
+
+1. İçeriği `content/<hikaye>/` altına koyun.
+2. `src/stories.js` içindeki listeye bir kayıt ekleyin.
+3. Hikâye mevcut iki biçimden birindeyse yeni kod gerekmez. Yeni kurallar getiriyorsa (farklı mekanik) ona ait motor yazılır.
 
 ## Botlar
 
@@ -55,6 +81,8 @@ Tek bir Node süreci olarak çalışan herhangi bir yerde barınabilir (Render, 
 npm test
 ```
 
+- `test/sonsefer.test.js` — Son Sefer motoru: 90 sonuç, paketteki 20 doğrulanmış final yolu, 4–10 kişilik son-yaşayan yolları, yorgunluk eşikleri, toplu ölüm varyantları, final öncelikleri.
+- `test/sonsefer-room.test.js` — Son Sefer odası: hikâye seçimi, görevli/yardımcı oylaması ve eşitliği, ölümün yalnız ölene gitmesi, ölünün oy verip aday olamaması, restart, botlarla tam oyun.
 - `test/story.test.js` — içerik sayıları, ileri yönlü grafik, belgedeki (Ek B) 20 örnek yolun her birinin doğru finale çıkması, final öncelikleri (Ek C), stain sınırları, N19A çözümleyici, 4–10 kişide yer tutucu yerleşimi, katkı satırları, hatırlatmalar.
 - `test/multiplayer.test.js` — gerçek WebSocket istemcileriyle: 3 kişiyle başlamama, 11. kişi engeli, tam oyun, 2–2 / 1–1–1–1 / 2–2–2–0 / 4–4–1–1 eşitlikleri, elenen seçeneğin reddi, 20 tur üst üste eşitlik, iki sekmeden çift oy, aynı isteğin tekrarı, eski tur oyu, kopma beklemesi, VOTING ve RESULT ortasında sunucu yeniden başlatma, ev sahibi devri ve duraklatma.
 

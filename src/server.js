@@ -7,13 +7,14 @@ import { WebSocketServer } from 'ws';
 import QRCode from 'qrcode';
 import { Store } from './store.js';
 import * as R from './room.js';
+import { storyList } from './stories.js';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const PUBLIC = path.join(here, '../public');
 const ROOM_MAX_AGE = 1000 * 60 * 60 * 48; // 48 saat hareketsiz oda silinir
 const REQ_LOG_MAX = 40;
 
-const MIME = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.svg': 'image/svg+xml', '.png': 'image/png', '.ico': 'image/x-icon', '.webmanifest': 'application/manifest+json' };
+const MIME = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.svg': 'image/svg+xml', '.png': 'image/png', '.ico': 'image/x-icon', '.webmanifest': 'application/manifest+json', '.webp': 'image/webp', '.mp3': 'audio/mpeg', '.wav': 'audio/wav' };
 
 export function startServer({ port = 3000, host = '0.0.0.0', dbFile = path.join(here, '../data/oyun.db'), quiet = false } = {}) {
   const log = quiet ? () => {} : (...a) => console.log(new Date().toISOString(), ...a);
@@ -42,6 +43,23 @@ export function startServer({ port = 3000, host = '0.0.0.0', dbFile = path.join(
     const set = sockets.get(room.roomCode);
     if (!set) return;
     for (const ws of set) send(ws, { type: 'snapshot', snapshot: R.snapshot(room, ws.playerId) });
+  }
+
+  // Ölüm olayı yalnız ölen oyuncunun kendi bağlantılarına gider; başkasına yayınlanmaz.
+  function flushDeaths(room) {
+    const evs = R.takeLiveDeaths(room);
+    if (!evs.length) return;
+    const set = sockets.get(room.roomCode);
+    for (const e of evs) {
+      let sent = false;
+      for (const ws of set || []) {
+        if (ws.playerId !== e.playerId) continue;
+        send(ws, { type: 'death', event: { eventId: e.id, key: e.key, nodeId: e.nodeId }, live: true });
+        sent = true;
+      }
+      if (sent && e.status === 'pending') e.status = 'delivered';
+    }
+    persist(room);
   }
 
   function send(ws, msg) {
@@ -76,6 +94,10 @@ export function startServer({ port = 3000, host = '0.0.0.0', dbFile = path.join(
       res.writeHead(200, { 'content-type': 'application/json' });
       return res.end(JSON.stringify({ ok: true, rooms: rooms.size }));
     }
+    if (url.pathname === '/api/stories') {
+      res.writeHead(200, { 'content-type': 'application/json; charset=utf-8' });
+      return res.end(JSON.stringify(storyList()));
+    }
     if (url.pathname === '/api/qr') {
       const text = (url.searchParams.get('text') || '').slice(0, 300);
       try {
@@ -98,7 +120,7 @@ export function startServer({ port = 3000, host = '0.0.0.0', dbFile = path.join(
       }
       res.writeHead(200, {
         'content-type': MIME[path.extname(full)] || 'application/octet-stream',
-        'cache-control': 'no-cache',
+        'cache-control': full.includes(`${path.sep}media${path.sep}`) ? 'public, max-age=604800' : 'no-cache',
         'x-content-type-options': 'nosniff',
         'content-security-policy': "default-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' ws: wss:",
       });
@@ -178,7 +200,7 @@ export function startServer({ port = 3000, host = '0.0.0.0', dbFile = path.join(
     const pid = ws.playerId;
 
     if (msg.type === 'snapshot') return send(ws, { type: 'snapshot', snapshot: R.snapshot(room, pid) });
-    if (msg.type === 'notes') return reply({ notes: R.notes(room) });
+    if (msg.type === 'notes') return reply({ notes: R.notes(room, pid) });
 
     // Yazma istekleri: idempotent
     const requestId = str(msg.requestId, 64);
@@ -193,9 +215,11 @@ export function startServer({ port = 3000, host = '0.0.0.0', dbFile = path.join(
     try {
       switch (msg.type) {
         case 'start': R.startGame(room, pid); break;
+        case 'setStory': R.setStory(room, pid, str(msg.storyId, 40)); break;
+        case 'ackDeath': R.ackDeath(room, pid, str(msg.eventId, 40)); break;
         case 'addBot': R.addBot(room, pid, str(msg.name, 200)); break;
         case 'ready': R.markReady(room, pid, { pageId: str(msg.pageId), phaseVersion: msg.phaseVersion }); break;
-        case 'vote': R.castVote(room, pid, { nodeId: str(msg.nodeId, 4), voteRound: msg.voteRound, optionId: str(msg.optionId, 1), phaseVersion: msg.phaseVersion }); break;
+        case 'vote': R.castVote(room, pid, { nodeId: str(msg.nodeId, 16), voteRound: msg.voteRound, optionId: str(msg.optionId, 32), phaseVersion: msg.phaseVersion }); break;
         case 'pause': R.setPaused(room, pid, !!msg.paused); break;
         case 'returnToLobby': R.returnToLobby(room, pid); break;
         case 'leave': R.leaveLobby(room, pid, msg.targetId ? str(msg.targetId) : pid); break;
@@ -219,6 +243,7 @@ export function startServer({ port = 3000, host = '0.0.0.0', dbFile = path.join(
     }
     if (result.error === 'STALE') send(ws, { type: 'snapshot', snapshot: R.snapshot(room, pid) });
     else broadcast(room);
+    flushDeaths(room);
   }
 
   return new Promise((resolve) => {

@@ -1,0 +1,1873 @@
+{
+  "storyId": "son_sefer",
+  "contentVersion": "1.0",
+  "title": "Son Sefer",
+  "initialFlags": {
+    "rope": false,
+    "battery": false,
+    "engineSafe": false,
+    "power": false,
+    "lifeRaft": false,
+    "chart": false,
+    "signalCode": false,
+    "logProof": false,
+    "falseReply": false,
+    "contamination": false,
+    "dockLine": false,
+    "doorSealed": false,
+    "routeMarked": false,
+    "lensAligned": false,
+    "beacon": false,
+    "sosAnswered": false,
+    "rescueVerified": false,
+    "gateOpen": false,
+    "griefDebt": false
+  },
+  "nodes": [
+    {
+      "id": "S2_N01",
+      "title": "Motor Sustuktan Sonra",
+      "text": "Gece 01.43. Kıyı gezisinden döndüğünüz küçük yolcu teknesi, açık suda bir kere silkeleniyor. Motor duruyor. Birkaç saniye boyunca yalnızca teknenin altına çarpan dalgaları duyuyorsunuz.\n\nSonra bir şey omurgaya sürtünüyor. Teknenin boyu kadar uzun bir şey.\n\nAcil durum lambası yanınca kaptan köşkünü boş buluyorsunuz. Kaptanın yağmurluğu sandalyede. İçinden hâlâ su damlıyor. Az önce üzerinde kuruydu.\n\nTelsizin düğmesi basılı kalmış.\n\n“İçinizden biri aşağı insin. Pervaneye dolandı.”\n\nSes kaptanın sesi. Ardından daha eski, cızırtılı bir kayıt duyuluyor:\n\n“Benim sesimi duyuyorsanız motoru çalıştırmayın. Önce hattı kesin.”\n\n{FOCUS}, iskele tarafındaki korkuluğa yaklaşıyor. Bir el bordaya tutunuyor. Sonra teknenin öbür ucundan ikinci bir el çıkıyor. İki elin arasındaki mesafe, bir insana ait olamayacak kadar fazla.\n\nGüverte dolabında bir can halatı, yalıtımlı pense ve solmuş bir kıyı krokisi görülüyor. Işığın tekrar kesilmesine birkaç saniye varmış gibi titriyor.",
+      "question": "İlk olarak neyi güvenceye alıyorsunuz?",
+      "next": "S2_N02",
+      "options": [
+        {
+          "label": "Telsizden kaptana nerede olduğunu soruyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Ortak karar; ayrıca görevli seçilmez.",
+          "cases": [
+            {
+              "text": "Hoparlörden sizin sayınız kadar nefes geliyor. “Buradayım,” diyor bir ses. Hemen yanınızdaki boşluğa dönüyorsunuz. Görünmeyen bir şey yağmurun yönünü kesiyor.",
+              "effects": {
+                "falseReply": true
+              }
+            }
+          ],
+          "id": "A"
+        },
+        {
+          "label": "Can halatını ve yalıtımlı penseyi alıp sesin hattını kesiyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Güverte dolabını açacak ve telsizin dış hoparlör hattını ayıracak kişi.",
+          "cases": [
+            {
+              "text": "{A}, kabloyu penseyle ayırıyor. Ses kesilmiyor; bir süre teknenin altından devam ediyor. Can halatını yanınıza alıyorsunuz. Bir makaranın üzerinde küçük bir uyarı var: “Islak suda tek başına eğilme.”",
+              "effects": {
+                "rope": true
+              }
+            }
+          ],
+          "id": "B"
+        },
+        {
+          "label": "Kıyı ışığına doğru bağırıp hep birlikte korkuluğa vuruyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Ortak karar; ayrıca görevli seçilmez.",
+          "cases": [
+            {
+              "text": "Kıyıdan karşılık gelmiyor. Teknenin altından aynı ritimle vuruluyor. Vuruşlarınız durduğu hâlde aşağıdaki devam ediyor. Telsiz kendiliğinden “Çağrı kabul edildi” diyor.",
+              "effects": {
+                "falseReply": true,
+                "contamination": true
+              }
+            }
+          ],
+          "id": "C"
+        },
+        {
+          "label": "Lambaları söndürüp bir süre sessizce bekliyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Ortak karar; ayrıca görevli seçilmez.",
+          "cases": [
+            {
+              "text": "Karanlıkta birinin çok yakından soluduğunu duyuyorsunuz. Işıklar geri geldiğinde herkes yerinde; ama birinizin omzunda yukarıdan aşağı değil, aşağıdan yukarı akan bir su izi var.",
+              "effects": {
+                "contamination": true,
+                "restAll": 1
+              }
+            }
+          ],
+          "id": "D"
+        }
+      ]
+    },
+    {
+      "id": "S2_N02",
+      "title": "Su Seviyesinin Altındaki Cam",
+      "text": "Yolcu salonuna inen kapı açık. Alt basamaklara kadar su gelmiş. Masa üzerindeki tekne planında su geçirmez kapının yanında bir akü dolabı işaretli.\n\n{FOCUS}, dolabın kırmızı kolunu görüyor. Kolu almak için suya girmek gerekmiyor; üst sahanlıktan erişilebilir. Buna karşılık kaptan kamarasındaki bir anahtar, yarısı suya gömülmüş masanın üzerinde.\n\nLombozlardan biri içeriden buğulanıyor. Dışarısı deniz. Buğunun üzerinde bir parmak izi beliriyor.\n\nArdından göz.\n\nGöz, suyun arkasından değil, sanki camın bu tarafına yapışmış gibi duruyor. Her dalgada yer değiştirmiyor. Tekne sallandıkça o da tekneyle birlikte sallanıyor.\n\nBir sandalye suyun içinde yavaşça size dönüyor. Üzerinde kimse yok.\n\nPlanın kenarında okunabilir bir not var: “Akü yukarıda. Anahtar için dalma. Cam dışarıdan açılmaz.”",
+      "question": "Alt salonda hangi işe girişiyorsunuz?",
+      "next": "S2_N03",
+      "options": [
+        {
+          "label": "Üst sahanlıktan yedek aküyü çıkarıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Üst basamaktan aküyü kaldıracak kişi; suya girilmeyecek.",
+          "cases": [
+            {
+              "text": "{A}, kuru kulpu kavrayıp aküyü yukarı çekiyor. Altında insan biçiminde koyu bir su izi kalıyor. Aküyü kapalı kutusuyla güverteye çıkarıyorsunuz.",
+              "effects": {
+                "battery": true
+              }
+            }
+          ],
+          "id": "A"
+        },
+        {
+          "label": "Salon kapısını kapatıp kamaralara dokunmadan geri dönüyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Ortak karar; ayrıca görevli seçilmez.",
+          "cases": [
+            {
+              "text": "Kapı kapanınca camdaki yüz kayboluyor. İçeriden kapıya üç kere vuruluyor. Her vuruş daha yüksekte: yüz, suyla birlikte yükseliyor. Aküyü alamadan çıkıyorsunuz.",
+              "effects": {}
+            }
+          ],
+          "id": "B"
+        },
+        {
+          "label": "Halata bağlı olarak kamaradaki anahtarı almaya çalışıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Suya girecek kişi. Can halatı yoksa bu eylem ölümcüldür; oyun bu ekipman eksikliğini seçimden önce gösterir.",
+          "cases": [
+            {
+              "text": "Halat yok. {A}, masaya uzandığında su yüzeyi başının üstünde kapanıyor. Korkuluğa uzanan eli, sanki başka bir elmiş gibi öte tarafa çekiliyor.",
+              "effects": {},
+              "when": {
+                "not": {
+                  "flag": "rope"
+                }
+              },
+              "kill": [
+                "primary"
+              ],
+              "jumpscare": "JS01"
+            },
+            {
+              "text": "{A}, halatla geri çekiliyor. Anahtar motoru açmıyor; üstünde FENER SERVİSİ yazıyor. Kamarada kalmış kıyı krokisini de alıyorsunuz.",
+              "effects": {
+                "chart": true
+              }
+            }
+          ],
+          "id": "C"
+        },
+        {
+          "label": "Lombozdaki yüzü yakından kontrol ediyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Lomboza yaklaşacak kişi. Plandaki uyarı ve içeride oluşan buğu tehlikenin ipucudur.",
+          "cases": [
+            {
+              "text": "{A}, cama yaklaştığında başını öte yandakiyle aynı açıya eğiyor. Cam açılmıyor; yüz dar delikten içeri doğru uzuyor. Geri çekildiğinizde o basamakta artık yalnız su var.",
+              "effects": {},
+              "kill": [
+                "primary"
+              ],
+              "jumpscare": "JS04"
+            }
+          ],
+          "id": "D"
+        }
+      ]
+    },
+    {
+      "id": "S2_N03",
+      "title": "Pervaneye Dolanan",
+      "text": "Makine dairesinin kapısında sarı bir etiket var: “Uzaktan marş vermeden bakım şalterini ayır.” Camlı göstergede ana hat hâlâ açık görünüyor.\n\nMotor dönmüyor. Pervane mili ise ara sıra kendi kendine çeyrek tur hareket ediyor. Milin etrafına sarılı şey bir ağ gibi görünüyor. Ağın düğümleri, siz bakarken parmak eklemlerine benziyor.\n\n{FOCUS}, kuru servis sahanlığında ikinci bir şalter buluyor. Üzerinde manuel kilit var. Yanındaki çubuk, dönen mile yaklaşmadan bakım konumunu sabitlemeye yarıyor.\n\nTavanda ağır bir nefes duyuluyor.\n\nBaşınızı kaldırınca yalnız borular görüyorsunuz. Sonra tavandaki borulardan biri, su damlası bırakmadan, bir eklem gibi bükülüyor.\n\nKaptanın eski kaydı bir yerlerden yeniden duyuluyor: “Önce hattı kesin.”",
+      "question": "Motor çevresinde ne yapıyorsunuz?",
+      "next": "S2_N04",
+      "options": [
+        {
+          "label": "Kaptanın sesine güvenip köşkten marş veriyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Ortak karar; ayrıca görevli seçilmez.",
+          "cases": [
+            {
+              "text": "Motor bir an çalışıyor. Teknenin altındaki şey pervaneye değil, sesin kendisine tutunuyor. Sonra bütün lambalar sönüyor. Ana hattı daha da bozuyorsunuz.",
+              "effects": {
+                "contamination": true,
+                "engineSafe": false
+              }
+            }
+          ],
+          "id": "A"
+        },
+        {
+          "label": "Mili servis çubuğuyla elle çeviriyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Elle kuvvet uygulayacak kişi. Yorgunluk 2/2 ise çubuğu tutamama riski ölümcüldür.",
+          "cases": [
+            {
+              "text": "{A}, yorgunluktan çubuğu yarım bırakıyor. Mil geri dönerken yukarıdan bir yüz iniyor. Sahanlıkta açılan boşluk suyla doluyor.",
+              "effects": {},
+              "when": {
+                "actorFatigueAtLeast": 2
+              },
+              "kill": [
+                "primary"
+              ],
+              "jumpscare": "JS02"
+            },
+            {
+              "text": "{A}, kuru sahanlıktan mili küçük bir açıyla çeviriyor. Ağa benzeyen şey çözülmek yerine içeri çekiliyor. Güvenli bakım kilidi kapalı kalıyor.",
+              "effects": {
+                "engineSafe": true
+              }
+            }
+          ],
+          "id": "B"
+        },
+        {
+          "label": "Ağa benzeyen şeyi elimizle çekip çıkarıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Dönen parçaya yaklaşacak kişi; şalter açık ve ağ hareket ediyor.",
+          "cases": [
+            {
+              "text": "{A} ilk düğüme dokunuyor. Parmaklar yukarıdaki parmaklara benziyor. Ardından tavandan ters bir yüz sarkıyor. Arkadaşınızın el feneri kuru sahanlığa düşüyor; kendisi görünmüyor.",
+              "effects": {},
+              "kill": [
+                "primary"
+              ],
+              "jumpscare": "JS02"
+            }
+          ],
+          "id": "C"
+        },
+        {
+          "label": "Kuru sahanlıktaki bakım şalterini ayırıp mili kilitliyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Yalıtımlı servis kolunu çevirecek kişi; bütün işlem kuru sahanlıktan yapılır.",
+          "cases": [
+            {
+              "text": "{A}, önce hattı ayırıyor, sonra kolu kilitliyor. Ağ birden cansızlaşıyor. Motoru yeniden çalıştırmadınız; ama artık teknenin hareketini dışarıdaki ses yönetemiyor.",
+              "effects": {
+                "engineSafe": true
+              }
+            }
+          ],
+          "id": "D"
+        }
+      ]
+    },
+    {
+      "id": "S2_N04",
+      "title": "Gövdedeki Vuruşlar",
+      "text": "Su alt salonda yükselirken gövdenin içinden tokmak sesleri geliyor. Bir, iki, üç. Sonra kısa bir ara. Sonra yine bir, iki, üç.\n\nSintine pompasının elektrik hattı ayrı. Kuru panelde bir el pompası ve üstünde geri tepme kilidi var. İki kişiyle kolay kullanılabilir. Tek kişi kalmışsa paneldeki kilit kolu, pompayı her basışta sabit tutabiliyor.\n\n{FOCUS}, duvardaki çekiç izlerine bakıyor. Eski izlerin altında küçük bir yazı var: “Sesi taklit eder. Basıncı değil.”\n\nPompanın basınç göstergesi sıfırda. Gövdedeki vurulan yerde ise su sızmıyor. Yardım isteyen birinin bulunduğu yerden çok, sizin yanlış yeri açmanızı bekleyen bir işarete benziyor.\n\nTelsizin kesik kablosundan fısıltı geliyor: “Bizi çıkarın.”",
+      "question": "Suyu ve gövde seslerini nasıl ele alıyorsunuz?",
+      "next": "S2_N05",
+      "options": [
+        {
+          "label": "Vuruş gelen metal kapağı açıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Metal servis kapağını aralayacak kişi. Su basıncı ile sesin yeri örtüşmüyor.",
+          "cases": [
+            {
+              "text": "{A}, kapağı aralayınca içeride bir boşluk değil, teknenin dış denizi görünüyor. Kapağı tekrar kapatıyorsunuz. İçeri sızan birkaç damla zeminde size doğru ilerliyor.",
+              "effects": {
+                "contamination": true
+              }
+            }
+          ],
+          "id": "A"
+        },
+        {
+          "label": "Pompayı geri tepme kilidiyle çalıştırıp akü hattını güvenceye alıyoruz.",
+          "taskCount": 2,
+          "taskBrief": "Bir kişi pompayı, diğeri kuru panel kilidini kontrol eder; roller ayrı seçilir.",
+          "cases": [
+            {
+              "text": "Pompa her basışta gerçek suyu dışarı atıyor. Basınç göstergesi yükseliyor. Kuru enerji hattı yeniden besleniyor; ana motor devreye alınmıyor.",
+              "effects": {
+                "power": true
+              }
+            }
+          ],
+          "soloBrief": "Tek kişi, pompanın geri tepme kilidini her vuruşta sabitleyerek aynı işlemi yapar.",
+          "id": "B"
+        },
+        {
+          "label": "Sahanlıkta dinlenip sesin yer değiştirmesini izliyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Ortak karar; ayrıca görevli seçilmez.",
+          "cases": [
+            {
+              "text": "Vuruşlar siz dururken duvar boyunca ilerliyor. Dışarıdaki şey yardım istemiyor, hangi kapağa yöneleceğinizi deniyor. Soluğunuz toparlanıyor.",
+              "effects": {
+                "restAll": 1
+              }
+            }
+          ],
+          "id": "C"
+        },
+        {
+          "label": "Sesin kaynağını bulmak için pompa boşluğuna başımızı uzatıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Kapalı pompa boşluğunu kontrol edecek kişi; görüş yok ve ses tavanda hareket ediyor.",
+          "cases": [
+            {
+              "text": "{A}, boruların arasına eğiliyor. Başının üstünde bir el beliriyor. El tavana basıyor; ona bağlı yüz ters dönerek arkadaşınıza yaklaşıyor. Pompa boşluğu bir an insan nefesiyle doluyor.",
+              "effects": {},
+              "kill": [
+                "primary"
+              ],
+              "jumpscare": "JS02"
+            }
+          ],
+          "id": "D"
+        }
+      ]
+    },
+    {
+      "id": "S2_N05",
+      "title": "Filikadaki Ağırlık",
+      "text": "Teknenin kıçında şişme servis filikası var. Üzerinde güvenli taşıma kapasitesi sizin grubunuza yetiyor. Yakıt bidonu bağlı, kıyıya ulaşmak için kürekler de hazır.\n\nFilikanın altına bakınca suyun yüzeyinde bir çukur görüyorsunuz. Bir ağırlık teknenin altında değil, suyu aşağıdan bastırıyor gibi.\n\nKaldırma vincindeki etiket açık: “Halatları sökmeden yükü boşalt. Suya uzanma. Sabitleme kolu yukarıdan kullanılır.”\n\n{FOCUS}, filikanın içinde el izi görüyor. İz kuru. Bir parmak, teknenin kenarından içeri doğru hareket ediyor. Görünmeyen biri filikaya çıkmayı deniyor ama ellerini nereye koyacağını bilmiyor.\n\nKıyıdaki fener uzaktan bir kere parlıyor. Ardından karanlık. Yine de sisin içinde alçak bir iskele seçiliyor.",
+      "question": "Filikayı nasıl hazırlıyorsunuz?",
+      "next": "S2_N06",
+      "options": [
+        {
+          "label": "Hiç kontrol etmeden filikaya atlayıp halatları kesiyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Filikaya ilk inecek kişi; kaldırma yükü henüz boşaltılmamış.",
+          "cases": [
+            {
+              "text": "{A} filikaya iner inmez tabandaki kuru el izi suyla doluyor. Filikayı yeniden bordaya bağlıyorsunuz. Kullanılabilir durumda değil; dışarıdaki ağırlık yerini öğrenmiş.",
+              "effects": {
+                "contamination": true
+              }
+            }
+          ],
+          "id": "A"
+        },
+        {
+          "label": "Filikayı bırakıp kıyıyı yüzerek bulmaya hazırlanıyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Ortak karar; ayrıca görevli seçilmez.",
+          "cases": [
+            {
+              "text": "Korkuluğun ötesine baktığınızda kıyı ışığı suyun altında görünüyor. Dalga başları, uzaktaki taşlar gibi dizilmiş. Bunun gerçek bir yüzme yolu olmadığını fark edip geri çekiliyorsunuz.",
+              "effects": {
+                "falseReply": true
+              }
+            }
+          ],
+          "id": "B"
+        },
+        {
+          "label": "Üstten sabitleme kolunu kullanıp filikayı kontrollü indiriyoruz.",
+          "taskCount": 2,
+          "taskBrief": "Bir kişi vinci, diğeri bordadaki kılavuz ipi kontrol eder.",
+          "cases": [
+            {
+              "text": "Kaldırma yükü boşalıyor. Filikanın altındaki çukur uzaklaşıyor. Sabitlenmiş, yakıtı ve kürekleri yerinde bir servis filikanız var.",
+              "effects": {
+                "lifeRaft": true
+              }
+            }
+          ],
+          "soloBrief": "Tek kişi kendinden kilitlenen vinci kullanır; filikaya inmeden kontrol tamamlanır.",
+          "id": "C"
+        },
+        {
+          "label": "Altına takılan şeyi elle itip filikayı kurtarıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Suya uzanacak kişi. Sabitleme kolu yukarıda olduğu hâlde alt tarafa yaklaşılacak.",
+          "cases": [
+            {
+              "text": "{A} eğildiğinde su yarılıyor. Altındaki yüz önce elinize, sonra yüzünüze bakıyor. Filika bir kere yukarı sıçrıyor. Bordadan sarkan el geri gelmiyor.",
+              "effects": {},
+              "kill": [
+                "primary"
+              ],
+              "jumpscare": "JS05"
+            }
+          ],
+          "id": "D"
+        }
+      ]
+    },
+    {
+      "id": "S2_N06",
+      "title": "Kıyı Yer Değiştiriyor",
+      "text": "Köşkün harita masasında iki farklı yol çizilmiş. Basılı kıyı haritası fenerin güneyindeki servis iskelesini gösteriyor. Elektronik gösterge ise sizi kayalıkların arasına, haritada deniz görünmeyen bir noktaya çağırıyor.\n\nİki yön de çıplak gözle kıyı gibi.\n\n{FOCUS}, basılı haritanın üzerindeki fener çiziminin yanına düşülmüş eski bir not görüyor: “Sabit üç taş. Dönen ışık değil.” Altında üç kaya işareti var.\n\nPencerenin arkasında bir yüz beliriyor. Dışarıdaki deniz seviyesi bu pencereye ulaşmıyor. Yüz, duvardan yukarı tırmanmayı yeni öğrenmiş gibi yavaş yükseliyor.\n\nEkrandaki varış bilgisi değişiyor: EVE VARILDI.\n\nTekne hâlâ açık denizde. Eviniz burada değil.",
+      "question": "Gerçek kıyı yönünü nasıl belirliyorsunuz?",
+      "next": "S2_N07",
+      "options": [
+        {
+          "label": "Basılı haritayı üç sabit kayayla karşılaştırıp rotayı işaretliyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Pencereye yaklaşmadan dürbünle kara işaretlerini kontrol edecek kişi.",
+          "cases": [
+            {
+              "text": "{A}, kayanın birinin beyaz çizgisini seçiyor. Elektronik ekrandaki kıyı bir an titreşiyor. Gerçek servis iskelesini haritaya işaretliyorsunuz.",
+              "effects": {
+                "chart": true
+              }
+            }
+          ],
+          "id": "A"
+        },
+        {
+          "label": "Pencerenin arkasındaki kişinin gösterdiği yöne bakıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Dışarıdaki yüzle göz hizasına gelecek kişi; pencere su seviyesinin üstündedir.",
+          "cases": [
+            {
+              "text": "{A} cama yaklaşınca yüz pencereden değil, pencerenin bıraktığı boşluktan içeri giriyor. Gözler olması gerekenden önce ulaşıyor. Kamarada yalnız yere düşen dürbün kalıyor.",
+              "effects": {},
+              "kill": [
+                "primary"
+              ],
+              "jumpscare": "JS04"
+            }
+          ],
+          "id": "B"
+        },
+        {
+          "label": "Elektronik göstergenin ev işaretini rota olarak kaydediyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Ortak karar; ayrıca görevli seçilmez.",
+          "cases": [
+            {
+              "text": "Rota ekranınıza işleniyor. Basılı haritadaki üç kayayı artık aynı yerde seçemiyorsunuz. Kolay yolun size ait olmayan bir varışa gittiğini henüz kabul etmiyorsunuz.",
+              "effects": {
+                "chart": false,
+                "falseReply": true
+              }
+            }
+          ],
+          "id": "C"
+        },
+        {
+          "label": "Kıyı görünüyorken güverteden suya eğilip derinliği ölçüyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Korkuluğun dışına eğilecek kişi. Derinlik aleti değil, sıradan ip kullanılacak.",
+          "cases": [
+            {
+              "text": "{A}, ölçü ipini suya bırakıyor. İp dik durmuyor; bir parmağın etrafında dolanıyor. Suyun yüzeyine çıkan yüz, arkadaşınızın bileğini tekneye yanlış yönden çekiyor.",
+              "effects": {},
+              "kill": [
+                "primary"
+              ],
+              "jumpscare": "JS05"
+            }
+          ],
+          "id": "D"
+        }
+      ]
+    },
+    {
+      "id": "S2_N07",
+      "title": "Havalandırmadaki Nefes",
+      "text": "Fener servisinden gelen eski bir kayıt, köşkün altındaki telsiz sigortasında kalmış. O sigortaya dar havalandırma tünelinden erişiliyor. Aynı kaydın basılı çağrı çizelgesi, girişteki kapağın iç yüzüne yapıştırılmış.\n\nÇizelgede üç kısa, bir uzun, iki kısa işaret var. Altında bir cümle: “Çağrıya gelen yanıt aynı vuruşu tekrar etmez. Son iki vuruşu tersler.”\n\nİlk kez sesle gerçek cevap arasında sınanabilir bir fark görüyorsunuz.\n\nHavalandırmanın içinde su sesi yok. Fakat {FOCUS} kapağı aydınlatınca, metal zeminde geriye doğru kayan ıslak parmaklar seçiliyor.\n\nSigortaya daha uzaktan erişmek için kullanılabilecek kuru servis kolu kapağın hemen yanında. Eğilip kapağın içine başınızı sokmadan uzatılabilir.\n\nTünelden biri nefes alıyor. Sonra nefes, metali çizerek size doğru ilerliyor.",
+      "question": "Çağrı kodunu nasıl alıyorsunuz?",
+      "next": "S2_N08",
+      "options": [
+        {
+          "label": "Kaydı bırakıp havalandırma kapağını kapatıyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Ortak karar; ayrıca görevli seçilmez.",
+          "cases": [
+            {
+              "text": "Nefes metalin öte yanında kalıyor. Kapağın iç yüzündeki çizelge de kapanıyor. Kodu öğrenmeden uzaklaşıyorsunuz.",
+              "effects": {}
+            }
+          ],
+          "id": "A"
+        },
+        {
+          "label": "Sigortayı tünelin içine uzanarak çıkarıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Dar yere girecek kişi. Yorgunluk 2/2 ise dönüşte tutunamama tehlikesi vardır.",
+          "cases": [
+            {
+              "text": "{A}, yorgun kollarıyla tünelin içinden geri dönemiyor. İçerideki yüz, karanlığın bittiği yerde beliriyor. Kapak kendi ağırlığıyla kapanıyor.",
+              "effects": {},
+              "when": {
+                "actorFatigueAtLeast": 2
+              },
+              "kill": [
+                "primary"
+              ],
+              "jumpscare": "JS06"
+            },
+            {
+              "text": "{A}, sigortayı çıkarıp tünelden geri çekiliyor. Kaydı okuyabiliyorsunuz. Gerçek cevabın ritmini öğreniyorsunuz.",
+              "effects": {
+                "signalCode": true
+              }
+            }
+          ],
+          "id": "B"
+        },
+        {
+          "label": "İçeride nefes alan kişiyi çekip çıkarmaya çalışıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Görünmeyen kişiye el uzatacak kişi. Islak izler dışarı değil içeri gidiyor.",
+          "cases": [
+            {
+              "text": "{A} elini uzatıyor. İçerideki yüz gülümsemiyor; ağzını gülümsemeyi taklit eder gibi yanlara doğru uzatıyor. Arkadaşınızın omuzları kapağın içine çekiliyor.",
+              "effects": {},
+              "kill": [
+                "primary"
+              ],
+              "jumpscare": "JS06"
+            }
+          ],
+          "id": "C"
+        },
+        {
+          "label": "Kapağın içindeki çizelgeyi dışarıdan okuyup servis koluyla kaydı alıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Kuru servis kolunu kullanacak kişi; baş ve gövde kapağın dışında kalır.",
+          "cases": [
+            {
+              "text": "{A}, kapağın içine girmeden kolu uzatıyor. Kayıt dışarı geliyor. İşaretleri ve gerçek yanıttaki küçük değişikliği not ediyorsunuz.",
+              "effects": {
+                "signalCode": true
+              }
+            }
+          ],
+          "id": "D"
+        }
+      ]
+    },
+    {
+      "id": "S2_N08",
+      "title": "Çağrı Alınmadı",
+      "text": "Eski telsiz kaydı 17 Kasım 1967 tarihini taşıyor. Bir tekne alçak suda değil, fenerin hemen önünde batıyor. İstasyonda birisi çağrıyı duyuyor. Hava kötü. Kimse gönderilmiyor.\n\nKaydın sonundaki resmî cümle farklı: “Çağrı alınmadı.”\n\nSonra bir kalemin masaya bırakılışı, sandalyenin geri çekilişi duyuluyor. Kaydın bittiği sanılan sessizlikte, boğulanların sesi sürüyor.\n\n{FOCUS}, teybin sayacına bakıyor. Sayılar bugüne kadar ilerliyor. Bu bir kayıt değil; hiç kapatılmamış bir hat.\n\nTelsizin yanındaki zarf üzerinde “Ham çağrı ve imzalı rapor birlikte saklanır” yazıyor. Zarfı uzaktan açan küçük çekmece kolu duruyor.\n\nHoparlörden kaptanın sesi geliyor: “Orada kimse yoktu. Bunu tekrar edin, geçelim.”",
+      "question": "Eski çağrının ortaya çıkardığı gerçeğe nasıl karşılık veriyorsunuz?",
+      "next": "S2_N09",
+      "options": [
+        {
+          "label": "Kaydı durdurup kimsenin duymadığına karar veriyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Ortak karar; ayrıca görevli seçilmez.",
+          "cases": [
+            {
+              "text": "Düğmeye bastığınızda ses kesilmiyor; odadaki her kablonun içinden geliyor. Gerçeği söylemeyen kayda siz de bir cümle eklemiş oluyorsunuz.",
+              "effects": {
+                "falseReply": true
+              }
+            }
+          ],
+          "id": "A"
+        },
+        {
+          "label": "Çekmeceyi açıp ham kaydı ve imzalı raporu birlikte koruyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Uzaktan çekmece kolunu kullanacak kişi; telsiz mikrofonuna dokunulmayacak.",
+          "cases": [
+            {
+              "text": "{A}, zarfı açıyor. İmza ile ham çağrının saati birbiriyle çelişiyor. İlk yardım talebinin gerçekten alındığını kanıtlayan belgeler elinizde.",
+              "effects": {
+                "logProof": true
+              }
+            }
+          ],
+          "id": "B"
+        },
+        {
+          "label": "Hoparlördeki sese yüzünü göstermesini söylüyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Mikrofona yaklaşacak kişi. Sesin kimliği doğrulanmış değil.",
+          "cases": [
+            {
+              "text": "{A}, mikrofonu eline alıyor. Kablodan sanki başka bir el de tutuyor. Yağmurluklu bir yüz konsoldan yükseliyor. Arkadaşınızın sesi, odada kalan tek şey oluyor.",
+              "effects": {},
+              "kill": [
+                "primary"
+              ],
+              "jumpscare": "JS07"
+            }
+          ],
+          "id": "C"
+        },
+        {
+          "label": "Hep birlikte rapordaki çağrı alınmadı cümlesini tekrar ediyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Ortak karar; ayrıca görevli seçilmez.",
+          "cases": [
+            {
+              "text": "Son kelimede teknenin içi bir istasyon odasına dönüşüyor. Dışarıdan gelen yardım çağrısını duyuyorsunuz. Masadaki rapor, bu kez sizin isimlerinizle imzalanmış.",
+              "effects": {},
+              "kill": "all",
+              "jumpscare": "JS07",
+              "ending": "S2_E15"
+            }
+          ],
+          "id": "D"
+        }
+      ]
+    },
+    {
+      "id": "S2_N09",
+      "title": "Sizin Sesinizle Gelen Cevap",
+      "text": "Yalnızca kıyı istasyonunun bakım frekansında iletişim kurulabiliyor. Acil kanal, daha siz düğmeye dokunmadan konuşmaya başlıyor.\n\n“Sizi görüyoruz. Biriniz aşağı insin.”\n\nBu kez konuşan ses {FOCUS} sesi. {FOCUS}, mikrofonun yanında değil. Cümlenin sonunda kendi nefesini duyuyor.\n\nÇağrı çizelgesindeki kuralı hatırlayabiliyorsanız, bir yanıtın aynen tekrar etmesinin kanıt olmadığını biliyorsunuz. Sesi taklit eden şey, bir sonraki vuruşun niçin farklı olması gerektiğini bilmiyor.\n\nTelsizde ritim tuşu, harita masasında kayıt için boş bir kâğıt var. Kesin kararınızı kıyıdaki asıl konsolda vereceksiniz; burada henüz gerçek yardım çağrısına ulaşamıyorsunuz.\n\nBir süre dinlenebilirsiniz. Gövdenin altındaki sürtünme durdu. Bu sessizlik rahatlatmıyor. Sanki bir şey, yürümeyi öğrenmek için önce ellerini boşa çıkarmış.",
+      "question": "Doğrulanmamış yanıta ne yapıyorsunuz?",
+      "next": "S2_N10",
+      "options": [
+        {
+          "label": "Yanıtı kabul etmiyor, gerçek sınamayı kıyı konsoluna bırakıyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Ortak karar; ayrıca görevli seçilmez.",
+          "cases": [
+            {
+              "text": "Mikrofonu kapatıyorsunuz. Ses bir süre daha devam edip kendi cümlesinin ortasında susuyor. Önceki yanlış kabullerin de geçersiz olduğunu açıkça belirtiyorsunuz.",
+              "effects": {
+                "falseReply": false
+              }
+            }
+          ],
+          "id": "A"
+        },
+        {
+          "label": "Tanıdık sese güvenip bizi gördüklerini onaylıyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Ortak karar; ayrıca görevli seçilmez.",
+          "cases": [
+            {
+              "text": "“Onaylandı,” diyor ses. Kıyıdaki ışık, insan gözünün kırpması gibi bir kere kapanıyor. Sizi bulması için ona yerinizi söylemiş oluyorsunuz.",
+              "effects": {
+                "falseReply": true
+              }
+            }
+          ],
+          "id": "B"
+        },
+        {
+          "label": "Ritim tuşuyla gerçek cevap örüntüsünü yeniden çıkarıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Çizelge ve ritim tuşunu birlikte kontrol edecek kişi.",
+          "cases": [
+            {
+              "text": "{A}, çizelgedeki vuruşları kâğıda geçiriyor. Gerçek cevabın son iki vuruşu değiştirmesi gerektiğini tekrar belirliyorsunuz. Bu, henüz kimseyi hatta kabul etmek değildir.",
+              "effects": {
+                "signalCode": true
+              }
+            }
+          ],
+          "id": "C"
+        },
+        {
+          "label": "Mikrofon kapalıyken kısa süre dinlenip kayıtları sıralıyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Ortak karar; ayrıca görevli seçilmez.",
+          "cases": [
+            {
+              "text": "Kimse konuşmuyor. İlk kez, aranızdaki gerçek nefeslerin birbirine uymayan ritimlerini duyuyorsunuz. Dinlenirken kâğıtları sıraya koyuyorsunuz; dışarıdaki sesi yanıtlamıyorsunuz.",
+              "effects": {
+                "restAll": 1
+              }
+            }
+          ],
+          "id": "D"
+        }
+      ]
+    },
+    {
+      "id": "S2_N10",
+      "title": "Sudaki Seyir Defteri",
+      "text": "Kaptan köşkünün taban kapağı açılıyor. Su karanlık bir cam gibi duruyor. İçinde, su geçirmez sayfaları olan seyir defteri yüzüyor. Şeffaf kapağın altında aynı tarih ve eksik bir imza görülüyor.\n\nDefter yalnız aşağıda değil. Kapağın üst tarafına, kaza raporunun karbon nüshası sıkıştırılmış. Kuru yerden alınabilir. Asıl defteri almak şart değil; inkâr edilen çağrının iki kaydını birlikte göstermek yeterli.\n\n{FOCUS}, suyun içinden bir elin defteri yukarı kaldırdığını görüyor. Elin tırnakları insan tırnağına benziyor. Ancak bir bacağı andıran uzunluğun ucunda.\n\nYukarıdaki karbon nüsha titremiyor. Suyun içindeki kâğıt sizin nefesinizle aynı ritimde sallanıyor.\n\nFilikaya ya da teknenin serbest sürüklenişine çıkmadan önce son kanıt fırsatı burada.",
+      "question": "Hangi kaydı alıyorsunuz?",
+      "next": "S2_N11",
+      "options": [
+        {
+          "label": "Suyun içindeki eli tutarak defteri birlikte çıkarıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Suyun içindeki ele dokunacak kişi. Bedenin geri kalanı görünmüyor.",
+          "cases": [
+            {
+              "text": "{A}, elin parmaklarını kavrıyor. Suya uzanan kolu bir an başkasının kolu gibi görünüyor. Aşağıdaki yüz ağzını açınca yüzey kapanıyor.",
+              "effects": {},
+              "kill": [
+                "primary"
+              ],
+              "jumpscare": "JS01"
+            }
+          ],
+          "id": "A"
+        },
+        {
+          "label": "Can halatına bağlı inip gerçek defteri alıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Suya inecek kişi. Can halatı varsa bağlı çıkış mümkün; yokluğu seçim kartında açık gösterilir.",
+          "cases": [
+            {
+              "text": "Can halatı bulunmadığı için {A} suya yalnız giriyor. Yukarıdaki basamak bir anda çok uzakta kalıyor. Fener ışığı suyun altına doğru çekiliyor.",
+              "effects": {},
+              "when": {
+                "not": {
+                  "flag": "rope"
+                }
+              },
+              "kill": [
+                "primary"
+              ],
+              "jumpscare": "JS01"
+            },
+            {
+              "text": "{A}, defteri halatla bağlı olarak çıkarıyor. Su geçirmez sayfalarda çağrının alındığına ilişkin ikinci kayıt bulunuyor.",
+              "effects": {
+                "logProof": true
+              }
+            }
+          ],
+          "id": "B"
+        },
+        {
+          "label": "Kuru kapak kenarındaki karbon nüshayı alıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Üstteki kuru karbon nüshayı alacak kişi.",
+          "cases": [
+            {
+              "text": "{A}, kuru nüshayı kaptığı anda sudaki el defteri aşağı çekiyor. Gereken bilgi zaten elinizde: çağrının saati ve onu duyan kişinin imzası. Bedeninizi suya vermeniz gerekmiyor.",
+              "effects": {
+                "logProof": true
+              }
+            }
+          ],
+          "id": "C"
+        },
+        {
+          "label": "Kanıtları bırakıp çıkışa odaklanıyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Ortak karar; ayrıca görevli seçilmez.",
+          "cases": [
+            {
+              "text": "Kapağı kapatıyorsunuz. Alttan tek bir vuruş geliyor. Elinizde daha önce alınmış kanıt varsa korunuyor; yoksa denizin inkâr edilmiş hikâyesini hâlâ belgeleyemiyorsunuz.",
+              "effects": {}
+            }
+          ],
+          "id": "D"
+        }
+      ]
+    },
+    {
+      "id": "S2_N11",
+      "title": "İskelenin Öğrendiği Adım",
+      "text": "{ARRIVAL}\n\nFenerin servis iskelesi iki yanında deniz olan uzun bir taş dil. Binaya çıkan merdivene ulaşmak için önce iskele halkasını sabitlemeniz gerekiyor. Geri çekilen dalga, dönüş yolunuzu suyun altına alabilir.\n\n{FOCUS}, taşların üzerinde yeni oluşmuş el izleri görüyor. İzler basamak basamak ilerliyor. Önce avuç. Sonra diz. Sonunda ayakkabısız bir ayağın biçimi.\n\nTeknenin altında sürtünen şey kıyıda yürümeye çalışıyor.\n\nİskele halkasının yanında üstten çalışan bir mandal var. Halatınız bulunmasa bile oradaki sabit kıyı zinciri kullanılabilir. Bu, denize sarkmadan yapılacak bir iş.\n\nMerdivenin altında başka bir giriş var: insanın ancak sürünerek geçebileceği servis tüneli. İçinden kuru bir öksürük geliyor. Sonra tünel, nefesini sizinle aynı anda tutuyor.",
+      "question": "Fenerin girişine nasıl hazırlanıyorsunuz?",
+      "next": "S2_N12",
+      "options": [
+        {
+          "label": "Dalga çekilmişken sabitlemeden merdivene koşuyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Ortak karar; ayrıca görevli seçilmez.",
+          "cases": [
+            {
+              "text": "İskele gerinizde suya gömülüyor. Şimdi dönüş için güvenli bir bağlantı yok. Fenerin önüne ulaşıyorsunuz, fakat geri yolunuzu dalganın zamanına bırakmış oldunuz.",
+              "effects": {
+                "dockLine": false
+              }
+            }
+          ],
+          "id": "A"
+        },
+        {
+          "label": "Üst mandalı ve kıyı zincirini kullanarak iskeleyi sabitliyoruz.",
+          "taskCount": 2,
+          "taskBrief": "Bir kişi zinciri taş halkaya oturtur, diğeri üst mandalı tutar.",
+          "cases": [
+            {
+              "text": "Taş halka ile zincir birbirine kilitleniyor. Dalga çekildiğinde yürüyüş yolu yerinde kalıyor. Merdivenin altındaki nefes, metalin kilitlenişinden sonra uzaklaşıyor.",
+              "effects": {
+                "dockLine": true
+              }
+            }
+          ],
+          "soloBrief": "Tek kişi, zincirin kendinden kilitlenen üst mandalını kullanır; denize sarkılmaz.",
+          "id": "B"
+        },
+        {
+          "label": "Nefes gelen dar servis tünelinden içeri giriyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Dar servis tüneline girecek kişi. Tünelde su ve karşıdan yaklaşan bir nefes var.",
+          "cases": [
+            {
+              "text": "{A}, tünelde önünde insan yüzüne benzeyen bir şey görüyor. Şey geri gitmiyor; yüzünün biçimi geçide uymak için daralıyor. Arkadaşınızın sesi birkaç basamak ileride kesiliyor.",
+              "effects": {},
+              "kill": [
+                "primary"
+              ],
+              "jumpscare": "JS06"
+            }
+          ],
+          "id": "C"
+        },
+        {
+          "label": "Kapının önünde toplanıp birbirimizi kontrol ederek soluklanıyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Ortak karar; ayrıca görevli seçilmez.",
+          "cases": [
+            {
+              "text": "Fenerin kapısına kadar geri çekiliyorsunuz. Islak izler iskelede kalıyor. Birbirinizi kontrol ederken soluklanıyorsunuz; sabitleme işi yapılmışsa korunuyor.",
+              "effects": {
+                "restAll": 1
+              }
+            }
+          ],
+          "id": "D"
+        }
+      ]
+    },
+    {
+      "id": "S2_N12",
+      "title": "Kapıyı Açan El",
+      "text": "Fenerin dış kapısı ağır demirden. İçeride, kapı kolunun aşağı indiğini görüyorsunuz. Bir el kolu önce yukarı, sonra yana zorluyor. Nasıl çalıştığını öğrenmeye uğraşıyor.\n\n{FOCUS}, yan duvardaki bakım merdivenini fark ediyor. Üst sahanlıkta servis kapağı var. Merdivenin tabanındaki kancaya, iskeledeki sabit hattın bağlanması gerekiyor. Kanca boşsa ıslak ilk basamak yana kayabilir.\n\nDuvar yazısında “Kapı kolu dışarıdan aşağı, içeriden yukarı çevrilir” denmiş. İçerideki el, az önce bunu tam tersinden denedi.\n\nDemir kapının altından su giriyor. Su yalnız içeri doğru akıyor; dışarıda dalga kapıya ulaşmıyor.\n\nBakım kapağı, kapıyı içeriden biri açmadan binaya girmenize izin veriyor. Yeter ki merdiveni doğru sabitleyin.",
+      "question": "Binaya hangi yoldan giriyorsunuz?",
+      "next": "S2_N13",
+      "options": [
+        {
+          "label": "Kapıyı içerideki ele açtırıp içeri giriyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Ortak karar; ayrıca görevli seçilmez.",
+          "cases": [
+            {
+              "text": "El, kolu doğru çevirmeyi öğreniyor. Kapı açılıyor. Siz geçerken dar bir boşluk aranıza giriyor; içerideki su, ayaklarınızın yanında bir insanın adımları gibi ilerliyor.",
+              "effects": {
+                "contamination": true
+              }
+            }
+          ],
+          "id": "A"
+        },
+        {
+          "label": "Bakım merdivenine sabitlemeden tırmanıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Sabitleme yapılmadan tırmanacak kişi. Yorgunluk 2/2 ve sabit kıyı hattı yoksa ölüm riski vardır.",
+          "cases": [
+            {
+              "text": "{A}, yorgun kollarıyla kaymış basamağa tutunamıyor. Duvarın öbür yanında bir yüz açılıyor. Alttaki su arkadaşınızın düştüğü yeri örtüyor.",
+              "effects": {},
+              "when": {
+                "all": [
+                  {
+                    "not": {
+                      "flag": "dockLine"
+                    }
+                  },
+                  {
+                    "actorFatigueAtLeast": 2
+                  }
+                ]
+              },
+              "kill": [
+                "primary"
+              ],
+              "jumpscare": "JS03"
+            },
+            {
+              "text": "{A}, merdiveni aşarak üst kapağı açıyor. İçeri alçak bir servis yolundan geçiyorsunuz. Sabitlenmeyen merdiven arkanızda denize doğru kayıyor.",
+              "effects": {}
+            }
+          ],
+          "id": "B"
+        },
+        {
+          "label": "Kapının aralığından içerideki kişiyi çekip dışarı çıkarıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Kapı aralığındaki ele yaklaşacak kişi. Elin kapıyı kullanma biçimi insanla uyuşmuyor.",
+          "cases": [
+            {
+              "text": "{A}, demir aralığından uzanan elin parmaklarını tutuyor. Elin arkasında bir kol yok; bütün kapı boşluğu size doğru eğilen bir yüze dönüşüyor. Arkadaşınız karanlığın içine çekiliyor.",
+              "effects": {},
+              "kill": [
+                "primary"
+              ],
+              "jumpscare": "JS03"
+            }
+          ],
+          "id": "C"
+        },
+        {
+          "label": "Merdivenin tabanını üst kilitle sabitleyip bakım kapağından giriyoruz.",
+          "taskCount": 2,
+          "taskBrief": "Bir kişi taban kilidini kurar, diğeri kapağı açar. Kıyı zinciri daha önce sabitlenmediyse burada mekanik taban kilidi yeterlidir.",
+          "cases": [
+            {
+              "text": "Merdiven taş duvara oturuyor. Servis kapağını açıp içerideki demir kapıyı hiç kullanmadan geçiyorsunuz. Aşağıdaki el bir süre kolu çevirmeyi sürdürüyor.",
+              "effects": {}
+            }
+          ],
+          "soloBrief": "Tek kişi, merdivenin taban kilidini üstten sabitleyip emniyetli kapağa tırmanır.",
+          "id": "D"
+        }
+      ]
+    },
+    {
+      "id": "S2_N13",
+      "title": "Bir Işığı Ayakta Tutmak",
+      "text": "Fenerin alt katında sessiz bir jeneratör var. Bakım panosu, ana deniz motoruna bağlı değil. Güvenli düşük voltaj hattı ya yedek aküyle ya da kol çevirmeli dinamoyla beslenebilir.\n\n{FOCUS}, zemine dizilmiş eski yağmurlukları saymıyor. Hepsi boş. Fakat her birinin altında bir çift ıslak ayak izi var.\n\nDuvar kâğıdı, jeneratörün solundaki kapıyı gösteriyor: “Dış servis koridorunu kapatmadan lens katını açmayın.”\n\nİlerideki karanlık odanın içinden sizden önce atılmış adımlar duyuluyor. Aynı sayıda değiller. Bazıları tek ayakla atılıyor; sanki yürümek için ne kadar ayak gerektiği henüz kararlaştırılmamış.\n\nPano üzerindeki güvenli akü yuvası kuru. Dinamo kolu da insanın bel hizasında. Feneri şimdi besleyebilir ya da üst katta eksik enerjiyi tamamlamayı deneyebilirsiniz.",
+      "question": "Fenerin enerjisi için ne yapıyorsunuz?",
+      "next": "S2_N14",
+      "options": [
+        {
+          "label": "Yedek aküyü düşük voltaj yuvasına bağlıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Akü yuvasına bağlayacak kişi. Akü yoksa kart bunu gösterir; eylem zarar vermez ama enerji sağlamaz.",
+          "cases": [
+            {
+              "text": "{A}, kapalı akü kutusunu yuvaya oturtuyor. Enerji hattı açılıyor. Kule lambası henüz yanmıyor; mercek hizalanmalı ve ışık üstten devreye alınmalı.",
+              "effects": {
+                "power": true
+              },
+              "when": {
+                "flag": "battery"
+              }
+            },
+            {
+              "text": "Yanınızda akü yok. {A}, boş yuvayı kapatıyor. İşlem enerji üretemiyor. Üst katın acil servis yolunda bir fırsat daha olabilir.",
+              "effects": {}
+            }
+          ],
+          "id": "A"
+        },
+        {
+          "label": "Kuru dinamo koluyla hattı elle besliyoruz.",
+          "taskCount": 2,
+          "taskBrief": "Bir kişi dinamo kolunu, diğeri sabitleme mandalını tutar.",
+          "cases": [
+            {
+              "text": "Dinamo çevriliyor. Gösterge güvenli aralıkta kalıyor. Kule mekanizmasının çalışmasına yetecek enerji kuruluyor; doğrudan ana deniz motorunu kullanmıyorsunuz.",
+              "effects": {
+                "power": true
+              }
+            }
+          ],
+          "soloBrief": "Tek kişi, depolama mandallı dinamoyu kısa vuruşlarla çevirir; depolanan enerji sahne geçişlerinde kendiliğinden tükenmez.",
+          "id": "B"
+        },
+        {
+          "label": "Enerjiyi bırakıp servis merdiveninden yukarı çıkıyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Ortak karar; ayrıca görevli seçilmez.",
+          "cases": [
+            {
+              "text": "Yağmurlukların yanından geçiyorsunuz. Arkada boş bir çizme yere düşüyor. Enerji hattı daha önce kurulmuşsa korunuyor; kurulmamışsa kule şimdilik karanlık.",
+              "effects": {}
+            }
+          ],
+          "id": "C"
+        },
+        {
+          "label": "Bütün ışıkları kapatıp karanlık odada sessizce saklanıyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Ortak karar; ayrıca görevli seçilmez.",
+          "cases": [
+            {
+              "text": "Kapı arkanızdan kapanıyor. Işık olmadan kıyıyla denizin ayrıldığı yeri seçemiyorsunuz. Dışarıdaki şey basamakları buluyor. Sizin ışığa geri dönme kararınızdan önce, kapı kolunu bu kez doğru çeviriyor.",
+              "effects": {},
+              "ending": "S2_E16"
+            }
+          ],
+          "id": "D"
+        }
+      ]
+    },
+    {
+      "id": "S2_N14",
+      "title": "Davet Edilmemiş Olan",
+      "text": "Alt servis koridorunun sonunda teknenin bütün gecedir altınızda kalan denizi görünüyor. Oysa fener kayalığın üstünde. Koridorun zemini, başka bir yerdeki suya açılmış gibi.\n\nBakım kapısının sürgüsü dışarıdan kapatılabilir. Yanında şeffaf bir kurutma perdesi ve temiz bir geçiş ızgarası var. Eski bakım talimatı sade:\n\n“Servis hattı kapanır. Perde aşağı iner. İnsanlar kuru taraftan geçer.”\n\n{FOCUS}, ızgaranın kenarında size ait olmayan bir el izini seçiyor. El, parmaklarını zemine basmak yerine topuk gibi sürüklemiş. Bedenleri öğrenen şey hâlâ bir yeri yanlış yapıyor.\n\nKapının arkasından sizin sesleriniz geliyor. Biri panik içinde “Beni dışarıda bıraktınız” diyor. Fakat o ismi taşıyan kişi hayattaysa yanınızda; öldüyse artık hiçbir canlı görevde bulunmadığını biliyorsunuz.\n\nSesi tanımak, kapının arkasında bir insan olduğunu kanıtlamıyor.",
+      "question": "Servis koridorunu nasıl kapatıyorsunuz?",
+      "next": "S2_N15",
+      "options": [
+        {
+          "label": "İçeride biri kalmasın diye kapıyı açık bırakıyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Ortak karar; ayrıca görevli seçilmez.",
+          "cases": [
+            {
+              "text": "Su koridor boyunca sessizce yükseliyor. İnsanlarınızın hepsinin hesabını bildiğiniz hâlde, tanıdık ses için açık bir yol bırakmış oluyorsunuz.",
+              "effects": {
+                "doorSealed": false,
+                "contamination": true
+              }
+            }
+          ],
+          "id": "A"
+        },
+        {
+          "label": "Sürgüyü kapatıp kurutma perdesini indirmeden geçiyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Dışarıdan sürgüyü kapatacak kişi.",
+          "cases": [
+            {
+              "text": "{A}, servis yolunu kilitliyor. Kapı tutuluyor; ancak ayakkabılarınıza yapışmış su izleri ızgarada ayrılmıyor. Daha önce aranıza sızmış olan temizlenmedi.",
+              "effects": {
+                "doorSealed": true
+              }
+            }
+          ],
+          "id": "B"
+        },
+        {
+          "label": "Sürgüyü kapatıyor, perdeyi indirip kuru ızgaradan birlikte geçiyoruz.",
+          "taskCount": 2,
+          "taskBrief": "Bir kişi sürgüyü kapatır, diğeri perdeyi sabitler. Kuru tarafa geçiş, yaşayanların tamamını kapsar.",
+          "cases": [
+            {
+              "text": "Servis hattı kapanıyor. Perde aşağı inerken aranızdaki bir boşlukta su patlıyor. Izgarada kalan izler bir beden kuramadan dağılıyor. Yalnız hayatta kalan gerçek kişiler kuru tarafta toplanıyor.",
+              "effects": {
+                "doorSealed": true,
+                "contamination": false
+              }
+            }
+          ],
+          "soloBrief": "Tek kişi, mandallı perdeyi kapatıp kuru ızgaradan geçer; kendisi için görünmez bir yardımcı yazılmaz.",
+          "id": "C"
+        },
+        {
+          "label": "Sesi son kez kontrol etmek için kapı aralığına bakıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Hesabı bilinen grubun dışında, doğrulanmamış sese yaklaşacak kişi.",
+          "cases": [
+            {
+              "text": "{A}, içeri bakmak için eğiliyor. Kapının karanlığı bir yüzün ağzı gibi açılıyor. Koridordan geriye su sıçramıyor; yalnız arkadaşınızın tuttuğu kapı kolu kuru tarafta kalıyor.",
+              "effects": {},
+              "kill": [
+                "primary"
+              ],
+              "jumpscare": "JS03"
+            }
+          ],
+          "id": "D"
+        }
+      ]
+    },
+    {
+      "id": "S2_N15",
+      "title": "Denizin İçindeki Merdiven",
+      "text": "Üst kata çıkan ana merdivenin birkaç basamağı çökmüş. Sol tarafta sığ suyla örtülü eski bir geçit var. Sağda, duvar boyunca bakım çıkıntıları ilerliyor.\n\n{FOCUS}, korkuluğun iç tarafındaki çizgileri fark ediyor. Yeşil boya kuru bakım yolunu, kırmızı boya suya açık eski merdiveni işaretliyor. Deniz ışığı iki rengi de gri gösteriyor. El fenerini doğrudan tuttuğunuzda ayrılıyorlar.\n\nSu tarafındaki basamaklarda kendi adımlarınızın sesini duyuyorsunuz. Henüz oraya basmadınız.\n\nDuvar çıkıntılarının üstünde ayakkabı sığacak yer var. Her geçişte kilitlenen küçük tutamaklar, tek kişinin de güvenle kullanabileceği aralıkta.\n\nYukarıdaki mercek odasına çıkan gerçek rotayı işaretlemek, dönerken karanlıkta aynı yolu bulmanız için gerekli.",
+      "question": "Kırık merdiveni hangi yoldan aşıyorsunuz?",
+      "next": "S2_N16",
+      "options": [
+        {
+          "label": "Su içindeki basamaklardan hızlıca geçiyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Önce su merdivenini geçecek kişi. Yorgunluk 2/2 olduğunda tutunamama ölümcüldür.",
+          "cases": [
+            {
+              "text": "{A}, yorgunluktan bir basamağı kaçırıyor. Su duvarın üzerinde yükseliyor. Arkadaşınızın yüzüne daha alttan bir yüz yaklaşıyor. Merdivenin geri kalanı kararıyor.",
+              "effects": {},
+              "when": {
+                "actorFatigueAtLeast": 2
+              },
+              "kill": [
+                "primary"
+              ],
+              "jumpscare": "JS01"
+            },
+            {
+              "text": "{A}, ıslak basamakları aşarak üst kapıyı açıyor. Ötekiler kuru kenardan geçiyor. Eski su yolu size doğru bir adım daha ilerlemiş gibi görünüyor.",
+              "effects": {
+                "contamination": true
+              }
+            }
+          ],
+          "id": "A"
+        },
+        {
+          "label": "Doğrudan ışıkla yeşil yolu bulup bakım tutamaklarından geçiyoruz.",
+          "taskCount": 2,
+          "taskBrief": "Bir kişi öndeki tutamağı dener, öteki duvar işaretini kaydeder.",
+          "cases": [
+            {
+              "text": "Boyanın gerçek rengi ortaya çıkıyor. Bakım tutamakları her adımda kilitleniyor. Güvenli dönüş yolunu tebeşirle işaretliyorsunuz.",
+              "effects": {
+                "routeMarked": true
+              }
+            }
+          ],
+          "soloBrief": "Tek kişi, aralıklı kendinden kilitlenen tutamakları kullanarak bakım yolunu geçer ve rotayı işaretler.",
+          "id": "B"
+        },
+        {
+          "label": "Kırmızı işaretin acil çıkış olduğunu varsayarak izliyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Ortak karar; ayrıca görevli seçilmez.",
+          "cases": [
+            {
+              "text": "Kırmızı çizgi bir duvarın içine girip suyun altında devam ediyor. Yanlışlığını fark edip üst sahanlığa geri dönüyorsunuz. Kuru dönüş yolu işaretlenmemiş kalıyor.",
+              "effects": {
+                "falseReply": true
+              }
+            }
+          ],
+          "id": "C"
+        },
+        {
+          "label": "Merdiven başında dinlenip dinlediğimiz adımları karşılaştırıyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Ortak karar; ayrıca görevli seçilmez.",
+          "cases": [
+            {
+              "text": "Siz durunca sudaki adımlar bir basamak daha atıyor. Dışarıdaki yürüyüşün size ait olmadığını anlıyorsunuz. Kısa bir yan sahanlıktan üst kata ulaşıyorsunuz; dönüş için işaret bırakmamış oldunuz.",
+              "effects": {
+                "restAll": 1
+              }
+            }
+          ],
+          "id": "D"
+        }
+      ]
+    },
+    {
+      "id": "S2_N16",
+      "title": "Mercekteki Göz",
+      "text": "Fenerin mercek odası yuvarlak. Büyük cam dilimler ışığı denize taşıyor. Şimdilik yalnız bakım fenerlerinizin ışığını çoğaltıyorlar.\n\n{FOCUS}, karşı camda bir yüz görüyor. Başını çevirdiğinde orada kimse yok. Aynı yüz öteki camda beliriyor. Sonra iki ayrı dilimde aynı anda.\n\nBir varlığın iki görüntüsü mü, iki varlığın tek yüzü mü olduğunu anlayamıyorsunuz.\n\nBakım kolunun yanında bir kalkan var. Üzerindeki talimat okunuyor: “Prizmaya çıplak gözle yaklaşma. Kalkanı indir. Beyaz referansı sabit üç taşla hizala.”\n\nÜç taşın yönü basılı haritada bulunuyorsa hizalama doğrudan yapılabilir. Harita yoksa kolun üzerindeki mekanik yuva merceği servis referansına oturtuyor. İki yöntem de mümkün; gözünüzü cama dayamak gerekmiyor.\n\nCamın içinden tırnak sesi geliyor. Ses, merceğin döndüğü yönden bağımsız hareket ediyor.",
+      "question": "Merceği nasıl ayarlıyorsunuz?",
+      "next": "S2_N17",
+      "options": [
+        {
+          "label": "Hep birlikte çıplak cama yaklaşıp görüntüyü içeriden izliyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Ortak karar; ayrıca görevli seçilmez.",
+          "cases": [
+            {
+              "text": "Hepinizin yüzü ayrı cam diliminde beliriyor. Bir göz kırpışında mercek dönüyor. Dışarıdan görünen son şey, ışığın içinden ellerini cama bastıran yüzleriniz oluyor.",
+              "effects": {},
+              "kill": "all",
+              "jumpscare": "JS08",
+              "ending": "S2_E17"
+            }
+          ],
+          "id": "A"
+        },
+        {
+          "label": "Merceğe dokunmadan üstteki acil ışık düğmesine çıkıyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Ortak karar; ayrıca görevli seçilmez.",
+          "cases": [
+            {
+              "text": "Camın içindeki yüz sizi izliyor. Mekanik ayarı tamamlamadan üst düğmeye ulaşıyorsunuz. Işık yanarsa bile doğru yöne dönmeyebilir.",
+              "effects": {}
+            }
+          ],
+          "id": "B"
+        },
+        {
+          "label": "Camın arkasındaki gözü yakından inceliyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Prizma yüzeyine yaklaşacak kişi. Bakım talimatı çıplak gözle yaklaşmayı açıkça yasaklıyor.",
+          "cases": [
+            {
+              "text": "{A}, yüzünü parlak dilime yaklaştırıyor. Camdaki göz büyüyor. Bir el, camın iki yüzünden aynı anda uzanıyor. Sonra arkadaşınız yalnız kırılmış ışığın içinde seçiliyor.",
+              "effects": {},
+              "kill": [
+                "primary"
+              ],
+              "jumpscare": "JS08"
+            }
+          ],
+          "id": "C"
+        },
+        {
+          "label": "Koruyucu kalkanı indirip beyaz referansı mekanik yuvaya oturtuyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Koruyucu kalkan ve servis referans kolunu kullanacak kişi.",
+          "cases": [
+            {
+              "text": "{A}, önce kalkanı indiriyor. Camdaki yüz karanlıkta kalıyor. Beyaz işaret yuvasına oturunca ışık yolu denize açılıyor. Mercek hizası tamam.",
+              "effects": {
+                "lensAligned": true
+              }
+            }
+          ],
+          "id": "D"
+        }
+      ]
+    },
+    {
+      "id": "S2_N17",
+      "title": "Işık Yandığında",
+      "text": "Üst konsolda üç anahtar var. İlki enerji, ikincisi dönme, üçüncüsü bakım bypassı. Bypass kolunun yanında uyarı duruyor: “Açık mercekle bypass kullanılmaz.”\n\nDenizin karanlığında yüzlerce küçük ışık beliriyor. Yakından bakınca ışık olmadıklarını fark ediyorsunuz. Suyun üstünde kalan gözler.\n\n{FOCUS}, aşağıdaki servis kapısından bir ses duyuyor. Kapı doğru kapatılmışsa ses uzakta kalıyor. Açık bırakıldıysa alt basamaklarda su sürünüyor.\n\nFenerin normal ışığı, kıyıyla su arasındaki çizgiyi yeniden görünür kılabilir. Karanlıkta yapılan hareketleri ışıkta tamamlayamayan şey, kendine bir insan bedeni kurmakta zorlanıyor.\n\nKonsolun üzerinde ikinci bir not: “Enerji yoksa kuru el jeneratörü. Hiza yoksa önce referans kolu. Kısa yol, açık kapıdır.”",
+      "question": "Feneri nasıl yakıyorsunuz?",
+      "next": "S2_N18",
+      "options": [
+        {
+          "label": "Kuru el jeneratörünü ve servis referansını tamamlayıp normal devreyi açıyoruz.",
+          "taskCount": 2,
+          "taskBrief": "Bir kişi kuru el jeneratörünü kurar, diğeri kalkan kapalıyken referansı kontrol eder. Önceki eksikleri daha uzun ama güvenli yöntemle tamamlama fırsatı.",
+          "cases": [
+            {
+              "text": "Yedek el jeneratörü ve korumalı referans kolu sırayla kuruluyor. Normal ışık devreye giriyor. Işığın denize değdiği çizgide, suyun üstündeki yüzler aşağı çekiliyor.",
+              "effects": {
+                "power": true,
+                "lensAligned": true,
+                "beacon": true
+              }
+            }
+          ],
+          "soloBrief": "Tek kişi, depolamalı el jeneratörünü kurar; ardından korumalı servis koluna geçer. Aynı anda iki kolu tutması gerekmez.",
+          "id": "A"
+        },
+        {
+          "label": "Hazırlanmış enerji ve mercekle normal ışık devresini açıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Normal ışık düğmesini kullanacak kişi. Eksik enerji/hiza durumu kartta görünür.",
+          "cases": [
+            {
+              "text": "{A}, normal devreyi açıyor. Güç ve hiza birlikte. Işık denizin üzerinde gerçek kıyıyı çiziyor. Hiçbir yansımaya yeni bir kapı açmadınız.",
+              "effects": {
+                "beacon": true
+              },
+              "when": {
+                "all": [
+                  {
+                    "flag": "power"
+                  },
+                  {
+                    "flag": "lensAligned"
+                  }
+                ]
+              }
+            },
+            {
+              "text": "{A}, düğmeyi açıyor. Güç veya mercek hizası eksik. Konsol uyarı lambası yakıyor ama gerçek fener ışığı oluşmuyor. Çıplak karanlık, denizin üstünde kalıyor.",
+              "effects": {
+                "beacon": false
+              }
+            }
+          ],
+          "id": "B"
+        },
+        {
+          "label": "Bakım bypassını indirip gücü doğrudan merceğe veriyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Uyarıya rağmen açık mercek bypassını kullanacak kişi.",
+          "cases": [
+            {
+              "text": "{A}, bypassı açınca ışık bir an aşağıya, sizin durduğunuz yere dönüyor. Bedenlerinizin arasındaki boşluklar da gölge veriyor. Işık çalışıyor, fakat içerideki yolu da açmış oldunuz.",
+              "effects": {
+                "beacon": true,
+                "contamination": true
+              }
+            }
+          ],
+          "id": "C"
+        },
+        {
+          "label": "Yanan camın içine bakıp dışarıdaki şeyin kaybolduğunu doğruluyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Korumasız merceğe doğrudan bakacak kişi; ışık kaynağı güvenli gözlem noktası değildir.",
+          "cases": [
+            {
+              "text": "{A}, ışığın kaynağına bakıyor. Merceğin içindeki yüz, bu kez cama dokunmadan yaklaşıyor. Arkadaşınızın gölgesi birkaç saniye yerinde kalıyor; sonra o da ışığa karışıyor.",
+              "effects": {},
+              "kill": [
+                "primary"
+              ],
+              "jumpscare": "JS08"
+            }
+          ],
+          "id": "D"
+        }
+      ]
+    },
+    {
+      "id": "S2_N18",
+      "title": "Son İki Vuruş",
+      "text": "Kıyı konsolu çalışıyor. Fenerin içindeki bakım hattı, hem açık kalmış eski yardım çağrısını hem bugünün servis istasyonunu taşıyor.\n\nİlk ses ağlıyor. “Bizi duyduğunuzu söyleyin.”\n\nİkinci ses yardım teklif ediyor. “Kapıyı açın, sizi alalım.”\n\nİlk çağrıya gerçeği söylemek gerekiyor: Duyuldular. Rapor yanlıştı. İkinci sesin ise yalnız tanıdık olması yeterli değil. Gerçek istasyon ritim sınamasının son iki vuruşunu değiştirmeli. Doğru cevap verirken sizden hiçbir kapıyı açmanızı istememeli.\n\n{FOCUS}, konsoldaki göndere basmadan önce kâğıtlara bakıyor. Gerçeği belgeleyen kayıt elinizdeyse, inkârı bir cümleyle düzeltebilirsiniz.\n\nDışarıdan bir tekne motoru duyuluyor. Görünmüyor. Suya yakın bir yerden sizin isimlerinizden biri söyleniyor. O adın bir insana ait olması, sesin de ona ait olduğu anlamına gelmiyor.",
+      "question": "İki çağrıya hangi karşılığı veriyorsunuz?",
+      "next": "S2_N19",
+      "options": [
+        {
+          "label": "İlk yardım teklifini kabul edip kapıyı açacağımızı söylüyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Ortak karar; ayrıca görevli seçilmez.",
+          "cases": [
+            {
+              "text": "Ses sınama istemiyor. Konum sormuyor. “Açın,” diyor. Kurtarılmayı, kimliğini doğrulamadığınız bir çağrıya bağlamış oldunuz.",
+              "effects": {
+                "falseReply": true,
+                "rescueVerified": false
+              }
+            }
+          ],
+          "id": "A"
+        },
+        {
+          "label": "Eski çağrının duyulduğunu kabul ediyor ama kurtarma hattını kapatıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Konsolda tanıklık cümlesini söyleyecek kişi.",
+          "cases": [
+            {
+              "text": "{A}, inkârı düzeltiyor: “Çağrınız alındı.” Aşağıdaki ağlama susuyor. Fakat bugünün yardım istasyonunu sınamadan kapatıyorsunuz. Gerçek kurtarma bağlantısı kurulmuyor.",
+              "effects": {
+                "sosAnswered": true,
+                "rescueVerified": false
+              }
+            }
+          ],
+          "id": "B"
+        },
+        {
+          "label": "Kaydı esas alıp eski çağrıyı kabul ediyor, bugünün istasyonunu ritimle sınıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Doğrulama konuşmasını yapacak kişi. Gerçek kanıt ve ritim bilgisi eksikse kart bunu gösterir; başarılı doğrulama uydurulmaz.",
+          "cases": [
+            {
+              "text": "{A}, çağrının alındığı saati söylüyor. Sonra sınama vuruşlarını gönderiyor. Yanıt son iki vuruşu değiştiriyor; kapıyı değil, servis iskelesindeki beyaz işareti soruyor. Geçerli kurtarma bağlantısı kuruluyor.",
+              "effects": {
+                "sosAnswered": true,
+                "rescueVerified": true,
+                "falseReply": false
+              },
+              "when": {
+                "all": [
+                  {
+                    "flag": "logProof"
+                  },
+                  {
+                    "flag": "signalCode"
+                  }
+                ]
+              }
+            },
+            {
+              "text": "{A}, sınamayı tamamlamak istiyor. Fakat doğru kayıt veya vuruş bilgisi eksik. Gelen ses boşluğu sizin adınızla dolduruyor. Onay sandığınız şey bir tekrar.",
+              "effects": {
+                "falseReply": true,
+                "rescueVerified": false
+              }
+            }
+          ],
+          "id": "C"
+        },
+        {
+          "label": "Kapıyı açıp bizi almaya gelenlere sesleniyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Ortak karar; ayrıca görevli seçilmez.",
+          "cases": [
+            {
+              "text": "Dışarıda bir tekne yok. Aşağıdaki karanlık, kapının boyuna kadar yükseliyor. Fenerin içindeki sesler birer birer aynı cümleyi söylüyor: “Çağrınızı aldık. İçeri gelin.”",
+              "effects": {},
+              "kill": "all",
+              "jumpscare": "JS07",
+              "ending": "S2_E18"
+            }
+          ],
+          "id": "D"
+        }
+      ]
+    },
+    {
+      "id": "S2_N19",
+      "title": "Kimseyi Suda Bırakmadan",
+      "text": "Gün doğmadan önce son iniş başlıyor. Üst kapıdan aşağı baktığınızda birkaç ayrı yol görüyorsunuz. Deniz, ışığın vurmadığı basamakları kıyı gibi gösteriyor.\n\nBakım geçişi daha önce işaretlendiyse yeşil tebeşir izleri duruyor. İşaret yoksa duvara bağlı emniyet kablosu kuru kenarı bulmanızı sağlıyor. Kabloyu duvardan sökmeden izlemek mümkün.\n\n{FOCUS}, iniş kolunun yanında küçük bir fren görüyor. Onu kilitlemek geçidi sabit tutar. Kimsenin sırf kolu tutmak için içeride kalması gerekmez.\n\nAşağıdaki ses artık yardım istemiyor.\n\n“İçinizden biri kalsın,” diyor. “Ötekileri bırakırım.”\n\nO sesi hayatınızda hiç duymamışsınız gibi geliyor. Birkaç saat önce kaptan gibi konuştuğuna inanmak zor.\n\nYaşayanların isimleri bir kez daha sayılıyor: {ALIVE_NAMES}. Suyun altında kalanlar: {DEAD_NAMES}. Hiç kimse iki listede birden değil.",
+      "question": "Son inişi nasıl güvenceye alıyorsunuz?",
+      "next": "S2_N20",
+      "options": [
+        {
+          "label": "Duvar emniyet kablosunu izleyip kol frenini kilitleyerek iniyoruz.",
+          "taskCount": 2,
+          "taskBrief": "Bir kişi geçiş kolunu, diğeri duvar emniyet kablosunu kontrol eder; işaret eksikse de güvenli ve daha uzun yol.",
+          "cases": [
+            {
+              "text": "Kablo kuru kenarı gösteriyor. Kol freni yerine oturuyor. Hayatta kalanlar birlikte geçiyor; birinin içeride tutulmasına gerek kalmıyor. Kıyı geçidi açık.",
+              "effects": {
+                "gateOpen": true
+              }
+            }
+          ],
+          "soloBrief": "Tek kişi kol frenini sabitleyip duvar kablosunu izler. Geçiş kendinden kilitlenir.",
+          "id": "A"
+        },
+        {
+          "label": "Önceden işaretlediğimiz bakım yolunu kullanıp alt mandalı açıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Yeşil işaretli bakım yolundan alt mandala ulaşacak kişi. İşaretlenmemişse kart bunun eksik olduğunu gösterir.",
+          "cases": [
+            {
+              "text": "{A}, yeşil çizgiyi takip edip alt mandalı açıyor. Yol sabitleniyor. Hayatta kalan gerçek grup iskele çizgisine ulaşıyor.",
+              "effects": {
+                "gateOpen": true
+              },
+              "when": {
+                "flag": "routeMarked"
+              }
+            },
+            {
+              "text": "{A}, doğru işareti bulamıyor. Birkaç adımın ardından kolu yeniden üst sahanlıkta görüyor. Geçiş sabitlenemiyor; ışığın çizdiği kıyıya yine de ulaşmayı deniyorsunuz.",
+              "effects": {
+                "gateOpen": false
+              }
+            }
+          ],
+          "id": "B"
+        },
+        {
+          "label": "Birini içeride bırakıp kalanların geçmesini sağlıyoruz.",
+          "taskCount": 1,
+          "taskBrief": "İçeride bırakılacak yaşayan kişi seçilir. Bu bir gönüllü görevi gibi anlatılmaz: grup kimi bırakacağına karar verir. Mekanik frenin varlığı nedeniyle bedel gereksizdir.",
+          "cases": [
+            {
+              "text": "{A}, frene dokunmadan kolun yanında kalıyor. Dışarıya koşanlar, kolun kendi kendine kilitlendiğini sonradan görüyor. Bırakılan kişinin arkasında kapı açılıyor.",
+              "effects": {
+                "griefDebt": true,
+                "gateOpen": true
+              },
+              "kill": [
+                "primary"
+              ],
+              "jumpscare": "JS03"
+            }
+          ],
+          "id": "C"
+        },
+        {
+          "label": "Sesin şartını reddedip hep birlikte aşağıdaki suya geri dönüyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Ortak karar; ayrıca görevli seçilmez.",
+          "cases": [
+            {
+              "text": "Su, ışığın altındaki son basamağı örtüyor. Bir adım sonra kulenin altı değil, karanlık bir merdivensizlik var. Ayaklarınız yer arıyor; aşağıdaki eller her biriniz için ayrı açılıyor.",
+              "effects": {},
+              "kill": "all",
+              "jumpscare": "JS01",
+              "ending": "S2_E19"
+            }
+          ],
+          "id": "D"
+        }
+      ]
+    },
+    {
+      "id": "S2_N20",
+      "title": "Karaya Çıkan Ne",
+      "text": "Fenerin dibindeki beyaz çizgi ilk ışığı alıyor. Kurtarma çağrısı doğrulandıysa gerçek servis teknesi, tarif ettiği üç taşın arkasında bekliyor. Doğrulanmadıysa sisin içinden bir motor duyuluyor; nerede olduğu görünmüyor.\n\nKendi geldiğiniz tekne de kıyıya yakın duruyor. Motoru güvenli hâle getirdiyseniz çalıştırabilirsiniz. Gerçek kıyı haritanız yoksa denizin hangi tarafının kara olduğunu kesin bilmiyorsunuz.\n\nKonsolun son kablosu, iskeleye kadar uzanmış. Onu koparmak bütün çağrıları susturabilir. Ya da yalnız sizi duyan son insanı.\n\n{FOCUS}, elindeki su izine bakıyor. Denizden çıktınız. Fakat suyun sizden çıkıp çıkmadığını söylemek daha zor.\n\nHayatta kalanlar: {ALIVE_NAMES}.\n\nGeride kalanlar: {DEAD_NAMES}.\n\nYukarıda, fenerin ışığıyla karanlık arasındaki çizgide, sizin gibi durmayı öğrenmiş bir şekil bekliyor.",
+      "question": "Son kararınız nedir?",
+      "next": "RESOLVE_FINAL",
+      "options": [
+        {
+          "label": "Tanıklığı yanımızda tutup doğruladığımız kurtarma yoluna yürüyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Ortak karar; ayrıca görevli seçilmez.",
+          "cases": [
+            {
+              "text": "Yaşayanlar birbirini gözden çıkarmadan beyaz çizgiye ilerliyor. Bu kez bir sesin tanıdık olmasına değil, bütün gece topladığınız karşı kanıtlara güveniyorsunuz.",
+              "effects": {
+                "finalChoice": "A"
+              }
+            }
+          ],
+          "id": "A"
+        },
+        {
+          "label": "Kendi teknemize dönüp bildiğimiz kıyıya gitmeyi deniyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Ortak karar; ayrıca görevli seçilmez.",
+          "cases": [
+            {
+              "text": "Geldiğiniz tekneye dönüyorsunuz. Boş yerler, yaşayanların oturduğu yerlerden daha ağır görünüyor. Kontak çevriliyor. Deniz, farların önünde bir yol gibi açılıyor.",
+              "effects": {
+                "finalChoice": "B"
+              }
+            }
+          ],
+          "id": "B"
+        },
+        {
+          "label": "Son kabloyu koparıp bütün çağrıları susturuyoruz.",
+          "taskCount": 1,
+          "taskBrief": "Son çağrı kablosunu koparacak yaşayan kişi. Bu eylem kurtarma kanalını da kapatır.",
+          "cases": [
+            {
+              "text": "{A}, kabloyu koparıyor. Yıllardır süren ses bir anda kesiliyor. O sessizlikte, şimdiye kadar dalga sandığınız başka bir nefesi duyuyorsunuz.",
+              "effects": {
+                "finalChoice": "C"
+              }
+            }
+          ],
+          "id": "C"
+        },
+        {
+          "label": "Kurtulmak yerine fenerde kalıp ışığı tutmayı kabul ediyoruz.",
+          "taskCount": 0,
+          "taskBrief": "Ortak karar; ayrıca görevli seçilmez.",
+          "cases": [
+            {
+              "text": "Teknelerin sesleri uzaklaşıyor. Fenerin bakım masasında yeni bir vardiya çizelgesi beliriyor. İlk satıra kimse yazmadan yaşayanların isimleri düşüyor.",
+              "effects": {
+                "finalChoice": "D"
+              }
+            }
+          ],
+          "id": "D"
+        }
+      ]
+    }
+  ],
+  "endings": {
+    "S2_E01": {
+      "title": "Sabahın Gerçek Kıyısı",
+      "class": "Eksiksiz başarı",
+      "text": "Kurtarma teknesi üç taşın arkasından çıkıyor. Görevli önce çağrı kodunu, sonra rapordaki saati soruyor. İkisinin de karşılığını biliyorsunuz. Kimse sizden yeni bir kapı açmanızı istemiyor.\n\nHepiniz karaya çıkıyorsunuz. {ALIVE_NAMES}. Bir kişi bile eksik değil.\n\nKayıt, yıllar önce kapatılmış dosyayı yeniden açıyor. Eski raporun yanına gerçek çağrı ekleniyor. Hiç kimse o gece denizde yardım isteyen olmadığını bir daha söyleyemeyecek.\n\nFenerin ışığı sabah sönerken, kıyıdaki su yalnız su gibi hareket ediyor. Eve döndüğünüzde kapınızda bekleyen kimse yok. Telefonlarınızda yeni çağrı yok.\n\nBir süre dalga sesinden ürküyorsunuz. Sonra o da geçiyor.\n\nBu kez deniz sizden hiçbir şey götüremedi."
+    },
+    "S2_E02": {
+      "title": "Eksik Kişilerle Sabah",
+      "class": "Kayıplarla gerçek kurtuluş",
+      "text": "Gerçek servis teknesi sizi kıyıya çıkarıyor. Güvertede {ALIVE_COUNT} kişi varsınız. Yola çıktığınızda {N} kişiydiniz.\n\n{DEAD_NAMES}. İsimlerini doğru hatırlıyorsunuz. Ne zaman, hangi kararda kaybolduklarını da.\n\nKayıt teslim ediliyor. Eski çağrı resmen kabul ediliyor. Kıyıdaki sessizlikte artık sizi izleyen başka bir nefes yok.\n\nİlk kez güvendesiniz. Bu, daha iyi hissetmenizi sağlamıyor.\n\nAylar sonra buluştuğunuzda masaya fazladan sandalye koymuyorsunuz. Onları unuttuğunuz için değil. Bir boşluğu insanla karıştırmanın ne demek olduğunu bildiğiniz için.\n\nSon fotoğrafta yalnız kurtulanlar var. Eksikler, başka bir şeye dönüşmeden, oldukları insanlar olarak hatırlanıyor."
+    },
+    "S2_E03": {
+      "title": "Son Yaşayan",
+      "class": "Tek kişiyle gerçek kurtuluş",
+      "text": "Kurtarma teknesine yalnız {LAST_ALIVE} çıkıyor.\n\nGörevli kaç kişi olduğunuzu sorduğunda doğru sayıyı söylüyor: {N}. Sonra bütün isimleri tek tek anlatıyor. Hangi iş için kimi seçtiğinizi, hangi kapıyı açtığınızı, hangi uyarıyı geç fark ettiğinizi.\n\nKimse denizden gelen seslere bakmasını istemiyor. Gerçek insanlar, anlattıkları bitene kadar bekliyor.\n\nRapor düzeltiliyor. Çağrı kapanıyor. Suya ait şey kıyıya çıkamıyor.\n\nYıllar sonra {LAST_ALIVE}, bir teknenin motoru durduğunda herkesin neden aynı anda konuştuğunu anlıyor: İnsan bazen sessizlikte duyacaklarından korkuyor.\n\nO geceyi anlatırken tek bir yerde duraksıyor.\n\n“Beni de onlar seçti,” diyor. “Son işi yapmam için.”"
+    },
+    "S2_E04": {
+      "title": "Siz Çıktınız, Çağrı Çıkmadı",
+      "class": "Tehdit tam kapanmadan kurtuluş",
+      "text": "Servis teknesi gerçek. Kıyı gerçek. Hayatta kalanların hepsi karaya çıkıyor: {ALIVE_NAMES}.\n\nFakat arkanızdaki geçişte tamamlanmamış bir şey var. Açık kalan bir kapı, taşınan su izi ya da kabul edilip yerine getirilmeyen bir tanıklık. Kayıtta, nerede olduğunu bulamadığınız bir boşluk kalıyor.\n\nİlk ay hiçbir şey olmuyor. Sonra {LAST_ALIVE} banyodaki giderden bir telsiz cızırtısı duyuyor.\n\n“Bizi duydunuz,” diyor bir ses. “Duyduğunuzu söylediniz.”\n\nSes gelmiyor artık. Su geliyor. Musluklar kapalıyken lavabonun dibinde birikiyor.\n\nBir süre sonra, gecenin en sessiz saatinde, bütün kurtulanların telefonlarında aynı uyarı beliriyor:\n\nÇAĞRI TAMAMLANMADI."
+    },
+    "S2_E05": {
+      "title": "Kıyı Sandığınız",
+      "class": "Sahte kurtarma",
+      "text": "Sisin içindeki tekneye biniyorsunuz. Görevlinin yüzünü görmek için ışık tutunca başını çeviriyor. Konuşurken cümlelerinizin son kelimesini aynen tekrar ediyor.\n\nKıyıya vardığınızda evler yerinde. Yalnız pencereler suyun içinden bakılıyormuş gibi dalgalanıyor.\n\n{LAST_ALIVE}, kapısını açmak için anahtarını çıkarıyor. Kapının altından değil, üstünden su damlıyor. Sokak lambalarının etrafında küçük kabarcıklar yükseliyor.\n\nBiriniz nefesini tutuyor. Diğerleri nedenini o an anlıyor.\n\nSiz karaya çıkmadınız.\n\nDenizin altında, karaya benzeyen bir yere geldiniz. Kıyıda olduğunu sandığınız o kişi, sizi indirirken kapıyı arkanızdan kapatıyor."
+    },
+    "S2_E06": {
+      "title": "Işıksız Beyaz Çizgi",
+      "class": "Yön kaybıyla mahsur kalma",
+      "text": "Beyaz çizgiye yürüyorsunuz. Fenerin ışığı doğru yanmadığı için kıyıyla suyu ayıran kenarı seçemiyorsunuz.\n\nBir adım, sonra bir adım daha.\n\n{LAST_ALIVE}, arkasına bakınca fenerin hâlâ aynı uzaklıkta olduğunu görüyor. Önünüzdeki taş da. Ayaklarınız sırılsıklam, ama suya girdiğiniz bir anı hatırlamıyorsunuz.\n\nKurtarma teknesi varsa bile sizi göremiyor. Sesleniyorsunuz. Cevap kendi sesinizden geliyor; biraz daha aşağıdan.\n\nGün doğmuş olmalı. Telefonunuz öyle söylüyor.\n\nÜzerinizdeki karanlıkta, fener ışığının ulaşmadığı yerde, bir şey iki ayağı üzerinde ilk kez dik duruyor. Artık yürümek için sizi izlemesine gerek kalmamış."
+    },
+    "S2_E07": {
+      "title": "Kuru Güvertedeki Islak İz",
+      "class": "Varlık tekneye taşındı",
+      "text": "Geldiğiniz teknenin motoru dönüyor. İskele geride kalıyor. Hayatta kalanlar güvertede: {ALIVE_NAMES}.\n\nYükünüz azalmış olması gerekirken tekne ilk gelişinizden daha ağır. Su çizgisi bordada yavaş yavaş yükseliyor.\n\n{LAST_ALIVE}, kuru güvertede beliren ayak izini görüyor. Sonra ikinci izi. İkisi de aynı ayağa ait.\n\nİzler düzeliyor. Sağ ayak, sol ayak. Birkaç adım sonra sizin yürüyüşünüzden farkı kalmıyor.\n\nKaptan köşkünde kimse yokken dümen dönüyor. Ana karadaki ilk limanın ışıkları görünüyor.\n\nİlk kez, içeri aldığınız şeyin sizi öldürmeye çalışmadığını anlıyorsunuz.\n\nYalnızca sizden önce karaya çıkmak istiyor."
+    },
+    "S2_E08": {
+      "title": "Uzaklaşmayan Fener",
+      "class": "Rota olmadan sonsuz sefer",
+      "text": "Motor güvenli çalışıyor. Deniz sakinleşiyor. Bir süre gerçekten döndüğünüze inanıyorsunuz.\n\nFener sancak tarafında kalıyor. Bir saat sonra hâlâ orada. Dümeni ters yöne çeviriyorsunuz; bu kez iskele tarafında, yine aynı uzaklıkta.\n\nBasılı harita yok. Elektronik ekranda tek bir yer görünüyor: EVE VARILDI.\n\nYakıt göstergesi düşmüyor. Saat ilerlemiyor. Güvertedeki su kurumuyor.\n\n{LAST_ALIVE}, telsizi kapattığını hatırlıyor. Hoparlörden kendi sesi geliyor:\n\n“İçinizden biri aşağı insin.”\n\nBu kez sesin teknenin altından gelmediğini biliyorsunuz. Kayıt, biraz önce sizin çıkardığınız nefesle başlıyor."
+    },
+    "S2_E09": {
+      "title": "Son Marş",
+      "class": "Güvenli olmayan motorla kayıp",
+      "text": "Kontak dönüyor. Pervane, kendisine dolanan şeyi kesmiyor. Onun etrafında dönmeye başlıyor.\n\nTekne ilerlemek yerine baş aşağı doğru çekiliyor. Önce güverte, sonra ufuk eğiliyor. Eşyalar yere düşmüyor; sanki aşağı artık başka yerdeymiş gibi cama doğru kayıyor.\n\nİçinizden biri kapı koluna tutunuyor. Denizin içinden gelen uzun bir kol, teknenin dışını aynı biçimde tutuyor.\n\nSonunda motor çalışıyor.\n\nSu, camların üstünden kapanırken içerideki bütün ışıklar aynı anda yanıyor. Tekne denizin altında, normal bir yolculuk yapar gibi düzleşiyor.\n\nTelsizden sakin bir anons duyuluyor:\n\n“Sonraki durakta inecek var mı?”"
+    },
+    "S2_E10": {
+      "title": "Kayda Geçmeyen Kurtuluş",
+      "class": "Tekneyle bedelli kaçış",
+      "text": "Doğru harita, güvenli motor ve karaya çıkan gerçek yol. Hayatta kalanları ana kıyıya ulaştırıyorsunuz: {ALIVE_NAMES}.\n\nFakat fenerdeki beyaz geçidi kullanmadınız. Kapanması gereken son hattı arkanızda açık bıraktınız. Eski yardım çağrısı, sizden uzaklaştıkça da sürüyor.\n\nO geceyle ilgili ifadeleriniz alınırken teknenin kayıt cihazı bulunamıyor. Yanınızda taşıdığınız belgelerin bazıları kupkuru, bazıları okunamayacak kadar ıslak.\n\nBir gün başka bir teknenin aynı sularda kaybolduğunu duyuyorsunuz. Haberde “Bölgede yardım çağrısı kaydı bulunamadı” diyor.\n\nTelefonunuz çalıyor.\n\nBu kez isim yabancı değil. Kendi numaranız sizi arıyor. Açarsanız birilerine yardım edebilirsiniz.\n\nBelki de bu yüzden arıyor."
+    },
+    "S2_E11": {
+      "title": "Sessizlikte Kalanlar",
+      "class": "Tanıklığı susturarak kapanma",
+      "text": "Eski çağrının duyulduğunu kabul etmiştiniz. Şimdi son kabloyu da kestiniz.\n\nKurtarma teknesinin sesi uzaklaşıyor. Fenerin merdivenleri uzuyor. Aşağı inmeye çalıştığınızda hep aynı kata dönüyorsunuz.\n\nArtık biri yardım isterse duyabilirsiniz. Ama dışarıya konuşamazsınız.\n\n{LAST_ALIVE}, konsolun üstündeki yeni raporu okuyor. Yıllar önceki imzanın altında sizin isimleriniz var. Hepsinin yanında aynı açıklama: “Dinledi. Yanıt hattını kapattı.”\n\nDışarıdaki deniz kararmıyor. Sadece sizin gördüğünüz dünya, fenerin camlarının içinde kalıyor.\n\nBir gün yeni bir tekne duruyor. Yardım çağrısını duyuyorsunuz. Bu kez cevap vermek için hiçbir kablonuz yok."
+    },
+    "S2_E12": {
+      "title": "Çağrı Sizsiniz",
+      "class": "Sesin yeni kaynağı",
+      "text": "Kablo koptuğunda eski çağrı sona ermiyor. Yalnız yer değiştiriyor.\n\nArtık bir bedenin içinde değilsiniz. Hangi duvarın, hangi su borusunun, hangi hoparlörün içinden baktığınızı anlayamıyorsunuz.\n\nDenizde bir tekne duruyor. Yolcuların korktuğunu duyuyorsunuz. Onlara karanlığa bakmamalarını söylemek istiyorsunuz.\n\nAğzınız yok. Yalnız kelimeleriniz var. Kelimeleriniz de istediğiniz sırayla gelmiyor.\n\n“İçinizden biri aşağı insin,” diyorsunuz.\n\nBirisi gerçekten geliyor.\n\nTeknenin altındaki karanlık hareketleniyor. Şimdi ilk kez anlıyorsunuz: Bütün gece duyduğunuz sesler yardım istiyor olabilir. Bu, onların söylediğini yapmanın sizi kurtaracağı anlamına gelmiyordu."
+    },
+    "S2_E13": {
+      "title": "İçeride Bıraktığınız Dışarı Çıktı",
+      "class": "Bekçilikle varlığa geçit verme",
+      "text": "Fenerde kalmayı kabul ediyorsunuz. Işık dönüyor. Yaşayanlar, artık başka bir geceyi burada karşılayacak: {ALIVE_NAMES}.\n\nSabah, taş iskelede tek bir ıslak iz görüyorsunuz. İz doğru adımlarla karaya gidiyor. Birkaç metre sonra kuruyor.\n\nAranıza sızmış olan, sizin bekçilik sözünüzü kendi çıkış izni sanmış. Belki de gerçekten öyleydi.\n\nBir hafta sonra kıyı kasabasındaki bir dükkân açılıyor. Kapıdaki kişi yürürken hiçbir hata yapmıyor. Birine sarılırken de.\n\nYalnız yağmur başladığında yüzünü gökyüzüne değil, kaldırıma çeviriyor.\n\nFenerden onu göremiyorsunuz. Ama artık ışığı neden karaya çeviremediğinizi biliyorsunuz."
+    },
+    "S2_E14": {
+      "title": "Yeni Vardiya",
+      "class": "Yaşayan bekçiler olarak mahsur kalma",
+      "text": "Işığı tutmak için fenerde kalıyorsunuz. Son tekne de uzaklaşıyor. Yalnız yaşayanlar merdivenin başında: {ALIVE_NAMES}.\n\nVardiya çizelgesinde her birinize bir saat ayrılmış. Çizelgenin bittiği yerde yeni bir gün başlamıyor. Aynı gece, aynı saatin başka bir parçasıyla sürüyor.\n\nYemek acıkmadan önce hazır. Su içmek istediğinizde bardak dolu. Kapı dışarı açılıyor, fakat her patika sizi fenerin altına getiriyor.\n\nBir gece ufukta bir tekne duruyor.\n\nYardım etmek için ışığı çeviriyorsunuz. Telsize uzanıyorsunuz. Ağzınızı açmadan önce hepiniz aynı kuralı hatırlıyorsunuz:\n\nKimseyi içeri çağırmayın.\n\nAma dışarıdaki seslerden biri, kaybettiğiniz bir arkadaşınıza ait."
+    },
+    "S2_E15": {
+      "title": "Çağrı Alınmadı",
+      "class": "İnkârın yeni tanıkları",
+      "text": "Son cümle ağzınızdan çıktığında yolcu teknesi yok oluyor. Önünüzde kuru bir masa, üstünde yazılmayı bekleyen bir rapor var.\n\nTelsizden yardım isteyenleri duyuyorsunuz. Dışarıdaki fırtına pencereyi sarsıyor. Masada kaç kalem varsa her biri birinizin önüne geliyor.\n\nEllerinizi siz yönetmiyorsunuz. Aynı cümleyi tekrar tekrar yazıyorsunuz.\n\nÇağrı alınmadı.\n\nSu yavaşça masanın altına doluyor. Buna rağmen kâğıtlar ıslanmıyor. Dışarıdaki sesler, artık sizin de burada olduğunuzu öğreniyor.\n\nBirileri yıllar sonra bu kaydı açtığında duydukları o cızırtının içinde, sizin son nefesiniz de olacak.\n\nRapor, bu kez hepinizin el yazısını taşıyor."
+    },
+    "S2_E16": {
+      "title": "Karanlıkta Büyüyen",
+      "class": "Kule içinde kapanma",
+      "text": "Saklandığınız odanın kapısı açılmıyor. Karanlıkta ne kadar beklediğinizi bilmiyorsunuz. Yaşayanlar hâlâ birlikte, ama artık birbirinizi göremiyorsunuz.\n\nDışarıdaki ayaklar ilk gece yanlış basıyor. İkinci gece daha düzgün. Üçüncü gece birinizin yürüyüşüyle aynı.\n\nSonra sesinizle konuşmaya başlıyor. Bir cümleyi yanlış yerde kesiyor; ertesi gece onu da öğreniyor.\n\n{LAST_ALIVE}, kapının altındaki ışık çizgisinde bir çift ayak görüyor. Parmaklar bu kez doğru yöne bakıyor.\n\nKapı kolu aşağı iniyor.\n\nArtık içeri girmeye hazır. Sizin neden ışığı söndürdüğünüzü anlamasına gerek kalmadı."
+    },
+    "S2_E17": {
+      "title": "Işıkta Kalanlar",
+      "class": "Mercek içinde ölüm",
+      "text": "Camın içinden dışarıyı görebiliyorsunuz. Dışarıdan bakanlar ise yüzlerinizi ışık kırılması sanıyor.\n\nFener her döndüğünde dünya bir kere gözünüzün önünden geçiyor. Deniz. Kayalıklar. Kıyı. Boş merdiven. Yeniden deniz.\n\nElinizi hareket ettirmeye çalıştığınızda ışığın içindeki bir çizgi titriyor. Sesiniz, camın ince çınlamasından ileri gitmiyor.\n\nYıllar sonra bakım görevlisi merceğin yüzeyindeki küçük izi temizlemek için yaklaşıyor. Siz bütün gücünüzle geri çekilmesini istiyorsunuz.\n\nCamda bir yüz beliriyor. Sizinki.\n\nGörevli irkiliyor. Merceğin içindeki diğer yüzler de ona dönüyor.\n\nArtık neden gözlerinizi alamadığınızı biliyorsunuz. Birisi bakmadan yer değiştiremiyorsunuz."
+    },
+    "S2_E18": {
+      "title": "İlk Cevap",
+      "class": "Sahte kurtarmaya kapı açma",
+      "text": "Dışarıdaki karanlık tek bir insan gibi içeri girmiyor. Önce bir el, sonra öteki. Dizleri nerede olması gerektiğini kapı eşiğinde öğreniyor.\n\nYaşayanların son görüntüsü, fenerin duvarında uzun ve yanlış gölgeler.\n\nSonra sesleriniz kıyı konsoluna yerleşiyor. Her yeni çağrıda sizden biri cevap veriyor. Sözlerinizin başı size, sonu başka bir şeye ait.\n\n“Sizi duyuyoruz,” diyorsunuz. Gerçekten duyuyorsunuz.\n\n“Kapıyı açın.” Bunu söylemek istemiyorsunuz.\n\nYeni bir teknenin yolcuları, tanıdık bir insan sesi duydukları için rahatlıyor. Fenerin altındaki şey, kapı kolunu bu kez tek denemede çeviriyor."
+    },
+    "S2_E19": {
+      "title": "Fenerin Altında",
+      "class": "Suya geri dönüşle ölüm",
+      "text": "Fenerin altındaki su, bir kıyı gibi görünmekten vazgeçiyor. Aşağıya doğru merdiven de yok. Yalnız karanlık ve içinde bekleyen eller.\n\nÖnce kaybettiğiniz kişilerin yüzlerini görüyorsunuz. Size uzanmıyorlar. Başlarını iki yana sallıyorlar.\n\nSonra onların arkasında başka bir yüz açılıyor. Daha büyük. Ne kadar büyük olduğunu karanlık saklıyor.\n\nBütün isimleriniz bir an aynı anda söyleniyor. Bütün sesleriniz, son nefes alacak bir yer arıyor.\n\nYukarıdan bakıldığında deniz yeniden sakinleşiyor. Fenerin ışığı bir süre daha dönüyor.\n\nSabah kıyı görevlisi, iskelede yeni bir çift ayak izi buluyor. İzler sudan çıkmış. Henüz doğru yürümeyi bilmiyor."
+    },
+    "S2_E20": {
+      "title": "Yolcu Kalmadı",
+      "class": "Son yaşayanın da kaybı",
+      "text": "Yaşayanlar listesinde artık isim yok.\n\nBu gece yola çıkanlar: {ALL_NAMES}.\n\nHer biri bir kararın ardından başka bir yerde kaldı. Biri suyun altında, biri camın arkasında, biri sesiyle aynı odaya giremediği bir karanlıkta.\n\nArtık birbirinizi yalnız ses olarak duyabiliyorsunuz. Aynı yerde olup olmadığınızı anlamak mümkün değil.\n\nSonra yeni bir motor sesi geliyor. Başka bir tekne. Başka insanlar.\n\nOnları uyarmaya çalışıyorsunuz. Ağzınızdan çıkmasını istemediğiniz ilk cümle, hepinizin sesinden aynı anda duyuluyor:\n\n“İçinizden biri aşağı insin.”\n\nYolcu teknesinin içindeki biri cevap veriyor."
+    }
+  },
+  "ghostPages": [
+    {
+      "range": [
+        1,
+        3
+      ],
+      "title": "Suya İlk Bakış",
+      "text": "Öldüğünü biliyorsun. Buna rağmen karanlıkta bakabileceğin bir yön var. Teknenin üstündeki adımlar birer gölge. Arkadaşlarının isimlerini duyuyorsun; onların yanında fiziksel olarak durmuyorsun. Aşağıdaki şey, ışığa yaklaşmadan önce hep aynı hareketi deniyor: Bir kapının nasıl açıldığını öğrenmek. Sonraki kararlar onların bedenlerini anlatacak. Sen oylamada kalacaksın. Yaşayan birinin yerine göreve gidemezsin."
+    },
+    {
+      "range": [
+        4,
+        5
+      ],
+      "title": "Basıncı Taklit Edemez",
+      "text": "Gövdenin dışından bakınca vuruşların geldiği yerde bir insan yok. Ses, kuru metali içeriden bulmaya çalışıyor. Gerçek suyun pompaya verdiği basıncı taklit edemiyor. Arkadaşlarınla konuşabiliyorsan bu ayrıntıyı aktarabilirsin. Bu bir yeni seçim değildir; asıl dört seçenekli oylama aynı kalır."
+    },
+    {
+      "range": [
+        6,
+        7
+      ],
+      "title": "Işık Yürür, Taş Kalır",
+      "text": "Suyun içinde görünen kıyı, siz yürüdükçe yer değiştiriyor. Gerçek kayalar oynamıyor. Üçü yan yana. Birinde beyaz çizgi var. Dar tüneldeki nefes ise içeri giren bir insanın nefesi değil; metalin içindeki boşluğun taklidi. Bu bilgiyi yaşayanlara anlatabilirsin. Kararı tek başına değiştiremezsin."
+    },
+    {
+      "range": [
+        8,
+        10
+      ],
+      "title": "Duyuldular",
+      "text": "Eski kaydın sustuğu yerde de sesleri duyuyorsun. Çağrı gerçekten alındı. Bunu inkâr etmek onları yok etmiyor. Sana göre çok yakındalar, fakat aralarında dolaşan daha büyük karanlık onlardan biri değil. Bir sesin acı çekmesi, ağzından çıkan her sözün ona ait olduğunu kanıtlamıyor."
+    },
+    {
+      "range": [
+        11,
+        13
+      ],
+      "title": "Yürümeyi Öğreniyor",
+      "text": "Kıyıdan çıkan şeyin ayakları önce yanlış yöne basıyor. Her kapıyı, her merdiveni birini izleyerek öğreniyor. İçeri giren suyun her damlası deniz değil; bazılarının arası bir beden kadar boş. Yaşayanların kuru yoldan geçmesi bir alışkanlık değil, aradaki boşluğu ayıracak bir sınır."
+    },
+    {
+      "range": [
+        14,
+        16
+      ],
+      "title": "Camın Öte Yanı",
+      "text": "Camdaki yüzlerin hepsi arkadaşların değil. Ölüleri geri getirecek güvenli bir geçit yok. Çıplak mercek, bakana yer açıyor. Kalkan inince içerideki yüzün ışığa tutunamadığını görüyorsun. Sadece sen görüyorsun diye bu ipucu zorunlu hâle gelmez; yaşayanların bakım talimatı aynı şeyi zaten söylüyor."
+    },
+    {
+      "range": [
+        17,
+        18
+      ],
+      "title": "Tekrar Bir Yanıt Değil",
+      "text": "Sana ait olmayan sesin çalışma biçimini şimdi anlıyorsun. Söyleneni kusursuz tekrar ediyor, anlaması gereken yerde duruyor. Gerçek yanıt son iki vuruşu değiştirir. Gerçek yardım, bir kapıyı açmanı istemeden kıyıdaki yerini sınar. Arkadaşlarının bütün gece öğrendiği ayrım buydu."
+    },
+    {
+      "range": [
+        19,
+        20
+      ],
+      "title": "Birini Daha İstemeyin",
+      "text": "Kimsenin kolu tutmak için içeride kalması gerekmiyor. Mekanik fren çalışıyor. Sen geri dönemeyeceksin; bunun yerine bir başka arkadaşının gelmesi seni kurtarmayacak. Yaşayanlar çıkabilir. Gerçeği yanlarına almaları, burada kalanların yeniden bir yem olarak kullanılmasını engelleyebilir. Son kararda da bir oyun var."
+    }
+  ],
+  "jumpscares": [
+    {
+      "key": "JS01",
+      "title": "Suyun altındaki yüz",
+      "image": "assets/images/js01.png",
+      "audio": "assets/audio/js01.wav",
+      "usage": "Suya çekilme / boğulma",
+      "soundDirection": "Islak düşük darbe, kısa yükselen metalik çığlık, su altı boğuk kuyruğu.",
+      "imageSource": "previously_approved_generated_image",
+      "audioSource": "original_synthetic_stinger"
+    },
+    {
+      "key": "JS02",
+      "title": "Motor dairesindeki ters yüz",
+      "image": "assets/images/js02.png",
+      "audio": "assets/audio/js02.wav",
+      "usage": "Motor / pompa boşluğu",
+      "soundDirection": "Keskin zincir darbesi, geriye emilen nefes benzeri sentetik sürtünme, kısa bas.",
+      "imageSource": "previously_approved_generated_image",
+      "audioSource": "original_synthetic_stinger"
+    },
+    {
+      "key": "JS03",
+      "title": "Karanlık kapıdan çıkan yüz",
+      "image": "assets/images/js03.png",
+      "audio": "assets/audio/js03.wav",
+      "usage": "Kapı / merdiven boşluğu",
+      "soundDirection": "Tahta-demir çarpması, iki katmanlı pürüzlü tiz stinger, ani kısa kesiliş.",
+      "imageSource": "previously_approved_generated_image",
+      "audioSource": "original_synthetic_stinger"
+    },
+    {
+      "key": "JS04",
+      "title": "Lombozdaki yüz",
+      "image": "assets/images/js04.png",
+      "audio": "assets/audio/js04.wav",
+      "usage": "Cam / lomboz yaklaşması",
+      "soundDirection": "Cam çınlaması, su sıçraması hissi veren gürültü, kısa yüksek rezonans.",
+      "imageSource": "previously_approved_generated_image",
+      "audioSource": "original_synthetic_stinger"
+    },
+    {
+      "key": "JS05",
+      "title": "Filikanın altından çıkan",
+      "image": "assets/images/js05.png",
+      "audio": "assets/audio/js05.wav",
+      "usage": "Filika / borda",
+      "soundDirection": "Kuvvetli su vuruşu, alçaktan yükselen yaratık benzeri sentetik kükreme.",
+      "imageSource": "previously_approved_generated_image",
+      "audioSource": "original_synthetic_stinger"
+    },
+    {
+      "key": "JS06",
+      "title": "Havalandırmadaki yüz",
+      "image": "assets/images/js06.png",
+      "audio": "assets/audio/js06.wav",
+      "usage": "Dar tünel",
+      "soundDirection": "Metal sürtünmesi, kuru tıkırtı, çok kısa boğuk sentetik feryat.",
+      "imageSource": "previously_approved_generated_image",
+      "audioSource": "original_synthetic_stinger"
+    },
+    {
+      "key": "JS07",
+      "title": "Telsizdeki yağmurluklu",
+      "image": "assets/images/js07.png",
+      "audio": "assets/audio/js07.wav",
+      "usage": "Telsiz / sahte kurtarma",
+      "soundDirection": "Radyo paraziti, kesik rezonanslı çığlık dokusu, röle klik sesi.",
+      "imageSource": "previously_approved_generated_image",
+      "audioSource": "original_synthetic_stinger"
+    },
+    {
+      "key": "JS08",
+      "title": "Fener merceğindeki yüz",
+      "image": "assets/images/js08.png",
+      "audio": "assets/audio/js08.wav",
+      "usage": "Mercek / ışık",
+      "soundDirection": "Cam rezonansı, kısacık ters yükseliş, geniş metalik korku darbesi.",
+      "imageSource": "previously_approved_generated_image",
+      "audioSource": "original_synthetic_stinger"
+    }
+  ],
+  "arrivalVariants": [
+    {
+      "when": {
+        "all": [
+          {
+            "flag": "lifeRaft"
+          },
+          {
+            "flag": "chart"
+          }
+        ]
+      },
+      "text": "Kontrollü indirdiğiniz servis filikasıyla üç sabit kayanın arasından geçiyorsunuz. Yakıt yetiyor. Kıyı, haritada olduğu yerde kalıyor. Fenerin iskelesi artık hemen önünüzde."
+    },
+    {
+      "when": {
+        "all": [
+          {
+            "flag": "engineSafe"
+          },
+          {
+            "flag": "chart"
+          }
+        ]
+      },
+      "text": "Güvenli bakım hattından motoru kısa ve kontrollü çalıştırarak tekneyi servis iskelesine yaklaştırıyorsunuz. Fenerin altındaki kılavuz zinciri tekneyi tutuyor. Gerçek kıyıya ulaştınız."
+    },
+    {
+      "text": "Tekne ya da hazırladığınız filika, akıntıyla fener kayalığına sürükleniyor. Bu, güvenli bir rota bulduğunuz anlamına gelmiyor. Kıyıya sizin gitmenizden çok, aşağıdaki şeyin sizi oraya istemesine benziyor. Servis iskelesinin üstüne çıkıyorsunuz."
+    }
+  ],
+  "terminalDeathEndings": {
+    "S2_E09": "JS02",
+    "S2_E12": "JS07"
+  },
+  "finalRules": {
+    "format": "Ordered condition descriptions; implement a pure resolver, never eval these strings.",
+    "priority": "explicit case ending > no alive E20 > node20 routing > next node",
+    "A": [
+      {
+        "condition": "!beacon",
+        "ending": "S2_E06"
+      },
+      {
+        "condition": "!rescueVerified || falseReply",
+        "ending": "S2_E05"
+      },
+      {
+        "condition": "!sosAnswered || !logProof || !doorSealed || !gateOpen || contamination",
+        "ending": "S2_E04"
+      },
+      {
+        "condition": "aliveCount == initialCount",
+        "ending": "S2_E01"
+      },
+      {
+        "condition": "aliveCount == 1",
+        "ending": "S2_E03"
+      },
+      {
+        "condition": "otherwise",
+        "ending": "S2_E02"
+      }
+    ],
+    "B": [
+      {
+        "condition": "contamination",
+        "ending": "S2_E07"
+      },
+      {
+        "condition": "!engineSafe",
+        "ending": "S2_E09"
+      },
+      {
+        "condition": "!chart",
+        "ending": "S2_E08"
+      },
+      {
+        "condition": "otherwise",
+        "ending": "S2_E10"
+      }
+    ],
+    "C": [
+      {
+        "condition": "sosAnswered",
+        "ending": "S2_E11"
+      },
+      {
+        "condition": "otherwise",
+        "ending": "S2_E12"
+      }
+    ],
+    "D": [
+      {
+        "condition": "contamination",
+        "ending": "S2_E13"
+      },
+      {
+        "condition": "otherwise",
+        "ending": "S2_E14"
+      }
+    ]
+  },
+  "placeholderContract": {
+    "allowed": [
+      "A",
+      "ALIVE_COUNT",
+      "ALIVE_NAMES",
+      "ALL_NAMES",
+      "ARRIVAL",
+      "B",
+      "DEAD_NAMES",
+      "FOCUS",
+      "LAST_ALIVE",
+      "N"
+    ],
+    "rendering": "server snapshots, escaped plain text; see Markdown sections 4,5,10"
+  },
+  "validation": {
+    "endingWitnesses": "validation.json",
+    "status": "checked",
+    "multiplayerAppTested": false
+  }
+}

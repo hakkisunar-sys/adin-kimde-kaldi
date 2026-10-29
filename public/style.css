@@ -219,3 +219,89 @@ details.reread .story p { font-size: 16px; color: var(--ink-dim); }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 [hidden] { display: none !important; }
 .bar .track, .bar .fill { display: block; }
+
+/* ================= Son Sefer teması ================= */
+body.story-son_sefer {
+  --blood: #8a4a2c;          /* pas */
+  --blood-bright: #c27448;
+  --salt: #7fa3ad;           /* tuzlu mavi */
+}
+body.story-son_sefer .scene-title { color: var(--salt); }
+:root { --salt: #8aa0a6; }
+
+/* hikâye kartları */
+.stories { display: grid; gap: 10px; }
+.storycard { text-align: left; width: 100%; background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; font-family: var(--serif); }
+.storycard h4 { font-family: var(--mono); font-size: 17px; letter-spacing: .06em; text-transform: uppercase; margin: 0 0 6px; }
+.storycard p { margin: 0 0 8px; font-size: 15px; color: var(--ink-dim); line-height: 1.45; }
+.storycard[aria-pressed='true'] { border-color: var(--blood-bright); box-shadow: inset 0 0 0 1px var(--blood-bright); background: #1c1411; }
+.storycard:disabled { cursor: default; }
+.storycard:disabled:not([aria-pressed='true']) { opacity: .5; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.hero .titles { font-family: var(--mono); font-weight: 700; font-size: clamp(28px, 8.5vw, 46px); line-height: 1.08; margin: 0 0 20px; }
+.hero .titles span { display: block; }
+.hero .titles .amp { font-size: .45em; color: var(--ink-faint); font-weight: 400; letter-spacing: .3em; margin: 6px 0; }
+
+/* yaşayan / ölü durum */
+.dead-tag { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--salt); border: 1px dashed var(--salt); border-radius: 3px; padding: 3px 8px; display: inline-block; margin: 0 0 12px; }
+.focusline { font-family: var(--mono); font-size: 13px; color: var(--ink-dim); margin: -8px 0 16px; letter-spacing: .04em; }
+.roster { display: grid; gap: 6px; font-size: 15px; margin: 0 0 18px; background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px; }
+.roster b { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); font-weight: 400; margin-right: 6px; }
+.roster .lost { color: var(--blood-bright); }
+.ghost { border: 1px solid #2c4248; background: linear-gradient(#0f1719, #0c1213); border-radius: var(--radius); padding: 14px 16px; margin: 6px 0 20px; }
+.ghost .eyebrow { color: var(--salt); }
+.ghost h4 { font-family: var(--mono); font-size: 15px; letter-spacing: .08em; text-transform: uppercase; margin: 0 0 10px; color: #cfe0e4; }
+.ghost p { font-size: 17px; color: #b9cbcf; margin: 0 0 .8em; font-style: italic; }
+.deathcard { border: 1px solid var(--blood); background: #160d0a; border-radius: var(--radius); padding: 16px; margin: 0 0 18px; }
+.deathcard h3 { font-family: var(--mono); letter-spacing: .1em; text-transform: uppercase; margin: 0 0 10px; color: var(--blood-bright); font-size: 16px; }
+.deathcard p { margin: 0 0 10px; font-size: 17px; }
+.chip.dead { color: var(--salt); border-style: dashed; }
+.need { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--salt); display: block; margin-top: 6px; }
+.brief { display: block; font-size: 14px; color: var(--ink-faint); margin-top: 4px; line-height: 1.4; }
+.opt .body { display: block; min-width: 0; }
+.fat { display: inline-flex; gap: 3px; vertical-align: middle; margin-left: 8px; }
+.fat i { width: 8px; height: 8px; border-radius: 50%; border: 1px solid var(--ink-faint); display: inline-block; }
+.fat i.on { background: var(--blood-bright); border-color: var(--blood-bright); }
+.actionbox { background: var(--bg-2); border: 1px solid var(--line); border-left: 3px solid var(--salt); border-radius: var(--radius); padding: 12px 14px; margin: 0 0 16px; }
+.actionbox small { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 4px; }
+.equip { font-size: 14px; color: var(--ink-dim); margin: 0 0 14px; }
+.equip b { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-faint); font-weight: 400; }
+.range { width: 140px; accent-color: var(--blood-bright); }
+
+/* ================= Jumpscare ================= */
+.scare { position: fixed; inset: 0; z-index: 1000; background: #000; opacity: 0; transition: opacity .15s ease-out; overflow: hidden; touch-action: none; }
+.scare.on { opacity: 1; }
+.scare.out { opacity: 0; transition: opacity .26s ease-in; }
+.scare-noise { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; opacity: .85; mix-blend-mode: screen; }
+.scare.hit .scare-noise { opacity: .22; }
+.scare-tears i { position: absolute; left: -10%; width: 120%; background: var(--tint); mix-blend-mode: screen; opacity: .3; filter: blur(.5px); }
+.scare.hit .scare-tears i { opacity: .15 !important; }
+.scare-text { position: absolute; left: 0; right: 0; top: 44%; text-align: center; font-family: var(--mono); font-size: 22px; letter-spacing: .18em; color: var(--tint); text-shadow: 3px 0 rgba(255,0,60,.5), -3px 0 rgba(0,220,255,.4); }
+.scare-scan { position: absolute; inset: 0; pointer-events: none; background: repeating-linear-gradient(transparent 0 2px, rgba(0,0,0,.35) 2px 4px); }
+.scare-face { position: absolute; inset: -4%; visibility: hidden; }
+.scare.hit .scare-face { visibility: visible; }
+.scare-layer { position: absolute; inset: 0; background-size: cover; background-position: center 30%; }
+.scare-layer.r { mix-blend-mode: screen; filter: sepia(1) saturate(6) hue-rotate(-50deg); opacity: .0; transform: translateX(-7px); }
+.scare-layer.c { mix-blend-mode: screen; filter: sepia(1) saturate(6) hue-rotate(150deg); opacity: .0; transform: translateX(7px); }
+.scare.hit .scare-layer.r, .scare.hit .scare-layer.c { animation: rgbsplit .95s ease-out forwards; }
+@keyframes rgbsplit { 0% { opacity: .55; } 60% { opacity: .2; } 100% { opacity: 0; } }
+
+/* sekiz giriş biçimi */
+.scare-wave .scare-tears i { border-radius: 50%; height: 3% !important; filter: blur(3px); }
+.scare-wave.hit .scare-face { animation: wobble .95s ease-out; }
+@keyframes wobble { 0% { filter: blur(6px) hue-rotate(20deg); } 40% { filter: blur(0); } }
+.scare-stutter.hit .scare-face { animation: stutterin .95s steps(6); }
+@keyframes stutterin { 0% { clip-path: inset(0 0 70% 0); } 30% { clip-path: inset(30% 0 20% 0); } 60% { clip-path: inset(0); } }
+.scare-slide.hit .scare-face { animation: slidein .35s cubic-bezier(.2,.9,.2,1); }
+@keyframes slidein { from { clip-path: inset(0 48% 0 48%); } to { clip-path: inset(0 0 0 0); } }
+.scare-shatter.hit .scare-face { animation: shatter .5s steps(4); }
+@keyframes shatter { 0% { clip-path: polygon(10% 0, 60% 10%, 40% 60%, 0 40%); } 50% { clip-path: polygon(0 0, 100% 5%, 85% 90%, 5% 100%); } 100% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); } }
+.scare-roll.hit .scare-face { animation: rollin .45s cubic-bezier(.2,.8,.3,1); }
+@keyframes rollin { from { background-position: center; transform: translateY(-35%); } to { transform: translateY(0); } }
+.scare-tunnel::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 45%, transparent 22%, #000 70%); pointer-events: none; }
+.scare-tunnel.hit::after { animation: tunnel .95s ease-out forwards; }
+@keyframes tunnel { from { opacity: 1; } to { opacity: .55; } }
+.scare-scan .scare-scan, .scare-scan > .scare-scan { background: repeating-linear-gradient(transparent 0 1px, rgba(0,0,0,.55) 1px 3px); }
+.scare-flare.hit .scare-face { animation: flare .95s ease-out; }
+@keyframes flare { 0% { filter: brightness(.6) contrast(1.6) sepia(.6); } 100% { filter: none; } }
+.reduce-motion .scare-face { transform: none !important; }
